@@ -758,16 +758,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function filterByRole(role) {
-            currentFilter = role;
+    currentFilter = role;
 
-            // Update active button
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
+    // Update active button - more reliable method
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === role || 
+            (role === 'all' && btn.textContent.toLowerCase().includes('all')));
+    });
 
-            applyFilters();
-        }
+    applyFilters();
+}
 
         function applyFilters() {
             const cards = document.querySelectorAll(".card");
