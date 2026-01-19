@@ -11,306 +11,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      /* Projects grid vs compact (row) view */
-      .projects-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 20px;
-        padding: 0 20px 40px;
-        box-sizing: border-box;
-      }
-
-      .project-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-secondary);
-        padding: 16px;
-        border-radius: 12px;
-        box-shadow: var(--shadow-sm);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        animation: projectCardAppear 0.5s ease-out forwards;
-        animation-delay: calc(var(--project-index, 0) * 0.08s);
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      @keyframes projectCardAppear {
-        0% {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .project-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: var(--shadow-lg), 0 0 20px rgba(56, 189, 248, 0.2);
-        border-color: var(--primary-color);
-      }
-
-      .project-card:hover h2 {
-        color: var(--primary-color);
-        transform: translateY(-1px);
-        transition: all 0.3s ease;
-      }
-
-      .project-card:hover .project-desc {
-        transform: translateY(-1px);
-        transition: transform 0.3s ease;
-      }
-
-      .project-desc {
-        color: var(--text-secondary);
-        margin: 8px 0;
-        flex-grow: 1;
-      }
-
-      .project-tags {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-top: 8px;
-      }
-
-      .project-tags span {
-        background: rgba(255, 255, 255, 0.03);
-        padding: 6px 8px;
-        border-radius: 8px;
-        font-size: 0.8rem;
-        color: var(--text-secondary);
-      }
-
-      .project-links a {
-        margin-right: 12px;
-        text-decoration: none;
-        color: var(--text-primary);
-        font-weight: 600;
-      }
-
-      .project-footer {
-        margin-top: 12px;
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-      }
-
-      /* Compact (row/list) view */
-      .projects-container.compact-view {
-        display: block;
-        padding: 0 20px 40px;
-      }
-
-      .projects-container.compact-view .project-card {
-        display: flex;
-        flex-direction: row;
-        gap: 16px;
-        align-items: flex-start;
-        padding: 16px;
-        margin-bottom: 12px;
-      }
-
-      .projects-container.compact-view .project-card > * {
-        margin: 0;
-      }
-
-      .projects-container.compact-view .project-card h2 {
-        margin: 0;
-        font-size: 1.05rem;
-        min-width: 200px;
-      }
-
-      .projects-container.compact-view .project-desc {
-        flex-grow: 1;
-        margin: 0;
-      }
-
-      .projects-container.compact-view .project-tags {
-        min-width: 150px;
-        margin-top: 0;
-      }
-
-      .projects-container.compact-view .project-links {
-        min-width: 120px;
-      }
-
-      .projects-container.compact-view .project-footer {
-        margin-top: 0;
-        min-width: 150px;
-        text-align: right;
-      }
-
-      @media (max-width: 900px) {
-        .projects-container.compact-view .project-card {
-          flex-wrap: wrap;
-          gap: 12px;
-        }
-
-        .projects-container.compact-view .project-card > * {
-          min-width: auto !important;
-          flex: 1 1 auto;
-        }
-
-        .projects-container.compact-view .project-footer {
-          text-align: left;
-        }
-      }
-
-      @media (max-width: 600px) {
-        .projects-container {
-          grid-template-columns: 1fr;
-        }
-
-        .projects-container.compact-view .project-card {
-          flex-direction: column;
-          align-items: stretch;
-          gap: 12px;
-        }
-      }
-
-      /* Empty state styling */
-      .empty-state {
-        grid-column: 1 / -1;
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 40px 20px;
-        text-align: center;
-        color: var(--text-secondary);
-        animation: fadeIn 0.3s ease-in-out;
-      }
-
-      .empty-state.visible {
-        display: flex;
-      }
-
-      .empty-state i {
-        font-size: 3rem;
-        margin-bottom: 16px;
-        opacity: 0.6;
-        color: var(--text-primary);
-      }
-
-      .empty-state h3 {
-        font-size: 1.5rem;
-        margin: 0 0 8px;
-        color: var(--text-primary);
-      }
-
-      .empty-state p {
-        margin: 0;
-        font-size: 1rem;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Loading indicator */
-      .loading {
-        text-align: center;
-        padding: 40px;
-        color: var(--text-secondary);
-      }
-
-      .search-filter-container {
-        max-width: 1200px;
-        margin: 0 auto 30px;
-        padding: 0 20px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        align-items: center;
-      }
-
-      #searchInput {
-        flex: 1;
-        min-width: 250px;
-        padding: 12px 16px;
-        border-radius: 8px;
-        border: 1px solid var(--border-secondary);
-        background: var(--bg-card);
-        color: var(--text-primary);
-        font-size: 1rem;
-      }
-
-      .filter-buttons {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .filter-btn {
-        padding: 8px 16px;
-        border-radius: 20px;
-        border: 1px solid var(--border-secondary);
-        background: var(--bg-card);
-        color: var(--text-secondary);
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-
-      .filter-btn.active,
-      .filter-btn:hover {
-        background: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
-      }
-
-      .sort-select {
-        padding: 8px 16px;
-        border-radius: 8px;
-        border: 1px solid var(--border-secondary);
-        background: var(--bg-card);
-        color: var(--text-primary);
-        cursor: pointer;
-      }
-
-      .view-toggle-btn {
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid var(--border-secondary);
-        background: var(--bg-card);
-        color: var(--text-primary);
-        cursor: pointer;
-        font-size: 1.2rem;
-      }
-
-      .projects-header {
-        text-align: center;
-        padding: 60px 20px 40px;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .projects-header h1 {
-        font-size: 3rem;
-        margin-bottom: 16px;
-        color: var(--text-primary);
-      }
-
-      .projects-header p {
-        font-size: 1.2rem;
-        color: var(--text-secondary);
-        line-height: 1.6;
-      }
-    </style>
+    <link rel="stylesheet" href="projects.css" />
   </head>
 
   <body>
@@ -441,20 +142,28 @@
       // Load projects from JSON
       async function loadProjects() {
         try {
-          // This would load from a JSON file in a real implementation
-          // For now, we'll use the static HTML that was in the file
-          renderStaticProjects();
+          const response = await fetch('projects.json');
+          if (!response.ok) throw new Error("Failed to load projects");
+          projectsData = await response.json();
+          renderProjects(projectsData);
+          
+          // If there is search/filter state, re-apply it?
+          if (activeFilter !== 'all' || document.getElementById('searchInput').value) {
+             runFilter(document.getElementById('searchInput').value.toLowerCase(), activeFilter);
+          }
         } catch (error) {
           console.error("Error loading projects:", error);
-          document.getElementById("projectsContainer").innerHTML =
-            '<div class="loading">Error loading projects. Please refresh the page.</div>';
+          const container = document.getElementById("projectsContainer");
+          if (container) {
+             container.innerHTML = '<div class="loading">Error loading projects. Please refresh the page.</div>';
+          }
         }
       }
 
-      // Render static projects (since we don't have JSON file)
-      function renderStaticProjects() {
+      function renderProjects(projects) {
         const container = document.getElementById("projectsContainer");
         container.innerHTML = "";
+        projectCards = [];
 
         // Add all the project cards that were originally in the HTML
         const staticProjects = [
@@ -1934,98 +1643,18 @@
           container.appendChild(card);
         });
 
-        // Update projectCards array for search/filter/sort
-        projectCards = Array.from(document.querySelectorAll(".project-card"));
-        
-        // Add empty state element
+        // Append Empty State Element
         const emptyState = document.createElement("div");
         emptyState.id = "noProjectsState";
         emptyState.className = "empty-state";
-        emptyState.innerHTML = `
-          <i class="fas fa-search"></i>
-          <h3>No projects found</h3>
-          <p>Try adjusting your search or filters</p>
-        `;
+        emptyState.innerHTML = '<i class="fas fa-search"></i><h3>No projects found</h3><p>Try adjusting your search or filters.</p>';
         container.appendChild(emptyState);
-      }
-
-      // Create a project card element
-      function createProjectCard(project, index) {
-        const card = document.createElement("div");
-        card.className = "project-card";
-        card.style.setProperty("--project-index", index);
-
-        // Make card clickable
-        card.addEventListener("click", (e) => {
-          // Don't trigger if clicked on a link inside
-          if (e.target.closest("a")) return;
-          
-          const targetUrl = project.links.live || project.links.github;
-          if (targetUrl) {
-            window.open(targetUrl, "_blank");
-          }
-        });
-
-        // Title
-        const title = document.createElement("h2");
-        title.textContent = project.title;
-        card.appendChild(title);
-
-        // Description
-        const desc = document.createElement("p");
-        desc.className = "project-desc";
-        desc.textContent = project.description;
-        card.appendChild(desc);
-
-        // Tags
-        const tagsContainer = document.createElement("div");
-        tagsContainer.className = "project-tags";
-        project.tags.forEach((tag) => {
-          const tagSpan = document.createElement("span");
-          tagSpan.textContent = tag;
-          tagsContainer.appendChild(tagSpan);
-        });
-        card.appendChild(tagsContainer);
-
-        // Links (GitHub and Live)
-        const linksContainer = document.createElement("div");
-        linksContainer.className = "project-links";
-
-        if (project.links.github) {
-          const githubLink = document.createElement("a");
-          githubLink.href = project.links.github;
-          githubLink.target = "_blank";
-          githubLink.innerHTML = '<i class="fab fa-github"></i> GitHub';
-          githubLink.addEventListener("click", (e) => e.stopPropagation());
-          linksContainer.appendChild(githubLink);
+        
+        // After rendering, update view mode if needed
+        if (typeof isCompact !== 'undefined' && isCompact) {
+             const projectsContainer = document.querySelector(".projects-container");
+             if(projectsContainer) projectsContainer.classList.add("compact-view");
         }
-
-        if (project.links.live) {
-          const liveLink = document.createElement("a");
-          liveLink.href = project.links.live;
-          liveLink.target = "_blank";
-          liveLink.innerHTML = '<i class="fas fa-external-link-alt"></i> Live';
-          liveLink.addEventListener("click", (e) => e.stopPropagation());
-          linksContainer.appendChild(liveLink);
-        }
-
-        card.appendChild(linksContainer);
-
-        // Footer (Author)
-        const footer = document.createElement("div");
-        footer.className = "project-footer";
-        const byText = document.createElement("span");
-        byText.textContent = "By ";
-        const authorLink = document.createElement("a");
-        authorLink.href = project.author.github;
-        authorLink.target = "_blank";
-        authorLink.textContent = project.author.name;
-        authorLink.addEventListener("click", (e) => e.stopPropagation());
-        footer.appendChild(byText);
-        footer.appendChild(authorLink);
-        card.appendChild(footer);
-
-        return card;
       }
 
       // 1. Navbar Hamburger Menu Logic
@@ -2097,6 +1726,18 @@
         // Re-inject cards into the DOM in the new sorted order
         const container = document.querySelector(".projects-container");
         sorted.forEach((card) => container.appendChild(card));
+        
+        // Ensure empty state remains at the bottom or handled?
+        // Sorting reinjects CARDS. The empty state div (if it exists) might be pushed to top or bottom?
+        // appendChild moves it to end.
+        // If we only append cards, empty state (which is not in sorted) stays where it is?
+        // Wait, container.appendChild(card) MOVES the card.
+        // If empty state is in container, it will end up at the top if cards are moved after it?
+        // No, if we append cards one by one, they go to the bottom.
+        // So empty state will be at the top? That's bad.
+        // We should append empty state again at the end.
+        const emptyState = document.getElementById("noProjectsState");
+        if(emptyState) container.appendChild(emptyState);
       });
 
       // --- Core Filtering Function ---
