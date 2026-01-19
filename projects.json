@@ -1453,6 +1453,393 @@
         }
     },
     {
+        "title": "Catch A Block ",
+        "description": "Catch a Block Falling Game is an engaging web-based game  aiming to achieve the highest score possible while avoiding missed catches.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "Awareness",
+            "Mental Health",
+            "Digital Wellbeing"
+        ],
+        "links": {
+            "live": "./projects/catch-a-block/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "React a gems",
+        "description":"simple game made using html css and javascript ",
+        "tags": [
+            "HTML",
+            "CSS",
+            "Awareness",
+            "Mental Health",
+            "Digital Wellbeing"
+        ],
+        "links": {
+            "live": "./projects/React-a-gems/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "URL Shorter",
+        "description": "A web application that shortens long URLs into concise, shareable links using a URL shortening service API.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/url-shortener/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "Personal Diary",
+        "description": "A secure personal diary web application that allows users to write, save, and manage their daily entries with password protection.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/PersonalDiary/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "Password Strength Checker",
+        "description": "Check the strength of your passwords to ensure they are secure and robust.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/password-strength-checker/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "PDF Merger Tool",
+        "description": "A web application that allows users to merge multiple PDF files into a single document.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/MergeDoc/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "Unlimited Colors",
+        "description": "A web application that generates unlimited random colors in HEX, RGB, and HSL formats with copy-to-clipboard functionality.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/UnlimitedColors/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "Glassmorphism generator",
+        "description": "A web application that generates glassmorphism CSS styles for backgrounds, allowing users to copy the CSS code for use in their own projects.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/glassmorphism-generator/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "Event Countdown Timer \u23f3",
+        "description": "A modern and animated event countdown timer that lets users set an event name, date, and time. Features include real-time countdown updates, pause/resume control, reset functionality, visual warnings when time is low, and smooth number animations.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Timer",
+            "Animations"
+        ],
+        "links": {
+            "live": "./projects/Event-Countdown-Timer/index.html"
+        },
+        "author": {
+            "name": "Amballa Sneha",
+            "github": "https://github.com/Sneha-Amballa"
+        }
+    },
+    {
+        "title": "Sketchgrid \ud83c\udfa8",
+        "description": "SketchGrid Digit Trainer is an interactive web application where users draw digits on a grid and train the system by labeling their own examples.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Creative Coding",
+            "Grid"
+        ],
+        "links": {
+            "live": "./projects/sketchgrid/index.html"
+        },
+        "author": {
+            "name": "PavanKarthik",
+            "github": "https://github.com/pavanakarthik12"
+        }
+    },
+    {
+        "title": "Digital Burnout Awareness \ud83d\udd25",
+        "description": "An awareness page that explains digital burnout, its symptoms, causes, and simple prevention tips.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "Awareness",
+            "Mental Health",
+            "Digital Wellbeing"
+        ],
+        "links": {
+            "live": "./projects/digital-burnout-awareness/index.html"
+        },
+        "author": {
+            "name": "Sneha Amballa",
+            "github": "https://github.com/your-github-username"
+        }
+    },
+    {
+        "title": "Weekly Productivity Reflection \ud83d\udcdd",
+        "description": "A calm reflection page that helps users review their weekly productivity and identify improvements.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "Productivity",
+            "Self Reflection"
+        ],
+        "links": {
+            "live": "./projects/weekly-productivity-reflection/index.html"
+        },
+        "author": {
+            "name": "Sneha Amballa",
+            "github": "https://github.com/your-github-username"
+        }
+    },
+    {
+        "title": "Productivity Myths: Myth vs Fact \ud83e\udde0",
+        "description": "A Myth vs Fact guide that debunks common productivity myths followed by students.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "Productivity",
+            "Education",
+            "Student Wellness"
+        ],
+        "links": {
+            "live": "./projects/productivity-myths/index.html"
+        },
+        "author": {
+            "name": "Sneha Amballa",
+            "github": "https://github.com/your-github-username"
+        }
+    },
+    {
+        "title": "Draw a Prefect Circle \ud83c\udfaf",
+        "description": "A fun interactive activity that challenges users to draw a perfect circle freehand and provides feedback on their accuracy.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "Productivity",
+            "Education",
+            "Student Wellness"
+        ],
+        "links": {
+            "live": "./projects/draw-perfect-circle/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "Study\u2013Rest Balance Guide \u2696\ufe0f",
+        "description": "A visual guide that explains the importance of balancing study time with proper rest and recovery.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "Education",
+            "Student Wellness",
+            "UI Design"
+        ],
+        "links": {
+            "live": "./projects/study-rest-balance-guide/index.html"
+        },
+        "author": {
+            "name": "Sneha Amballa",
+            "github": "https://github.com/your-github-username"
+        }
+    },
+    {
+        "title": "Distractions Tracker \ud83c\udfaf",
+        "description": "A simple tracker that helps users identify common distractions and improve focus during study sessions.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Productivity",
+            "Focus"
+        ],
+        "links": {
+            "live": "./projects/distractions-tracker/index.html"
+        },
+        "author": {
+            "name": "Sneha Amballa",
+            "github": "https://github.com/your-github-username"
+        }
+    },
+    {
+        "title": "Burnout Risk Indicator \ud83c\udf3f",
+        "description": "A simple tool that estimates burnout risk based on daily lifestyle habits.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Wellness",
+            "Awareness",
+            "Education"
+        ],
+        "links": {
+            "live": "./projects/burnout-risk-indicator/index.html"
+        },
+        "author": {
+            "name": "Sneha Amballa",
+            "github": "https://github.com/your-github-username"
+        }
+    },
+    {
+        "title": "Interactive History Timeline \ud83d\udd70\ufe0f",
+        "description": "An interactive timeline to explore historical eras with facts and mini quizzes.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Decision Making",
+            "Education",
+            "History",
+            "Interactive UI"
+        ],
+        "links": {
+            "live": "./projects/interactive-history-timeline/index.html"
+        },
+        "author": {
+            "name": "Sneha Amballa",
+            "github": "https://github.com/your-github-username"
+        }
+    },
+    {
+        "title": "Virtual Museum of Common Mistakes \ud83c\udfdb\ufe0f",
+        "description": "An interactive museum showcasing common mistakes and how to avoid them.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Education",
+            "Reflection",
+            "UI/UX"
+        ],
+        "links": {
+            "live": "./projects/virtual-mistakes-museum/index.html"
+        },
+        "author": {
+            "name": "Sneha Amballa",
+            "github": "https://github.com/your-github-username"
+        }
+    },
+    {
+        "title": "Retro Pixel Habit Tracker \ud83c\udf31",
+        "description": "A gamified habit tracker that grows a pixel character as habits are completed.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Gamification",
+            "Productivity",
+            "Retro UI"
+        ],
+        "links": {
+            "live": "./projects/retro-pixel-habit-tracker/index.html"
+        },
+        "author": {
+            "name": "Sneha Amballa",
+            "github": "https://github.com/your-github-username"
+        }
+    },
+    {
+        "title": "Interactive Learning",
+        "description": "An interactive simulator that demonstrates the consequences of various decisions in real-life scenarios, helping users understand cause and effect relationships.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Education",
+            "Reflection",
+            "UI/UX"
+        ],
+        "links": {
+            "live": "./projects/decision-consequences-simulator/index.html"
+        },
+        "author": {
+            "name": "PavanKarthik",
+            "github": "https://github.com/pavanakarthik12"
+        }
+    },
+    {
+        "title": "Swarmpath",
+        "description": "Swarmpath is an interactive web-based visualization inspired by swarm intelligence and path exploration. It showcases how simple agents collectively discover efficient paths through dynamic environments using real-time visual feedback.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Visualization",
+            "Algorithms"
+        ],
+        "links": {
+            "live": "./projects/Swarmpath/index.html"
+        },
+        "author": {
+            "name": "Karthik",
+            "github": "https://github.com/pavanakarthik12"
+        },
         "title":  "Word Memory Game",
         "description":  "Word Memory Game is an engaging web application that challenges players to memorize and recall words within a time limit. It enhances vocabulary and memory skills through multiple levels of difficulty and interactive gameplay.",
         "tags":  [
@@ -2982,8 +3369,8 @@
             "name": "Sneha Amballa",
             "github": "https://github.com/Sneha-Amballa"
         }
-    }
- },
+    },
+
 {
   "title": "Digital Burnout Awareness 🔥",
   "description": "An awareness page that explains digital burnout, its symptoms, causes, and simple prevention tips.",
@@ -3150,6 +3537,98 @@
     "github": "https://github.com/your-github-username"
   }
 },
+
+{
+    "title":"Interactive Learning",
+     "description": "An interactive simulator that demonstrates the consequences of various decisions in real-life scenarios, helping users understand cause and effect relationships.",
+  "tags": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Education",
+    "Reflection",
+    "UI/UX"
+  ],
+  "links": {
+    "live": "./projects/decision-consequences-simulator/index.html"
+  },
+  "author": {
+    "name": "PavanKarthik",
+    "github": "https://github.com/pavanakarthik12"
+  }
+},
+{
+  "title": "Swarmpath",
+  "description": "Swarmpath is an interactive web-based visualization inspired by swarm intelligence and path exploration. It showcases how simple agents collectively discover efficient paths through dynamic environments using real-time visual feedback.",
+  "tags": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Visualization",
+    "Algorithms"
+  ],
+  "links": {
+    "live": "./projects/Swarmpath/index.html"
+  },
+  "author": {
+    "name": "Karthik",
+    "github": "https://github.com/pavanakarthik12"
+  }
+},
+{
+  "title": "Silent Animation Guessing Game 🎞️",
+  "description": "A visual guessing game where users interpret silent animations and identify the situation.",
+  "tags": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Animation",
+    "Game",
+    "Observation Skills"
+  ],
+  "links": {
+    "live": "./projects/silent-animation-guess-game/index.html"
+  },
+  "author": {
+    "name": "Sneha Amballa",
+    "github": "https://github.com/your-github-username"
+  }
+},
+{
+  "title": "CommandDock",
+  "description": "CommandDock is a command-driven web interface that allows users to control and manipulate UI components using typed commands. It explores keyboard-first interaction patterns and dynamic UI behavior through real-time visual feedback.",
+  "tags": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Command Interface",
+    "Interaction Design"
+  ],
+  "links": {
+    "live": "./projects/commandDock/index.html"
+  },
+  "author": {
+    "name": "Karthik",
+    "github": "https://github.com/pavanakarthik12"
+  }
+},
+
+{
+"title": "Movie Drawing Guess Game 🎬🎨",
+  "description": "A Pictionary-style game where players draw a movie and others guess it.",
+   "tags":[ "Game",
+    "Canvas",
+    "Entertainment"
+  ],
+  "links": {
+    "live": "./projects/movie-drawing-guess-game/index.html"
+  },
+  "author": {
+    "name": "Sneha Amballa",
+    "github": "https://github.com/Sneha-Amballa"
+  }
+},
+
 {
   "title": "Smart Adaptive Quiz",
   "description": "A full-screen interactive quiz application with dynamic difficulty adjustment. Questions adapt in real time based on user performance across multiple topics and difficulty levels, providing an engaging and personalized learning experience.",
