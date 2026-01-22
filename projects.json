@@ -3700,6 +3700,24 @@
         }
     },
 
+    {
+        "title": "Sky Dodge",
+        "description": "Fast-paced lane-dodging survival mini-game where you move left and right to dodge falling blocks as speed ramps up.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Game"
+        ],
+        "links": {
+            "live": "./projects/sky-dodge/index.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+
 {
   "title": "Digital Burnout Awareness 🔥",
   "description": "An awareness page that explains digital burnout, its symptoms, causes, and simple prevention tips.",
