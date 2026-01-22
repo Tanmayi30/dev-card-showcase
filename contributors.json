@@ -18,7 +18,8 @@
     "last_synced": "2026-01-22T10:04:50.834789",
     "total_repos": 21,
     "total_stars": 35,
-    "total_forks": 95
+    "total_forks": 95,
+    "projects": []
   },
   "19-mohityadav": {
     "login": "19-mohityadav",
@@ -39,7 +40,29 @@
     "last_synced": "2026-01-22T10:36:46.515778",
     "total_repos": 7,
     "total_stars": 0,
-    "total_forks": 0
+    "total_forks": 0,
+    "projects": [
+      "Advanced Text Case Converter",
+      "Traffic Rules Quiz",
+      "Traffic Awareness Mini Website",
+      "Traffic Rule Myths & Safety Tips",
+      "Road Accident & Emergency Awareness",
+      "Pedestrian & Cyclist Safety Awareness",
+      "Traffic Signs Recognition Guide",
+      "Number Guessing Game",
+      "Event Countdown Timer ⏳",
+      "Silent Animation Guessing Game 🎞️",
+      "Movie Drawing Guess Game 🎬🎨",
+      "Digital Burnout Awareness 🔥",
+      "Weekly Productivity Reflection 📝",
+      "Productivity Myths: Myth vs Fact 🧠",
+      "Study–Rest Balance Guide ⚖️",
+      "Distractions Tracker 🎯",
+      "Interactive History Timeline 🕰️",
+      "Virtual Museum of Common Mistakes 🏛️",
+      "Retro Pixel Habit Tracker 🌱",
+      "Emoji Emotion Guess Game 😄🤔"
+    ]
   },
   "SameerBaral": {
     "login": "SameerBaral",
@@ -60,6 +83,7 @@
     "last_synced": "2026-01-22T10:36:48.264262",
     "total_repos": 21,
     "total_stars": 0,
-    "total_forks": 0
+    "total_forks": 0,
+    "projects": []
   }
 }

@@ -1848,6 +1848,132 @@
 
         animateCircles();
       });
+
+      // Contributor-based filtering for projects
+      async function loadProjects() {
+        try {
+          const [projectsResponse, contributorsResponse] = await Promise.all([
+            fetch('projects.json'),
+            fetch('contributors.json')
+          ]);
+
+          const projects = await projectsResponse.json();
+          const contributors = await contributorsResponse.json();
+
+          // Create contributor filter dropdown
+          createContributorFilter(contributors, projects);
+
+          // Display projects
+          displayProjects(projects);
+        } catch (error) {
+          console.error('Error loading projects:', error);
+        }
+      }
+
+      function createContributorFilter(contributors, projects) {
+        const filterContainer = document.querySelector('.filter-section') || document.createElement('div');
+        filterContainer.className = 'filter-section';
+        filterContainer.innerHTML = `
+          <div class="filter-controls">
+            <select id="contributorFilter" class="filter-select">
+              <option value="">All Contributors</option>
+            </select>
+            <input type="text" id="projectSearch" placeholder="Search projects..." class="search-input">
+          </div>
+        `;
+
+        // Insert after search section if it exists, otherwise at the top
+        const searchSection = document.querySelector('.search-section');
+        if (searchSection) {
+          searchSection.insertAdjacentElement('afterend', filterContainer);
+        } else {
+          const container = document.querySelector('.container');
+          if (container) {
+            container.insertBefore(filterContainer, container.firstChild);
+          }
+        }
+
+        // Populate contributor dropdown
+        const contributorSelect = document.getElementById('contributorFilter');
+        const contributorMap = new Map();
+
+        // Build contributor map from projects
+        projects.forEach(project => {
+          if (project.author && project.author.name) {
+            contributorMap.set(project.author.name, project.author);
+          }
+        });
+
+        // Add options
+        contributorMap.forEach((author, name) => {
+          const option = document.createElement('option');
+          option.value = name;
+          option.textContent = name;
+          contributorSelect.appendChild(option);
+        });
+
+        // Add event listeners
+        contributorSelect.addEventListener('change', () => filterProjects(projects));
+        document.getElementById('projectSearch').addEventListener('input', () => filterProjects(projects));
+      }
+
+      function filterProjects(projects) {
+        const contributorFilter = document.getElementById('contributorFilter').value;
+        const searchTerm = document.getElementById('projectSearch').value.toLowerCase();
+
+        const filteredProjects = projects.filter(project => {
+          const matchesContributor = !contributorFilter || project.author?.name === contributorFilter;
+          const matchesSearch = !searchTerm ||
+            project.title.toLowerCase().includes(searchTerm) ||
+            project.description.toLowerCase().includes(searchTerm) ||
+            (project.tags && project.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+
+          return matchesContributor && matchesSearch;
+        });
+
+        displayProjects(filteredProjects);
+      }
+
+      function displayProjects(projects) {
+        const container = document.getElementById('projectsContainer');
+        if (!container) return;
+
+        container.innerHTML = '';
+
+        if (projects.length === 0) {
+          container.innerHTML = '<div class="no-projects">No projects found matching your criteria.</div>';
+          return;
+        }
+
+        projects.forEach(project => {
+          const projectCard = document.createElement('div');
+          projectCard.className = 'project-card';
+
+          const projectLink = project.links?.live || project.links?.github || '#';
+          const authorName = project.author?.name || 'Unknown';
+          const authorGithub = project.author?.github || '#';
+
+          projectCard.innerHTML = `
+            <div class="project-header">
+              <h3 class="project-title">${project.title}</h3>
+              <div class="project-author">
+                <span>by </span>
+                <a href="${authorGithub}" target="_blank" rel="noopener">${authorName}</a>
+              </div>
+            </div>
+            <p class="project-description">${project.description}</p>
+            <div class="project-tags">
+              ${project.tags ? project.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+            </div>
+            <div class="project-links">
+              ${project.links?.live ? `<a href="${project.links.live}" target="_blank" class="btn btn-primary">Live Demo</a>` : ''}
+              ${project.links?.github ? `<a href="${project.links.github}" target="_blank" class="btn btn-secondary">Source Code</a>` : ''}
+            </div>
+          `;
+
+          container.appendChild(projectCard);
+        });
+      }
     </script>
   </body>
 </html>
