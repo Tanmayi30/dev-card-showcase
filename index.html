@@ -164,6 +164,9 @@
                 <img src="images/user.png" alt="User Photo" class="card-img">
                 <h2>Contributor Name</h2>
                 <span class="role">Developer</span>
+                <div class="card-badges" id="badges-template">
+                    <!-- Badges will be dynamically inserted here -->
+                </div>
                 <p>"I learned how to make a Pull Request today!"</p>
                 <a href="#" class="card-btn" target="_blank">View Profile</a>
             </div>
@@ -1725,6 +1728,176 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script src="sync.js"></script>
+
+<!-- Badge System Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load badges data and initialize badge system
+    loadBadgesData();
+
+    async function loadBadgesData() {
+        try {
+            const response = await fetch('badges.json');
+            const badgesData = await response.json();
+            initializeBadgeSystem(badgesData.badges);
+        } catch (error) {
+            console.error('Error loading badges data:', error);
+        }
+    }
+
+    function initializeBadgeSystem(badges) {
+        // Load contributors data
+        fetch('contributors.json')
+            .then(response => response.json())
+            .then(contributorsData => {
+                const contributors = contributorsData.contributors;
+                assignBadgesToCards(contributors, badges);
+            })
+            .catch(error => {
+                console.error('Error loading contributors data:', error);
+            });
+    }
+
+    function assignBadgesToCards(contributors, badges) {
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            const cardInner = card.querySelector('.card-inner');
+            if (!cardInner) return;
+
+            // Extract contributor info from card
+            const nameElement = card.querySelector('h2');
+            const githubLink = card.querySelector('.card-btn');
+
+            if (!nameElement || !githubLink) return;
+
+            const contributorName = nameElement.textContent.trim();
+            const githubUrl = githubLink.href;
+
+            // Find matching contributor in data
+            let contributorData = null;
+            for (const [username, data] of Object.entries(contributors)) {
+                if (data.name === contributorName ||
+                    githubUrl.includes(username) ||
+                    data.html_url === githubUrl) {
+                    contributorData = data;
+                    break;
+                }
+            }
+
+            if (contributorData) {
+                const earnedBadges = checkBadgeCriteria(contributorData, badges);
+                if (earnedBadges.length > 0) {
+                    displayBadges(cardInner, earnedBadges);
+                }
+            }
+        });
+    }
+
+    function checkBadgeCriteria(contributor, badges) {
+        const earnedBadges = [];
+
+        for (const [badgeKey, badge] of Object.entries(badges)) {
+            const criteria = badge.criteria;
+            let earned = false;
+
+            if (criteria.type === 'date_based') {
+                // Check date-based criteria
+                if (contributor.created_at) {
+                    const createdDate = new Date(contributor.created_at);
+                    const criteriaDate = new Date(criteria.condition.replace('created_at < \'', '').replace('\'', ''));
+                    earned = createdDate < criteriaDate;
+                }
+            } else if (criteria.type === 'metric_based') {
+                // Check metric-based criteria
+                const condition = criteria.condition;
+                earned = evaluateCondition(contributor, condition);
+            }
+
+            if (earned) {
+                earnedBadges.push({
+                    ...badge,
+                    key: badgeKey
+                });
+            }
+        }
+
+        return earnedBadges;
+    }
+
+    function evaluateCondition(contributor, condition) {
+        // Simple condition evaluator for OR conditions
+        const orConditions = condition.split(' OR ');
+
+        for (const orCondition of orConditions) {
+            const andConditions = orCondition.split(' AND ');
+
+            let andResult = true;
+            for (const andCondition of andConditions) {
+                const trimmed = andCondition.trim();
+                if (!evaluateSingleCondition(contributor, trimmed)) {
+                    andResult = false;
+                    break;
+                }
+            }
+
+            if (andResult) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    function evaluateSingleCondition(contributor, condition) {
+        // Parse conditions like "followers >= 100", "total_stars >= 50"
+        const match = condition.match(/^(\w+)\s*([><=]+)\s*(\d+)$/);
+        if (!match) return false;
+
+        const [, field, operator, value] = match;
+        const numValue = parseInt(value);
+        const contributorValue = contributor[field] || 0;
+
+        switch (operator) {
+            case '>=': return contributorValue >= numValue;
+            case '<=': return contributorValue <= numValue;
+            case '>': return contributorValue > numValue;
+            case '<': return contributorValue < numValue;
+            case '=': return contributorValue === numValue;
+            default: return false;
+        }
+    }
+
+    function displayBadges(cardInner, badges) {
+        // Find or create badges container
+        let badgesContainer = cardInner.querySelector('.card-badges');
+        if (!badgesContainer) {
+            badgesContainer = document.createElement('div');
+            badgesContainer.className = 'card-badges';
+
+            // Insert after role, before quote
+            const roleElement = cardInner.querySelector('.role');
+            if (roleElement) {
+                roleElement.insertAdjacentElement('afterend', badgesContainer);
+            }
+        }
+
+        // Clear existing badges
+        badgesContainer.innerHTML = '';
+
+        // Add badges
+        badges.forEach(badge => {
+            const badgeElement = document.createElement('span');
+            badgeElement.className = 'badge';
+            badgeElement.title = badge.description;
+            badgeElement.innerHTML = `${badge.icon} ${badge.name}`;
+            badgeElement.style.backgroundColor = badge.color;
+            badgesContainer.appendChild(badgeElement);
+        });
+    }
+});
+</script>
+
 </body>
 
 </html>
