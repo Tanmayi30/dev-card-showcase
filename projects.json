@@ -4611,6 +4611,22 @@
         "name":"PavanKarthik",
         "github":"https://github.com/pavanakarthik12"
     }
+},
+{
+    "title": "Color Match Rush",
+    "description": "A timed color-matching puzzler where you swap tiles to match 3-in-a-row with cascading matches under timer pressure. Mouse/touch drag input.",
+    "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Game"
+    ],
+    "links": {
+        "live": "./projects/color-match-rush/index.html"
+    },
+    "author": {
+        "name": "Gupta-02",
+        "github": "https://github.com/Gupta-02"
+    }
 }
-
 ]
