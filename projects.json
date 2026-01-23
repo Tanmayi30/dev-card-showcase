@@ -2019,6 +2019,22 @@
             "github": "https://github.com/CodeMaster"
         }
     },
+      {
+        "title": "Word Checker",
+        "description": "A web application that checks the validity of words using a dictionary API and provides definitions and synonyms for valid words.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/word-checker/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "Extreme chess",
         "description": "A web-based chess game that allows two players to play against each other with a user-friendly interface and basic game rules implemented.",
