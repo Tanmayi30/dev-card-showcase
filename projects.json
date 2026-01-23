@@ -1,4 +1,22 @@
 [
+
+     {
+        "title": "Symon Says Game",
+        "description": "A fun and interactive memory game where players must repeat increasingly complex sequences of colors and sounds. Features multiple difficulty levels, score tracking, and engaging animations.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Utility Tool"
+        ],
+        "links": {
+            "live": "./projects/simon-game/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "Advanced Text Case Converter",
         "description": "A powerful text utility that converts text into multiple cases including uppercase, lowercase, sentence case, title case, and toggle case with live preview, undo history, and keyboard shortcuts.",
@@ -14,6 +32,22 @@
         "author": {
             "name": "Amballa Sneha",
             "github": "https://github.com/Sneha-Amballa"
+        }
+    },
+            {
+        "title": "Physics Sandbox",
+        "description": "A physics simulation sandbox with interactive controls and visualizations.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/physics-sandbox/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
         }
     },
      {
@@ -33,6 +67,22 @@
             "github": "https://github.com/omkarhole"
         }
     },
+                {
+        "title": "Memory Game",
+        "description": "A classic memory card matching game with multiple themes and difficulty levels.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/memory-game/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
+        }
+    },
      {
         "title": "CodePong Game",
         "description": "A classic Pong game with enhanced features including power-ups, sound effects, and responsive controls. Players can compete against an AI opponent with adjustable difficulty levels for an engaging gaming experience.",
@@ -48,6 +98,22 @@
         "author": {
             "name": "Omkar",
             "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "Name Picker Tool",
+        "description": "A fun and interactive name picker tool that randomly selects a name from a list of entries. Perfect for giveaways, raffles, or choosing team members.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/name-picker/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
         }
     },
      {
@@ -190,7 +256,8 @@
             "name": "Neeru",
             "github": "https://github.com/neeru24"
         }
-    },{
+    },
+    {
     "title": "PDF Watermark Tool",
     "description": "Browser-based tool to add text/image watermarks to PDFs with full customization. Process files locally for privacy.",
     "tags": [
@@ -3783,10 +3850,12 @@
             "github": "https://github.com/Sneha-Amballa"
         }
     },
-
+/// Bubbble Ppop Blitzzzzzzzzzzzz
     {
-        "title": "Fruit Catcher",
-        "description": "Catch-and-collect arcade game with streak-based bonuses where you move the basket to catch falling fruit and keep all three lives intact.",
+        "title": "Stack Builder",
+        "description": "Timing-based stacking game with precision overlap where you drop moving blocks to build the tallest aligned tower—miss the overlap and it tumbles.",
+        "title": "Bubble Pop Blitz",
+        "description": "Timed click-to-pop accuracy challenge where you pop as many drifting bubbles as you can before the 30-second timer ends.",
         "tags": [
             "HTML",
             "CSS",
@@ -3794,7 +3863,8 @@
             "Game"
         ],
         "links": {
-            "live": "./projects/fruit-catcher/index.html"
+            "live": "./projects/stack-builder/index.html"
+            "live": "./projects/bubble-pop-blitz/index.html"
         },
         "author": {
             "name": "Gupta-02",
@@ -4649,7 +4719,27 @@
       "name": "PavanKarthik",
       "github": "https://github.com/pavanakarthik12"
     }
-  }
+},
+{
+    "title": "Color Match Rush",
+    "description": "A timed color-matching puzzler where you swap tiles to match 3-in-a-row with cascading matches under timer pressure. Mouse/touch drag input.",
+    "title": "Rhythm Tapper",
+    "description": "A simple rhythm-timing game where you tap notes on the beat for a streak score. Falling notes; tap on beat; streak multiplier. Keyboard or click input.",
+    "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Game"
+    ],
+    "links": {
+        "live": "./projects/color-match-rush/index.html"
+        "live": "./projects/rhythm-tapper/index.html"
+    },
+    "author": {
+        "name": "Gupta-02",
+        "github": "https://github.com/Gupta-02"
+    }
+}
 ]
 
 
