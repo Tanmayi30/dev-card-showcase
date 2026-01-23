@@ -3836,6 +3836,8 @@
     },
 /// Bubbble Ppop Blitzzzzzzzzzzzz
     {
+        "title": "Stack Builder",
+        "description": "Timing-based stacking game with precision overlap where you drop moving blocks to build the tallest aligned tower—miss the overlap and it tumbles.",
         "title": "Bubble Pop Blitz",
         "description": "Timed click-to-pop accuracy challenge where you pop as many drifting bubbles as you can before the 30-second timer ends.",
         "tags": [
@@ -3845,6 +3847,7 @@
             "Game"
         ],
         "links": {
+            "live": "./projects/stack-builder/index.html"
             "live": "./projects/bubble-pop-blitz/index.html"
         },
         "author": {
