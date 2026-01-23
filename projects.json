@@ -4840,6 +4840,20 @@
     }
 },
 {
+        "title": "Blindness Simulation Game",
+        "description": "A web-based game that simulates the experience of navigating environments with visual impairments, helping users understand the challenges faced by visually impaired individuals.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/color-blindness-simulation/index.html"
+        },
+        "author" : {
+            "name":"Tushar Sonawane",
+            "github": "https://github.com/Tushar-sonawane06"
+        }
     "title": "Drumsjs",
     "description": "A JavaScript library for creating drum patterns. It provides a simple and intuitive way to define and work with drum patterns in your JavaScript applications.",
     "tags": [
