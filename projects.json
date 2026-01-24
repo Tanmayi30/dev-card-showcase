@@ -1,5 +1,23 @@
 [
     {
+        "title": "Pong - Neon Edition",
+        "description": "A two-player Pong game with neon retro visuals. Features keyboard controls, ball physics, collision detection, score tracking, and retro sound effects. Inspired by the classic arcade game with modern neon aesthetics.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Game",
+            "Canvas"
+        ],
+        "links": {
+            "live": "./pong.html"
+        },
+        "author": {
+            "name": "Sneha Amballa",
+            "github": "https://github.com/Sneha-Amballa"
+        }
+    },
+    {
         "title": "Symon Says Game",
         "description": "A fun and interactive memory game where players must repeat increasingly complex sequences of colors and sounds. Features multiple difficulty levels, score tracking, and engaging animations.",
         "tags": [
