@@ -1032,6 +1032,22 @@
             "github": "https://github.com/omkarhole"
         }
     },
+                {
+        "title": "Monochrome Accent UI",
+        "description": "A sleek and modern user interface design featuring a monochrome color scheme with accent colors for highlights. Perfect for portfolios, dashboards, or any web application requiring a clean aesthetic.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/MonochromeAccentUI/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
+        }
+    },
     {
         "title": "Tab Focus Timer Project",
         "description": "A productivity timer that tracks time spent on a task and pauses when the user switches browser tabs, helping maintain focus and manage time effectively.",
