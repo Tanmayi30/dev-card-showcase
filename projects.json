@@ -90,6 +90,22 @@
             "github": "https://github.com/Gupta-02"
         }
     },
+     {
+        "title": "Mario world Game",
+        "description": "A side-scrolling platformer game inspired by classic Mario games. Players navigate through levels, avoid obstacles, collect coins, and defeat enemies to reach the end goal.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/mario-world/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "Pac-Man Inspired Maze",
         "description": "A maze-based game inspired by Pac-Man where players collect dots while avoiding enemy ghosts. Features grid-based movement, score tracking, and simple AI for enemies.",
