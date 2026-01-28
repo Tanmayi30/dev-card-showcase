@@ -740,6 +740,25 @@
         }
     },
     {
+        "title": "Pixel Art Drawing Tool",
+        "description": "A pixel art editor where users can draw and export pixel designs. Features a grid-based canvas, color palette selection, and export functionality as image.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Art",
+            "Drawing",
+            "Pixel Art"
+        ],
+        "links": {
+            "live": "./projects/pixel-art-drawing-tool/index.html"
+        },
+        "author": {
+            "name": "Sneha-Amballa",
+            "github": "https://github.com/Sneha-Amballa"
+        }
+    },
+    {
         "title": "ASCII Art Creator",
         "description": "A web application that converts images into ASCII art representations. Users can upload images, customize character sets, and adjust output dimensions for unique text-based art creations.",
         "tags": [
