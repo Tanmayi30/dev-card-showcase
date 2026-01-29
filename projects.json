@@ -6827,6 +6827,18 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Robo Factory Escape",
+    "description": "Escape a robot assembly line before completion. Features conveyor-based level design, timing jumps, and disabling machines.",
+    "tags": ["HTML", "CSS", "JavaScript", "Game", "Platformer", "Puzzle", "Action"],
+    "links": {
+      "live": "./projects/Robo-Factory-Escape/"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
 
