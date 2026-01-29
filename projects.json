@@ -1,5 +1,25 @@
 [
     {
+        "title": "Password Strength Checker",
+        "description": "Real-time password validator showing strength meter, requirements checklist, and security tips. Features entropy calculation, password generation, and detailed feedback on password security with common weak pattern examples.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Utility",
+            "Security",
+            "Validator",
+            "Developer Tool"
+        ],
+        "links": {
+            "live": "./projects/Password-Strength-Checker/"
+        },
+        "author": {
+            "name": "Ayaanshaikh12243",
+            "github": "https://github.com/Ayaanshaikh12243"
+        }
+    },
+    {
         "title": "Mech Arena Skirmish",
         "description": "Pilot a mech in compact 3D battle arenas with modular mech combat. Features loadout selection, destructible cover, and cooldown skills for tactical combat in short sessions.",
         "tags": [
