@@ -6857,18 +6857,19 @@
     }
   },
   {
-    "title": "Step Counter Dashboard",
-    "description": "Dashboard to track daily and weekly step activity with daily step input, weekly comparison graph, and goal indicator.",
+    "title": "Heart Rate Monitor UI",
+    "description": "UI for tracking real-time and historical heart rate data with BPM input, resting vs active charts, and configurable alert thresholds.",
     "tags": [
       "HTML",
       "CSS",
       "JavaScript",
       "Utility",
       "Health",
-      "Dashboard"
+      "Dashboard",
+      "Charts"
     ],
     "links": {
-      "live": "./projects/Step-Counter-Dashboard/"
+      "live": "./projects/Heart-Rate-Monitor-UI/"
     },
     "author": {
       "name": "Gupta-02",
