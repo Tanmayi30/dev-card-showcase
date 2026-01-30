@@ -671,6 +671,23 @@
         }
     },
     {
+    "title": "Hovercraft Arena — Realistic Combat Edition",
+    "description": "A modern, physics-driven hovercraft combat game featuring realistic drift-based movement, intelligent enemy AI, boost mechanics, camera shake, and a premium futuristic arena design for an immersive battle experience.",
+    "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+    ],
+    "links": {
+        "live": "./projects/hovercraft-arena/index.html"
+    },
+    "author": {
+        "name": "Priyanshu",
+        "github": "https://github.com/PriyanshuSingh00-hub"
+    }
+    },
+
+    {
         "title": "Password Strength Checker",
         "description": "An advanced password strength checker with a security-scanner inspired UI that visually analyzes password robustness in real time. Features a circular shield meter, live threat verdicts, and a cyber-themed interface for intuitive security feedback.",
         "tags": [
@@ -1576,6 +1593,23 @@
         ],
         "links": {
             "live": "./projects/CarbonFootprintCalculator/index.html"
+        },
+        "author": {
+            "name": "Neeru",
+            "github": "https://github.com/neeru24"
+        }
+    },
+
+    {
+        "title": "Quote Wallpaper Generator",
+        "description": "A web application that generates beautiful quote wallpapers with customizable fonts, colors, and layouts.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/QuoteWallpaper/index.html"
         },
         "author": {
             "name": "Neeru",
@@ -7106,25 +7140,70 @@
     }
   },
   {
-    "title": "Screen Time Tracker UI",
-    "description": "A comprehensive digital wellness application that helps users monitor and manage their screen time across different apps and activities. Features detailed analytics, category breakdowns, daily limits tracking, and personalized wellness tips to promote healthier digital habits. Includes interactive charts for usage trends and app distribution.",
+    "title": "Mood Tracker",
+    "description": "Daily mood tracking interface with trend visualization and mental health insights. Monitor emotional well-being with 8 mood options, view weekly patterns through interactive charts, receive personalized insights, and get expert mental health tips to support emotional awareness and well-being.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Mental Health",
+      "Mood Tracking",
+      "Data Visualization",
+      "Charts",
+      "Emotional Well-being",
+      "Local Storage",
+      "Self-care"
+    ],
+    "links": {
+      "live": "./projects/mood-tracker/"
+    },
+    "author": {
+      "name": "Gupta",
+      "github": "https://github.com/Gupta-02"
+    }
+  },
+  {
+    "title": "Calorie Burn Tracker",
+    "description": "A comprehensive fitness application that helps users track calories burned through various activities. Features activity-based input with comparison charts, detailed logging, and insights for total and average calorie burn. Supports multiple activities like running, cycling, swimming, and more with accurate MET-based calculations.",
     "tags": [
       "HTML",
       "CSS",
       "JavaScript",
       "Chart.js",
-      "Digital Wellness",
-      "Screen Time",
+      "Fitness",
+      "Calorie Tracking",
+      "Health",
       "Analytics",
-      "Productivity",
-      "Health Monitoring",
-      "Responsive",
       "Local Storage",
-      "Glassmorphism",
-      "Wellness"
+      "Responsive"
     ],
     "links": {
-      "live": "./projects/screen-time-tracker/"
+      "live": "./projects/calorie-burn-tracker/"
+    },
+    "author": {
+      "name": "Gupta",
+      "github": "https://github.com/Gupta-02"
+    }
+  },
+  {
+    "title": "Meditation Tracker",
+    "description": "A serene meditation tracking application that helps users monitor their mindfulness practice. Features session duration logging, calm score ratings (1-10), progress visualization with interactive charts, streak tracking, and helpful meditation tips. Includes beautiful gradient design, local storage persistence, and comprehensive statistics to support consistent meditation habits.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Chart.js",
+      "Meditation",
+      "Mindfulness",
+      "Wellness",
+      "Tracking",
+      "Local Storage",
+      "Responsive",
+      "Health",
+      "Mental Health"
+    ],
+    "links": {
+      "live": "./projects/meditation-tracker/"
     },
     "author": {
       "name": "Gupta",
