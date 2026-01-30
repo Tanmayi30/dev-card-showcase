@@ -7130,6 +7130,28 @@
       "name": "Gupta",
       "github": "https://github.com/Gupta-02"
     }
-  }
-]
-
+  },
+  {
+    "title": "Meditation Tracker",
+    "description": "A serene meditation tracking application that helps users monitor their mindfulness practice. Features session duration logging, calm score ratings (1-10), progress visualization with interactive charts, streak tracking, and helpful meditation tips. Includes beautiful gradient design, local storage persistence, and comprehensive statistics to support consistent meditation habits.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Chart.js",
+      "Meditation",
+      "Mindfulness",
+      "Wellness",
+      "Tracking",
+      "Local Storage",
+      "Responsive",
+      "Health",
+      "Mental Health"
+    ],
+    "links": {
+      "live": "./projects/meditation-tracker/"
+    },
+    "author": {
+      "name": "Gupta",
+      "github": "https://github.com/Gupta-02"
+    }
