@@ -7602,6 +7602,25 @@
       "name": "Gupta",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Focus Time Tracker",
+    "description": "An advanced focus and productivity tracking UI with timers, productivity graphs, and helpful tips to improve deep work awareness.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Productivity",
+      "Timer",
+      "Charts"
+    ],
+    "links": {
+      "live": "./projects/Focus-Time-Tracker/"
+    },
+    "author": {
+      "name": "Gupta",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
 
