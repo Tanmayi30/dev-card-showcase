@@ -18,18 +18,20 @@
         }
     },
     {
-    "title": "One-Sentence Summary Tool",
-    "description": "A clean, utility-focused web tool that converts long-form text into a single clear and meaningful sentence. Designed with a modern, responsive interface, adjustable summary length, clarity feedback, and productivity-friendly features for quick understanding.",
+    "title": "DiffCraft – Text Diff Checker",
+    "description": "A modern text difference checker that compares two texts in real time and highlights added, removed, and modified lines. Includes similarity percentage, ignore case and whitespace options, dark mode, and a clean editor-style UI for an efficient comparison experience.",
     "tags": [
         "HTML",
         "CSS",
         "JavaScript",
+        "Developer Utility",
+        "Text Comparison"
+    ],
+    "links": {
+        "live": "./projects/text-difference-check/"
         "Text Utility",
         "Productivity"
     ],
-    "links": {
-        "live": "./projects/one-sentence-summary-tool/"
-    },
     "author": {
         "name": "Anvesha",
         "github": "https://github.com/your-github-username"
