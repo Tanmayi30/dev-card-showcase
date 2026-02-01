@@ -2291,6 +2291,23 @@
         }
     },
     {
+        "title": "Virtual Analytics Dashboard",
+        "description": "A sleek and modern analytics dashboard that displays key performance indicators (KPIs) and data visualizations using charts and graphs. Features responsive design and customizable widgets for a personalized user experience.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "socket.io"
+        ],
+        "links": {
+            "live": "./projects/virtual-analytics/index.html"
+        },
+        "author": {
+            "name": "CodeMaster",
+            "github": "https://github.com/CodeMaster11000"
+        }
+    },
+    {
         "title": "Virtual Coffee Maker",
         "description": "A fun and interactive virtual coffee maker where users can customize their drink with various options like temperature, sugar level, and toppings.",
         "tags": [
