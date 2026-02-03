@@ -403,6 +403,22 @@
             "github": "https://github.com/omkarhole"
         }
     },
+        {
+        "title": "CSS Hover Transform",
+        "description": "A web application that showcases various CSS hover transform effects. Users can hover over different elements to see the transform animations in action.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/css-hover-transform/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "ResultWise - Universal Result Analyzer",
         "description": "A flexible and user-friendly result analysis utility that allows users to dynamically add any subjects and marks. It calculates total marks, percentage, grade, and pass/fail status while providing clear performance feedback, all within a clean and responsive interface.",
