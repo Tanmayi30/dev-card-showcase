@@ -19,6 +19,26 @@
     }
 },
     {
+    "title": "Puzzle Unlock Pro",
+    "description": "An interactive puzzle-based unlocking game featuring multiple logic and math challenges. Includes level progression, timer-based gameplay, scoring system, animated transitions, and a neon-themed modern UI designed for an engaging game experience.",
+    "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Game",
+        "UI/UX",
+        "Logic",
+        "Interactive"
+    ],
+    "links": {
+        "live": "./projects/puzzle-unlock/"
+    },
+    "author": {
+        "name": "Anvesha",
+        "github": "https://github.com/your-github-username"
+    }
+},
+    {
         "title": "Daily Fun Fact Challenge",
         "description": "A gamified daily fun fact application where users guess whether a fact is true or false across multiple difficulty levels. Features a point-based reward system, winner status progression, and a responsive, visually engaging interface for learning through play.",
         "tags": [
