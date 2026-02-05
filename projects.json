@@ -3406,6 +3406,22 @@
             "github": "https://github.com/omkarhole"
         }
     },
+       {
+        "title": "Valentine Card",
+        "description": "A cute and interactive Valentine card with moving buttons and a heartfelt message. Features smooth animations and a responsive design to express your feelings in a fun way.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/valentine/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "Basket Ball Game",
         "description": "A 3D basketball shooting game built with Three.js and Cannon.js where players can aim and shoot basketballs into a hoop, keeping track of their score and time.",
