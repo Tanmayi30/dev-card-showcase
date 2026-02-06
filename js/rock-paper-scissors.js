@@ -14,6 +14,7 @@ class RockPaperScissorsGame {
         this.streak = 0;
         this.streakType = ''; // 'win', 'loss', or ''
         this.isPlaying = false;
+        this.resultsHistory = []; // Array to store last 5 results
 
         // DOM Elements
         this.choiceButtons = document.querySelectorAll('.choice-btn');
@@ -25,6 +26,8 @@ class RockPaperScissorsGame {
         this.tieScoreDisplay = document.getElementById('tieScore');
         this.statsModal = document.getElementById('statsModal');
         this.gameAnnouncement = document.getElementById('gameAnnouncement');
+        this.historyList = document.getElementById('historyList');
+        this.historyCount = document.getElementById('historyCount');
 
         // Load saved game data
         this.loadGameData();
@@ -108,6 +111,14 @@ class RockPaperScissorsGame {
             this.updateStreak('tie');
         }
 
+        // Add to results history
+        this.addToResultsHistory({
+            result: result,
+            playerChoice: playerChoice,
+            computerChoice: computerChoice,
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        });
+
         // Animate the game
         this.animateGame(playerChoice, computerChoice, result);
 
@@ -154,6 +165,52 @@ class RockPaperScissorsGame {
             this.streak = 0;
             this.streakType = '';
         }
+    }
+
+    addToResultsHistory(gameResult) {
+        // Add new result to beginning of array
+        this.resultsHistory.unshift(gameResult);
+
+        // Keep only last 5 results
+        if (this.resultsHistory.length > 5) {
+            this.resultsHistory.pop();
+        }
+
+        // Update history display
+        this.displayResultsHistory();
+    }
+
+    displayResultsHistory() {
+        if (this.resultsHistory.length === 0) {
+            this.historyList.innerHTML = '<p class="empty-history">No games played yet</p>';
+            this.historyCount.textContent = '(0)';
+            return;
+        }
+
+        this.historyCount.textContent = `(${this.resultsHistory.length})`;
+
+        const historyHTML = this.resultsHistory.map((game, index) => {
+            const resultEmoji = game.result === 'win' ? '🎉' : game.result === 'lose' ? '😔' : '🤝';
+            const resultText = game.result === 'win' ? 'Win' : game.result === 'lose' ? 'Lose' : 'Draw';
+            const playerChoiceEmoji = this.getChoiceEmoji(game.playerChoice);
+            const computerChoiceEmoji = this.getChoiceEmoji(game.computerChoice);
+
+            return `
+                <div class="history-item ${game.result}">
+                    <span class="history-result ${game.result}">
+                        ${resultEmoji} ${resultText}
+                    </span>
+                    <div class="history-choices">
+                        <span title="You chose ${game.playerChoice}">${playerChoiceEmoji}</span>
+                        <span style="font-size: 12px; color: #bdc3c7;">vs</span>
+                        <span title="Computer chose ${game.computerChoice}">${computerChoiceEmoji}</span>
+                    </div>
+                    <span class="history-time">${game.timestamp}</span>
+                </div>
+            `;
+        }).join('');
+
+        this.historyList.innerHTML = historyHTML;
     }
 
     getChoiceEmoji(choice) {
@@ -282,8 +339,10 @@ class RockPaperScissorsGame {
             this.playerStats = { rock: 0, paper: 0, scissors: 0 };
             this.streak = 0;
             this.streakType = '';
+            this.resultsHistory = [];
 
             this.updateDisplay();
+            this.displayResultsHistory();
             this.saveGameData();
             this.gameAnnouncement.textContent = 'Game has been reset. All scores cleared.';
             this.closeStatsModal();
@@ -299,6 +358,7 @@ class RockPaperScissorsGame {
             playerStats: this.playerStats,
             streak: this.streak,
             streakType: this.streakType,
+            resultsHistory: this.resultsHistory,
             lastPlayed: new Date().toISOString()
         };
         localStorage.setItem('rpsGameData', JSON.stringify(gameData));
@@ -314,6 +374,10 @@ class RockPaperScissorsGame {
             this.playerStats = gameData.playerStats || { rock: 0, paper: 0, scissors: 0 };
             this.streak = gameData.streak || 0;
             this.streakType = gameData.streakType || '';
+            this.resultsHistory = gameData.resultsHistory || [];
+
+            // Display the history on load
+            this.displayResultsHistory();
         }
     }
 }

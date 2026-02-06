@@ -415,6 +415,120 @@ body {
     border-color: #C0C0C0;
 }
 
+/* Results History Panel */
+.results-history-panel {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    animation: slideInUp 0.7s ease-out 0.1s backwards;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 15px;
+}
+
+.history-header h2 {
+    font-size: 20px;
+    color: #2c3e50;
+    margin: 0;
+    font-weight: 600;
+}
+
+.history-count {
+    font-size: 14px;
+    color: #95a5a6;
+    font-weight: 500;
+}
+
+.history-list {
+    display: grid;
+    gap: 12px;
+    min-height: 60px;
+}
+
+.history-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    border-left: 4px solid #3498db;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.history-item:hover {
+    transform: translateX(5px);
+    background: #ecf0f1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.history-item.win {
+    border-left-color: var(--success-color);
+    background: rgba(39, 174, 96, 0.05);
+}
+
+.history-item.lose {
+    border-left-color: var(--danger-color);
+    background: rgba(231, 76, 60, 0.05);
+}
+
+.history-item.draw {
+    border-left-color: var(--warning-color);
+    background: rgba(243, 156, 18, 0.05);
+}
+
+.history-result {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    min-width: 80px;
+}
+
+.history-result.win {
+    color: var(--success-color);
+}
+
+.history-result.lose {
+    color: var(--danger-color);
+}
+
+.history-result.draw {
+    color: var(--warning-color);
+}
+
+.history-choices {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.history-time {
+    font-size: 12px;
+    color: #95a5a6;
+    font-weight: normal;
+}
+
+.empty-history {
+    text-align: center;
+    color: #95a5a6;
+    padding: 20px;
+    font-style: italic;
+}
+
 /* Stats Section */
 .stats-section {
     display: grid;
@@ -825,6 +939,21 @@ kbd {
 
     .stats-section {
         grid-template-columns: 1fr;
+    }
+
+    .results-history-panel {
+        padding: 20px;
+    }
+
+    .history-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .history-choices {
+        width: 100%;
+        justify-content: flex-start;
     }
 
     .control-buttons {
