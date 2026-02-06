@@ -506,6 +506,25 @@
         }
     },
     {
+        "title": "Power Nap Tracker 🛌",
+        "description": "A comprehensive web application for tracking power naps and optimizing energy management. Log nap duration, quality, and energy levels to visualize energy impact and get personalized timing tips.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Productivity",
+            "Wellness"
+        ],
+        "links": {
+            "live": "./projects/power-nap-tracker/index.html"
+        },
+        "author": {
+            "name": "Gupta",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Truth & Dare Mini Game",
         "description": "A fun and interactive Truth & Dare mini game with a gamified scoring system, animated cards, and a clean modern UI. Designed to be fully responsive and engaging, making it ideal for casual play and party-style interactions across devices.",
         "tags": [
