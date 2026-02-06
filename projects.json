@@ -7452,6 +7452,26 @@
         }
     },
     {
+        "title": "Recovery Day Planner 📆",
+        "description": "A comprehensive web application for tracking and optimizing recovery days in your fitness routine. Log sleep, stretching, rest activities, and stress levels to calculate recovery scores and get personalized stretching tips.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Fitness",
+            "Recovery",
+            "Wellness"
+        ],
+        "links": {
+            "live": "./projects/recovery-planner/index.html"
+        },
+        "author": {
+            "name": "Gupta",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Retro Pixel Habit Tracker 🌱",
         "description": "A gamified habit tracker that grows a pixel character as habits are completed.",
         "tags": [
