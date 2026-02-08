@@ -1,5 +1,24 @@
 [
     {
+        "title": "Random Username Generator",
+        "description": "A creative tool that generates unique, memorable usernames instantly. Features multiple styles (funny, professional, fantasy, tech, mixed), customizable separators, optional number suffixes, and length controls. Includes one-click copy and history tracking with localStorage.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Utility",
+            "UI/UX",
+            "LocalStorage"
+        ],
+        "links": {
+            "live": "./projects/random-username-generator/"
+        },
+        "author": {
+            "name": "Community",
+            "github": "https://github.com/avdhut400/dev-card-showcase"
+        }
+    },
+    {
         "title": "Memory Budgeting",
         "description": "An intermediate-level budgeting application that helps users track income and expenses with a smart, memory-driven approach. Features a horizontal dashboard layout, income/expense toggles, real-time balance updates, and behavioral spending insights presented through a polished, modern UI inspired by high-end control systems.",
         "tags": [
