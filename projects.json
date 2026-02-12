@@ -649,6 +649,23 @@
             "github": "https://github.com/omkarhole"
         }
     },
+     {
+        "title": "Push the box",
+        "description": "A classic puzzle game where players push boxes onto target locations. Features include multiple levels, undo functionality, and responsive design for an engaging user experience.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Game"
+        ],
+        "links": {
+            "live": "./projects/Push-the-box/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "Code Snippet",
         "description": "A utility tool to format and minify HTML code with live preview. Features include beautifying HTML, minifying HTML, copying formatted code, downloading as a file, and a dark mode toggle for comfortable use.",
