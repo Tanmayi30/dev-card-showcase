@@ -653,6 +653,24 @@
             "github": "https://github.com/your-github-username"
         }
     },
+     {
+        "title": "Living CSS Color Gallery",
+        "description": "An interactive gallery showcasing a wide range of CSS color names and their corresponding hex values. Features include a responsive grid layout, search functionality, and the ability to copy color values to clipboard.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Animation",
+            "Optical Illusion"
+        ],
+        "links": {
+            "live": "./projects/Living-CSS-Color-Gallery/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "Toast notification playground",
         "description": "A web application that demonstrates various styles and types of toast notifications. Users can trigger different notifications to see how they appear and behave.",
