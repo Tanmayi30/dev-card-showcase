@@ -10142,5 +10142,27 @@
             "name": "Gupta",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Liver Function Tracker",
+        "description": "Monitor liver health through enzyme level tracking with medical reference ranges. Log ALT, AST, bilirubin, and ALP levels with automatic status indicators. Features trend analysis, health insights, comprehensive medical reference guide, and warning alerts for abnormal values. Helps users track liver function over time and identify potential health concerns early.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Medical",
+            "Data Visualization",
+            "LocalStorage",
+            "Chart.js",
+            "Wellness"
+        ],
+        "links": {
+            "live": "./liver-function-tracker/liver-function-tracker.html"
+        },
+        "author": {
+            "name": "Gupta",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
