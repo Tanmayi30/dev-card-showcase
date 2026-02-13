@@ -20,6 +20,26 @@
         }
     },
     {
+        "title": "Mental Energy Index",
+        "description": "Track your daily mental energy levels with morning and evening ratings to quantify cognitive stamina and improve productivity awareness. Features trend visualization, productivity insights, and personalized recommendations.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Productivity",
+            "Data Visualization",
+            "LocalStorage"
+        ],
+        "links": {
+            "live": "./mental-energy-index/mental-energy-index.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Random Username Generator",
         "description": "A creative tool that generates unique, memorable usernames instantly. Features multiple styles (funny, professional, fantasy, tech, mixed), customizable separators, optional number suffixes, and length controls. Includes one-click copy and history tracking with localStorage.",
         "tags": [
