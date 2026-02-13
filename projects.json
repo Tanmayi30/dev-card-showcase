@@ -548,6 +548,26 @@
             "github": "https://github.com/PriyanshuSingh00-hub"
         }
     },
+
+    {
+    "title": "Countdown Timer Pro",
+    "description": "A visually engaging and animated countdown timer built using pure HTML, CSS, and JavaScript. Features a dynamic gradient background, glassmorphism UI, smooth flip-style time animations, SVG-based circular progress ring, sound alerts using the Web Audio API, and a fun confetti celebration effect when the timer completes. Includes custom time input, seamless restart functionality without page reload, and a fully responsive modern design.",
+    "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Web Application",
+        "Animation",
+        "Utility Tool"
+    ],
+    "links": {
+        "live": "./projects/Countdown-Pro/index.html"
+    },
+    "author": {
+        "name": "Priyanshu",
+        "github": "https://github.com/PriyanshuSingh00-hub"
+    }
+},
     {
         "title": "Embers in the Dark",
         "description": "A dark, narrative-driven incremental survival game inspired by A Dark Room. Players gather resources, stoke a fire to survive the cold, and gradually build a small community through progressive unlocks. Features atmospheric UI, persistent saves, and simple but engaging mechanics built with pure web technologies.",
