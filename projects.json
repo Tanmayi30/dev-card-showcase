@@ -12,7 +12,7 @@
             "LocalStorage"
         ],
         "links": {
-            "live": "./pollution-exposure-log.html"
+            "live": "./pollution-exposure-log/pollution-exposure-log.html"
         },
         "author": {
             "name": "Gupta-02",
