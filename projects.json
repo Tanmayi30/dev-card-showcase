@@ -10102,21 +10102,41 @@
         }
     },
     {
-        "title": "Panic Episode Logger",
-        "description": "Log panic attack frequency and severity with detailed tracking of triggers, symptoms, and coping strategies. Features trend analysis, pattern recognition, and effectiveness ratings for anxiety management. Includes severity scale (1-10), duration tracking, and insights into common triggers and most effective coping techniques.",
+        "title": "Running Cadence Tracker",
+        "description": "Track your running cadence to optimize stride efficiency. Log runs with distance, time, and steps per minute. Features improvement graphs, optimal range indicators (170-190 spm), and performance statistics. Helps runners improve their running form and efficiency.",
         "tags": [
             "HTML",
             "CSS",
             "JavaScript",
-            "Health",
-            "Mental Health",
-            "Anxiety",
+            "Fitness",
             "Data Visualization",
             "LocalStorage",
             "Chart.js"
         ],
         "links": {
-            "live": "./projects/panic-episode-logger/"
+            "live": "./projects/running-cadence-tracker/"
+        },
+        "author": {
+            "name": "Gupta",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
+        "title": "Muscle Group Recovery Tracker",
+        "description": "Track recovery times for individual muscle groups to prevent overtraining and optimize workout scheduling. Log workouts by muscle group with intensity levels, view recovery status dashboard, and visualize recovery timelines. Features color-coded status indicators, training statistics, and overtraining prevention alerts.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Fitness",
+            "Health",
+            "Recovery",
+            "Data Visualization",
+            "LocalStorage",
+            "Chart.js"
+        ],
+        "links": {
+            "live": "./projects/muscle-group-recovery-tracker/"
         },
         "author": {
             "name": "Gupta",
