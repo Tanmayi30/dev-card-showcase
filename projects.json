@@ -10908,5 +10908,28 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Running Form Self-Assessment UI",
+        "description": "Monitor your running mechanics consistency with form quality ratings, distance tracking, and injury correlation insights. Log perceived form issues and get personalized recommendations for injury prevention and performance improvement.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Chart.js",
+            "Data Visualization",
+            "LocalStorage",
+            "Wellness",
+            "Fitness",
+            "Running",
+            "Injury Prevention"
+        ],
+        "links": {
+            "live": "./running-form-self-assessment/running-form-self-assessment.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
