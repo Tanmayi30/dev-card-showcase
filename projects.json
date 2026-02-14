@@ -10752,5 +10752,28 @@
             "name": "Gupta",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Joint Pain Pattern Analyzer",
+        "description": "Log joint pain episodes and visualize patterns correlated with weather, activity levels, and posture to identify triggers and improve management. Track pain severity, duration, and environmental factors for comprehensive joint health monitoring.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Medical",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Wellness",
+            "Pain Management"
+        ],
+        "links": {
+            "live": "./joint-pain-pattern-analyzer/joint-pain-pattern-analyzer.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
