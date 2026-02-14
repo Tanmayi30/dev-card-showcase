@@ -10931,5 +10931,28 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Overcommitment Risk Analyzer",
+        "description": "Evaluate your workload versus capacity to prevent burnout and improve time management. Track task load, assess stress levels, and get personalized recommendations for maintaining work-life balance.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Chart.js",
+            "Data Visualization",
+            "LocalStorage",
+            "Wellness",
+            "Productivity",
+            "Time Management",
+            "Burnout Prevention"
+        ],
+        "links": {
+            "live": "./overcommitment-risk-analyzer/overcommitment-risk-analyzer.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
