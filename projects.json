@@ -10953,5 +10953,28 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Micronutrient Deficiency Risk Estimator",
+        "description": "Estimate deficiency risk based on dietary patterns by logging foods and analyzing nutrient intake. Track vitamin and mineral levels with personalized deficiency probability scoring to encourage nutrient diversity and prevent malnutrition.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Chart.js",
+            "Data Visualization",
+            "LocalStorage",
+            "Health Monitoring",
+            "Nutrition",
+            "Dietary Analysis",
+            "Wellness"
+        ],
+        "links": {
+            "live": "./micronutrient-deficiency-risk-estimator/micronutrient-deficiency-risk-estimator.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
