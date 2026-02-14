@@ -10908,5 +10908,27 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Detox Symptom Tracker",
+        "description": "Monitor symptoms during dietary or lifestyle detox programs to evaluate impact and progress safely. Track headache, fatigue, nausea, and other symptoms with trend analysis and personalized insights.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Chart.js",
+            "Data Visualization",
+            "LocalStorage",
+            "Wellness",
+            "Health Monitoring",
+            "Detox Support"
+        ],
+        "links": {
+            "live": "./detox-symptom-tracker/detox-symptom-tracker.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
