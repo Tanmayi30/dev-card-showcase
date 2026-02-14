@@ -4979,6 +4979,27 @@
         }
     },
     {
+        "title": "Cognitive Switching Cost Tracker",
+        "description": "Track the mental cost of switching between tasks with time-loss estimation and switching frequency graphs. Log task switches with reasons and cognitive load to optimize productivity and minimize context switching overhead.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Productivity",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Cognitive Science"
+        ],
+        "links": {
+            "live": "./cognitive-switching-cost-tracker/index.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "File Size Converter",
         "description": "A real-time utility that converts file sizes between Bytes, KB, MB, and GB instantly. Helps users quickly calculate and understand storage sizes with a clean, interactive interface.",
         "tags": [
