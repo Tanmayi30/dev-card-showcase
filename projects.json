@@ -10994,8 +10994,8 @@
         }
     },
     {
-        "title": "Folic Acid Level Monitor",
-        "description": "Track folate lab results and monitor deficiency risks for prenatal and general health. Log folic acid levels with deficiency indicators, view trends over time, and get personalized insights for optimal folate status.",
+        "title": "Motivation Cycle Analyzer",
+        "description": "Track daily motivation levels to identify cyclical patterns and improve goal consistency over time. Monitor motivation, energy, and focus fluctuations with trend analysis and personalized insights for better productivity.",
         "tags": [
             "HTML",
             "CSS",
@@ -11003,14 +11003,13 @@
             "Chart.js",
             "Data Visualization",
             "LocalStorage",
-            "Health Monitoring",
-            "Nutrition",
-            "Prenatal Health",
-            "Lab Results",
-            "Deficiency Tracking"
+            "Psychology",
+            "Productivity",
+            "Goal Tracking",
+            "Wellness"
         ],
         "links": {
-            "live": "./folic-acid-level-monitor/folic-acid-level-monitor.html"
+            "live": "./motivation-cycle-analyzer/motivation-cycle-analyzer.html"
         },
         "author": {
             "name": "Gupta-02",
