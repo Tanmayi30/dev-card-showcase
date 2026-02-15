@@ -11196,5 +11196,28 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "DNA-Based Nutrition Planner",
+        "description": "Personalized nutrition recommendations based on genetic markers. Input your genetic profile to get customized macro distributions, supplement recommendations, and dietary guidance for optimal health.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Nutrition",
+            "Genetics",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Personalized Medicine"
+        ],
+        "links": {
+            "live": "./dna-based-nutrition-planner/dna-based-nutrition-planner.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
