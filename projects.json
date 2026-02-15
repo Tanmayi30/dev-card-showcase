@@ -4538,7 +4538,7 @@
             "github": "https://github.com/your-github-username"
         }
     },
-    {
+     {
         "title": "Budget Planner",
         "description": "A user-friendly budget planning tool that helps users track income and expenses, set financial goals, and visualize spending patterns with charts and graphs.",
         "tags": [
@@ -4548,6 +4548,22 @@
         ],
         "links": {
             "live": "./projects/Budget-Planner/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "Responsive Audio Player",
+        "description": "A responsive audio player with a modern UI that works across all devices and screen sizes.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/Responsive-Audio-Player/index.html"
         },
         "author": {
             "name": "Omkar",
