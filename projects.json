@@ -10992,5 +10992,28 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Ground Contact Time Logger",
+        "description": "Track ground contact time during running sessions to measure efficiency improvements. Log sessions with contact time measurements, distance, duration, and surface type. Features trend visualization, efficiency scoring, and personalized training recommendations for performance athletes.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Fitness",
+            "Running",
+            "Performance",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Sports Analytics"
+        ],
+        "links": {
+            "live": "./ground-contact-time-logger/ground-contact-time-logger.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
