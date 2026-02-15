@@ -106,11 +106,6 @@
             "github": "https://github.com/Gupta-02"
         }
     },
-        "author": {
-            "name": "Gupta-02",
-            "github": "https://github.com/Gupta-02"
-        }
-    },
     {
         "title": "Confidence Level Tracker",
         "description": "Track daily self-confidence ratings on a 1-10 scale with trend visualization. Monitor confidence fluctuations across different contexts to support personal development and self-awareness.",
@@ -11072,7 +11067,7 @@
         ],
         "links": {
             "live": "./joint-pain-pattern-analyzer/joint-pain-pattern-analyzer.html"
-        },
+        }
     },
     {
         "title": "Plantar Fascia Pain Monitor",
@@ -11365,7 +11360,7 @@
         ],
         "links": {
             "live": "./personal-health-resilience-score/personal-health-resilience-score.html"
-        },
+        }
     },
     {
         "title": "Nap Efficiency Tracker",
