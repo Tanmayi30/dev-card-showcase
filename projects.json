@@ -840,6 +840,27 @@
         }
     },
     {
+        "title": "Hacker Escape Room #3786",
+        "description": "A full-featured cyber escape room engine built with HTML, CSS, and JavaScript featuring a simulated terminal filesystem and command parser system. Players interact using real commands (cd, ls, cat, help, clear, hack) to navigate directories, solve logic riddles, crack passwords through animated brute-force sequences, and progress through multi-level branching challenges under a countdown timer. Includes glitch animations, immersive sound effects, and structured game-state management for a complete hacker-themed experience.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Game Development",
+            "Interactive Fiction",
+            "Command Parser",
+            "Puzzle Game",
+            "Cyber UI"
+        ],
+        "links": {
+            "live": "./projects/hacker-escape-room-3786/index.html"
+        },
+        "author": {
+            "name": "Priyanshu",
+            "github": "https://github.com/PriyanshuSingh00-hub"
+        }
+    },
+    {
         "title": "Code Formattor pro",
         "description": "A utility tool to format and minify HTML code with live preview. Features include beautifying HTML, minifying HTML, copying formatted code, downloading as a file, and a dark mode toggle for comfortable use.",
         "tags": [
@@ -3867,7 +3888,7 @@
             "github": "https://github.com/omkarhole"
         }
     },
-       {
+    {
         "title": "BB-8 project",
         "description": "A web application that simulates a BB-8 droid with interactive movement and animations.",
         "tags": [
@@ -4065,7 +4086,7 @@
             "github": "https://github.com/neeru24"
         }
     },
-       {
+    {
         "title": " CSS Roulette Wheel",
         "description": "A CSS-based roulette wheel animation with interactive spinning and result display.",
         "tags": [
@@ -4164,7 +4185,7 @@
             "github": "https://github.com/neeru24"
         }
     },
-        {
+    {
         "title": "Icons Masterlist",
         "description": "A comprehensive collection of icons from multiple sources, including Tabler, Phosphor, Flaticon, and more.",
         "tags": [
@@ -4228,7 +4249,7 @@
             "github": "https://github.com/CodeMaster"
         }
     },
-      {
+    {
         "title": "Code Editor",
         "description": "A professional code editor with multi-language support, customizable themes, real-time preview, and essential features like code download and clearing.",
         "tags": [
