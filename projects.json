@@ -11622,5 +11622,25 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Thought Loop Interruption Tracker",
+        "description": "Log recurring negative thought patterns with tag-based tracking and frequency heatmap. Includes CBT-style prompts for interrupting mental loops and improving mental health awareness.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Mental Health",
+            "CBT",
+            "Data Visualization",
+            "LocalStorage"
+        ],
+        "links": {
+            "live": "./thought-loop-interruption-tracker/thought-loop-interruption-tracker.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
