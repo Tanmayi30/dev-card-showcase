@@ -1,27 +1,5 @@
 /* Nutrient Deficiency Risk Scanner Styles */
 
-.disclaimer {
-    background: #fef3c7;
-    border: 1px solid #f59e0b;
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 1rem 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    color: #92400e;
-}
-
-.disclaimer i {
-    color: #f59e0b;
-    flex-shrink: 0;
-    margin-top: 0.125rem;
-}
-
-.disclaimer strong {
-    color: #78350f;
-}
-
 .tracker-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -51,43 +29,51 @@
     color: var(--accent-color, #3b82f6);
 }
 
+/* Disclaimer */
+.disclaimer {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: #92400e;
+}
+
+.disclaimer i {
+    color: #f59e0b;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
 /* Questionnaire Section */
 .questionnaire-section {
     grid-column: 1 / -1;
 }
 
-.questionnaire-intro {
-    background: var(--bg-secondary, #f8fafc);
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    border-left: 4px solid var(--accent-color, #3b82f6);
-}
-
-.questionnaire-intro p {
-    margin: 0;
-    color: var(--text-secondary, #6b7280);
-    line-height: 1.5;
-}
-
-.food-category {
+.food-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
     margin-bottom: 2rem;
-    padding: 1rem;
-    background: var(--bg-secondary, #f8fafc);
-    border-radius: 8px;
 }
 
-.food-category h3 {
+.category-group {
+    background: var(--bg-secondary, #f8fafc);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.category-group h3 {
+    margin: 0 0 1rem 0;
     color: var(--text-primary, #1a202c);
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-}
-
-.food-category h3 i {
-    color: var(--accent-color, #3b82f6);
 }
 
 .food-item {
@@ -99,20 +85,63 @@
     font-weight: 500;
     color: var(--text-primary, #1a202c);
     margin-bottom: 0.5rem;
-    line-height: 1.4;
+    font-size: 0.875rem;
 }
 
 .food-item select {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.5rem;
     border: 1px solid var(--border-color, #d1d5db);
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
     background: white;
     transition: border-color 0.2s ease;
 }
 
 .food-item select:focus {
+    outline: none;
+    border-color: var(--accent-color, #3b82f6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.lifestyle-factors {
+    background: var(--bg-secondary, #f8fafc);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.lifestyle-factors h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary, #1a202c);
+    font-size: 1rem;
+}
+
+.factor-item {
+    margin-bottom: 1rem;
+}
+
+.factor-item label {
+    display: block;
+    font-weight: 500;
+    color: var(--text-primary, #1a202c);
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.factor-item select,
+.factor-item input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    background: white;
+    transition: border-color 0.2s ease;
+}
+
+.factor-item select:focus,
+.factor-item input:focus {
     outline: none;
     border-color: var(--accent-color, #3b82f6);
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
@@ -129,7 +158,6 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
     width: 100%;
-    margin-top: 1rem;
 }
 
 .btn-primary:hover {
@@ -150,78 +178,46 @@
     margin-top: 1rem;
 }
 
-.overall-risk {
-    text-align: center;
+.risk-overview {
     margin-bottom: 2rem;
 }
 
-.risk-score {
-    display: inline-block;
+.risk-overview h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary, #1a202c);
+    font-size: 1.125rem;
 }
 
-.score-circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: conic-gradient(var(--accent-color, #3b82f6) 0% 75%, #e2e8f0 75% 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+.risk-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
 }
 
-.score-circle span:first-child {
-    font-size: 2rem;
-    font-weight: 700;
-    color: white;
+.risk-stat {
+    background: var(--bg-secondary, #f8fafc);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
 }
 
-.score-label {
+.risk-stat .label {
+    display: block;
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-top: 0.25rem;
+    color: var(--text-secondary, #6b7280);
+    margin-bottom: 0.25rem;
 }
 
-.risk-level {
+.risk-stat span:last-child {
     font-size: 1.25rem;
     font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.risk-low-risk {
-    background: #f0fdf4;
-    color: #16a34a;
-}
-
-.risk-moderate-risk {
-    background: #fffbeb;
-    color: #d97706;
-}
-
-.risk-high-risk {
-    background: #fef2f2;
-    color: #dc2626;
-}
-
-.risk-very-high-risk {
-    background: #faf5ff;
-    color: #7c3aed;
-}
-
-.nutrient-risks {
-    margin-bottom: 2rem;
+    color: var(--text-primary, #1a202c);
 }
 
 .nutrient-risks h3 {
+    margin: 0 0 1rem 0;
     color: var(--text-primary, #1a202c);
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
+    font-size: 1.125rem;
 }
 
 .risks-list {
@@ -229,16 +225,31 @@
     gap: 1rem;
 }
 
-.nutrient-risk-item {
-    background: white;
-    border: 1px solid var(--border-color, #e1e5e9);
+.risk-item {
+    background: var(--bg-secondary, #f8fafc);
     border-radius: 8px;
     padding: 1rem;
-    transition: box-shadow 0.2s ease;
+    border-left: 4px solid #e2e8f0;
+    transition: all 0.2s ease;
 }
 
-.nutrient-risk-item:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.risk-item:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.risk-item.risk-high {
+    border-left-color: #ef4444;
+    background: linear-gradient(90deg, #fef2f2 0%, var(--bg-secondary, #f8fafc) 20%);
+}
+
+.risk-item.risk-moderate {
+    border-left-color: #f59e0b;
+    background: linear-gradient(90deg, #fffbeb 0%, var(--bg-secondary, #f8fafc) 20%);
+}
+
+.risk-item.risk-low {
+    border-left-color: #10b981;
+    background: linear-gradient(90deg, #f0fdf4 0%, var(--bg-secondary, #f8fafc) 20%);
 }
 
 .nutrient-header {
@@ -253,83 +264,54 @@
     color: var(--text-primary, #1a202c);
 }
 
-.risk-badge {
-    padding: 0.25rem 0.5rem;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.risk-percentage {
+    font-weight: 700;
+    font-size: 1.125rem;
 }
 
-.risk-low {
-    background: #f0fdf4;
-    color: #16a34a;
+.risk-high .risk-percentage {
+    color: #ef4444;
 }
 
-.risk-moderate {
-    background: #fffbeb;
-    color: #d97706;
+.risk-moderate .risk-percentage {
+    color: #f59e0b;
 }
 
-.risk-high {
-    background: #fef2f2;
-    color: #dc2626;
+.risk-low .risk-percentage {
+    color: #10b981;
 }
 
-.risk-very-high {
-    background: #faf5ff;
-    color: #7c3aed;
+.risk-bar {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
 }
 
-.risk-details {
+.risk-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.risk-item.risk-high .risk-fill {
+    background: #ef4444;
+}
+
+.risk-item.risk-moderate .risk-fill {
+    background: #f59e0b;
+}
+
+.risk-item.risk-low .risk-fill {
+    background: #10b981;
+}
+
+.risk-description {
     font-size: 0.875rem;
     color: var(--text-secondary, #6b7280);
-}
-
-.risk-details > div {
-    margin-bottom: 0.5rem;
-}
-
-.risk-details > div:last-child {
-    margin-bottom: 0;
-}
-
-.key-insights {
-    background: var(--bg-secondary, #f8fafc);
-    padding: 1rem;
-    border-radius: 8px;
-    border-left: 4px solid var(--accent-color, #3b82f6);
-}
-
-.key-insights h3 {
-    margin: 0 0 1rem 0;
-    color: var(--text-primary, #1a202c);
-    font-size: 1rem;
-}
-
-.insights-list {
-    display: grid;
-    gap: 0.75rem;
-}
-
-.insight-item {
-    padding: 0.75rem;
-    border-radius: 6px;
-    font-size: 0.875rem;
-    line-height: 1.5;
-}
-
-.insight-item.warning {
-    background: #fef2f2;
-    color: #dc2626;
-    border: 1px solid #fecaca;
-}
-
-.insight-item.success {
-    background: #f0fdf4;
-    color: #16a34a;
-    border: 1px solid #bbf7d0;
+    line-height: 1.4;
 }
 
 /* Chart Section */
@@ -337,35 +319,43 @@
     grid-column: 1 / -1;
 }
 
-.chart-controls {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.chart-btn {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--border-color, #d1d5db);
-    background: white;
-    border-radius: 6px;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.chart-btn.active {
-    background: var(--accent-color, #3b82f6);
-    color: white;
-    border-color: var(--accent-color, #3b82f6);
-}
-
-.chart-btn:hover {
-    border-color: var(--accent-color, #3b82f6);
-}
-
 #riskChart {
     max-height: 400px;
     width: 100%;
+    margin-bottom: 1rem;
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary, #6b7280);
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+}
+
+.legend-color.low-risk {
+    background: rgba(34, 197, 94, 0.7);
+}
+
+.legend-color.moderate-risk {
+    background: rgba(245, 158, 11, 0.7);
+}
+
+.legend-color.high-risk {
+    background: rgba(239, 68, 68, 0.7);
 }
 
 /* Recommendations Section */
@@ -428,7 +418,7 @@
 }
 
 .btn-small {
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 0.75rem;
     border: 1px solid var(--border-color, #d1d5db);
     background: white;
     border-radius: 4px;
@@ -448,31 +438,26 @@
         gap: 1rem;
     }
 
-    .food-category {
-        padding: 0.75rem;
+    .food-categories {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
-    .score-circle {
-        width: 100px;
-        height: 100px;
+    .risk-summary {
+        grid-template-columns: 1fr;
     }
 
-    .score-circle span:first-child {
-        font-size: 1.5rem;
+    .chart-legend {
+        gap: 1rem;
     }
 
-    .nutrient-header {
+    .tracker-section {
+        padding: 1rem;
+    }
+
+    .disclaimer {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-    .chart-controls {
-        flex-direction: column;
-    }
-
-    .chart-btn {
-        width: 100%;
+        text-align: center;
     }
 }
 

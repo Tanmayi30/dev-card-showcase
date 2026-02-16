@@ -17,190 +17,210 @@
     <div class="container">
         <header class="page-header">
             <h1><i data-lucide="dna"></i> Nutrient Deficiency Risk Scanner</h1>
-            <p>Evaluate your diet patterns for potential micronutrient gaps. Educational tool for nutritional awareness - not a diagnostic substitute.</p>
+            <p>Evaluate your diet patterns to identify potential micronutrient gaps. Educational tool for nutritional awareness.</p>
             <div class="disclaimer">
                 <i data-lucide="alert-triangle"></i>
-                <strong>Educational Purpose Only:</strong> This tool provides general nutritional insights based on dietary patterns. It is not a substitute for professional medical advice, diagnosis, or treatment. Consult healthcare providers for personalized nutritional guidance.
+                <strong>Educational Purpose Only:</strong> This tool provides general nutritional insights based on dietary patterns. It is not a substitute for professional medical advice, diagnosis, or treatment. Consult a healthcare provider for personalized nutritional guidance.
             </div>
         </header>
 
         <div class="tracker-grid">
-            <!-- Diet Assessment Questionnaire -->
+            <!-- Food Frequency Questionnaire -->
             <section class="tracker-section questionnaire-section">
-                <h2><i data-lucide="clipboard-list"></i> Diet Assessment</h2>
-                <form id="dietForm">
-                    <div class="questionnaire-intro">
-                        <p>How often do you consume the following foods? Select the frequency that best matches your typical eating habits over the past month.</p>
+                <h2><i data-lucide="clipboard-list"></i> Food Frequency Assessment</h2>
+                <p>Rate how often you consume each food category in a typical week:</p>
+
+                <form id="nutritionForm">
+                    <div class="food-categories">
+                        <!-- Fruits & Vegetables -->
+                        <div class="category-group">
+                            <h3>🍎 Fruits & Vegetables</h3>
+                            <div class="food-item">
+                                <label for="leafyGreens">Leafy greens (spinach, kale, lettuce)</label>
+                                <select id="leafyGreens" required>
+                                    <option value="">Select frequency...</option>
+                                    <option value="0">Never</option>
+                                    <option value="1">1-2 times/week</option>
+                                    <option value="2">3-4 times/week</option>
+                                    <option value="3">5-6 times/week</option>
+                                    <option value="4">Daily</option>
+                                    <option value="5">2+ times/day</option>
+                                </select>
+                            </div>
+                            <div class="food-item">
+                                <label for="citrus">Citrus fruits (oranges, lemons, grapefruits)</label>
+                                <select id="citrus" required>
+                                    <option value="">Select frequency...</option>
+                                    <option value="0">Never</option>
+                                    <option value="1">1-2 times/week</option>
+                                    <option value="2">3-4 times/week</option>
+                                    <option value="3">5-6 times/week</option>
+                                    <option value="4">Daily</option>
+                                    <option value="5">2+ times/day</option>
+                                </select>
+                            </div>
+                            <div class="food-item">
+                                <label for="berries">Berries (strawberries, blueberries, raspberries)</label>
+                                <select id="berries" required>
+                                    <option value="">Select frequency...</option>
+                                    <option value="0">Never</option>
+                                    <option value="1">1-2 times/week</option>
+                                    <option value="2">3-4 times/week</option>
+                                    <option value="3">5-6 times/week</option>
+                                    <option value="4">Daily</option>
+                                    <option value="5">2+ times/day</option>
+                                </select>
+                            </div>
+                            <div class="food-item">
+                                <label for="cruciferous">Cruciferous vegetables (broccoli, cauliflower, Brussels sprouts)</label>
+                                <select id="cruciferous" required>
+                                    <option value="">Select frequency...</option>
+                                    <option value="0">Never</option>
+                                    <option value="1">1-2 times/week</option>
+                                    <option value="2">3-4 times/week</option>
+                                    <option value="3">5-6 times/week</option>
+                                    <option value="4">Daily</option>
+                                    <option value="5">2+ times/day</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Proteins -->
+                        <div class="category-group">
+                            <h3>🥩 Proteins</h3>
+                            <div class="food-item">
+                                <label for="redMeat">Red meat (beef, lamb, pork)</label>
+                                <select id="redMeat" required>
+                                    <option value="">Select frequency...</option>
+                                    <option value="0">Never</option>
+                                    <option value="1">1-2 times/week</option>
+                                    <option value="2">3-4 times/week</option>
+                                    <option value="3">5-6 times/week</option>
+                                    <option value="4">Daily</option>
+                                    <option value="5">2+ times/day</option>
+                                </select>
+                            </div>
+                            <div class="food-item">
+                                <label for="organMeats">Organ meats (liver, kidney)</label>
+                                <select id="organMeats" required>
+                                    <option value="">Select frequency...</option>
+                                    <option value="0">Never</option>
+                                    <option value="1">1-2 times/week</option>
+                                    <option value="2">3-4 times/week</option>
+                                    <option value="3">5-6 times/week</option>
+                                    <option value="4">Daily</option>
+                                    <option value="5">2+ times/day</option>
+                                </select>
+                            </div>
+                            <div class="food-item">
+                                <label for="fish">Fatty fish (salmon, mackerel, sardines)</label>
+                                <select id="fish" required>
+                                    <option value="">Select frequency...</option>
+                                    <option value="0">Never</option>
+                                    <option value="1">1-2 times/week</option>
+                                    <option value="2">3-4 times/week</option>
+                                    <option value="3">5-6 times/week</option>
+                                    <option value="4">Daily</option>
+                                    <option value="5">2+ times/day</option>
+                                </select>
+                            </div>
+                            <div class="food-item">
+                                <label for="eggs">Eggs</label>
+                                <select id="eggs" required>
+                                    <option value="">Select frequency...</option>
+                                    <option value="0">Never</option>
+                                    <option value="1">1-2 times/week</option>
+                                    <option value="2">3-4 times/week</option>
+                                    <option value="3">5-6 times/week</option>
+                                    <option value="4">Daily</option>
+                                    <option value="5">2+ times/day</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Dairy & Alternatives -->
+                        <div class="category-group">
+                            <h3>🥛 Dairy & Alternatives</h3>
+                            <div class="food-item">
+                                <label for="dairy">Dairy products (milk, cheese, yogurt)</label>
+                                <select id="dairy" required>
+                                    <option value="">Select frequency...</option>
+                                    <option value="0">Never</option>
+                                    <option value="1">1-2 times/week</option>
+                                    <option value="2">3-4 times/week</option>
+                                    <option value="3">5-6 times/week</option>
+                                    <option value="4">Daily</option>
+                                    <option value="5">2+ times/day</option>
+                                </select>
+                            </div>
+                            <div class="food-item">
+                                <label for="fortifiedFoods">Fortified foods (cereals, plant milks)</label>
+                                <select id="fortifiedFoods" required>
+                                    <option value="">Select frequency...</option>
+                                    <option value="0">Never</option>
+                                    <option value="1">1-2 times/week</option>
+                                    <option value="2">3-4 times/week</option>
+                                    <option value="3">5-6 times/week</option>
+                                    <option value="4">Daily</option>
+                                    <option value="5">2+ times/day</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Grains & Nuts -->
+                        <div class="category-group">
+                            <h3>🌰 Grains & Nuts</h3>
+                            <div class="food-item">
+                                <label for="nuts">Nuts and seeds (almonds, walnuts, chia)</label>
+                                <select id="nuts" required>
+                                    <option value="">Select frequency...</option>
+                                    <option value="0">Never</option>
+                                    <option value="1">1-2 times/week</option>
+                                    <option value="2">3-4 times/week</option>
+                                    <option value="3">5-6 times/week</option>
+                                    <option value="4">Daily</option>
+                                    <option value="5">2+ times/day</option>
+                                </select>
+                            </div>
+                            <div class="food-item">
+                                <label for="wholeGrains">Whole grains (oats, brown rice, quinoa)</label>
+                                <select id="wholeGrains" required>
+                                    <option value="">Select frequency...</option>
+                                    <option value="0">Never</option>
+                                    <option value="1">1-2 times/week</option>
+                                    <option value="2">3-4 times/week</option>
+                                    <option value="3">5-6 times/week</option>
+                                    <option value="4">Daily</option>
+                                    <option value="5">2+ times/day</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Fruits & Vegetables -->
-                    <div class="food-category">
-                        <h3><i data-lucide="apple"></i> Fruits & Vegetables</h3>
-                        <div class="food-item">
-                            <label for="leafyGreens">Leafy green vegetables (spinach, kale, lettuce)</label>
-                            <select id="leafyGreens" required>
-                                <option value="">Select frequency...</option>
-                                <option value="daily">Daily (2+ servings)</option>
-                                <option value="weekly">Several times a week</option>
-                                <option value="monthly">Once a week or less</option>
-                                <option value="rarely">Rarely or never</option>
-                            </select>
-                        </div>
-                        <div class="food-item">
-                            <label for="citrus">Citrus fruits (oranges, lemons, grapefruits)</label>
-                            <select id="citrus" required>
-                                <option value="">Select frequency...</option>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Several times a week</option>
-                                <option value="monthly">Once a week or less</option>
-                                <option value="rarely">Rarely or never</option>
-                            </select>
-                        </div>
-                        <div class="food-item">
-                            <label for="berries">Berries (strawberries, blueberries, raspberries)</label>
-                            <select id="berries" required>
-                                <option value="">Select frequency...</option>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Several times a week</option>
-                                <option value="monthly">Once a week or less</option>
-                                <option value="rarely">Rarely or never</option>
-                            </select>
-                        </div>
-                        <div class="food-item">
-                            <label for="cruciferous">Cruciferous vegetables (broccoli, cauliflower, Brussels sprouts)</label>
-                            <select id="cruciferous" required>
-                                <option value="">Select frequency...</option>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Several times a week</option>
-                                <option value="monthly">Once a week or less</option>
-                                <option value="rarely">Rarely or never</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Proteins -->
-                    <div class="food-category">
-                        <h3><i data-lucide="fish"></i> Proteins</h3>
-                        <div class="food-item">
-                            <label for="redMeat">Red meat (beef, lamb, pork)</label>
-                            <select id="redMeat" required>
-                                <option value="">Select frequency...</option>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Several times a week</option>
-                                <option value="monthly">Once a week or less</option>
-                                <option value="rarely">Rarely or never</option>
-                            </select>
-                        </div>
-                        <div class="food-item">
-                            <label for="fish">Fatty fish (salmon, mackerel, sardines)</label>
-                            <select id="fish" required>
-                                <option value="">Select frequency...</option>
-                                <option value="weekly">2+ times per week</option>
-                                <option value="monthly">Once a week</option>
-                                <option value="rarely">Less than once a week</option>
-                            </select>
-                        </div>
-                        <div class="food-item">
-                            <label for="eggs">Eggs</label>
-                            <select id="eggs" required>
-                                <option value="">Select frequency...</option>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Several times a week</option>
-                                <option value="monthly">Once a week or less</option>
-                                <option value="rarely">Rarely or never</option>
-                            </select>
-                        </div>
-                        <div class="food-item">
-                            <label for="legumes">Legumes (beans, lentils, chickpeas)</label>
-                            <select id="legumes" required>
-                                <option value="">Select frequency...</option>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Several times a week</option>
-                                <option value="monthly">Once a week or less</option>
-                                <option value="rarely">Rarely or never</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Dairy & Alternatives -->
-                    <div class="food-category">
-                        <h3><i data-lucide="milk"></i> Dairy & Calcium Sources</h3>
-                        <div class="food-item">
-                            <label for="dairy">Dairy products (milk, cheese, yogurt)</label>
-                            <select id="dairy" required>
-                                <option value="">Select frequency...</option>
-                                <option value="daily">Daily (2+ servings)</option>
-                                <option value="weekly">Several times a week</option>
-                                <option value="monthly">Once a week or less</option>
-                                <option value="rarely">Rarely or never</option>
-                            </select>
-                        </div>
-                        <div class="food-item">
-                            <label for="fortified">Fortified plant milks or cereals</label>
-                            <select id="fortified" required>
-                                <option value="">Select frequency...</option>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Several times a week</option>
-                                <option value="monthly">Once a week or less</option>
-                                <option value="rarely">Rarely or never</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Grains & Seeds -->
-                    <div class="food-category">
-                        <h3><i data-lucide="wheat"></i> Grains & Seeds</h3>
-                        <div class="food-item">
-                            <label for="wholeGrains">Whole grains (oats, brown rice, quinoa)</label>
-                            <select id="wholeGrains" required>
-                                <option value="">Select frequency...</option>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Several times a week</option>
-                                <option value="monthly">Once a week or less</option>
-                                <option value="rarely">Rarely or never</option>
-                            </select>
-                        </div>
-                        <div class="food-item">
-                            <label for="nuts">Nuts and seeds (almonds, walnuts, chia, flax)</label>
-                            <select id="nuts" required>
-                                <option value="">Select frequency...</option>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Several times a week</option>
-                                <option value="monthly">Once a week or less</option>
-                                <option value="rarely">Rarely or never</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Lifestyle Factors -->
-                    <div class="food-category">
-                        <h3><i data-lucide="user"></i> Lifestyle Factors</h3>
-                        <div class="food-item">
-                            <label for="alcohol">Alcohol consumption</label>
+                    <div class="lifestyle-factors">
+                        <h3>🍽️ Lifestyle Factors</h3>
+                        <div class="factor-item">
+                            <label for="alcohol">Alcohol consumption:</label>
                             <select id="alcohol" required>
-                                <option value="">Select frequency...</option>
-                                <option value="none">None</option>
-                                <option value="moderate">1-2 drinks per day</option>
-                                <option value="heavy">3+ drinks per day</option>
-                            </select>
-                        </div>
-                        <div class="food-item">
-                            <label for="coffee">Coffee/tea consumption (caffeine)</label>
-                            <select id="coffee" required>
-                                <option value="">Select frequency...</option>
-                                <option value="none">None</option>
-                                <option value="moderate">1-3 cups per day</option>
-                                <option value="heavy">4+ cups per day</option>
-                            </select>
-                        </div>
-                        <div class="food-item">
-                            <label for="medications">Regular medications or supplements</label>
-                            <select id="medications" required>
                                 <option value="">Select...</option>
-                                <option value="none">None</option>
-                                <option value="some">Some (not affecting nutrient absorption)</option>
-                                <option value="absorption">Medications affecting nutrient absorption</option>
+                                <option value="0">None</option>
+                                <option value="1">1-2 drinks/week</option>
+                                <option value="2">3-7 drinks/week</option>
+                                <option value="3">8+ drinks/week</option>
                             </select>
+                        </div>
+                        <div class="factor-item">
+                            <label for="smoking">Smoking status:</label>
+                            <select id="smoking" required>
+                                <option value="">Select...</option>
+                                <option value="0">Non-smoker</option>
+                                <option value="1">Former smoker</option>
+                                <option value="2">Current smoker</option>
+                            </select>
+                        </div>
+                        <div class="factor-item">
+                            <label for="medications">Regular medications:</label>
+                            <input type="text" id="medications" placeholder="List any regular medications (optional)">
                         </div>
                     </div>
 
@@ -210,32 +230,33 @@
 
             <!-- Risk Assessment Results -->
             <section class="tracker-section results-section">
-                <h2><i data-lucide="alert-triangle"></i> Deficiency Risk Assessment</h2>
+                <h2><i data-lucide="alert-circle"></i> Deficiency Risk Assessment</h2>
                 <div id="resultsDisplay" class="results-display">
-                    <p>Complete the diet assessment to see your nutrient deficiency risk analysis.</p>
+                    <p>Complete the food frequency questionnaire to see your nutrient deficiency risk assessment.</p>
                 </div>
                 <div id="resultsContent" class="results-content" style="display: none;">
-                    <div class="overall-risk">
-                        <div class="risk-score">
-                            <div class="score-circle">
-                                <span id="overallScore">0</span>
-                                <span class="score-label">Risk Score</span>
+                    <div class="risk-overview">
+                        <h3>Risk Overview</h3>
+                        <div class="risk-summary">
+                            <div class="risk-stat">
+                                <span class="label">High Risk Nutrients:</span>
+                                <span id="highRiskCount">0</span>
                             </div>
-                            <div class="risk-level" id="overallRiskLevel">Low Risk</div>
+                            <div class="risk-stat">
+                                <span class="label">Moderate Risk:</span>
+                                <span id="moderateRiskCount">0</span>
+                            </div>
+                            <div class="risk-stat">
+                                <span class="label">Low Risk:</span>
+                                <span id="lowRiskCount">0</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="nutrient-risks">
                         <h3>Nutrient Deficiency Risks</h3>
                         <div id="nutrientRisksList" class="risks-list">
-                            <!-- Dynamic nutrient risk items will be added here -->
-                        </div>
-                    </div>
-
-                    <div class="key-insights">
-                        <h3>Key Insights</h3>
-                        <div id="insightsList" class="insights-list">
-                            <!-- Dynamic insights will be added here -->
+                            <!-- Nutrient risk items will be populated here -->
                         </div>
                     </div>
                 </div>
@@ -243,12 +264,22 @@
 
             <!-- Risk Visualization -->
             <section class="tracker-section chart-section">
-                <h2><i data-lucide="bar-chart-3"></i> Deficiency Risk Overview</h2>
-                <div class="chart-controls">
-                    <button id="viewAll" class="chart-btn active">All Nutrients</button>
-                    <button id="viewHighRisk" class="chart-btn">High Risk Only</button>
-                </div>
+                <h2><i data-lucide="bar-chart-3"></i> Deficiency Risk Visualization</h2>
                 <canvas id="riskChart"></canvas>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <span class="legend-color low-risk"></span>
+                        <span>Low Risk (0-30%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color moderate-risk"></span>
+                        <span>Moderate Risk (31-60%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color high-risk"></span>
+                        <span>High Risk (61-100%)</span>
+                    </div>
+                </div>
             </section>
 
             <!-- Recommendations -->
@@ -260,12 +291,12 @@
                         <p id="priorityActions">Complete assessment to see personalized recommendations.</p>
                     </div>
                     <div class="recommendation-card">
-                        <h4>Dietary Improvements</h4>
-                        <p id="dietaryImprovements">Focus on nutrient-dense foods for better health outcomes.</p>
+                        <h4>Food Sources</h4>
+                        <p id="foodSources">Recommendations for nutrient-rich foods based on your risk profile.</p>
                     </div>
                     <div class="recommendation-card">
-                        <h4>Supplementation Considerations</h4>
-                        <p id="supplementationAdvice">Consider professional guidance for supplementation needs.</p>
+                        <h4>Supplementation</h4>
+                        <p id="supplementation">When to consider supplements (educational guidance only).</p>
                     </div>
                 </div>
             </section>
@@ -278,9 +309,9 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Risk Score</th>
-                                <th>Risk Level</th>
-                                <th>High Risk Nutrients</th>
+                                <th>High Risk</th>
+                                <th>Moderate Risk</th>
+                                <th>Overall Score</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

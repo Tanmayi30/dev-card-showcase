@@ -4,117 +4,73 @@ document.addEventListener('DOMContentLoaded', function() {
     loadData();
     initializeCharts();
 
-    const form = document.getElementById('dietForm');
+    const form = document.getElementById('nutritionForm');
     form.addEventListener('submit', handleFormSubmit);
-
-    // Chart view controls
-    document.getElementById('viewAll').addEventListener('click', () => switchChartView('all'));
-    document.getElementById('viewHighRisk').addEventListener('click', () => switchChartView('highRisk'));
 });
 
 let riskChart = null;
-let currentChartView = 'all';
 
-// Nutrient deficiency risk assessment data
-const nutrientRiskFactors = {
+// Nutrient database with deficiency risk calculations
+const nutrientDatabase = {
     vitaminA: {
         name: 'Vitamin A',
-        sources: ['leafyGreens', 'citrus', 'fish'],
-        riskWeights: {
-            leafyGreens: { daily: 0, weekly: 1, monthly: 3, rarely: 5 },
-            citrus: { daily: 0, weekly: 1, monthly: 2, rarely: 4 },
-            fish: { weekly: 0, monthly: 2, rarely: 4 }
-        },
-        deficiencySigns: ['Night blindness', 'Dry skin', 'Weakened immunity'],
-        recommendations: ['Eat more leafy greens', 'Include fatty fish weekly', 'Consider beta-carotene rich foods']
+        sources: ['leafyGreens', 'organMeats', 'fish', 'dairy', 'eggs'],
+        weights: { leafyGreens: 0.3, organMeats: 0.4, fish: 0.2, dairy: 0.1, eggs: 0.1 },
+        deficiencyFactors: ['lowFatDiet', 'malabsorption', 'smoking']
     },
     vitaminC: {
         name: 'Vitamin C',
         sources: ['citrus', 'berries', 'cruciferous'],
-        riskWeights: {
-            citrus: { daily: 0, weekly: 1, monthly: 3, rarely: 5 },
-            berries: { daily: 0, weekly: 1, monthly: 2, rarely: 4 },
-            cruciferous: { daily: 0, weekly: 1, monthly: 2, rarely: 3 }
-        },
-        deficiencySigns: ['Frequent colds', 'Slow wound healing', 'Fatigue'],
-        recommendations: ['Eat citrus fruits daily', 'Include berries regularly', 'Add cruciferous vegetables']
+        weights: { citrus: 0.4, berries: 0.3, cruciferous: 0.3 },
+        deficiencyFactors: ['smoking', 'stress', 'alcohol']
     },
     vitaminD: {
         name: 'Vitamin D',
-        sources: ['fish', 'fortified', 'dairy'],
-        riskWeights: {
-            fish: { weekly: 0, monthly: 2, rarely: 4 },
-            fortified: { daily: 0, weekly: 1, monthly: 2, rarely: 3 },
-            dairy: { daily: 0, weekly: 1, monthly: 2, rarely: 3 }
-        },
-        deficiencySigns: ['Bone pain', 'Muscle weakness', 'Increased infection risk'],
-        recommendations: ['Eat fatty fish weekly', 'Choose fortified foods', 'Consider sunlight exposure']
+        sources: ['fish', 'fortifiedFoods', 'dairy'],
+        weights: { fish: 0.4, fortifiedFoods: 0.4, dairy: 0.2 },
+        deficiencyFactors: ['limitedSunExposure', 'darkSkin', 'obesity']
     },
     vitaminB12: {
         name: 'Vitamin B12',
-        sources: ['redMeat', 'fish', 'eggs', 'dairy'],
-        riskWeights: {
-            redMeat: { daily: 0, weekly: 1, monthly: 3, rarely: 5 },
-            fish: { weekly: 0, monthly: 2, rarely: 4 },
-            eggs: { daily: 0, weekly: 1, monthly: 2, rarely: 3 },
-            dairy: { daily: 0, weekly: 1, monthly: 2, rarely: 3 }
-        },
-        deficiencySigns: ['Fatigue', 'Tingling in hands/feet', 'Memory problems'],
-        recommendations: ['Include animal products', 'Consider fortified plant foods', 'Supplementation may be needed']
+        sources: ['organMeats', 'fish', 'eggs', 'dairy'],
+        weights: { organMeats: 0.4, fish: 0.3, eggs: 0.2, dairy: 0.1 },
+        deficiencyFactors: ['veganDiet', 'age', 'malabsorption']
     },
     iron: {
         name: 'Iron',
-        sources: ['redMeat', 'leafyGreens', 'legumes'],
-        riskWeights: {
-            redMeat: { daily: 0, weekly: 1, monthly: 3, rarely: 5 },
-            leafyGreens: { daily: 0, weekly: 1, monthly: 2, rarely: 4 },
-            legumes: { daily: 0, weekly: 1, monthly: 2, rarely: 3 }
-        },
-        deficiencySigns: ['Fatigue', 'Pale skin', 'Shortness of breath'],
-        recommendations: ['Eat red meat regularly', 'Pair iron-rich foods with vitamin C', 'Consider iron-rich plant foods']
+        sources: ['redMeat', 'organMeats', 'leafyGreens', 'fortifiedFoods'],
+        weights: { redMeat: 0.4, organMeats: 0.3, leafyGreens: 0.2, fortifiedFoods: 0.1 },
+        deficiencyFactors: ['menstruation', 'pregnancy', 'lowMeatDiet']
     },
     calcium: {
         name: 'Calcium',
-        sources: ['dairy', 'leafyGreens', 'fortified'],
-        riskWeights: {
-            dairy: { daily: 0, weekly: 1, monthly: 3, rarely: 5 },
-            leafyGreens: { daily: 0, weekly: 1, monthly: 2, rarely: 4 },
-            fortified: { daily: 0, weekly: 1, monthly: 2, rarely: 3 }
-        },
-        deficiencySigns: ['Muscle cramps', 'Brittle nails', 'Bone pain'],
-        recommendations: ['Include dairy products', 'Eat leafy greens', 'Choose fortified foods']
+        sources: ['dairy', 'leafyGreens', 'fortifiedFoods'],
+        weights: { dairy: 0.5, leafyGreens: 0.3, fortifiedFoods: 0.2 },
+        deficiencyFactors: ['lactoseIntolerance', 'lowDairyDiet', 'age']
     },
     iodine: {
         name: 'Iodine',
-        sources: ['fish', 'dairy'],
-        riskWeights: {
-            fish: { weekly: 0, monthly: 2, rarely: 4 },
-            dairy: { daily: 0, weekly: 1, monthly: 2, rarely: 3 }
-        },
-        deficiencySigns: ['Thyroid issues', 'Goiter', 'Fatigue'],
-        recommendations: ['Eat seafood regularly', 'Use iodized salt', 'Include dairy products']
+        sources: ['fish', 'fortifiedFoods'],
+        weights: { fish: 0.7, fortifiedFoods: 0.3 },
+        deficiencyFactors: ['lowSeafoodDiet', 'noIodizedSalt']
     },
     zinc: {
         name: 'Zinc',
-        sources: ['redMeat', 'legumes', 'nuts'],
-        riskWeights: {
-            redMeat: { daily: 0, weekly: 1, monthly: 3, rarely: 5 },
-            legumes: { daily: 0, weekly: 1, monthly: 2, rarely: 3 },
-            nuts: { daily: 0, weekly: 1, monthly: 2, rarely: 3 }
-        },
-        deficiencySigns: ['Weakened immunity', 'Hair loss', 'Slow wound healing'],
-        recommendations: ['Include red meat', 'Eat legumes and nuts', 'Consider zinc-rich foods']
+        sources: ['redMeat', 'organMeats', 'nuts', 'wholeGrains'],
+        weights: { redMeat: 0.4, organMeats: 0.3, nuts: 0.2, wholeGrains: 0.1 },
+        deficiencyFactors: ['vegetarianDiet', 'malabsorption', 'alcohol']
     },
     folate: {
         name: 'Folate',
-        sources: ['leafyGreens', 'legumes', 'citrus'],
-        riskWeights: {
-            leafyGreens: { daily: 0, weekly: 1, monthly: 3, rarely: 5 },
-            legumes: { daily: 0, weekly: 1, monthly: 2, rarely: 4 },
-            citrus: { daily: 0, weekly: 1, monthly: 2, rarely: 3 }
-        },
-        deficiencySigns: ['Fatigue', 'Mouth sores', 'Neural tube defects risk'],
-        recommendations: ['Eat leafy greens daily', 'Include legumes', 'Eat citrus fruits']
+        sources: ['leafyGreens', 'fortifiedFoods', 'citrus', 'organMeats'],
+        weights: { leafyGreens: 0.3, fortifiedFoods: 0.3, citrus: 0.2, organMeats: 0.2 },
+        deficiencyFactors: ['alcohol', 'pregnancy', 'malabsorption']
+    },
+    magnesium: {
+        name: 'Magnesium',
+        sources: ['nuts', 'wholeGrains', 'leafyGreens', 'fish'],
+        weights: { nuts: 0.3, wholeGrains: 0.3, leafyGreens: 0.2, fish: 0.2 },
+        deficiencyFactors: ['processedFoodDiet', 'alcohol', 'stress']
     }
 };
 
@@ -122,242 +78,214 @@ function handleFormSubmit(e) {
     e.preventDefault();
 
     // Collect form data
-    const formData = new FormData(e.target);
-    const responses = {};
-    for (let [key, value] of formData.entries()) {
-        responses[key] = value;
-    }
+    const formData = collectFormData();
 
-    // Calculate nutrient deficiency risks
-    const riskAssessment = calculateNutrientRisks(responses);
+    // Calculate deficiency risks
+    const riskAssessment = calculateDeficiencyRisks(formData);
 
     // Display results
     displayResults(riskAssessment);
 
     // Update chart
-    updateChart(riskAssessment.nutrientRisks);
+    updateChart(riskAssessment);
 
     // Save assessment
     saveAssessment(riskAssessment);
 
     // Update history
-    updateHistoryTable();
+    updateHistory();
 
     showNotification('Nutrient risk assessment completed!', 'success');
 }
 
-function calculateNutrientRisks(responses) {
-    const nutrientRisks = {};
-    let totalRiskScore = 0;
+function collectFormData() {
+    const formData = {};
 
-    // Calculate risk for each nutrient
-    Object.keys(nutrientRiskFactors).forEach(nutrientKey => {
-        const nutrient = nutrientRiskFactors[nutrientKey];
-        let riskScore = 0;
-        let riskFactors = [];
+    // Food frequency data
+    const foodItems = [
+        'leafyGreens', 'citrus', 'berries', 'cruciferous',
+        'redMeat', 'organMeats', 'fish', 'eggs',
+        'dairy', 'fortifiedFoods', 'nuts', 'wholeGrains'
+    ];
 
-        // Calculate risk based on food frequency responses
-        nutrient.sources.forEach(source => {
-            if (responses[source] && nutrient.riskWeights[source]) {
-                const frequency = responses[source];
-                const weight = nutrient.riskWeights[source][frequency] || 0;
-                riskScore += weight;
-
-                if (weight >= 3) {
-                    riskFactors.push(`${source} consumption is ${frequency}`);
-                }
-            }
-        });
-
-        // Adjust for lifestyle factors
-        if (responses.alcohol === 'heavy') {
-            riskScore += 1; // Alcohol can affect nutrient absorption
-        }
-        if (responses.coffee === 'heavy') {
-            riskScore += 1; // Caffeine can affect iron absorption
-        }
-        if (responses.medications === 'absorption') {
-            riskScore += 2; // Medications can affect nutrient absorption
-        }
-
-        // Normalize risk score (0-10 scale)
-        riskScore = Math.min(10, Math.max(0, riskScore));
-
-        nutrientRisks[nutrientKey] = {
-            name: nutrient.name,
-            riskScore: riskScore,
-            riskLevel: getRiskLevel(riskScore),
-            riskFactors: riskFactors,
-            deficiencySigns: nutrient.deficiencySigns,
-            recommendations: nutrient.recommendations
-        };
-
-        totalRiskScore += riskScore;
+    foodItems.forEach(item => {
+        formData[item] = parseInt(document.getElementById(item).value) || 0;
     });
 
-    // Calculate overall risk
-    const averageRisk = totalRiskScore / Object.keys(nutrientRisks).length;
-    const overallRiskLevel = getOverallRiskLevel(averageRisk);
+    // Lifestyle factors
+    formData.alcohol = parseInt(document.getElementById('alcohol').value) || 0;
+    formData.smoking = parseInt(document.getElementById('smoking').value) || 0;
+    formData.medications = document.getElementById('medications').value.trim();
 
-    return {
-        timestamp: new Date().toISOString(),
-        responses: responses,
-        nutrientRisks: nutrientRisks,
-        overallRiskScore: Math.round(averageRisk * 10) / 10,
-        overallRiskLevel: overallRiskLevel,
-        highRiskNutrients: Object.keys(nutrientRisks).filter(key =>
-            nutrientRisks[key].riskLevel === 'High'
-        ).map(key => nutrientRisks[key].name)
-    };
+    return formData;
 }
 
-function getRiskLevel(score) {
-    if (score <= 2) return 'Low';
-    if (score <= 5) return 'Moderate';
-    if (score <= 8) return 'High';
-    return 'Very High';
+function calculateDeficiencyRisks(formData) {
+    const risks = {};
+
+    Object.keys(nutrientDatabase).forEach(nutrientKey => {
+        const nutrient = nutrientDatabase[nutrientKey];
+        let riskScore = 0;
+
+        // Calculate base risk from food frequency
+        let intakeScore = 0;
+        nutrient.sources.forEach(source => {
+            const frequency = formData[source] || 0;
+            const weight = nutrient.weights[source] || 0;
+            intakeScore += frequency * weight;
+        });
+
+        // Normalize intake score (0-5 scale)
+        intakeScore = Math.min(intakeScore, 5);
+
+        // Base risk is inverse of intake score (higher intake = lower risk)
+        riskScore = Math.max(0, 100 - (intakeScore / 5) * 100);
+
+        // Apply lifestyle modifiers
+        if (formData.alcohol > 0 && nutrient.deficiencyFactors.includes('alcohol')) {
+            riskScore += formData.alcohol * 10;
+        }
+
+        if (formData.smoking > 0 && nutrient.deficiencyFactors.includes('smoking')) {
+            riskScore += formData.smoking * 15;
+        }
+
+        // Cap at 100%
+        riskScore = Math.min(riskScore, 100);
+
+        // Determine risk level
+        let riskLevel = 'low';
+        if (riskScore > 60) riskLevel = 'high';
+        else if (riskScore > 30) riskLevel = 'moderate';
+
+        risks[nutrientKey] = {
+            name: nutrient.name,
+            riskScore: Math.round(riskScore),
+            riskLevel: riskLevel,
+            intakeScore: intakeScore
+        };
+    });
+
+    return risks;
 }
 
-function getOverallRiskLevel(averageScore) {
-    if (averageScore <= 2) return 'Low Risk';
-    if (averageScore <= 4) return 'Moderate Risk';
-    if (averageScore <= 6) return 'High Risk';
-    return 'Very High Risk';
-}
-
-function displayResults(assessment) {
+function displayResults(riskAssessment) {
     document.getElementById('resultsDisplay').style.display = 'none';
     document.getElementById('resultsContent').style.display = 'block';
 
-    // Update overall risk
-    document.getElementById('overallScore').textContent = assessment.overallRiskScore;
-    document.getElementById('overallRiskLevel').textContent = assessment.overallRiskLevel;
+    // Calculate risk counts
+    const riskCounts = { high: 0, moderate: 0, low: 0 };
+    Object.values(riskAssessment).forEach(nutrient => {
+        riskCounts[nutrient.riskLevel]++;
+    });
 
-    // Update risk level styling
-    const riskLevelElement = document.getElementById('overallRiskLevel');
-    riskLevelElement.className = 'risk-level';
-    riskLevelElement.classList.add(`risk-${assessment.overallRiskLevel.toLowerCase().replace(' ', '-')}`);
+    document.getElementById('highRiskCount').textContent = riskCounts.high;
+    document.getElementById('moderateRiskCount').textContent = riskCounts.moderate;
+    document.getElementById('lowRiskCount').textContent = riskCounts.low;
 
-    // Display nutrient risks
+    // Display individual nutrient risks
     const risksList = document.getElementById('nutrientRisksList');
     risksList.innerHTML = '';
 
-    Object.values(assessment.nutrientRisks).forEach(nutrient => {
+    Object.values(riskAssessment).forEach(nutrient => {
         const riskItem = document.createElement('div');
-        riskItem.className = 'nutrient-risk-item';
+        riskItem.className = `risk-item risk-${nutrient.riskLevel}`;
+
         riskItem.innerHTML = `
             <div class="nutrient-header">
                 <span class="nutrient-name">${nutrient.name}</span>
-                <span class="risk-badge risk-${nutrient.riskLevel.toLowerCase()}">${nutrient.riskLevel}</span>
+                <span class="risk-percentage">${nutrient.riskScore}%</span>
             </div>
-            <div class="risk-details">
-                <div class="risk-score">Risk Score: ${nutrient.riskScore}/10</div>
-                ${nutrient.riskFactors.length > 0 ?
-                    `<div class="risk-factors">Contributing factors: ${nutrient.riskFactors.join(', ')}</div>` : ''}
-                <div class="deficiency-signs">Potential signs: ${nutrient.deficiencySigns.join(', ')}</div>
+            <div class="risk-bar">
+                <div class="risk-fill" style="width: ${nutrient.riskScore}%"></div>
             </div>
+            <div class="risk-description">${getRiskDescription(nutrient)}</div>
         `;
+
         risksList.appendChild(riskItem);
     });
 
-    // Generate insights
-    const insightsList = document.getElementById('insightsList');
-    insightsList.innerHTML = '';
-
-    const highRiskNutrients = Object.values(assessment.nutrientRisks)
-        .filter(n => n.riskLevel === 'High' || n.riskLevel === 'Very High');
-
-    if (highRiskNutrients.length > 0) {
-        const insight = document.createElement('div');
-        insight.className = 'insight-item warning';
-        insight.innerHTML = `
-            <strong>High Risk Nutrients:</strong> ${highRiskNutrients.map(n => n.name).join(', ')}.
-            Focus on improving intake of these nutrients through diet or consider professional guidance.
-        `;
-        insightsList.appendChild(insight);
-    }
-
-    const lowRiskNutrients = Object.values(assessment.nutrientRisks)
-        .filter(n => n.riskLevel === 'Low');
-
-    if (lowRiskNutrients.length > 0) {
-        const insight = document.createElement('div');
-        insight.className = 'insight-item success';
-        insight.innerHTML = `
-            <strong>Good Nutrient Status:</strong> ${lowRiskNutrients.map(n => n.name).join(', ')}.
-            Continue maintaining these healthy eating patterns.
-        `;
-        insightsList.appendChild(insight);
-    }
-
     // Update recommendations
-    updateRecommendations(assessment);
+    updateRecommendations(riskAssessment);
 }
 
-function updateRecommendations(assessment) {
-    const highRiskNutrients = Object.values(assessment.nutrientRisks)
-        .filter(n => n.riskLevel === 'High' || n.riskLevel === 'Very High');
+function getRiskDescription(nutrient) {
+    const descriptions = {
+        low: 'Low deficiency risk. Continue current dietary habits.',
+        moderate: 'Moderate deficiency risk. Consider increasing intake of nutrient-rich foods.',
+        high: 'High deficiency risk. Focus on nutrient-rich food sources or consult healthcare provider.'
+    };
+
+    return descriptions[nutrient.riskLevel];
+}
+
+function updateRecommendations(riskAssessment) {
+    const highRiskNutrients = Object.values(riskAssessment)
+        .filter(n => n.riskLevel === 'high')
+        .map(n => n.name);
+
+    const moderateRiskNutrients = Object.values(riskAssessment)
+        .filter(n => n.riskLevel === 'moderate')
+        .map(n => n.name);
 
     // Priority actions
-    let priorityActions = '';
+    let priorityText = '';
     if (highRiskNutrients.length > 0) {
-        priorityActions = `Focus on improving intake of: ${highRiskNutrients.map(n => n.name).join(', ')}. `;
-        priorityActions += highRiskNutrients[0].recommendations.slice(0, 2).join('. ') + '.';
-    } else {
-        priorityActions = 'Your nutrient intake appears balanced. Continue maintaining these healthy eating habits.';
+        priorityText = `Focus on improving intake of: ${highRiskNutrients.join(', ')}. `;
+    }
+    if (moderateRiskNutrients.length > 0) {
+        priorityText += `Consider increasing: ${moderateRiskNutrients.join(', ')}.`;
+    }
+    if (highRiskNutrients.length === 0 && moderateRiskNutrients.length === 0) {
+        priorityText = 'Great job! Your diet appears balanced. Continue maintaining these healthy eating habits.';
     }
 
-    // Dietary improvements
-    const dietaryImprovements = generateDietaryAdvice(assessment);
+    document.getElementById('priorityActions').textContent = priorityText;
 
-    // Supplementation advice
-    let supplementationAdvice = '';
-    if (assessment.overallRiskLevel.includes('High')) {
-        supplementationAdvice = 'Consider consulting a healthcare provider or registered dietitian about potential supplementation needs.';
-    } else {
-        supplementationAdvice = 'Focus on nutrient-dense whole foods. Supplementation should only be considered under professional guidance.';
-    }
+    // Food sources
+    const foodRecommendations = getFoodRecommendations(riskAssessment);
+    document.getElementById('foodSources').textContent = foodRecommendations;
 
-    document.getElementById('priorityActions').textContent = priorityActions;
-    document.getElementById('dietaryImprovements').textContent = dietaryImprovements;
-    document.getElementById('supplementationAdvice').textContent = supplementationAdvice;
+    // Supplementation
+    const supplementRecommendations = getSupplementRecommendations(riskAssessment);
+    document.getElementById('supplementation').textContent = supplementRecommendations;
 }
 
-function generateDietaryAdvice(assessment) {
-    const advice = [];
+function getFoodRecommendations(riskAssessment) {
+    const recommendations = {
+        vitaminA: 'Include more leafy greens, carrots, sweet potatoes, and organ meats.',
+        vitaminC: 'Add citrus fruits, berries, bell peppers, and kiwi to your diet.',
+        vitaminD: 'Include fatty fish, fortified foods, and consider safe sun exposure.',
+        vitaminB12: 'Add animal products like meat, fish, eggs, and dairy.',
+        iron: 'Include red meat, spinach, lentils, and fortified cereals.',
+        calcium: 'Add dairy products, leafy greens, and fortified plant milks.',
+        iodine: 'Include seafood and use iodized salt.',
+        zinc: 'Add meat, shellfish, legumes, and nuts.',
+        folate: 'Include leafy greens, citrus, beans, and fortified grains.',
+        magnesium: 'Add nuts, seeds, whole grains, and leafy greens.'
+    };
 
-    // Check for common dietary patterns
-    const responses = assessment.responses;
+    const highRiskNutrients = Object.keys(riskAssessment)
+        .filter(key => riskAssessment[key].riskLevel === 'high');
 
-    if (responses.leafyGreens === 'rarely' || responses.leafyGreens === 'monthly') {
-        advice.push('Increase consumption of leafy green vegetables');
+    if (highRiskNutrients.length > 0) {
+        return highRiskNutrients.map(key => `${riskAssessment[key].name}: ${recommendations[key]}`).join(' ');
     }
 
-    if (responses.fish === 'rarely') {
-        advice.push('Include fatty fish at least once per week');
+    return 'Your diet appears to provide good nutrient variety. Continue including a wide range of colorful fruits and vegetables.';
+}
+
+function getSupplementRecommendations(riskAssessment) {
+    const highRiskCount = Object.values(riskAssessment)
+        .filter(n => n.riskLevel === 'high').length;
+
+    if (highRiskCount > 3) {
+        return 'Multiple high-risk nutrients detected. Consider consulting a healthcare provider or registered dietitian for personalized supplementation guidance.';
+    } else if (highRiskCount > 0) {
+        return 'For high-risk nutrients, consider targeted supplementation after consulting a healthcare provider. Focus on food sources first.';
     }
 
-    if (responses.citrus === 'rarely' || responses.citrus === 'monthly') {
-        advice.push('Add citrus fruits or other vitamin C-rich foods daily');
-    }
-
-    if (responses.redMeat === 'rarely' && responses.legumes === 'rarely') {
-        advice.push('Ensure adequate protein sources, including both animal and plant-based options');
-    }
-
-    if (responses.dairy === 'rarely' && responses.fortified === 'rarely') {
-        advice.push('Include calcium-rich foods or fortified alternatives');
-    }
-
-    if (responses.wholeGrains === 'rarely') {
-        advice.push('Incorporate whole grains into meals regularly');
-    }
-
-    if (responses.nuts === 'rarely') {
-        advice.push('Add nuts and seeds as healthy snacks');
-    }
-
-    return advice.length > 0 ? advice.join('. ') + '.' : 'Your dietary variety appears good. Continue with balanced eating patterns.';
+    return 'Supplementation likely unnecessary with current dietary patterns. Continue monitoring and focus on whole foods.';
 }
 
 function initializeCharts() {
@@ -367,10 +295,10 @@ function initializeCharts() {
         data: {
             labels: [],
             datasets: [{
-                label: 'Deficiency Risk Score',
+                label: 'Deficiency Risk (%)',
                 data: [],
-                backgroundColor: 'rgba(239, 68, 68, 0.6)',
-                borderColor: 'rgba(239, 68, 68, 1)',
+                backgroundColor: [],
+                borderColor: [],
                 borderWidth: 1
             }]
         },
@@ -384,8 +312,12 @@ function initializeCharts() {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            const riskLevel = getRiskLevel(context.parsed.y);
-                            return `${context.label}: ${context.parsed.y}/10 (${riskLevel} Risk)`;
+                            const nutrient = context.label;
+                            const risk = context.parsed.y;
+                            let level = 'Low';
+                            if (risk > 60) level = 'High';
+                            else if (risk > 30) level = 'Moderate';
+                            return `${nutrient}: ${risk}% (${level} Risk)`;
                         }
                     }
                 }
@@ -393,10 +325,10 @@ function initializeCharts() {
             scales: {
                 y: {
                     beginAtZero: true,
-                    max: 10,
+                    max: 100,
                     title: {
                         display: true,
-                        text: 'Risk Score (0-10)'
+                        text: 'Risk Percentage'
                     }
                 },
                 x: {
@@ -410,58 +342,52 @@ function initializeCharts() {
     });
 }
 
-function updateChart(nutrientRisks) {
+function updateChart(riskAssessment) {
     if (!riskChart) return;
 
-    let filteredRisks = nutrientRisks;
-
-    if (currentChartView === 'highRisk') {
-        filteredRisks = Object.fromEntries(
-            Object.entries(nutrientRisks).filter(([key, nutrient]) =>
-                nutrient.riskLevel === 'High' || nutrient.riskLevel === 'Very High'
-            )
-        );
-    }
-
-    const labels = Object.values(filteredRisks).map(n => n.name);
-    const data = Object.values(filteredRisks).map(n => n.riskScore);
-
-    // Color bars based on risk level
-    const backgroundColors = Object.values(filteredRisks).map(nutrient => {
-        switch(nutrient.riskLevel) {
-            case 'Low': return 'rgba(34, 197, 94, 0.6)';
-            case 'Moderate': return 'rgba(251, 191, 36, 0.6)';
-            case 'High': return 'rgba(239, 68, 68, 0.6)';
-            case 'Very High': return 'rgba(147, 51, 234, 0.6)';
-            default: return 'rgba(156, 163, 175, 0.6)';
-        }
-    });
+    const nutrients = Object.values(riskAssessment);
+    const labels = nutrients.map(n => n.name);
+    const data = nutrients.map(n => n.riskScore);
+    const colors = nutrients.map(n => getRiskColor(n.riskLevel));
 
     riskChart.data.labels = labels;
     riskChart.data.datasets[0].data = data;
-    riskChart.data.datasets[0].backgroundColor = backgroundColors;
+    riskChart.data.datasets[0].backgroundColor = colors;
+    riskChart.data.datasets[0].borderColor = colors.map(color => color.replace('0.7', '1'));
     riskChart.update();
 }
 
-function switchChartView(view) {
-    currentChartView = view;
-
-    // Update button states
-    document.getElementById('viewAll').classList.toggle('active', view === 'all');
-    document.getElementById('viewHighRisk').classList.toggle('active', view === 'highRisk');
-
-    // Reload current assessment data if available
-    const assessments = getStoredAssessments();
-    if (assessments.length > 0) {
-        const latestAssessment = assessments[assessments.length - 1];
-        updateChart(latestAssessment.nutrientRisks);
+function getRiskColor(riskLevel) {
+    switch(riskLevel) {
+        case 'high': return 'rgba(239, 68, 68, 0.7)';
+        case 'moderate': return 'rgba(245, 158, 11, 0.7)';
+        case 'low': return 'rgba(34, 197, 94, 0.7)';
+        default: return 'rgba(156, 163, 175, 0.7)';
     }
 }
 
-function saveAssessment(assessment) {
+function saveAssessment(riskAssessment) {
     const assessments = getStoredAssessments();
+
+    const assessment = {
+        date: new Date().toISOString(),
+        risks: riskAssessment,
+        summary: {
+            highRisk: Object.values(riskAssessment).filter(n => n.riskLevel === 'high').length,
+            moderateRisk: Object.values(riskAssessment).filter(n => n.riskLevel === 'moderate').length,
+            lowRisk: Object.values(riskAssessment).filter(n => n.riskLevel === 'low').length,
+            overallScore: calculateOverallScore(riskAssessment)
+        }
+    };
+
     assessments.push(assessment);
     localStorage.setItem('nutrientAssessments', JSON.stringify(assessments));
+}
+
+function calculateOverallScore(riskAssessment) {
+    const totalRisk = Object.values(riskAssessment)
+        .reduce((sum, nutrient) => sum + nutrient.riskScore, 0);
+    return Math.round(totalRisk / Object.keys(riskAssessment).length);
 }
 
 function getStoredAssessments() {
@@ -469,7 +395,7 @@ function getStoredAssessments() {
     return stored ? JSON.parse(stored) : [];
 }
 
-function updateHistoryTable() {
+function updateHistory() {
     const assessments = getStoredAssessments();
     const tbody = document.getElementById('historyBody');
 
@@ -478,18 +404,17 @@ function updateHistoryTable() {
         return;
     }
 
-    tbody.innerHTML = assessments.slice(-10).reverse().map(assessment => {
-        const date = new Date(assessment.timestamp).toLocaleDateString();
-        const riskClass = assessment.overallRiskLevel.toLowerCase().replace(' ', '-');
-        const highRiskCount = assessment.highRiskNutrients.length;
+    tbody.innerHTML = assessments.slice(-10).reverse().map((assessment, index) => {
+        const date = new Date(assessment.date).toLocaleDateString();
+        const viewButton = `<button class="btn-small" onclick="viewAssessment(${assessments.length - 1 - index})">View</button>`;
 
         return `
             <tr>
                 <td>${date}</td>
-                <td>${assessment.overallRiskScore}</td>
-                <td><span class="risk-badge risk-${riskClass}">${assessment.overallRiskLevel}</span></td>
-                <td>${highRiskCount > 0 ? assessment.highRiskNutrients.join(', ') : 'None'}</td>
-                <td><button class="btn-small" onclick="viewAssessment(${assessments.indexOf(assessment)})">View</button></td>
+                <td>${assessment.summary.highRisk}</td>
+                <td>${assessment.summary.moderateRisk}</td>
+                <td>${assessment.summary.overallScore}%</td>
+                <td>${viewButton}</td>
             </tr>
         `;
     }).join('');
@@ -500,17 +425,14 @@ function viewAssessment(index) {
     const assessment = assessments[index];
 
     if (assessment) {
-        displayResults(assessment);
-        updateChart(assessment.nutrientRisks);
+        displayResults(assessment.risks);
+        updateChart(assessment.risks);
         showNotification('Previous assessment loaded', 'info');
     }
 }
 
 function loadData() {
-    const assessments = getStoredAssessments();
-    if (assessments.length > 0) {
-        updateHistoryTable();
-    }
+    updateHistory();
 }
 
 function showNotification(message, type = 'info') {
