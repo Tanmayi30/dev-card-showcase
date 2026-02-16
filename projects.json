@@ -11151,6 +11151,30 @@
         }
     },
     {
+        "title": "Joint Range Decline Monitor",
+        "description": "Track joint range of motion over time to detect mobility decline early. Measure shoulder, elbow, hip, knee, and ankle ROM with multiple movement planes, visualize trends, and get personalized exercise recommendations for maintaining joint health.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Fitness",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Wellness",
+            "Mobility",
+            "Aging"
+        ],
+        "links": {
+            "live": "./joint-range-decline-monitor/joint-range-decline-monitor.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Joint Pain Pattern Analyzer",
         "description": "Log joint pain episodes and visualize patterns correlated with weather, activity levels, and posture to identify triggers and improve management. Track pain severity, duration, and environmental factors for comprehensive joint health monitoring.",
         "tags": [
