@@ -1,26 +1,26 @@
 [
     {
-        "title": "Pulse Pressure Analyzer",
-        "description": "Monitor cardiovascular health by tracking pulse pressure trends (SBP-DBP) with alert thresholds and health insights. Perfect for aging population cardiovascular monitoring with data-driven recommendations.",
+        "title": "Nutrient Deficiency Risk Scanner",
+        "description": "Assess your risk of nutrient deficiencies through a comprehensive food frequency questionnaire. Get personalized risk scores for essential nutrients, visual charts, and dietary recommendations to optimize your nutrition.",
         "tags": [
             "HTML",
             "CSS",
             "JavaScript",
             "Health",
-            "Cardiovascular",
+            "Nutrition",
             "Data Visualization",
             "Chart.js",
-            "LocalStorage"
+            "LocalStorage",
+            "Risk Assessment"
         ],
         "links": {
-            "live": "./pulse-pressure-analyzer/pulse-pressure-analyzer.html"
+            "live": "./nutrient-deficiency-risk-scanner/nutrient-deficiency-risk-scanner.html"
         },
         "author": {
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
     },
-    {
         "title": "Hill Training Analyzer",
         "description": "Track your incline running performance and monitor uphill endurance improvement. Log hill training sessions with incline percentage, distance, duration, and effort level to analyze pace trends and get personalized training insights.",
         "tags": [

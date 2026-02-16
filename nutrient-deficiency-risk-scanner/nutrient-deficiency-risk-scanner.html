@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrient Deficiency Risk Scanner - Dev Card Showcase</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="nutrient-deficiency-risk-scanner.css">
+    <link rel="icon" href="../assets/favicon/favicon.ico" type="image/x-icon">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Include navbar -->
+    <div id="navbar"></div>
+
+    <div class="container">
+        <header class="page-header">
+            <h1><i data-lucide="dna"></i> Nutrient Deficiency Risk Scanner</h1>
+            <p>Evaluate your diet patterns for potential micronutrient gaps. Educational tool for nutritional awareness - not a diagnostic substitute.</p>
+            <div class="disclaimer">
+                <i data-lucide="alert-triangle"></i>
+                <strong>Educational Purpose Only:</strong> This tool provides general nutritional insights based on dietary patterns. It is not a substitute for professional medical advice, diagnosis, or treatment. Consult healthcare providers for personalized nutritional guidance.
+            </div>
+        </header>
+
+        <div class="tracker-grid">
+            <!-- Diet Assessment Questionnaire -->
+            <section class="tracker-section questionnaire-section">
+                <h2><i data-lucide="clipboard-list"></i> Diet Assessment</h2>
+                <form id="dietForm">
+                    <div class="questionnaire-intro">
+                        <p>How often do you consume the following foods? Select the frequency that best matches your typical eating habits over the past month.</p>
+                    </div>
+
+                    <!-- Fruits & Vegetables -->
+                    <div class="food-category">
+                        <h3><i data-lucide="apple"></i> Fruits & Vegetables</h3>
+                        <div class="food-item">
+                            <label for="leafyGreens">Leafy green vegetables (spinach, kale, lettuce)</label>
+                            <select id="leafyGreens" required>
+                                <option value="">Select frequency...</option>
+                                <option value="daily">Daily (2+ servings)</option>
+                                <option value="weekly">Several times a week</option>
+                                <option value="monthly">Once a week or less</option>
+                                <option value="rarely">Rarely or never</option>
+                            </select>
+                        </div>
+                        <div class="food-item">
+                            <label for="citrus">Citrus fruits (oranges, lemons, grapefruits)</label>
+                            <select id="citrus" required>
+                                <option value="">Select frequency...</option>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Several times a week</option>
+                                <option value="monthly">Once a week or less</option>
+                                <option value="rarely">Rarely or never</option>
+                            </select>
+                        </div>
+                        <div class="food-item">
+                            <label for="berries">Berries (strawberries, blueberries, raspberries)</label>
+                            <select id="berries" required>
+                                <option value="">Select frequency...</option>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Several times a week</option>
+                                <option value="monthly">Once a week or less</option>
+                                <option value="rarely">Rarely or never</option>
+                            </select>
+                        </div>
+                        <div class="food-item">
+                            <label for="cruciferous">Cruciferous vegetables (broccoli, cauliflower, Brussels sprouts)</label>
+                            <select id="cruciferous" required>
+                                <option value="">Select frequency...</option>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Several times a week</option>
+                                <option value="monthly">Once a week or less</option>
+                                <option value="rarely">Rarely or never</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Proteins -->
+                    <div class="food-category">
+                        <h3><i data-lucide="fish"></i> Proteins</h3>
+                        <div class="food-item">
+                            <label for="redMeat">Red meat (beef, lamb, pork)</label>
+                            <select id="redMeat" required>
+                                <option value="">Select frequency...</option>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Several times a week</option>
+                                <option value="monthly">Once a week or less</option>
+                                <option value="rarely">Rarely or never</option>
+                            </select>
+                        </div>
+                        <div class="food-item">
+                            <label for="fish">Fatty fish (salmon, mackerel, sardines)</label>
+                            <select id="fish" required>
+                                <option value="">Select frequency...</option>
+                                <option value="weekly">2+ times per week</option>
+                                <option value="monthly">Once a week</option>
+                                <option value="rarely">Less than once a week</option>
+                            </select>
+                        </div>
+                        <div class="food-item">
+                            <label for="eggs">Eggs</label>
+                            <select id="eggs" required>
+                                <option value="">Select frequency...</option>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Several times a week</option>
+                                <option value="monthly">Once a week or less</option>
+                                <option value="rarely">Rarely or never</option>
+                            </select>
+                        </div>
+                        <div class="food-item">
+                            <label for="legumes">Legumes (beans, lentils, chickpeas)</label>
+                            <select id="legumes" required>
+                                <option value="">Select frequency...</option>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Several times a week</option>
+                                <option value="monthly">Once a week or less</option>
+                                <option value="rarely">Rarely or never</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Dairy & Alternatives -->
+                    <div class="food-category">
+                        <h3><i data-lucide="milk"></i> Dairy & Calcium Sources</h3>
+                        <div class="food-item">
+                            <label for="dairy">Dairy products (milk, cheese, yogurt)</label>
+                            <select id="dairy" required>
+                                <option value="">Select frequency...</option>
+                                <option value="daily">Daily (2+ servings)</option>
+                                <option value="weekly">Several times a week</option>
+                                <option value="monthly">Once a week or less</option>
+                                <option value="rarely">Rarely or never</option>
+                            </select>
+                        </div>
+                        <div class="food-item">
+                            <label for="fortified">Fortified plant milks or cereals</label>
+                            <select id="fortified" required>
+                                <option value="">Select frequency...</option>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Several times a week</option>
+                                <option value="monthly">Once a week or less</option>
+                                <option value="rarely">Rarely or never</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Grains & Seeds -->
+                    <div class="food-category">
+                        <h3><i data-lucide="wheat"></i> Grains & Seeds</h3>
+                        <div class="food-item">
+                            <label for="wholeGrains">Whole grains (oats, brown rice, quinoa)</label>
+                            <select id="wholeGrains" required>
+                                <option value="">Select frequency...</option>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Several times a week</option>
+                                <option value="monthly">Once a week or less</option>
+                                <option value="rarely">Rarely or never</option>
+                            </select>
+                        </div>
+                        <div class="food-item">
+                            <label for="nuts">Nuts and seeds (almonds, walnuts, chia, flax)</label>
+                            <select id="nuts" required>
+                                <option value="">Select frequency...</option>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Several times a week</option>
+                                <option value="monthly">Once a week or less</option>
+                                <option value="rarely">Rarely or never</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Lifestyle Factors -->
+                    <div class="food-category">
+                        <h3><i data-lucide="user"></i> Lifestyle Factors</h3>
+                        <div class="food-item">
+                            <label for="alcohol">Alcohol consumption</label>
+                            <select id="alcohol" required>
+                                <option value="">Select frequency...</option>
+                                <option value="none">None</option>
+                                <option value="moderate">1-2 drinks per day</option>
+                                <option value="heavy">3+ drinks per day</option>
+                            </select>
+                        </div>
+                        <div class="food-item">
+                            <label for="coffee">Coffee/tea consumption (caffeine)</label>
+                            <select id="coffee" required>
+                                <option value="">Select frequency...</option>
+                                <option value="none">None</option>
+                                <option value="moderate">1-3 cups per day</option>
+                                <option value="heavy">4+ cups per day</option>
+                            </select>
+                        </div>
+                        <div class="food-item">
+                            <label for="medications">Regular medications or supplements</label>
+                            <select id="medications" required>
+                                <option value="">Select...</option>
+                                <option value="none">None</option>
+                                <option value="some">Some (not affecting nutrient absorption)</option>
+                                <option value="absorption">Medications affecting nutrient absorption</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Analyze Nutrient Risk</button>
+                </form>
+            </section>
+
+            <!-- Risk Assessment Results -->
+            <section class="tracker-section results-section">
+                <h2><i data-lucide="alert-triangle"></i> Deficiency Risk Assessment</h2>
+                <div id="resultsDisplay" class="results-display">
+                    <p>Complete the diet assessment to see your nutrient deficiency risk analysis.</p>
+                </div>
+                <div id="resultsContent" class="results-content" style="display: none;">
+                    <div class="overall-risk">
+                        <div class="risk-score">
+                            <div class="score-circle">
+                                <span id="overallScore">0</span>
+                                <span class="score-label">Risk Score</span>
+                            </div>
+                            <div class="risk-level" id="overallRiskLevel">Low Risk</div>
+                        </div>
+                    </div>
+
+                    <div class="nutrient-risks">
+                        <h3>Nutrient Deficiency Risks</h3>
+                        <div id="nutrientRisksList" class="risks-list">
+                            <!-- Dynamic nutrient risk items will be added here -->
+                        </div>
+                    </div>
+
+                    <div class="key-insights">
+                        <h3>Key Insights</h3>
+                        <div id="insightsList" class="insights-list">
+                            <!-- Dynamic insights will be added here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Risk Visualization -->
+            <section class="tracker-section chart-section">
+                <h2><i data-lucide="bar-chart-3"></i> Deficiency Risk Overview</h2>
+                <div class="chart-controls">
+                    <button id="viewAll" class="chart-btn active">All Nutrients</button>
+                    <button id="viewHighRisk" class="chart-btn">High Risk Only</button>
+                </div>
+                <canvas id="riskChart"></canvas>
+            </section>
+
+            <!-- Recommendations -->
+            <section class="tracker-section recommendations-section">
+                <h2><i data-lucide="lightbulb"></i> Nutritional Recommendations</h2>
+                <div id="recommendations" class="recommendations">
+                    <div class="recommendation-card">
+                        <h4>Priority Actions</h4>
+                        <p id="priorityActions">Complete assessment to see personalized recommendations.</p>
+                    </div>
+                    <div class="recommendation-card">
+                        <h4>Dietary Improvements</h4>
+                        <p id="dietaryImprovements">Focus on nutrient-dense foods for better health outcomes.</p>
+                    </div>
+                    <div class="recommendation-card">
+                        <h4>Supplementation Considerations</h4>
+                        <p id="supplementationAdvice">Consider professional guidance for supplementation needs.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assessment History -->
+            <section class="tracker-section history-section">
+                <h2><i data-lucide="history"></i> Assessment History</h2>
+                <div class="table-container">
+                    <table id="historyTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Risk Score</th>
+                                <th>Risk Level</th>
+                                <th>High Risk Nutrients</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody">
+                            <tr>
+                                <td colspan="5">No assessments completed yet.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Include footer -->
+    <div id="footer"></div>
+
+    <script src="../js/include.js"></script>
+    <script src="nutrient-deficiency-risk-scanner.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
