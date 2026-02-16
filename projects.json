@@ -4180,7 +4180,7 @@
             "github": "https://github.com/CodeMaster"
         }
     },
-    {
+      {
         "title": "Code Editor",
         "description": "A professional code editor with multi-language support, customizable themes, real-time preview, and essential features like code download and clearing.",
         "tags": [
@@ -4190,6 +4190,22 @@
         ],
         "links": {
             "live": "./projects/code-editor/"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    {
+        "title": "Aura Counselor",
+        "description": "An AI-powered mental health counselor that provides support and guidance in a safe, non-judgmental environment.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/AURA-COUNSELOR/index.html"
         },
         "author": {
             "name": "Omkar",
