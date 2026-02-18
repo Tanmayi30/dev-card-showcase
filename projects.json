@@ -3027,7 +3027,7 @@
             "github": "https://github.com/omkarhole"
         }
     },
-        {
+            {
         "title": "API Tester",
         "description": "A simple and user-friendly API testing tool that allows users to send HTTP requests and view responses. Supports various HTTP methods, custom headers, and request bodies for comprehensive API testing.",
         "tags": [
@@ -3038,6 +3038,23 @@
         ],
         "links": {
             "live": "./projects/Api-tester/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+        {
+        "title": "Dreamscape Colour Palette",
+        "description": "An interactive tool for generating and exploring color palettes inspired by the beauty of aurora borealis. Features include dynamic gradient generation, color harmony algorithms, and a visually stunning animated background.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Utility Tool"
+        ],
+        "links": {
+            "live": "./projects/Dreamscape-Colour-Palette/index.html"
         },
         "author": {
             "name": "Omkar",
