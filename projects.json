@@ -2707,6 +2707,23 @@
             "github": "https://github.com/your-github-username"
         }
     },
+        {
+        "title": "Blend colors project",
+        "description": "A web application that allows users to blend different colors and visualize the resulting color combinations.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "UI/UX"
+        ],
+        "links": {
+            "live": "./projects/blend-colors/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "3D Mouse",
         "description": "A 3D mouse model that responds to user inputs for rotation and zooming, providing an interactive experience to explore the model from different angles.",
