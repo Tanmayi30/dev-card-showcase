@@ -13084,5 +13084,28 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Productivity Recovery Curve",
+        "description": "Track how your productivity recovers after breaks, fatigue, or work sessions. Monitor recovery patterns to optimize work-rest cycles, identify optimal break durations, and prevent burnout with data-driven insights.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Productivity",
+            "Work Recovery",
+            "Break Optimization",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage"
+        ],
+        "links": {
+            "live": "./projects/productivity-recovery-curve/productivity-recovery-curve.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
