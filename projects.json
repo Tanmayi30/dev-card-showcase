@@ -13061,6 +13061,25 @@
         "links": {
             "live": "./projects/social-jetlag-monitor/social-jetlag-monitor.html"
         },
+    },
+    {
+        "title": "Thoracic Mobility Progress Tracker",
+        "description": "Monitor thoracic spine flexibility and posture improvements through range-of-motion measurements. Track rotation, extension, flexion, and side bending to assess mobility progress and prevent postural issues for desk workers and athletes.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Mobility",
+            "Fitness",
+            "Posture",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage"
+        ],
+        "links": {
+            "live": "./projects/thoracic-mobility-progress-tracker/thoracic-mobility-progress-tracker.html"
+        },
         "author": {
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
