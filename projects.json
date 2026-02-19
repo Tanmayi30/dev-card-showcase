@@ -2373,7 +2373,7 @@
         }
     },
     {
-        "title": "color palettes generator",
+        "title": "color palettes generator"
         "description": "A web-based color palette generator that allows users to create and explore various color schemes. Features include a palette display, mood-based color selection, and smooth animations for an engaging user experience.",
         "tags": [
             "HTML",
@@ -2388,6 +2388,7 @@
             "github": "https://github.com/omkarhole"
         }
     },
+    ,
     {
         "title": "CSS Hover Transform",
         "description": "A web application that showcases various CSS hover transform effects. Users can hover over different elements to see the transform animations in action.",
@@ -2404,6 +2405,7 @@
             "github": "https://github.com/omkarhole"
         }
     },
+    ,
     {
         "title": "ResultWise - Universal Result Analyzer",
         "description": "A flexible and user-friendly result analysis utility that allows users to dynamically add any subjects and marks. It calculates total marks, percentage, grade, and pass/fail status while providing clear performance feedback, all within a clean and responsive interface.",
@@ -2420,6 +2422,23 @@
             "github": "https://github.com/your-github-username"
         }
     },
+        {
+        "title": "Page Transitions Gallery",
+        "description": "A showcase of creative page transition effects implemented using HTML, CSS, and JavaScript. Features a variety of smooth and visually appealing transitions that enhance the user experience when navigating between pages.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/page-transitions/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
+    ,
     {
         "title": "Tron Minesweeper",
         "description": "A visually striking Tron-themed Minesweeper game that combines classic gameplay with a futuristic aesthetic. Features neon grid design, glowing mines, and smooth animations for an immersive gaming experience.",
