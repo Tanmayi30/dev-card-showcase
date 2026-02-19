@@ -170,6 +170,22 @@
             "github": "https://github.com/Gupta-02"
         }
     },
+       {
+        "title": "CSS shake Playground",
+        "description": "A fun, interactive playground that simulates the Harlem Shake meme using CSS animations. Click the button to trigger a chaotic dance party with shaking elements and lively music, all built with HTML, CSS, and JavaScript for a nostalgic and entertaining experience.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/CSShake-playground/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "Progressive Overload Calculator",
         "description": "Calculate optimal weight increases for strength training progression. Input your current personal records and get scientifically-backed increment suggestions based on experience level and lift type.",
