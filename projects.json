@@ -12711,5 +12711,28 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Static Posture Duration Alert",
+        "description": "Track continuous sitting or standing time with inactivity timers and movement reminders. Monitor posture duration to prevent musculoskeletal strain and promote workplace wellness with customizable alerts and break suggestions.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Ergonomics",
+            "Workplace Wellness",
+            "Movement Reminders",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage"
+        ],
+        "links": {
+            "live": "./static-posture-duration-alert/static-posture-duration-alert.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
