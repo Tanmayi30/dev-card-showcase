@@ -1,5 +1,28 @@
 [
     {
+        "title": "Information Overload Index",
+        "description": "Monitor your cognitive load from information consumption across work, social media, news, and learning. Track focus quality, mental stress, and overload patterns to optimize your information diet.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Mental Health",
+            "Cognitive Load",
+            "Information Management",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Productivity"
+        ],
+        "links": {
+            "live": "./projects/information-overload-index/information-overload-index.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
         "title": "Deep Sleep Stability Tracker",
         "description": "Monitor your deep sleep patterns and optimize your sleep environment for better recovery and cognitive performance. Track deep sleep percentage, stability scores, and factors affecting sleep quality.",
         "tags": [
