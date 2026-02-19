@@ -232,6 +232,29 @@
         }
     },
     {
+        "title": "Power Output Trend Analyzer",
+        "description": "Track explosive strength metrics like jump height, bar velocity, and throw distance to monitor power development. Visualize progress trends and calculate power output for athletic performance improvement.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Fitness",
+            "Athletics",
+            "Power Training",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Performance Tracking"
+        ],
+        "links": {
+            "live": "./power-output-trend-analyzer/power-output-trend-analyzer.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Digital Overstimulation Tracker",
         "description": "Track overstimulation symptoms from digital overload and correlate them with screen time. Log symptoms like headache, eye strain, irritability, and fatigue to identify digital fatigue patterns and encourage mindful usage.",
         "tags": [
