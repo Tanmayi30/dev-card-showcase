@@ -11320,6 +11320,31 @@
         }
     },
     {
+        "title": "Nasal Breathing Compliance Tracker",
+        "description": "Track nasal breathing consistency during workouts, sleep, and daily activities. Monitor compliance percentages, log session details, and visualize progress trends to improve respiratory health and athletic performance.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Wellness",
+            "Respiratory Health",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Breathing",
+            "Performance",
+            "Compliance Tracking"
+        ],
+        "links": {
+            "live": "./nasal-breathing-compliance-tracker/nasal-breathing-compliance-tracker.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Body Temperature Log 🌡️",
         "description": "A comprehensive body temperature tracking application for health monitoring during illness. Features temperature logging with multiple measurement methods, trend charts, fever alerts, health status indicators, and medical export functionality. Supports both Celsius and Fahrenheit with professional health insights.",
         "tags": [
