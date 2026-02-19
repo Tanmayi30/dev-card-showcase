@@ -11491,6 +11491,29 @@
         }
     },
     {
+        "title": "Micronutrient Diversity Index 🥗",
+        "description": "Track dietary diversity across essential micronutrients to prevent nutrient gaps from limited food choices. Log food intake by category, calculate diversity scores, visualize nutrient coverage with heatmaps, and get personalized dietary recommendations.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Nutrition",
+            "Health",
+            "Dietary Tracking",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Wellness"
+        ],
+        "links": {
+            "live": "./projects/micronutrient-diversity-index/micronutrient-diversity-index.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Doctor Visit History 🧑‍⚕️",
         "description": "A comprehensive medical visit history tracker to help users maintain their healthcare records. Features visit logging with doctor details, diagnosis, medications, and notes, a chronological timeline view of all visits, and a general notes section for ongoing health observations. Improves medical record keeping and helps prevent forgetting past diagnoses and treatments.",
         "tags": [
