@@ -11822,6 +11822,30 @@
         }
     },
     {
+        "title": "Cognitive Load vs Sleep Analyzer",
+        "description": "Correlate work intensity with sleep quality to prevent burnout. Track daily cognitive load, work hours, and sleep patterns with correlation analysis to understand how mental workload impacts rest.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Mental Health",
+            "Sleep",
+            "Productivity",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Correlation Analysis",
+            "Burnout Prevention"
+        ],
+        "links": {
+            "live": "./projects/cognitive-load-sleep-analyzer/cognitive-load-sleep-analyzer.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Cognitive Drift Monitor",
         "description": "Track cognitive sharpness decline throughout the day with scheduled mini-tests (reaction time, memory, math). Monitor mental performance drift, identify optimal work windows, and get insights for maintaining productivity.",
         "tags": [
@@ -12594,6 +12618,29 @@
         ],
         "links": {
             "live": "./emotional-volatility-index.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
+        "title": "Cognitive Load vs Sleep Analyzer",
+        "description": "Correlate work intensity and cognitive demands with sleep quality to identify patterns that may lead to burnout. Track work hours, mental load, and sleep ratings to optimize rest and productivity.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Mental Health",
+            "Sleep",
+            "Productivity",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Statistics"
+        ],
+        "links": {
+            "live": "./cognitive-load-sleep-analyzer.html"
         },
         "author": {
             "name": "Gupta-02",
