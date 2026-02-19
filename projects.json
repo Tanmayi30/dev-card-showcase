@@ -11725,6 +11725,30 @@
         }
     },
     {
+        "title": "Detox Recovery Phase Tracker",
+        "description": "Log detox protocol phases and recovery symptoms with phase-based tracking and symptom intensity scales. Monitor progress through preparation, active detox, recovery, and maintenance phases with educational insights.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Wellness",
+            "Detox",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Symptom Tracking",
+            "Recovery Monitoring"
+        ],
+        "links": {
+            "live": "./detox-recovery-phase-tracker/detox-recovery-phase-tracker.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Overcommitment Risk Analyzer",
         "description": "Evaluate your workload versus capacity to prevent burnout and improve time management. Track task load, assess stress levels, and get personalized recommendations for maintaining work-life balance.",
         "tags": [
