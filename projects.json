@@ -12778,6 +12778,29 @@
         }
     },
     {
+        "title": "Omega Balance Ratio Tracker",
+        "description": "Monitor your omega-3 to omega-6 fatty acid ratio to optimize inflammation control and overall health. Track daily intake from food sources and maintain the ideal 1:4 ratio for optimal wellness.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Nutrition",
+            "Omega-3",
+            "Omega-6",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage"
+        ],
+        "links": {
+            "live": "./omega-balance-ratio-tracker.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Attention Span Decay Tracker",
         "description": "Track how long you maintain focus before distraction with timer-based focus sessions. Log distractions and visualize attention span decay trends over months to improve sustained attention capacity.",
         "tags": [
