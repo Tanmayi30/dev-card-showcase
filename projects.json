@@ -91,6 +91,30 @@
             "github": "https://github.com/Gupta-02"
         }
     },
+        "title": "Foot Strike Pattern Analyzer",
+        "description": "Analyze your running foot strike patterns to optimize performance and prevent injuries. Track heel/midfoot/forefoot strike percentages, cadence, ground contact time, and receive personalized insights for better running form.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Fitness",
+            "Running",
+            "Foot Strike",
+            "Injury Prevention",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Performance Optimization"
+        ],
+        "links": {
+            "live": "./projects/foot-strike-pattern-analyzer/foot-strike-pattern-analyzer.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
         "title": "Burnout Early Detection Meter",
         "description": "Monitor early warning signs of burnout through comprehensive daily assessments. Track work hours, fatigue levels, stress, motivation, and symptoms to calculate burnout risk scores and receive prevention insights.",
         "tags": [
