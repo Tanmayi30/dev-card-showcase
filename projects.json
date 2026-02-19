@@ -2538,6 +2538,22 @@
             "github": "https://github.com/omkarhole"
         }
     },
+        {
+        "title": " Simple Drawing App with Palette and Color Picker",
+        "description": "A simple drawing application with a color palette and color picker, inspired by CodePen's home page design.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/Drawing App/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "One Card Draw",
         "description": "A playful one-tap card drawing mini game with a fun arcade-style UI. Features a smooth 3D card flip animation, mood-based outcomes, and a simple points system that makes each draw feel exciting and rewarding. Fully responsive and designed for a delightful game-like experience.",
