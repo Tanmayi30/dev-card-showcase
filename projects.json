@@ -13019,6 +13019,28 @@
         "author": {
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
+    },
+    {
+        "title": "Social Jetlag Monitor",
+        "description": "Track the mismatch between weekday and weekend sleep schedules to quantify social jetlag's health impact. Monitor mid-sleep time differences, jetlag severity, and receive personalized insights for circadian rhythm optimization.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Sleep",
+            "Circadian Rhythm",
+            "Social Jetlag",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage"
+        ],
+        "links": {
+            "live": "./projects/social-jetlag-monitor/social-jetlag-monitor.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
         }
     }
 ]
