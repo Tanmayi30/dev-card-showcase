@@ -11547,6 +11547,30 @@
         }
     },
     {
+        "title": "Hip Mobility Progress Monitor",
+        "description": "Track hip flexibility measurements over time with angle inputs and monthly comparison charts. Monitor improvements in hip mobility to enhance posture and athletic performance, especially useful for sedentary workers.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Fitness",
+            "Mobility",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Wellness",
+            "Posture"
+        ],
+        "links": {
+            "live": "./hip-mobility-progress-monitor/hip-mobility-progress-monitor.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Joint Pain Pattern Analyzer",
         "description": "Log joint pain episodes and visualize patterns correlated with weather, activity levels, and posture to identify triggers and improve management. Track pain severity, duration, and environmental factors for comprehensive joint health monitoring.",
         "tags": [
