@@ -13212,5 +13212,55 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Endurance Efficiency Ratio",
+        "description": "Track your endurance performance efficiency across different activities. Monitor how effectively you convert effort into distance/time, optimize training intensity, and improve aerobic capacity with data-driven insights.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Fitness",
+            "Endurance",
+            "Running",
+            "Cycling",
+            "Swimming",
+            "Efficiency",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage"
+        ],
+        "links": {
+            "live": "./projects/endurance-efficiency-ratio/endurance-efficiency-ratio.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
+        "title": "Core Stability Improvement Log",
+        "description": "Track your core strength progression through targeted stability exercises. Monitor hold times, repetitions, and difficulty levels to build a stronger, more stable core foundation with data-driven training insights.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Fitness",
+            "Core Training",
+            "Stability",
+            "Strength Training",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage"
+        ],
+        "links": {
+            "live": "./projects/core-stability-improvement-log/core-stability-improvement-log.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
