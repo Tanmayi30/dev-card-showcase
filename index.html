@@ -136,29 +136,78 @@
 
     <!-- 🔍 SEARCH & FILTER SECTION -->
     <section class="search-filter-container">
-        <input type="text" id="searchInput" placeholder="🔍 Search by name..." onkeyup="filterCards()"
-            autocomplete="off">
-
-        <div class="filter-buttons">
-            <button class="filter-btn active" onclick="filterByRole('all')">All</button>
-            <button class="filter-btn" onclick="filterByRole('developer')">Developers</button>
-            <button class="filter-btn" onclick="filterByRole('contributor')">Contributors</button>
-            <button class="filter-btn" onclick="filterByRole('maintainer')">Maintainers</button>
+        <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search name, skills, bio..." onkeyup="filterCards()"
+                autocomplete="off">
         </div>
 
-        <select id="sortSelect" class="sort-select" onchange="sortCards()">
-            <option value="default">Sort: Default</option>
-            <option value="az">A-Z</option>
-            <option value="za">Z-A</option>
-            <option value="newest">Newest First</option>
-        </select>
-        <button id="viewToggle" class="view-toggle-btn" aria-label="Toggle View">
-            <i class="fas fa-list"></i>
+        <div class="filter-group">
+            <span class="filter-label"><i class="fas fa-user-tag"></i> Role</span>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-role="all" onclick="filterByRole('all')">All</button>
+                <button class="filter-btn" data-role="developer" onclick="filterByRole('developer')">Developers</button>
+                <button class="filter-btn" data-role="contributor" data-role="contributor"
+                    onclick="filterByRole('contributor')">Contributors</button>
+                <button class="filter-btn" data-role="maintainer"
+                    onclick="filterByRole('maintainer')">Maintainers</button>
+            </div>
+        </div>
+
+
+        <div class="filter-group">
+            <span class="filter-label"><i class="fas fa-code"></i> Tech Stack</span>
+            <select id="stackSelect" class="sort-select" onchange="filterByStack(this.value)">
+                <option value="all">All Stacks</option>
+                <option value="frontend">Frontend</option>
+                <option value="backend">Backend</option>
+                <option value="fullstack">Full Stack</option>
+                <option value="react">React</option>
+                <option value="python">Python</option>
+                <option value="javascript">JavaScript</option>
+                <option value="java">Java</option>
+                <option value="django">Django</option>
+                <option value="ai">AI / ML</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <span class="filter-label"><i class="fas fa-sort-amount-down"></i> Sort</span>
+            <select id="sortSelect" class="sort-select" onchange="sortCards()">
+                <option value="default">Default</option>
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+                <option value="newest">Newest First</option>
+            </select>
+        </div>
+
+        <button class="reset-btn" onclick="resetFilters()" title="Reset all filters">
+            <i class="fas fa-sync-alt"></i>
         </button>
 
+        <button id="viewToggle" class="view-toggle-btn" aria-label="Toggle View" title="Toggle Grid/List View">
+            <i class="fas fa-list"></i>
+        </button>
     </section>
 
     <!-- No Results Message -->
+    <div id="noResults" class="no-results">
+        <div class="no-results-content">
+            <div class="no-results-icon">
+                <i class="fas fa-search-minus"></i>
+            </div>
+            <h3>No results found</h3>
+            <p>We couldn't find any contributors matching your current filters. Try adjusting your search or filters.
+            </p>
+            <button class="reset-link-btn" onclick="resetFilters()">Clear all filters</button>
+        </div>
+    </div>
+
+
+
+    <!-- Main heading of the website -->
+    <h1><span id="typewriter"></span></h1>
+    <p class="subtitle">An Open Source Project built by the Community, for the Community.</p>
     <div id="noResults" class="no-results" style="display: none;">
         <p>😔 No contributors found matching your search criteria.</p>
     </div>
@@ -611,6 +660,11 @@
             </div>
         </div>
         <div class="card">
+            <img src="images/Souradeep858.png" alt="Souradeep's Photo" class="card-img">
+            <h2>Souradeep Chakraborty</h2>
+            <span class="role">Contributor</span>
+            <p>"Learning full stack and excited to contribute in ECWoC'26"</p>
+            <a href="https://github.com/Souradeep858" class="card-btn" target="_blank">GitHub</a>
             <div class="card-inner">
                 <img src="images/Souradeep858.png" alt="Souradeep's Photo" class="card-img">
                 <h2>Souradeep Chakraborty</h2>
@@ -667,14 +721,14 @@
                 <a href="https://github.com/Vaishnav-K-12" class="card-btn" target="_blank">View Github Profile</a>
             </div>
         </div>
-          
+
         <div class="card">
             <div class="card-inner">
                 <img src="images/ritika-mahato.png" alt="Ritika Photo" class="card-img">
                 <h2>Ritika Mahato</h2>
                 <span class="role">Open Source Contributor</span>
                 <p>"Hello world! Building skills, one commit."</p>
-               <a href="https://github.com/ritikamahato924" class="card-btn" target="_blank">GitHub</a>
+                <a href="https://github.com/ritikamahato924" class="card-btn" target="_blank">GitHub</a>
             </div>
         </div>
 
@@ -697,6 +751,7 @@
                 <a href="http://github.com/nur-hasin/" class="card-btn" target="_blank">View Profile</a>
             </div>
         </div>
+
         
         <div class="card">
             <div class="card-inner">
@@ -794,6 +849,192 @@
             </div>
         </div>
 
+    <!-- 🔍 ENHANCED SEARCH & FILTER SCRIPT -->
+    <script>
+        let currentFilter = 'all';
+        let currentStack = 'all';
+        let currentSearch = '';
+        let isListView = false;
+
+        function filterCards() {
+            currentSearch = document.getElementById("searchInput").value.toLowerCase();
+            applyFilters();
+        }
+
+        function filterByRole(role) {
+            currentFilter = role;
+
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-role') === role);
+            });
+
+            applyFilters();
+        }
+
+        function filterByStack(stack) {
+            currentStack = stack;
+            applyFilters();
+        }
+
+        function resetFilters() {
+            currentFilter = 'all';
+            currentStack = 'all';
+            currentSearch = '';
+
+            document.getElementById("searchInput").value = '';
+            document.getElementById("stackSelect").value = 'all';
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.innerText === 'All') btn.classList.add('active');
+            });
+
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const cards = document.querySelectorAll(".card");
+            const noResults = document.getElementById("noResults");
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                // Skip admin card if needed, but usually we filter all
+                const name = card.querySelector("h2").innerText.toLowerCase();
+                const role = card.querySelector(".role")?.innerText.toLowerCase() || "";
+                const bio = card.querySelector("p")?.innerText.toLowerCase() || "";
+
+                const matchesSearch = name.includes(currentSearch) ||
+                    role.includes(currentSearch) ||
+                    bio.includes(currentSearch);
+
+                const matchesRole = currentFilter === 'all' ||
+                    role.includes(currentFilter);
+
+                const matchesStack = currentStack === 'all' ||
+                    role.includes(currentStack) ||
+                    bio.includes(currentStack);
+
+                if (matchesSearch && matchesRole && matchesStack) {
+                    card.style.display = "flex"; // Changed from display: block for card consistency
+                    card.classList.add('loading');
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            // Show/hide no results message
+            if (visibleCount === 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+
+            // Pulse the count if stats are visible
+            updateContributorStats();
+        }
+
+        // List/Grid View Toggle
+        const viewToggle = document.getElementById('viewToggle');
+        if (viewToggle) {
+            viewToggle.addEventListener('click', () => {
+                const container = document.querySelector(".card-container");
+                isListView = !isListView;
+                container.classList.toggle('list-view', isListView);
+
+                const icon = viewToggle.querySelector('i');
+                if (isListView) {
+                    icon.className = 'fas fa-th-large';
+                } else {
+                    icon.className = 'fas fa-list';
+                }
+            });
+        }
+
+        // Scroll to Top Functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollBtn = document.getElementById('scrollToTop');
+            if (scrollBtn) {
+                if (window.pageYOffset > 300) {
+                    scrollBtn.classList.add('show');
+                } else {
+                    scrollBtn.classList.remove('show');
+                }
+            }
+        });
+    </script>
+
+
+    <script>
+        // ----- TYPEWRITER LOOP -----
+        const typewriter = document.getElementById('typewriter');
+        if (!typewriter) return;
+
+
+        const phrases = [
+            "🚀 Community Hall of Fame",
+            "Built by the Community",
+            "Open Source for Everyone",
+            "Contribute, Learn, Grow"
+        ];
+
+        let currentPhrase = 0;
+        let currentChar = 0;
+        let isDeleting = false;
+        let speed = 100; // typing speed (ms per character)
+
+        function type() {
+            const fullText = phrases[currentPhrase];
+
+            if (isDeleting) {
+                currentChar--;
+                typewriter.textContent = fullText.substring(0, currentChar);
+            } else {
+                currentChar++;
+                typewriter.textContent = fullText.substring(0, currentChar);
+            }
+
+            // Adjust speed for deleting vs typing
+            let typingSpeed = isDeleting ? speed / 2 : speed;
+
+            // When phrase is complete
+            if (!isDeleting && currentChar === fullText.length) {
+                typingSpeed = 1500; // wait before deleting
+                isDeleting = true;
+            }
+            // When deletion is complete
+            else if (isDeleting && currentChar === 0) {
+                isDeleting = false;
+                currentPhrase = (currentPhrase + 1) % phrases.length;
+                typingSpeed = 500; // wait before typing next phrase
+            }
+
+            setTimeout(type, typingSpeed);
+        }
+
+        // Start typewriter
+        type();
+
+
+        // ----- PARALLAX EFFECT -----
+        const heroHeading = document.querySelector('h1');
+        const heroSubtitle = document.querySelector('.subtitle');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+
+            heroHeading.style.transform = `translateY(${scrollY * 0.2}px)`;  // slower
+            heroSubtitle.style.transform = `translateY(${scrollY * 0.15}px)`; // slightly slower
+        });
+    </script>
         <div class="card">
             <div class="card-inner">
                 <img src="images/suyash-jaiswal-7.jpg" alt="Suyash Photo" class="card-img">
