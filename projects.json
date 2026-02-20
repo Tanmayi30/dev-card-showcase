@@ -13473,5 +13473,30 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Strain vs Recovery Balance Dashboard",
+        "description": "Monitor your daily strain and recovery activities to maintain optimal balance. Track work, exercise, stress against sleep, rest, and relaxation to prevent burnout and optimize performance.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Wellness",
+            "Balance",
+            "Stress Management",
+            "Recovery",
+            "Performance",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage"
+        ],
+        "links": {
+            "live": "./strain-vs-recovery-balance-dashboard/strain-vs-recovery-balance-dashboard.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
