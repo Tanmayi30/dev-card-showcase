@@ -19,6 +19,15 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install server utilities
+        run: npm install -g http-server wait-on
+
+      - name: Start local server
+        run: http-server . -p 3000 --silent &
+
+      - name: Wait for server to be ready
+        run: wait-on http://localhost:3000 --timeout 30000
+
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v11
         with:
