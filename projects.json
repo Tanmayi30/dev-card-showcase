@@ -13571,5 +13571,29 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Grip Strength Progress Monitor",
+        "description": "Track your grip strength measurements over time to monitor progress, set goals, and optimize your hand strength training. Record measurements for different grip types and both hands with detailed statistics and progress visualization.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Fitness",
+            "Strength Training",
+            "Grip Strength",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Progress Tracking"
+        ],
+        "links": {
+            "live": "./grip-strength-progress-monitor/grip-strength-progress-monitor.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
