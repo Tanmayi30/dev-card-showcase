@@ -1,6 +1,9 @@
 {
     "ci": {
         "collect": {
+            "startServerCommand": "npx http-server . -p 3000",
+            "startServerReadyPattern": "Available on",
+            "startServerReadyTimeout": 30000,
             "url": [
                 "http://localhost:3000/index.html",
                 "http://localhost:3000/projects.html"
