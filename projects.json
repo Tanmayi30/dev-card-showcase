@@ -1,5 +1,32 @@
 [
     {
+        "title": "Cognitive Load Buffer Score",
+        "description": "Monitor and optimize your cognitive capacity by tracking mental workload, buffer capacity, and cognitive performance. Assess task complexity, mental fatigue, focus quality, and recovery strategies to maintain optimal cognitive function and prevent mental overload.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Mental Health",
+            "Productivity",
+            "Cognitive Science",
+            "Mental Workload",
+            "Focus Management",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Cognitive Performance",
+            "Mental Fatigue"
+        ],
+        "links": {
+            "live": "./projects/cognitive-load-buffer-score/cognitive-load-buffer-score.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Reactive Agility Monitor",
         "description": "Track and analyze your reactive agility performance across various movement patterns and response scenarios. Monitor response times, movement quality, direction changes, and fatigue levels to optimize your reactive movement capabilities and improve athletic performance.",
         "tags": [
