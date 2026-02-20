@@ -1,5 +1,30 @@
 [
     {
+        "title": "Reflective Thinking Frequency Monitor",
+        "description": "Track and analyze your reflective thinking patterns to enhance metacognition and self-awareness. Monitor the frequency, quality, and themes of your reflections to develop stronger critical thinking habits and emotional intelligence.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Mental Health",
+            "Productivity",
+            "Self-Improvement",
+            "Psychology",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Metacognition"
+        ],
+        "links": {
+            "live": "./projects/reflective-thinking-frequency-monitor/reflective-thinking-frequency-monitor.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Detox Pathway Support Matrix",
         "description": "Track and optimize your body's detoxification pathways. Monitor support levels for liver, kidneys, skin, lungs, and other detox organs through targeted nutrition, supplements, and lifestyle interventions.",
         "tags": [
