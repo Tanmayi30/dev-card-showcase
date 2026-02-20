@@ -333,6 +333,29 @@
         }
     },
     {
+        "title": "Sleep Fragmentation Analyzer",
+        "description": "Analyze sleep quality by tracking awakenings, sleep efficiency, and fragmentation patterns. Monitor wake after sleep onset (WASO), calculate fragmentation index, and identify factors affecting sleep continuity.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Sleep",
+            "Sleep Quality",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Sleep Analysis"
+        ],
+        "links": {
+            "live": "./sleep-fragmentation-analyzer/sleep-fragmentation-analyzer.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Balance Stability Score",
         "description": "Track your single-leg stand performance to monitor balance improvement and assess fall risk. Log balance test times, compare left vs right leg stability, and visualize your progress over time.",
         "tags": [
