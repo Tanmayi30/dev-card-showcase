@@ -1,5 +1,30 @@
 [
     {
+        "title": "Detox Pathway Support Matrix",
+        "description": "Track and optimize your body's detoxification pathways. Monitor support levels for liver, kidneys, skin, lungs, and other detox organs through targeted nutrition, supplements, and lifestyle interventions.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Wellness",
+            "Detoxification",
+            "Nutrition",
+            "Supplements",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Pathway Analysis"
+        ],
+        "links": {
+            "live": "./projects/detox-pathway-support-matrix/detox-pathway-support-matrix.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Psychological Load Redistribution Planner",
         "description": "Optimize your mental workload by strategically distributing psychological load across tasks and time periods. Prevent mental fatigue by balancing high-load activities with recovery periods and identifying optimal task sequencing.",
         "tags": [
