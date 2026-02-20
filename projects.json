@@ -1,5 +1,32 @@
 [
     {
+        "title": "Reactive Agility Monitor",
+        "description": "Track and analyze your reactive agility performance across various movement patterns and response scenarios. Monitor response times, movement quality, direction changes, and fatigue levels to optimize your reactive movement capabilities and improve athletic performance.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Fitness",
+            "Sports Performance",
+            "Agility Training",
+            "Reaction Time",
+            "Movement Analysis",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Athletic Development",
+            "Neuromuscular Training"
+        ],
+        "links": {
+            "live": "./projects/reactive-agility-monitor/reactive-agility-monitor.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Cellular Repair Habit Index",
         "description": "Monitor and optimize your cellular repair processes by tracking habits that support DNA repair, mitochondrial function, autophagy, and cellular regeneration. Build a comprehensive index of your cellular health optimization practices and track biomarker improvements over time.",
         "tags": [
