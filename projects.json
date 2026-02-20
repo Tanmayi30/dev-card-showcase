@@ -13546,5 +13546,30 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Cellular Energy Support Log",
+        "description": "Track your cellular energy support activities including supplements, nutrition, exercise, and sleep to optimize mitochondrial function and ATP production. Monitor energy levels throughout the day and correlate with lifestyle factors.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Energy",
+            "Mitochondria",
+            "Supplements",
+            "Nutrition",
+            "Wellness",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage"
+        ],
+        "links": {
+            "live": "./cellular-energy-support-log/cellular-energy-support-log.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
