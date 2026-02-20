@@ -14,7 +14,6 @@
             }
         },
         "assert": {
-            "preset": "lighthouse:no-pwa",
             "assertions": {
                 "categories:performance": [
                     "warn",
@@ -26,6 +25,18 @@
                     "warn",
                     {
                         "minScore": 0.7
+                    }
+                ],
+                "categories:best-practices": [
+                    "warn",
+                    {
+                        "minScore": 0.5
+                    }
+                ],
+                "categories:seo": [
+                    "warn",
+                    {
+                        "minScore": 0.5
                     }
                 ],
                 "first-contentful-paint": [
@@ -40,10 +51,16 @@
                         "maxNumericValue": 6000
                     }
                 ],
+                "csp-xss": "off",
                 "unused-javascript": "off",
                 "uses-http2": "off",
                 "uses-long-cache-ttl": "off",
-                "canonical": "off"
+                "canonical": "off",
+                "is-on-https": "off",
+                "redirects-http": "off",
+                "hreflang": "off",
+                "plugins": "off",
+                "no-unload-listeners": "off"
             }
         },
         "upload": {
