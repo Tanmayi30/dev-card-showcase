@@ -13078,6 +13078,29 @@
         }
     },
     {
+        "title": "Nutrient Synergy Optimizer",
+        "description": "Optimize your nutrient intake by discovering synergistic combinations that enhance absorption and bioavailability. Select nutrients to see recommended pairings and absorption boosts for better health outcomes.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Nutrition",
+            "Nutrients",
+            "Synergy",
+            "Data Visualization",
+            "Chart.js",
+            "Bioavailability"
+        ],
+        "links": {
+            "live": "./projects/nutrient-synergy-optimizer/nutrient-synergy-optimizer.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
+    },
+    {
         "title": "Attention Span Decay Tracker",
         "description": "Track how long you maintain focus before distraction with timer-based focus sessions. Log distractions and visualize attention span decay trends over months to improve sustained attention capacity.",
         "tags": [
