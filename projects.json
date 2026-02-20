@@ -9091,6 +9091,22 @@
             "github": "https://github.com/CodeMaster11000"
         }
     },
+      {
+        "title": "3D Box with CSS",
+        "description": "An interactive 3D box built entirely with CSS transforms and transitions. Users can rotate the box and view each face.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "links": {
+            "live": "./projects/3D-Box-with-CSS/index.html"
+        },
+        "author": {
+            "name": "Omkar",
+            "github": "https://github.com/omkarhole"
+        }
+    },
     {
         "title": "Client-Side File Upload Handling",
         "description": "A modern file upload feature with image, PDF, and document support. Users can preview files, view file size, and remove files before submission. Includes file type and size validation for a seamless experience.",
