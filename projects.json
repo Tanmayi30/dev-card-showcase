@@ -13642,6 +13642,28 @@
         "links": {
             "live": "./cognitive-saturation-alert/cognitive-saturation-alert.html"
         },
+    },
+    {
+        "title": "Personalized Health Risk Projection Engine",
+        "description": "Calculate your current health risk scores and project future health outcomes based on your lifestyle, medical history, and biometric data. Get personalized recommendations to optimize your health trajectory with comprehensive risk assessment for cardiovascular disease, diabetes, hypertension, and metabolic syndrome.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Risk Assessment",
+            "Medical",
+            "Wellness",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Health Projections",
+            "Preventive Care",
+            "Biometrics"
+        ],
+        "links": {
+            "live": "./personalized-health-risk-projection-engine/personalized-health-risk-projection-engine.html"
+        },
         "author": {
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"

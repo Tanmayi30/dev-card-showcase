@@ -293,7 +293,7 @@ function showNotification(message, type) {
     document.body.appendChild(notification);
 
     setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease-out;
+        notification.style.animation = 'slideOut 0.3s ease-out';
         setTimeout(() => document.body.removeChild(notification), 300);
     }, 3000);
 }
