@@ -13595,5 +13595,30 @@
             "name": "Gupta-02",
             "github": "https://github.com/Gupta-02"
         }
+    },
+    {
+        "title": "Chronobiology Alignment Score",
+        "description": "Calculate and track how well your daily schedule aligns with optimal chronobiological patterns. Optimize your circadian rhythms for better health, sleep, and performance by analyzing sleep, meal, exercise, and work timing.",
+        "tags": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Health",
+            "Chronobiology",
+            "Circadian Rhythm",
+            "Sleep",
+            "Wellness",
+            "Data Visualization",
+            "Chart.js",
+            "LocalStorage",
+            "Schedule Optimization"
+        ],
+        "links": {
+            "live": "./chronobiology-alignment-score/chronobiology-alignment-score.html"
+        },
+        "author": {
+            "name": "Gupta-02",
+            "github": "https://github.com/Gupta-02"
+        }
     }
 ]
