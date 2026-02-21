@@ -1,6 +1,5 @@
 
 
-// ---------- CURSOR ----------
 const cursor = document.getElementById('cursor');
 const trail  = document.getElementById('cursorTrail');
 
