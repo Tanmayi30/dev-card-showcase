@@ -11633,5 +11633,33 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Mental Recovery Interval Planner",
+    "description": "Plan and track mental recovery intervals to optimize cognitive performance and prevent burnout. Schedule strategic breaks, monitor mental fatigue levels, and maintain optimal brain function throughout your day with customizable work/break intervals.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Health",
+      "Mental Health",
+      "Productivity",
+      "Cognitive Science",
+      "Time Management",
+      "Pomodoro Technique",
+      "Mental Fatigue",
+      "Break Planning",
+      "Focus Management",
+      "LocalStorage",
+      "Timer",
+      "Recovery Tracking"
+    ],
+    "links": {
+      "live": "./mental-recovery-interval-planner/mental-recovery-interval-planner.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
