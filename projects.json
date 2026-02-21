@@ -11606,5 +11606,32 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Stabilizer Muscle Activation Index",
+    "description": "Monitor and track the activation levels of stabilizer muscles during exercises and daily activities. Assess core stability, joint support, and overall muscular balance to optimize performance and prevent injuries through targeted training.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Health",
+      "Fitness",
+      "Sports Performance",
+      "Muscle Activation",
+      "Core Stability",
+      "Joint Health",
+      "Data Visualization",
+      "Chart.js",
+      "LocalStorage",
+      "Exercise Tracking",
+      "Injury Prevention"
+    ],
+    "links": {
+      "live": "./stabilizer-muscle-activation-index/stabilizer-muscle-activation-index.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
