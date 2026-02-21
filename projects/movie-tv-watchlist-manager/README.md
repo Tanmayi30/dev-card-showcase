@@ -1,16 +1,21 @@
 # Movie & TV Watchlist Manager
 
-A web app to track movies and shows you want to watch or have watched. Includes ratings, reviews, genre tags, progress bars, calendar reminders, and export/share options.
+Keep track of movies and shows to watch, mark completed, and rate them.
 
 ## Features
-- Add movies/shows to watchlist
-- Ratings and reviews
-- Genre tags
-- Progress bars
-- Calendar reminders
-- Export to JSON/CSV
-- Share watchlist
-- Local storage for all data
+- Add movies and TV shows to your watchlist
+- Mark items as completed
+- Rate completed items (1-10)
+- Responsive, modern UI
+- Data saved in browser (localStorage)
 
-## Usage
-Open index.html in your browser. Add entries, track progress, and manage your watchlist.
+## How to Use
+1. Open `index.html` in your browser.
+2. Add movies or TV shows you want to watch.
+3. Mark as completed and rate them after watching.
+
+## Tech Stack
+- HTML, CSS, JavaScript
+
+## Screenshot
+![Screenshot](screenshot.png)

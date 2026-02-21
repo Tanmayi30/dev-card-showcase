@@ -1,16 +1,22 @@
 # Recipe Organizer & Meal Planner
 
-A web app for saving, categorizing, and searching recipes. Users can plan weekly meals, generate shopping lists, add nutrition info, upload photos, and export meal plans as PDF or CSV. Includes calendar integration and favorite recipes feature.
+Save recipes, plan meals for the week, and generate shopping lists.
 
 ## Features
-- Save, categorize, and search recipes
-- Weekly meal planner
-- Shopping list generator
-- Nutrition info and photo uploads
-- Calendar integration
-- Favorite recipes
-- Export to CSV/PDF
-- Local storage for all data
+- Add recipes with title, ingredients, and instructions
+- Plan meals for each day of the week
+- Auto-generate a shopping list from planned meals
+- Responsive, modern UI
+- Data saved in browser (localStorage)
 
-## Usage
-Open index.html in your browser. Add recipes, plan meals, and manage your kitchen easily.
+## How to Use
+1. Open `index.html` in your browser.
+2. Add your favorite recipes.
+3. Plan meals for each day of the week.
+4. View your shopping list for the week.
+
+## Tech Stack
+- HTML, CSS, JavaScript
+
+## Screenshot
+![Screenshot](screenshot.png)
