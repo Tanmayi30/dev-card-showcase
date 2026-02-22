@@ -2480,6 +2480,18 @@
       "github": "https://github.com/your-github-username"
     }
   },
+    {
+    "title": "CSS-Animated-Search-Box",
+    "description": "An animated search box with smooth transitions and visual feedback. Features a clean design with interactive elements and responsive behavior.",
+    "tags": ["HTML", "CSS", "JavaScript", "Utility Tool"],
+    "links": {
+      "live": "./projects/CSS-Animated-Search-Box/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
   {
     "title": "Hero design page",
     "description": "An immersive, browser-based hero section featuring a dynamic 3D prism rendered with WebGL. The design showcases raymarching techniques, refraction effects, and interactive mouse controls, creating a mesmerizing spectrum of light with a nebula background.",
