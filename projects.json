@@ -12296,5 +12296,32 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Differential Privacy Safeguard Module",
+    "description": "Demonstrate differential privacy concepts with interactive examples. Learn how to protect individual data privacy while allowing statistical analysis through controlled noise addition using Laplace and Gaussian mechanisms for various query types including sum, count, mean, and histogram.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Privacy",
+      "Data Protection",
+      "Differential Privacy",
+      "Laplace Mechanism",
+      "Gaussian Mechanism",
+      "Statistical Analysis",
+      "Noise Addition",
+      "Privacy-Preserving",
+      "Data Science",
+      "Cryptography",
+      "Mathematics"
+    ],
+    "links": {
+      "live": "./differential-privacy-safeguard/differential-privacy-safeguard.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
