@@ -1,5 +1,60 @@
 [
   {
+    "title": "Abstract Thinking Progress Tracker",
+    "description": "Enhance your abstract thinking skills through targeted exercises and track your progress over time. Abstract thinking involves recognizing patterns, forming concepts, and solving problems creatively. Features include various exercise types, performance tracking, difficulty assessment, and progress visualization.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Mental Health",
+      "Cognitive Training",
+      "Abstract Thinking",
+      "Problem Solving",
+      "Pattern Recognition",
+      "Analogical Reasoning",
+      "Creative Thinking",
+      "Data Visualization",
+      "Chart.js",
+      "LocalStorage",
+      "Progress Tracking"
+    ],
+    "links": {
+      "live": "./abstract-thinking-progress-tracker/abstract-thinking-progress-tracker.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
+  },
+  {
+    "title": "Heavy Metal Exposure Monitoring Log",
+    "description": "Track and monitor potential exposure to toxic heavy metals like lead, mercury, arsenic, and cadmium. Log exposure incidents, symptoms, risk levels, and mitigation strategies. Includes educational information about heavy metals and prevention tips for maintaining optimal health.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Health",
+      "Environmental Health",
+      "Toxicology",
+      "Heavy Metals",
+      "Exposure Monitoring",
+      "Risk Assessment",
+      "Symptom Tracking",
+      "Detoxification",
+      "Data Visualization",
+      "Chart.js",
+      "LocalStorage",
+      "Health Monitoring"
+    ],
+    "links": {
+      "live": "./heavy-metal-exposure-monitoring-log/heavy-metal-exposure-monitoring-log.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
+  },
+  {
     "title": "Cognitive Load Buffer Score",
     "description": "Monitor and optimize your cognitive capacity by tracking mental workload, buffer capacity, and cognitive performance. Assess task complexity, mental fatigue, focus quality, and recovery strategies to maintain optimal cognitive function and prevent mental overload.",
     "tags": [
