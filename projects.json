@@ -2329,6 +2329,18 @@
       "github": "https://github.com/omkarhole"
     }
   },
+    {
+    "title": "Apple watch like Mickey",
+    "description": "A web application that mimics the look and feel of an Apple Watch interface with a Mickey Mouse theme. Features a sleek design, interactive elements, and responsive layout.",
+    "tags": ["HTML", "CSS", "JavaScript", "Utility Tool"],
+    "links": {
+      "live": "./projects/Apple-Watch-Like-Mickey/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
   {
     "title": "CSS Perspective playground",
     "description": "A web application that allows users to experiment with CSS perspective properties. Users can adjust perspective values and see the effects on 3D elements in real time.",
