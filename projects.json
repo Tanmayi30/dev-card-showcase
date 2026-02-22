@@ -219,6 +219,33 @@
     }
   },
   {
+    "title": "Prolonged Load Tolerance Monitor",
+    "description": "Monitor your ability to sustain performance under prolonged physical or mental load. Track endurance capacity, fatigue accumulation, recovery patterns, and overall load tolerance to optimize training and prevent overtraining through comprehensive assessment and trend analysis.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Health",
+      "Fitness",
+      "Endurance",
+      "Load Tolerance",
+      "Fatigue",
+      "Recovery",
+      "Data Visualization",
+      "Chart.js",
+      "LocalStorage",
+      "Progress Tracking",
+      "Performance Monitoring"
+    ],
+    "links": {
+      "live": "./projects/prolonged-load-tolerance-monitor/index.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
+  },
+  {
     "title": "Cellular Repair Habit Index",
     "description": "Monitor and optimize your cellular repair processes by tracking habits that support DNA repair, mitochondrial function, autophagy, and cellular regeneration. Build a comprehensive index of your cellular health optimization practices and track biomarker improvements over time.",
     "tags": [
