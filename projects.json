@@ -12651,5 +12651,37 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Auto-Scaling Inference Cluster",
+    "description": "A comprehensive auto-scaling ML inference cluster management system with intelligent resource allocation, real-time monitoring, model registry, and automated scaling policies. Features include cluster node management, performance monitoring, security scanning, model deployment, and predictive scaling based on workload patterns.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Machine Learning",
+      "Auto-Scaling",
+      "Cluster Management",
+      "Inference Engine",
+      "Performance Monitoring",
+      "Model Registry",
+      "Resource Management",
+      "Load Balancing",
+      "Security Scanning",
+      "Real-time Analytics",
+      "Chart.js",
+      "CryptoJS",
+      "LocalStorage",
+      "Predictive Scaling",
+      "Container Orchestration",
+      "Cloud Infrastructure"
+    ],
+    "links": {
+      "live": "./auto-scaling-inference-cluster/auto-scaling-inference-cluster.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
