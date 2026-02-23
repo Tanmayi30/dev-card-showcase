@@ -5391,21 +5391,31 @@
   },
   {
     "title": "Cognitive Load Balancer",
-    "description": "An interactive cognitive monitoring tool that simulates mental workload using task complexity, time pressure, and multitasking inputs. Features a cyber-themed UI, dynamic color transitions based on stress levels, and real-time feedback to help users maintain optimal cognitive performance.",
+    "description": "A comprehensive cognitive load monitoring and optimization tool for developers. Features real-time cognitive load assessment, task management with complexity analysis, fatigue tracking, focus timers, performance analytics, and personalized optimization recommendations. Helps maintain optimal mental performance through intelligent workload balancing and break management.",
     "tags": [
       "HTML",
       "CSS",
       "JavaScript",
-      "UI/UX",
       "Cognitive Science",
-      "Simulation"
+      "Productivity",
+      "Mental Health",
+      "Task Management",
+      "Performance Analytics",
+      "Real-time Monitoring",
+      "Data Visualization",
+      "Chart.js",
+      "LocalStorage",
+      "Focus Management",
+      "Workload Optimization",
+      "Fatigue Tracking",
+      "Break Management"
     ],
     "links": {
-      "live": "./projects/cognitive-load-balancer/"
+      "live": "./cognitive-load-balancer/cognitive-load-balancer.html"
     },
     "author": {
-      "name": "Anvesha",
-      "github": "https://github.com/your-github-username"
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
     }
   },
   {
@@ -12318,6 +12328,29 @@
     ],
     "links": {
       "live": "./differential-privacy-safeguard/differential-privacy-safeguard.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
+  },
+  {
+    "title": "Intent Prediction Module",
+    "description": "Predict user intent from text input using a simple rule-based classifier. Enter a message and get predictions for greetings, questions, commands, or statements. Useful for understanding user behavior and improving interactions.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "AI",
+      "Machine Learning",
+      "Intent Prediction",
+      "Natural Language Processing",
+      "User Behavior",
+      "Text Analysis",
+      "Rule-Based Classification"
+    ],
+    "links": {
+      "live": "./intent-prediction-module/intent-prediction-module.html"
     },
     "author": {
       "name": "Gupta-02",
