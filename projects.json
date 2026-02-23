@@ -1938,6 +1938,18 @@
       "github": "https://github.com/omkarhole"
     }
   },
+    {
+    "title": "Rain animation playground",
+    "description": "An animated rain effect with realistic physics and visual styling. Features adjustable wind, speed, and drop frequency controls.",
+    "tags": ["HTML", "CSS", "JavaScript", "Animation", "Physics Simulation"],
+    "links": {
+      "live": "./projects/Rain/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
   {
     "title": "Elevator Control Simulator Game",
     "description": "A polished gamified elevator control game where users operate a multi-floor elevator in a neon black & blue building. Features include calling the elevator from any floor, animated doors, queue management, direction indicators, emergency stop, and interactive responsive controls. Designed for an arcade-style immersive experience.",
