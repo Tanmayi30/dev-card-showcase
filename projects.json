@@ -12463,5 +12463,33 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Context Drift Detector",
+    "description": "Advanced tool for detecting context drift in text using semantic analysis. Analyze conversations, documents, and text streams to identify topic shifts, coherence changes, and semantic transitions. Features include real-time analysis, similarity visualization, topic extraction, drift point detection, and comprehensive reporting.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "NLP",
+      "Text Analysis",
+      "Semantic Analysis",
+      "Context Drift",
+      "Topic Modeling",
+      "Similarity Analysis",
+      "Data Visualization",
+      "Chart.js",
+      "LocalStorage",
+      "Export Functionality",
+      "Real-time Analysis",
+      "Coherence Scoring"
+    ],
+    "links": {
+      "live": "./context-drift-detector/context-drift-detector.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
