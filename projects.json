@@ -12683,5 +12683,72 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Multilingual Sentiment Calibration",
+    "description": "Advanced multilingual sentiment analysis system with real-time calibration capabilities. Supports 24+ languages with machine learning models that automatically adapt and improve accuracy through continuous training. Features include language detection, confidence scoring, training data management, performance analytics, and automated model calibration.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Machine Learning",
+      "Natural Language Processing",
+      "Sentiment Analysis",
+      "Multilingual Support",
+      "Real-time Processing",
+      "Data Visualization",
+      "Chart.js",
+      "Model Training",
+      "Language Detection",
+      "Performance Analytics",
+      "Auto Calibration",
+      "Training Data Management",
+      "Confidence Scoring",
+      "Cross-language Analysis",
+      "Adaptive Learning",
+      "LocalStorage",
+      "Interactive Dashboard"
+    ],
+    "links": {
+      "live": "./projects/multilingual-sentiment-calibration/multilingual-sentiment-calibration.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
+  },
+  {
+    "title": "Predictive Maintenance Dashboard #5003",
+    "description": "AI-powered predictive maintenance system for industrial equipment monitoring and failure prevention. Features real-time equipment health monitoring, predictive failure analysis using machine learning algorithms, maintenance scheduling, sensor data visualization, alert management, comprehensive analytics, and automated reporting. Includes interactive dashboards with Chart.js visualizations, equipment lifecycle management, risk assessment, and cost-benefit analysis.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Predictive Maintenance",
+      "IoT",
+      "Machine Learning",
+      "Industrial IoT",
+      "Equipment Monitoring",
+      "Failure Prediction",
+      "Sensor Data",
+      "Real-time Analytics",
+      "Maintenance Scheduling",
+      "Risk Assessment",
+      "Data Visualization",
+      "Chart.js",
+      "LocalStorage",
+      "Alert Management",
+      "Cost Analysis",
+      "Equipment Health",
+      "Predictive Analytics",
+      "Industrial Automation"
+    ],
+    "links": {
+      "live": "./projects/predictive-maintenance-dashboard/predictive-maintenance-dashboard.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
