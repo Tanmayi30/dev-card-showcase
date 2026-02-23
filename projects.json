@@ -12620,5 +12620,36 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Conversation Replay Simulator",
+    "description": "Advanced conversation analysis and simulation system for recording, replaying, and analyzing conversations. Features real-time sentiment analysis, topic detection, conversation flow visualization, scenario management, and comprehensive analytics. Perfect for communication training, customer service analysis, and conversation pattern recognition.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "AI/ML",
+      "Conversation Analysis",
+      "Sentiment Analysis",
+      "Topic Detection",
+      "Data Visualization",
+      "Chart.js",
+      "LocalStorage",
+      "Real-time Processing",
+      "Communication Training",
+      "Analytics",
+      "Scenario Management",
+      "Natural Language Processing",
+      "Conversation Flow",
+      "Interactive Replay",
+      "Performance Metrics"
+    ],
+    "links": {
+      "live": "./projects/conversation-replay-simulator/conversation-replay-simulator.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
