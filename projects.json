@@ -1681,6 +1681,18 @@
       "github": "https://github.com/omkarhole"
     }
   },
+    {
+    "title": "DVD Screensaver Simulator",
+    "description": "A simulation of the classic DVD screensaver with bouncing DVD logo. Features realistic physics, collision detection, and a nostalgic visual style.",
+    "tags": ["HTML", "CSS", "JavaScript", "Utility Tool"],
+    "links": {
+      "live": "./projects/DVD-screensaver-simulator/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
   {
     "title": "Hacker Escape Room #3786",
     "description": "A full-featured cyber escape room engine built with HTML, CSS, and JavaScript featuring a simulated terminal filesystem and command parser system. Players interact using real commands (cd, ls, cat, help, clear, hack) to navigate directories, solve logic riddles, crack passwords through animated brute-force sequences, and progress through multi-level branching challenges under a countdown timer. Includes glitch animations, immersive sound effects, and structured game-state management for a complete hacker-themed experience.",
