@@ -59,6 +59,34 @@
     }
   },
   {
+    "title": "Modular Data Integrity Sentinel #5217",
+    "description": "Comprehensive data integrity validation system with modular checks for health and cognitive tracking data. Ensure your data remains consistent, valid, and secure across all trackers. Features include consistency checks, checksum validation, range validation, duplicate detection, full system scans, and data repair tools.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Data Integrity",
+      "Data Validation",
+      "Security",
+      "Consistency Checks",
+      "Checksum Validation",
+      "Range Validation",
+      "Duplicate Detection",
+      "Data Repair",
+      "LocalStorage",
+      "Health Data",
+      "Cognitive Data",
+      "Data Security"
+    ],
+    "links": {
+      "live": "./projects/modular-data-integrity-sentinel/modular-data-integrity-sentinel.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
+  },
+  {
     "title": "Abstract Thinking Progress Tracker",
     "description": "Enhance your abstract thinking skills through targeted exercises and track your progress over time. Abstract thinking involves recognizing patterns, forming concepts, and solving problems creatively. Features include various exercise types, performance tracking, difficulty assessment, and progress visualization.",
     "tags": [
