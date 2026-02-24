@@ -1,5 +1,36 @@
 [
   {
+    "title": "Autonomous Dataset Validator #5069",
+    "description": "Advanced dataset validation, quality assessment, and automated cleaning for data science workflows. Features include file upload (CSV/JSON), automated validation (data types, missing values, duplicates, outliers, consistency), comprehensive data analysis with statistics and correlations, automated data cleaning, and export functionality with quality reporting.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Data Science",
+      "Data Validation",
+      "Data Cleaning",
+      "Quality Assessment",
+      "Statistics",
+      "Chart.js",
+      "PapaParse",
+      "File Upload",
+      "Data Analysis",
+      "Outlier Detection",
+      "Correlation Analysis",
+      "Data Export",
+      "Quality Metrics",
+      "LocalStorage",
+      "Data Visualization"
+    ],
+    "links": {
+      "live": "./autonomous-dataset-validator/autonomous-dataset-validator.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
+  },
+  {
     "title": "Abstract Thinking Progress Tracker",
     "description": "Enhance your abstract thinking skills through targeted exercises and track your progress over time. Abstract thinking involves recognizing patterns, forming concepts, and solving problems creatively. Features include various exercise types, performance tracking, difficulty assessment, and progress visualization.",
     "tags": [
@@ -20,69 +51,6 @@
     ],
     "links": {
       "live": "./abstract-thinking-progress-tracker/abstract-thinking-progress-tracker.html"
-    },
-    "author": {
-      "name": "Gupta-02",
-      "github": "https://github.com/Gupta-02"
-    }
-  },
-  {
-    "title": "Real-Time Translation Proxy #5060",
-    "description": "Advanced real-time translation proxy system that intercepts web requests and translates content on-the-fly. Features proxy server simulation, multiple translation engines (Google Translate, Microsoft Translator, DeepL), intelligent caching, language detection, real-time analytics, and comprehensive performance monitoring. Includes dashboard with metrics, translation history, cache performance, and API key management.",
-    "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Translation",
-      "Proxy Server",
-      "API Integration",
-      "Caching",
-      "Real-time Processing",
-      "Language Detection",
-      "Analytics",
-      "Chart.js",
-      "LocalStorage",
-      "Web Proxy",
-      "Translation API",
-      "Performance Monitoring",
-      "Responsive Design",
-      "Data Visualization"
-    ],
-    "links": {
-      "live": "./projects/real-time-translation-proxy/real-time-translation-proxy.html"
-    },
-    "author": {
-      "name": "Gupta-02",
-      "github": "https://github.com/Gupta-02"
-    }
-  },
-  {
-    "title": "Energy Consumption Optimizer #5061",
-    "description": "Comprehensive energy consumption monitoring and optimization system for residential and commercial use. Track electricity usage across devices, calculate costs and carbon footprint, generate optimization suggestions, and analyze consumption patterns. Features device management, real-time analytics, cost calculation with peak/off-peak rates, carbon emissions tracking, efficiency scoring, and data export capabilities.",
-    "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Energy Management",
-      "Sustainability",
-      "Cost Optimization",
-      "Carbon Footprint",
-      "Device Monitoring",
-      "Analytics",
-      "Chart.js",
-      "LocalStorage",
-      "Efficiency Analysis",
-      "Peak Hours",
-      "Data Visualization",
-      "Optimization Algorithms",
-      "Environmental Impact",
-      "Smart Home",
-      "Energy Savings",
-      "Consumption Tracking",
-      "Responsive Design"
-    ],
-    "links": {
-      "live": "./projects/energy-consumption-optimizer/energy-consumption-optimizer.html"
     },
     "author": {
       "name": "Gupta-02",
@@ -3797,36 +3765,9 @@
     }
   },
   {
-    "title": "Distributed Event Streaming Bus #5066",
-    "description": "A comprehensive event streaming system simulator and management tool. Features real-time message simulation, producer/consumer management, topic and partition handling, monitoring dashboards with interactive charts, message flow visualization using D3.js, and advanced settings for connection, performance, and data management. Includes comprehensive analytics, export/import functionality, and a professional UI with dark/light theme support.",
-    "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Event Streaming",
-      "Real-time Processing",
-      "Data Visualization",
-      "Chart.js",
-      "D3.js",
-      "LocalStorage",
-      "Producer/Consumer",
-      "Topic Management",
-      "Partition Handling",
-      "Monitoring",
-      "Analytics",
-      "Message Flow",
-      "Responsive Design",
-      "Dark/Light Theme"
-    ],
-    "links": {
-      "live": "./projects/distributed-event-streaming-bus/distributed-event-streaming-bus.html"
-    },
-    "author": {
-      "name": "Gupta-02",
-      "github": "https://github.com/Gupta-02"
-    }
-  }
-]    "tags": ["HTML", "CSS", "JavaScript"],
+    "title": "Number System Converter",
+    "description": "A compact utility that converts numbers between Binary, Decimal, Octal, and Hexadecimal. Built with a consistent, responsive UI and clear visual output for quick and accurate base conversions.",
+    "tags": ["HTML", "CSS", "JavaScript"],
     "links": {
       "live": "./projects/number-system-converter/"
     },
@@ -12917,254 +12858,6 @@
     ],
     "links": {
       "live": "./projects/zero-knowledge-verification-layer/zero-knowledge-verification-layer.html"
-    },
-    "author": {
-      "name": "Gupta-02",
-      "github": "https://github.com/Gupta-02"
-    }
-  },
-  {
-    "title": "Intelligent Log Compression Engine #5058",
-    "description": "Advanced intelligent log compression system with adaptive algorithms that analyze data characteristics and apply optimal compression strategies. Features multiple algorithms (Intelligent Adaptive, LZ77, Huffman, DEFLATE), automatic data type detection (logs, JSON, structured data), pattern recognition, duplicate removal, timestamp preservation, bidirectional compression/decompression, real-time analytics, and comprehensive performance tracking. Includes dashboard with metrics, analytics charts, pattern analysis, and export capabilities.",
-    "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Log Compression",
-      "Data Compression",
-      "LZ77",
-      "Huffman Coding",
-      "DEFLATE",
-      "Intelligent Compression",
-      "Pattern Analysis",
-      "Data Type Detection",
-      "JSON Compression",
-      "Structured Data Compression",
-      "Bidirectional Compression",
-      "Decompression",
-      "Adaptive Algorithms",
-      "Pattern Recognition",
-      "Duplicate Removal",
-      "Timestamp Preservation",
-      "Performance Analytics",
-      "Data Visualization",
-      "Chart.js",
-      "LocalStorage",
-      "File Upload",
-      "Export/Import",
-      "Responsive Design",
-      "Real-time Processing"
-    ],
-    "links": {
-      "live": "./projects/intelligent-log-compression-engine/intelligent-log-compression-engine.html"
-    },
-    "author": {
-      "name": "Gupta-02",
-      "github": "https://github.com/Gupta-02"
-    }
-  },
-  {
-    "title": "User Journey Heatmap Visualizer #5059",
-    "description": "Comprehensive user interaction tracking and heatmap visualization system for analyzing user behavior patterns. Record clicks, hovers, and scroll events in real-time, generate interactive heatmaps, track session analytics, and visualize user journeys. Features include real-time recording controls, customizable heatmap overlays, session management, interaction analytics, timeline visualization, element interaction tracking, data export/import, and responsive design with dark/light themes.",
-    "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "User Experience",
-      "Heatmap Visualization",
-      "User Behavior Analysis",
-      "Interaction Tracking",
-      "Click Tracking",
-      "Hover Tracking",
-      "Scroll Tracking",
-      "Session Analytics",
-      "Real-time Recording",
-      "Data Visualization",
-      "Chart.js",
-      "Canvas API",
-      "LocalStorage",
-      "Session Management",
-      "Timeline Analysis",
-      "Element Interaction",
-      "Export/Import",
-      "Responsive Design",
-      "Dark/Light Theme",
-      "User Journey Mapping",
-      "Behavioral Analytics"
-    ],
-    "links": {
-      "live": "./projects/user-journey-heatmap-visualizer/user-journey-heatmap-visualizer.html"
-    },
-    "author": {
-      "name": "Gupta-02",
-      "github": "https://github.com/Gupta-02"
-    }
-  },
-  {
-    "title": "Secure Sandbox Execution Chamber #5062",
-    "description": "Advanced secure code execution environment with multi-language support, sandboxed JavaScript execution, and comprehensive security measures. Features Monaco Editor integration, real-time code execution with safety restrictions, execution analytics, code templates, interactive console, execution history, and performance monitoring. Includes theme switching, settings management, code sharing, and data export capabilities.",
-    "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Code Editor",
-      "Monaco Editor",
-      "Sandbox Execution",
-      "Security",
-      "Multi-language Support",
-      "Code Execution",
-      "Interactive Console",
-      "Analytics",
-      "Chart.js",
-      "LocalStorage",
-      "Code Templates",
-      "Execution History",
-      "Performance Monitoring",
-      "Theme Switching",
-      "Data Export",
-      "Responsive Design",
-      "Code Sharing"
-    ],
-    "links": {
-      "live": "./secure-sandbox-execution-chamber/secure-sandbox-execution-chamber.html"
-    },
-    "author": {
-      "name": "Gupta-02",
-      "github": "https://github.com/Gupta-02"
-    }
-  },
-  {
-    "title": "Adaptive UI Accessibility Layer #5063",
-    "description": "Comprehensive accessibility enhancement tool with adaptive features for web applications. Features real-time accessibility scanning, adaptive UI adjustments based on user disabilities, simulator for different impairments (visual, motor, cognitive), analytics dashboard, voice control, and automated accessibility fixes. Supports WCAG compliance checking, color blindness simulation, keyboard navigation enhancements, and personalized accessibility profiles.",
-    "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Accessibility",
-      "WCAG",
-      "Adaptive UI",
-      "Disability Simulation",
-      "Voice Control",
-      "Screen Reader",
-      "Keyboard Navigation",
-      "Color Contrast",
-      "Analytics",
-      "Chart.js",
-      "LocalStorage",
-      "Real-time Scanning",
-      "User Experience",
-      "Inclusive Design",
-      "Assistive Technology",
-      "Responsive Design",
-      "Data Visualization"
-    ],
-    "links": {
-      "live": "./adaptive-ui-accessibility-layer/adaptive-ui-accessibility-layer.html"
-    },
-    "author": {
-      "name": "Gupta-02",
-      "github": "https://github.com/Gupta-02"
-    }
-  },
-  {
-    "title": "Knowledge Expiry Tracker #5064",
-    "description": "Comprehensive knowledge and skills management system with expiry tracking, renewal reminders, and analytics. Features knowledge item management with categories, priority levels, cost tracking, renewal history, customizable reminders, data visualization with charts, import/export functionality, and comprehensive analytics dashboard. Includes browser notifications, search and filtering, and responsive design.",
-    "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Knowledge Management",
-      "Expiry Tracking",
-      "Renewal Reminders",
-      "Analytics",
-      "Chart.js",
-      "LocalStorage",
-      "Data Visualization",
-      "Notifications",
-      "Search & Filter",
-      "Import/Export",
-      "Responsive Design",
-      "Priority Management",
-      "Cost Tracking",
-      "Category Management",
-      "Browser Notifications"
-    ],
-    "links": {
-      "live": "./knowledge-expiry-tracker/knowledge-expiry-tracker.html"
-    },
-    "author": {
-      "name": "Gupta-02",
-      "github": "https://github.com/Gupta-02"
-    }
-  },
-  {
-    "title": "Interactive Model Explainability Panel #5065",
-    "description": "Comprehensive machine learning model explainability tool featuring SHAP analysis, LIME explanations, feature importance visualization, partial dependence plots, model comparison, and interactive data exploration. Includes real-time prediction explanations, multiple analysis methods, customizable visualizations, and advanced data insights for understanding ML model behavior and decision-making processes.",
-    "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Machine Learning",
-      "Explainability",
-      "SHAP",
-      "LIME",
-      "Feature Importance",
-      "Partial Dependence Plots",
-      "Model Comparison",
-      "Data Visualization",
-      "Chart.js",
-      "Plotly.js",
-      "D3.js",
-      "Interactive Charts",
-      "Predictive Analytics",
-      "Model Interpretation",
-      "Data Science",
-      "AI Explainability",
-      "Statistical Analysis",
-      "LocalStorage",
-      "Responsive Design",
-      "Real-time Analysis",
-      "Advanced Analytics"
-    ],
-    "links": {
-      "live": "./interactive-model-explainability-panel/interactive-model-explainability-panel.html"
-    },
-    "author": {
-      "name": "Gupta-02",
-      "github": "https://github.com/Gupta-02"
-    }
-  },
-  {
-    "title": "Autonomous Dataset Validator #5067",
-    "description": "Comprehensive autonomous data validation and quality assessment tool for datasets. Features include file upload (CSV, JSON, Excel), real-time validation rules (missing values, duplicates, data types, ranges, outliers, patterns), interactive dashboard with quality metrics, detailed validation results with filtering, advanced analytics with correlation matrices and data type distributions, customizable validation rules with templates, export functionality for results and reports, and responsive design with dark/light theme support.",
-    "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Data Validation",
-      "Data Quality",
-      "CSV Processing",
-      "JSON Processing",
-      "File Upload",
-      "Data Analytics",
-      "Quality Metrics",
-      "Validation Rules",
-      "Outlier Detection",
-      "Duplicate Detection",
-      "Data Types",
-      "Range Validation",
-      "Pattern Matching",
-      "Chart.js",
-      "PapaParse",
-      "LocalStorage",
-      "Responsive Design",
-      "Dark Theme",
-      "Data Visualization",
-      "Export Functionality",
-      "Real-time Validation"
-    ],
-    "links": {
-      "live": "./autonomous-dataset-validator/autonomous-dataset-validator.html"
     },
     "author": {
       "name": "Gupta-02",

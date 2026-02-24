@@ -1,1049 +1,1086 @@
-/**
- * Autonomous Dataset Validator #5067
- * A comprehensive data validation and quality assessment tool
- */
+// Autonomous Dataset Validator #5069 - Advanced Data Validation Engine
 
-class AutonomousDatasetValidator {
+class DatasetValidator {
     constructor() {
-        this.currentData = null;
-        this.validationResults = [];
-        this.validationRules = this.getDefaultRules();
-        this.settings = this.loadSettings();
+        this.dataset = null;
+        this.originalData = null;
+        this.validationResults = null;
+        this.cleanedData = null;
         this.charts = {};
-        this.currentSection = 'dashboard';
 
-        this.init();
-    }
-
-    init() {
-        this.bindEvents();
-        this.loadTheme();
+        this.initializeEventListeners();
         this.initializeCharts();
-        this.updateUI();
-        this.showNotification('Welcome to Autonomous Dataset Validator', 'info');
     }
 
-    bindEvents() {
-        // Navigation
-        document.querySelectorAll('.sidebar-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.navigateToSection(link.dataset.section);
-            });
-        });
-
-        // Theme toggle
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            this.toggleTheme();
-        });
-
+    initializeEventListeners() {
         // File upload
-        document.getElementById('file-input').addEventListener('change', (e) => {
-            this.handleFileUpload(e.target.files[0]);
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', this.handleDragOver.bind(this));
+        uploadArea.addEventListener('drop', this.handleFileDrop.bind(this));
+        fileInput.addEventListener('change', this.handleFileSelect.bind(this));
+
+        // Validation
+        document.getElementById('validateBtn').addEventListener('click', this.runValidation.bind(this));
+
+        // Analysis tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', this.switchTab.bind(this));
         });
 
-        // Drag and drop
-        const uploadZone = document.getElementById('upload-zone');
-        uploadZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadZone.classList.add('dragover');
-        });
-        uploadZone.addEventListener('dragleave', () => {
-            uploadZone.classList.remove('dragover');
-        });
-        uploadZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadZone.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                this.handleFileUpload(files[0]);
-            }
-        });
+        // Cleaning
+        document.getElementById('cleanBtn').addEventListener('click', this.runCleaning.bind(this));
 
-        // Sample data buttons
-        document.querySelectorAll('.sample-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                this.loadSampleData(btn.dataset.type);
-            });
-        });
-
-        // Validation rules
-        document.querySelectorAll('.rule-item').forEach(item => {
-            item.addEventListener('click', () => {
-                this.selectRule(item.dataset.rule);
-            });
-        });
-
-        // Rule configuration
-        document.getElementById('apply-rule').addEventListener('click', () => {
-            this.applyRule();
-        });
-
-        document.getElementById('save-rule-template').addEventListener('click', () => {
-            this.saveRuleTemplate();
-        });
-
-        // Validation controls
-        document.getElementById('run-validation').addEventListener('click', () => {
-            this.runValidation();
-        });
-
-        document.getElementById('clear-results').addEventListener('click', () => {
-            this.clearResults();
-        });
-
-        // Results filters
-        document.getElementById('severity-filter').addEventListener('change', () => {
-            this.filterResults();
-        });
-
-        document.getElementById('type-filter').addEventListener('change', () => {
-            this.filterResults();
-        });
-
-        // Export buttons
-        document.getElementById('export-results').addEventListener('click', () => {
-            this.exportResults();
-        });
-
-        document.getElementById('export-report').addEventListener('click', () => {
-            this.exportReport();
-        });
-
-        // Settings
-        document.querySelectorAll('.setting-item input, .setting-item select').forEach(input => {
-            input.addEventListener('change', () => {
-                this.updateSetting(input.name, input.value);
-            });
-        });
-
-        // Modal close
-        document.querySelectorAll('.modal-close').forEach(close => {
-            close.addEventListener('click', () => {
-                this.closeModal();
-            });
-        });
-    }
-
-    navigateToSection(sectionId) {
-        // Update active section
-        document.querySelectorAll('.section').forEach(section => {
-            section.classList.remove('active');
-        });
-        document.getElementById(sectionId).classList.add('active');
-
-        // Update sidebar
-        document.querySelectorAll('.sidebar-link').forEach(link => {
-            link.classList.remove('active');
-        });
-        document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
-
-        this.currentSection = sectionId;
-        this.updateUI();
-    }
-
-    loadTheme() {
-        const theme = this.settings.theme || 'light';
-        document.documentElement.setAttribute('data-theme', theme);
-    }
-
-    toggleTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        this.settings.theme = newTheme;
-        this.saveSettings();
+        // Export
+        document.getElementById('exportCleanBtn').addEventListener('click', this.exportCleanData.bind(this));
+        document.getElementById('exportReportBtn').addEventListener('click', this.exportReport.bind(this));
     }
 
     initializeCharts() {
-        // Quality metrics chart
-        const qualityCtx = document.getElementById('quality-chart');
-        if (qualityCtx) {
-            this.charts.quality = new Chart(qualityCtx, {
+        // Initialize Chart.js instances
+        const chartConfigs = {
+            overviewChart: {
                 type: 'doughnut',
-                data: {
-                    labels: ['Valid', 'Warnings', 'Errors'],
-                    datasets: [{
-                        data: [0, 0, 0],
-                        backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
-                        borderWidth: 0
-                    }]
-                },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
+                        legend: { position: 'bottom' },
+                        title: { display: true, text: 'Data Quality Overview' }
                     }
                 }
-            });
-        }
-
-        // Data types chart
-        const typesCtx = document.getElementById('data-types-chart');
-        if (typesCtx) {
-            this.charts.dataTypes = new Chart(typesCtx, {
+            },
+            correlationChart: {
+                type: 'heatmap',
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: true, text: 'Feature Correlations' }
+                    }
+                }
+            },
+            distributionChart: {
                 type: 'bar',
-                data: {
-                    labels: [],
-                    datasets: [{
-                        label: 'Count',
-                        data: [],
-                        backgroundColor: '#667eea',
-                        borderWidth: 0
-                    }]
-                },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Data Distributions' }
+                    },
                     scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+                        y: { beginAtZero: true }
                     }
                 }
-            });
-        }
-
-        // Validation timeline
-        const timelineCtx = document.getElementById('validation-timeline');
-        if (timelineCtx) {
-            this.charts.timeline = new Chart(timelineCtx, {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [{
-                        label: 'Issues Found',
-                        data: [],
-                        borderColor: '#ef4444',
-                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        }
-    }
-
-    handleFileUpload(file) {
-        if (!file) return;
-
-        const allowedTypes = ['.csv', '.json', '.xlsx', '.xls'];
-        const fileExtension = file.name.toLowerCase().substring(file.name.lastIndexOf('.'));
-
-        if (!allowedTypes.includes(fileExtension)) {
-            this.showNotification('Unsupported file type. Please upload CSV, JSON, or Excel files.', 'error');
-            return;
-        }
-
-        this.showModal('loading', 'Processing file...');
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            try {
-                this.parseFile(file, e.target.result);
-            } catch (error) {
-                this.showNotification('Error parsing file: ' + error.message, 'error');
-                this.closeModal();
             }
         };
-        reader.readAsText(file);
-    }
 
-    parseFile(file, content) {
-        const fileExtension = file.name.toLowerCase().substring(file.name.lastIndexOf('.'));
-
-        switch (fileExtension) {
-            case '.csv':
-                this.parseCSV(content);
-                break;
-            case '.json':
-                this.parseJSON(content);
-                break;
-            case '.xlsx':
-            case '.xls':
-                this.parseExcel(file);
-                break;
-        }
-    }
-
-    parseCSV(content) {
-        Papa.parse(content, {
-            header: true,
-            skipEmptyLines: true,
-            complete: (results) => {
-                this.currentData = {
-                    headers: results.meta.fields,
-                    rows: results.data,
-                    fileName: 'uploaded_file.csv',
-                    fileSize: content.length,
-                    rowCount: results.data.length,
-                    columnCount: results.meta.fields.length
-                };
-                this.updateFileInfo();
-                this.closeModal();
-                this.showNotification('File uploaded successfully!', 'success');
-                this.navigateToSection('validation');
-            },
-            error: (error) => {
-                this.showNotification('Error parsing CSV: ' + error.message, 'error');
-                this.closeModal();
+        Object.keys(chartConfigs).forEach(chartId => {
+            const ctx = document.getElementById(chartId);
+            if (ctx) {
+                this.charts[chartId] = new Chart(ctx, chartConfigs[chartId]);
             }
         });
     }
 
-    parseJSON(content) {
+    handleDragOver(e) {
+        e.preventDefault();
+        e.currentTarget.classList.add('dragover');
+    }
+
+    handleFileDrop(e) {
+        e.preventDefault();
+        e.currentTarget.classList.remove('dragover');
+
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            this.processFile(files[0]);
+        }
+    }
+
+    handleFileSelect(e) {
+        const file = e.target.files[0];
+        if (file) {
+            this.processFile(file);
+        }
+    }
+
+    async processFile(file) {
         try {
-            const data = JSON.parse(content);
-            if (Array.isArray(data)) {
-                this.currentData = {
-                    headers: Object.keys(data[0] || {}),
-                    rows: data,
-                    fileName: 'uploaded_file.json',
-                    fileSize: content.length,
-                    rowCount: data.length,
-                    columnCount: Object.keys(data[0] || {}).length
-                };
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+
+            if (fileExtension === 'csv') {
+                this.dataset = await this.parseCSV(file);
+            } else if (fileExtension === 'json') {
+                this.dataset = await this.parseJSON(file);
             } else {
-                throw new Error('JSON must be an array of objects');
+                throw new Error('Unsupported file format. Please upload CSV or JSON files.');
             }
-            this.updateFileInfo();
-            this.closeModal();
-            this.showNotification('File uploaded successfully!', 'success');
-            this.navigateToSection('validation');
+
+            this.originalData = JSON.parse(JSON.stringify(this.dataset));
+            this.updateFileInfo(file);
+            this.enableValidation();
+
         } catch (error) {
-            this.showNotification('Error parsing JSON: ' + error.message, 'error');
-            this.closeModal();
+            this.showError('File processing error: ' + error.message);
         }
     }
 
-    parseExcel(file) {
-        // For demo purposes, we'll simulate Excel parsing
-        // In a real implementation, you'd use a library like SheetJS
-        this.showNotification('Excel parsing not implemented in demo', 'warning');
-        this.closeModal();
-    }
-
-    loadSampleData(type) {
-        let sampleData;
-
-        switch (type) {
-            case 'clean':
-                sampleData = this.generateCleanSampleData();
-                break;
-            case 'errors':
-                sampleData = this.generateErrorSampleData();
-                break;
-            case 'mixed':
-                sampleData = this.generateMixedSampleData();
-                break;
-        }
-
-        this.currentData = sampleData;
-        this.updateFileInfo();
-        this.showNotification('Sample data loaded!', 'success');
-        this.navigateToSection('validation');
-    }
-
-    generateCleanSampleData() {
-        const headers = ['id', 'name', 'email', 'age', 'salary', 'department'];
-        const rows = [];
-
-        for (let i = 1; i <= 100; i++) {
-            rows.push({
-                id: i,
-                name: `User ${i}`,
-                email: `user${i}@example.com`,
-                age: Math.floor(Math.random() * 50) + 20,
-                salary: Math.floor(Math.random() * 50000) + 30000,
-                department: ['Engineering', 'Sales', 'Marketing', 'HR'][Math.floor(Math.random() * 4)]
+    async parseCSV(file) {
+        return new Promise((resolve, reject) => {
+            Papa.parse(file, {
+                header: true,
+                dynamicTyping: true,
+                skipEmptyLines: true,
+                complete: (results) => {
+                    if (results.errors.length > 0) {
+                        reject(new Error('CSV parsing error: ' + results.errors[0].message));
+                    } else {
+                        resolve(results.data);
+                    }
+                },
+                error: (error) => reject(error)
             });
+        });
+    }
+
+    async parseJSON(file) {
+        const text = await file.text();
+        const data = JSON.parse(text);
+
+        if (Array.isArray(data)) {
+            return data;
+        } else if (typeof data === 'object') {
+            // Handle single object or nested structure
+            return Array.isArray(data.data) ? data.data : [data];
+        } else {
+            throw new Error('Invalid JSON format. Expected array or object with data array.');
         }
-
-        return {
-            headers,
-            rows,
-            fileName: 'clean_sample_data.csv',
-            fileSize: JSON.stringify(rows).length,
-            rowCount: rows.length,
-            columnCount: headers.length
-        };
     }
 
-    generateErrorSampleData() {
-        const headers = ['id', 'name', 'email', 'age', 'salary', 'department'];
-        const rows = [];
+    updateFileInfo(file) {
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const rowCount = document.getElementById('rowCount');
+        const colCount = document.getElementById('colCount');
 
-        for (let i = 1; i <= 50; i++) {
-            const hasErrors = Math.random() < 0.7; // 70% chance of errors
-            rows.push({
-                id: hasErrors && Math.random() < 0.3 ? '' : i, // 30% missing IDs
-                name: hasErrors && Math.random() < 0.2 ? '' : `User ${i}`, // 20% missing names
-                email: hasErrors && Math.random() < 0.4 ? `invalid-email${i}` : `user${i}@example.com`, // 40% invalid emails
-                age: hasErrors && Math.random() < 0.3 ? 'invalid' : (Math.floor(Math.random() * 50) + 20).toString(), // 30% invalid ages
-                salary: hasErrors && Math.random() < 0.2 ? 'not-a-number' : (Math.floor(Math.random() * 50000) + 30000).toString(), // 20% invalid salaries
-                department: ['Engineering', 'Sales', 'Marketing', 'HR'][Math.floor(Math.random() * 4)]
-            });
-        }
+        fileName.textContent = file.name;
+        fileSize.textContent = this.formatFileSize(file.size);
+        rowCount.textContent = this.dataset.length;
+        colCount.textContent = Object.keys(this.dataset[0] || {}).length;
 
-        return {
-            headers,
-            rows,
-            fileName: 'error_sample_data.csv',
-            fileSize: JSON.stringify(rows).length,
-            rowCount: rows.length,
-            columnCount: headers.length
-        };
+        fileInfo.style.display = 'block';
     }
 
-    generateMixedSampleData() {
-        const headers = ['id', 'name', 'email', 'age', 'salary', 'department', 'hire_date'];
-        const rows = [];
-
-        for (let i = 1; i <= 200; i++) {
-            const hasErrors = Math.random() < 0.3; // 30% chance of errors
-            rows.push({
-                id: i,
-                name: hasErrors && Math.random() < 0.1 ? '' : `Employee ${i}`,
-                email: hasErrors && Math.random() < 0.2 ? `user${i}@invalid` : `employee${i}@company.com`,
-                age: hasErrors && Math.random() < 0.15 ? 'thirty' : (Math.floor(Math.random() * 40) + 22).toString(),
-                salary: hasErrors && Math.random() < 0.1 ? '' : (Math.floor(Math.random() * 80000) + 40000).toString(),
-                department: ['Engineering', 'Sales', 'Marketing', 'HR', 'Finance'][Math.floor(Math.random() * 5)],
-                hire_date: hasErrors && Math.random() < 0.25 ? '2023-13-45' : `202${Math.floor(Math.random() * 3) + 1}-0${Math.floor(Math.random() * 9) + 1}-1${Math.floor(Math.random() * 5)}`
-            });
-        }
-
-        return {
-            headers,
-            rows,
-            fileName: 'mixed_sample_data.csv',
-            fileSize: JSON.stringify(rows).length,
-            rowCount: rows.length,
-            columnCount: headers.length
-        };
+    formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     }
 
-    updateFileInfo() {
-        if (!this.currentData) return;
-
-        const info = document.getElementById('file-info');
-        info.innerHTML = `
-            <h3>File Information</h3>
-            <div class="info-grid">
-                <div><strong>File Name:</strong> ${this.currentData.fileName}</div>
-                <div><strong>File Size:</strong> ${(this.currentData.fileSize / 1024).toFixed(2)} KB</div>
-                <div><strong>Rows:</strong> ${this.currentData.rowCount.toLocaleString()}</div>
-                <div><strong>Columns:</strong> ${this.currentData.columnCount}</div>
-            </div>
-        `;
+    enableValidation() {
+        document.getElementById('validateBtn').disabled = false;
+        document.getElementById('cleanBtn').disabled = false;
+        document.getElementById('exportCleanBtn').disabled = false;
+        document.getElementById('exportReportBtn').disabled = false;
     }
 
-    getDefaultRules() {
-        return {
-            missing_values: {
-                enabled: true,
-                threshold: 5,
-                action: 'flag'
-            },
-            duplicates: {
-                enabled: true,
-                columns: [],
-                action: 'flag'
-            },
-            data_types: {
-                enabled: true,
-                strict: false,
-                custom_types: {}
-            },
-            ranges: {
-                enabled: true,
-                rules: {}
-            },
-            outliers: {
-                enabled: true,
-                method: 'iqr',
-                threshold: 1.5
-            },
-            patterns: {
-                enabled: true,
-                rules: {}
+    async runValidation() {
+        if (!this.dataset) return;
+
+        this.showLoading('Running validation...');
+
+        try {
+            this.validationResults = {
+                dataTypeIssues: [],
+                missingValues: [],
+                duplicates: [],
+                outliers: [],
+                consistencyIssues: [],
+                qualityScore: 0,
+                completenessScore: 0
+            };
+
+            // Run selected validations
+            const checks = {
+                dataTypeCheck: () => this.validateDataTypes(),
+                missingCheck: () => this.detectMissingValues(),
+                duplicateCheck: () => this.detectDuplicates(),
+                outlierCheck: () => this.detectOutliers(),
+                consistencyCheck: () => this.checkConsistency()
+            };
+
+            for (const [checkId, checkFn] of Object.entries(checks)) {
+                if (document.getElementById(checkId).checked) {
+                    await checkFn();
+                }
             }
-        };
-    }
 
-    selectRule(ruleType) {
-        document.querySelectorAll('.rule-item').forEach(item => {
-            item.classList.remove('active');
-        });
-        document.querySelector(`[data-rule="${ruleType}"]`).classList.add('active');
+            this.calculateQualityScores();
+            this.displayValidationResults();
 
-        this.showRuleConfig(ruleType);
-    }
-
-    showRuleConfig(ruleType) {
-        const configPanel = document.getElementById('rule-config-panel');
-        const rule = this.validationRules[ruleType];
-
-        let configHTML = '';
-
-        switch (ruleType) {
-            case 'missing_values':
-                configHTML = `
-                    <h4>Missing Values Configuration</h4>
-                    <div class="setting-item">
-                        <label>Threshold (%):</label>
-                        <input type="number" name="missing_threshold" value="${rule.threshold}" min="0" max="100">
-                    </div>
-                    <div class="setting-item">
-                        <label>Action:</label>
-                        <select name="missing_action">
-                            <option value="flag" ${rule.action === 'flag' ? 'selected' : ''}>Flag as Warning</option>
-                            <option value="remove" ${rule.action === 'remove' ? 'selected' : ''}>Remove Rows</option>
-                            <option value="impute" ${rule.action === 'impute' ? 'selected' : ''}>Impute Values</option>
-                        </select>
-                    </div>
-                `;
-                break;
-
-            case 'duplicates':
-                configHTML = `
-                    <h4>Duplicate Detection Configuration</h4>
-                    <div class="setting-item">
-                        <label>Check All Columns:</label>
-                        <input type="checkbox" name="duplicate_all_columns" ${rule.columns.length === 0 ? 'checked' : ''}>
-                    </div>
-                    <div class="setting-item">
-                        <label>Specific Columns:</label>
-                        <input type="text" name="duplicate_columns" value="${rule.columns.join(', ')}" placeholder="column1, column2">
-                    </div>
-                `;
-                break;
-
-            case 'data_types':
-                configHTML = `
-                    <h4>Data Types Configuration</h4>
-                    <div class="setting-item">
-                        <label>Strict Mode:</label>
-                        <input type="checkbox" name="strict_types" ${rule.strict ? 'checked' : ''}>
-                    </div>
-                `;
-                break;
-
-            case 'ranges':
-                configHTML = `
-                    <h4>Range Validation Configuration</h4>
-                    <p>Add range rules for numeric columns:</p>
-                    <div id="range-rules">
-                        ${this.renderRangeRules()}
-                    </div>
-                    <button class="secondary-btn" onclick="validator.addRangeRule()">Add Range Rule</button>
-                `;
-                break;
-
-            case 'outliers':
-                configHTML = `
-                    <h4>Outlier Detection Configuration</h4>
-                    <div class="setting-item">
-                        <label>Method:</label>
-                        <select name="outlier_method">
-                            <option value="iqr" ${rule.method === 'iqr' ? 'selected' : ''}>IQR (Interquartile Range)</option>
-                            <option value="zscore" ${rule.method === 'zscore' ? 'selected' : ''}>Z-Score</option>
-                            <option value="modified_zscore" ${rule.method === 'modified_zscore' ? 'selected' : ''}>Modified Z-Score</option>
-                        </select>
-                    </div>
-                    <div class="setting-item">
-                        <label>Threshold:</label>
-                        <input type="number" name="outlier_threshold" value="${rule.threshold}" step="0.1" min="0">
-                    </div>
-                `;
-                break;
-
-            case 'patterns':
-                configHTML = `
-                    <h4>Pattern Validation Configuration</h4>
-                    <p>Add regex patterns for text columns:</p>
-                    <div id="pattern-rules">
-                        ${this.renderPatternRules()}
-                    </div>
-                    <button class="secondary-btn" onclick="validator.addPatternRule()">Add Pattern Rule</button>
-                `;
-                break;
+        } catch (error) {
+            this.showError('Validation error: ' + error.message);
+        } finally {
+            this.hideLoading();
         }
-
-        configPanel.innerHTML = configHTML;
     }
 
-    renderRangeRules() {
-        let html = '';
-        Object.entries(this.validationRules.ranges.rules).forEach(([column, rule]) => {
-            html += `
-                <div class="setting-item">
-                    <label>${column}:</label>
-                    <input type="number" name="range_min_${column}" value="${rule.min}" placeholder="Min">
-                    <input type="number" name="range_max_${column}" value="${rule.max}" placeholder="Max">
-                    <button class="danger-btn" onclick="validator.removeRangeRule('${column}')">Remove</button>
-                </div>
-            `;
+    validateDataTypes() {
+        const columns = Object.keys(this.dataset[0] || {});
+        const sampleSize = Math.min(100, this.dataset.length);
+
+        columns.forEach(col => {
+            const values = this.dataset.slice(0, sampleSize).map(row => row[col]).filter(val => val != null);
+            const inferredType = this.inferDataType(values);
+
+            // Check for type inconsistencies
+            let inconsistentCount = 0;
+            this.dataset.forEach(row => {
+                if (row[col] != null && typeof row[col] !== inferredType) {
+                    inconsistentCount++;
+                }
+            });
+
+            if (inconsistentCount > 0) {
+                this.validationResults.dataTypeIssues.push({
+                    column: col,
+                    expectedType: inferredType,
+                    inconsistentCount: inconsistentCount,
+                    severity: 'warning'
+                });
+            }
         });
-        return html;
     }
 
-    renderPatternRules() {
-        let html = '';
-        Object.entries(this.validationRules.patterns.rules).forEach(([column, pattern]) => {
-            html += `
-                <div class="setting-item">
-                    <label>${column}:</label>
-                    <input type="text" name="pattern_${column}" value="${pattern}" placeholder="Regex pattern">
-                    <button class="danger-btn" onclick="validator.removePatternRule('${column}')">Remove</button>
-                </div>
-            `;
+    inferDataType(values) {
+        if (values.length === 0) return 'unknown';
+
+        const typeCounts = {};
+        values.forEach(val => {
+            const type = typeof val;
+            typeCounts[type] = (typeCounts[type] || 0) + 1;
         });
-        return html;
+
+        // Check for date strings
+        const dateCount = values.filter(val =>
+            typeof val === 'string' && !isNaN(Date.parse(val))
+        ).length;
+
+        if (dateCount > values.length * 0.5) return 'date';
+
+        // Return most common type
+        return Object.keys(typeCounts).reduce((a, b) =>
+            typeCounts[a] > typeCounts[b] ? a : b
+        );
     }
 
-    applyRule() {
-        const ruleType = document.querySelector('.rule-item.active').dataset.rule;
-        const rule = this.validationRules[ruleType];
+    detectMissingValues() {
+        const columns = Object.keys(this.dataset[0] || {});
+        const threshold = parseFloat(document.getElementById('missingThreshold').value) / 100;
 
-        // Update rule settings from form inputs
-        const inputs = document.querySelectorAll('#rule-config-panel input, #rule-config-panel select');
-        inputs.forEach(input => {
-            if (input.name.startsWith('missing_')) {
-                if (input.name === 'missing_threshold') rule.threshold = parseFloat(input.value);
-                if (input.name === 'missing_action') rule.action = input.value;
-            } else if (input.name.startsWith('duplicate_')) {
-                if (input.name === 'duplicate_all_columns') rule.columns = input.checked ? [] : [];
-                if (input.name === 'duplicate_columns') rule.columns = input.value.split(',').map(s => s.trim());
-            } else if (input.name === 'strict_types') {
-                rule.strict = input.checked;
-            } else if (input.name.startsWith('outlier_')) {
-                if (input.name === 'outlier_method') rule.method = input.value;
-                if (input.name === 'outlier_threshold') rule.threshold = parseFloat(input.value);
-            } else if (input.name.startsWith('range_')) {
-                // Handle range rules
-            } else if (input.name.startsWith('pattern_')) {
-                // Handle pattern rules
+        columns.forEach(col => {
+            const missingCount = this.dataset.filter(row =>
+                row[col] == null || row[col] === '' || row[col] === undefined
+            ).length;
+
+            const missingPercentage = missingCount / this.dataset.length;
+
+            if (missingPercentage > threshold) {
+                this.validationResults.missingValues.push({
+                    column: col,
+                    count: missingCount,
+                    percentage: (missingPercentage * 100).toFixed(2),
+                    severity: missingPercentage > 0.1 ? 'error' : 'warning'
+                });
+            }
+        });
+    }
+
+    detectDuplicates() {
+        const seen = new Set();
+        let duplicateCount = 0;
+
+        this.dataset.forEach((row, index) => {
+            const rowStr = JSON.stringify(row);
+            if (seen.has(rowStr)) {
+                duplicateCount++;
+            } else {
+                seen.add(rowStr);
             }
         });
 
-        this.showNotification(`Rule "${ruleType}" updated successfully!`, 'success');
-    }
-
-    runValidation() {
-        if (!this.currentData) {
-            this.showNotification('Please upload data first', 'warning');
-            return;
-        }
-
-        this.showModal('loading', 'Running validation...');
-
-        setTimeout(() => {
-            this.validationResults = this.performValidation();
-            this.displayResults();
-            this.updateCharts();
-            this.closeModal();
-            this.showNotification('Validation completed!', 'success');
-            this.navigateToSection('results');
-        }, 2000);
-    }
-
-    performValidation() {
-        const results = [];
-        const { headers, rows } = this.currentData;
-
-        // Missing values check
-        if (this.validationRules.missing_values.enabled) {
-            rows.forEach((row, index) => {
-                headers.forEach(header => {
-                    if (!row[header] || row[header] === '') {
-                        results.push({
-                            type: 'missing_value',
-                            severity: 'warning',
-                            column: header,
-                            row: index + 1,
-                            value: row[header],
-                            message: `Missing value in column "${header}"`,
-                            suggestion: 'Consider imputing or removing this row'
-                        });
-                    }
-                });
+        if (duplicateCount > 0) {
+            this.validationResults.duplicates.push({
+                count: duplicateCount,
+                percentage: ((duplicateCount / this.dataset.length) * 100).toFixed(2),
+                severity: duplicateCount > this.dataset.length * 0.05 ? 'error' : 'warning'
             });
         }
+    }
 
-        // Duplicate check
-        if (this.validationRules.duplicates.enabled) {
-            const seen = new Set();
-            const checkColumns = this.validationRules.duplicates.columns.length > 0
-                ? this.validationRules.duplicates.columns
-                : headers;
+    detectOutliers() {
+        const columns = Object.keys(this.dataset[0] || {});
+        const method = document.getElementById('outlierMethod').value;
 
-            rows.forEach((row, index) => {
-                const key = checkColumns.map(col => row[col]).join('|');
-                if (seen.has(key)) {
-                    results.push({
-                        type: 'duplicate',
-                        severity: 'error',
-                        column: checkColumns.join(', '),
-                        row: index + 1,
-                        value: key,
-                        message: `Duplicate row found`,
-                        suggestion: 'Remove duplicate rows'
+        columns.forEach(col => {
+            const values = this.dataset.map(row => parseFloat(row[col])).filter(val => !isNaN(val));
+            if (values.length < 10) return; // Need minimum sample size
+
+            let outliers = [];
+
+            if (method === 'iqr') {
+                outliers = this.detectOutliersIQR(values);
+            } else if (method === 'zscore') {
+                outliers = this.detectOutliersZScore(values);
+            }
+
+            if (outliers.length > 0) {
+                this.validationResults.outliers.push({
+                    column: col,
+                    count: outliers.length,
+                    method: method,
+                    severity: 'warning'
+                });
+            }
+        });
+    }
+
+    detectOutliersIQR(values) {
+        const sorted = values.sort((a, b) => a - b);
+        const q1 = sorted[Math.floor(sorted.length * 0.25)];
+        const q3 = sorted[Math.floor(sorted.length * 0.75)];
+        const iqr = q3 - q1;
+        const lowerBound = q1 - 1.5 * iqr;
+        const upperBound = q3 + 1.5 * iqr;
+
+        return values.filter(val => val < lowerBound || val > upperBound);
+    }
+
+    detectOutliersZScore(values) {
+        const mean = values.reduce((a, b) => a + b, 0) / values.length;
+        const std = Math.sqrt(values.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / values.length);
+
+        return values.filter(val => Math.abs((val - mean) / std) > 3);
+    }
+
+    checkConsistency() {
+        const columns = Object.keys(this.dataset[0] || {});
+
+        // Check for logical inconsistencies
+        columns.forEach(col => {
+            const values = this.dataset.map(row => row[col]);
+
+            // Email format validation
+            if (col.toLowerCase().includes('email')) {
+                const invalidEmails = values.filter(val =>
+                    val && typeof val === 'string' && !this.isValidEmail(val)
+                );
+                if (invalidEmails.length > 0) {
+                    this.validationResults.consistencyIssues.push({
+                        column: col,
+                        type: 'invalid_email',
+                        count: invalidEmails.length,
+                        severity: 'error'
                     });
                 }
-                seen.add(key);
-            });
-        }
+            }
 
-        // Data type validation
-        if (this.validationRules.data_types.enabled) {
-            rows.forEach((row, index) => {
-                headers.forEach(header => {
-                    const value = row[header];
-                    if (value && !this.isValidDataType(value, header)) {
-                        results.push({
-                            type: 'data_type',
-                            severity: 'error',
-                            column: header,
-                            row: index + 1,
-                            value: value,
-                            message: `Invalid data type in column "${header}"`,
-                            suggestion: 'Convert to appropriate data type'
-                        });
-                    }
-                });
-            });
-        }
-
-        // Range validation
-        if (this.validationRules.ranges.enabled) {
-            Object.entries(this.validationRules.ranges.rules).forEach(([column, rule]) => {
-                rows.forEach((row, index) => {
-                    const value = parseFloat(row[column]);
-                    if (!isNaN(value) && (value < rule.min || value > rule.max)) {
-                        results.push({
-                            type: 'range',
-                            severity: 'warning',
-                            column: column,
-                            row: index + 1,
-                            value: value,
-                            message: `Value out of range (${rule.min} - ${rule.max})`,
-                            suggestion: 'Check data entry or adjust range'
-                        });
-                    }
-                });
-            });
-        }
-
-        // Outlier detection
-        if (this.validationRules.outliers.enabled) {
-            headers.forEach(header => {
-                const values = rows.map(row => parseFloat(row[header])).filter(v => !isNaN(v));
-                if (values.length > 0) {
-                    const outliers = this.detectOutliers(values);
-                    outliers.forEach(outlierIndex => {
-                        results.push({
-                            type: 'outlier',
-                            severity: 'info',
-                            column: header,
-                            row: outlierIndex + 1,
-                            value: values[outlierIndex],
-                            message: `Potential outlier detected`,
-                            suggestion: 'Review value for accuracy'
-                        });
+            // Phone format validation
+            if (col.toLowerCase().includes('phone')) {
+                const invalidPhones = values.filter(val =>
+                    val && typeof val === 'string' && !this.isValidPhone(val)
+                );
+                if (invalidPhones.length > 0) {
+                    this.validationResults.consistencyIssues.push({
+                        column: col,
+                        type: 'invalid_phone',
+                        count: invalidPhones.length,
+                        severity: 'warning'
                     });
                 }
-            });
-        }
-
-        return results;
+            }
+        });
     }
 
-    isValidDataType(value, column) {
-        // Simple type detection - in a real implementation, you'd have more sophisticated logic
-        if (this.validationRules.data_types.strict) {
-            // Check if it's a number
-            if (!isNaN(value) && !isNaN(parseFloat(value))) return true;
-            // Check if it's a valid date
-            if (!isNaN(Date.parse(value))) return true;
-            // Otherwise assume string
-            return typeof value === 'string';
-        }
-        return true; // Non-strict mode accepts anything
+    isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     }
 
-    detectOutliers(values) {
-        const outliers = [];
-        const method = this.validationRules.outliers.method;
-        const threshold = this.validationRules.outliers.threshold;
-
-        if (method === 'iqr') {
-            values.sort((a, b) => a - b);
-            const q1 = values[Math.floor(values.length * 0.25)];
-            const q3 = values[Math.floor(values.length * 0.75)];
-            const iqr = q3 - q1;
-            const lowerBound = q1 - (threshold * iqr);
-            const upperBound = q3 + (threshold * iqr);
-
-            values.forEach((value, index) => {
-                if (value < lowerBound || value > upperBound) {
-                    outliers.push(index);
-                }
-            });
-        }
-
-        return outliers;
+    isValidPhone(phone) {
+        const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+        const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+        return phoneRegex.test(cleanPhone);
     }
 
-    displayResults() {
-        const tbody = document.querySelector('#issues-table tbody');
-        tbody.innerHTML = '';
+    calculateQualityScores() {
+        const totalIssues = this.validationResults.dataTypeIssues.length +
+                          this.validationResults.missingValues.length +
+                          this.validationResults.duplicates.length +
+                          this.validationResults.outliers.length +
+                          this.validationResults.consistencyIssues.length;
 
-        if (this.validationResults.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6" class="no-data">No issues found! Your data looks good.</td></tr>';
-            return;
+        // Calculate completeness score
+        const totalCells = this.dataset.length * Object.keys(this.dataset[0] || {}).length;
+        const missingCells = this.dataset.reduce((acc, row) => {
+            return acc + Object.values(row).filter(val => val == null || val === '').length;
+        }, 0);
+
+        this.validationResults.completenessScore = Math.round(((totalCells - missingCells) / totalCells) * 100);
+
+        // Calculate overall quality score (simplified)
+        const baseScore = 100;
+        const penaltyPerIssue = 5;
+        this.validationResults.qualityScore = Math.max(0, baseScore - (totalIssues * penaltyPerIssue));
+    }
+
+    displayValidationResults() {
+        const resultsDiv = document.getElementById('validationResults');
+        const qualityScore = document.getElementById('qualityScore');
+        const issueCount = document.getElementById('issueCount');
+        const completenessScore = document.getElementById('completenessScore');
+        const issuesList = document.getElementById('issuesList');
+
+        qualityScore.textContent = this.validationResults.qualityScore + '%';
+        qualityScore.className = 'result-value ' +
+            (this.validationResults.qualityScore >= 80 ? 'quality-good' :
+             this.validationResults.qualityScore >= 60 ? 'quality-warning' : 'quality-error');
+
+        issueCount.textContent = this.getTotalIssues();
+        completenessScore.textContent = this.validationResults.completenessScore + '%';
+
+        // Display issues
+        issuesList.innerHTML = '';
+        this.displayIssues();
+
+        resultsDiv.style.display = 'block';
+
+        // Update overview chart
+        this.updateOverviewChart();
+    }
+
+    getTotalIssues() {
+        return this.validationResults.dataTypeIssues.length +
+               this.validationResults.missingValues.length +
+               this.validationResults.duplicates.length +
+               this.validationResults.outliers.length +
+               this.validationResults.consistencyIssues.length;
+    }
+
+    displayIssues() {
+        const issuesList = document.getElementById('issuesList');
+        const allIssues = [
+            ...this.validationResults.dataTypeIssues.map(issue => ({ ...issue, category: 'Data Types' })),
+            ...this.validationResults.missingValues.map(issue => ({ ...issue, category: 'Missing Values' })),
+            ...this.validationResults.duplicates.map(issue => ({ ...issue, category: 'Duplicates' })),
+            ...this.validationResults.outliers.map(issue => ({ ...issue, category: 'Outliers' })),
+            ...this.validationResults.consistencyIssues.map(issue => ({ ...issue, category: 'Consistency' }))
+        ];
+
+        allIssues.forEach(issue => {
+            const issueDiv = document.createElement('div');
+            issueDiv.className = `issue-item ${issue.severity || 'warning'}`;
+
+            let message = `[${issue.category}] `;
+            if (issue.column) message += `Column "${issue.column}": `;
+
+            if (issue.type === 'invalid_email') {
+                message += `${issue.count} invalid email addresses`;
+            } else if (issue.type === 'invalid_phone') {
+                message += `${issue.count} invalid phone numbers`;
+            } else if (issue.count !== undefined) {
+                message += `${issue.count} issues found`;
+            } else if (issue.percentage) {
+                message += `${issue.percentage}% affected`;
+            } else {
+                message += 'Issue detected';
+            }
+
+            issueDiv.textContent = message;
+            issuesList.appendChild(issueDiv);
+        });
+    }
+
+    updateOverviewChart() {
+        const ctx = document.getElementById('overviewChart');
+        if (!this.charts.overviewChart) return;
+
+        const data = {
+            labels: ['Valid Data', 'Issues Found'],
+            datasets: [{
+                data: [
+                    this.validationResults.qualityScore,
+                    100 - this.validationResults.qualityScore
+                ],
+                backgroundColor: [
+                    'rgba(16, 185, 129, 0.8)',
+                    'rgba(239, 68, 68, 0.8)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        this.charts.overviewChart.data = data;
+        this.charts.overviewChart.update();
+    }
+
+    switchTab(e) {
+        const tabId = e.target.dataset.tab;
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+
+        tabBtns.forEach(btn => btn.classList.remove('active'));
+        tabPanes.forEach(pane => pane.classList.remove('active'));
+
+        e.target.classList.add('active');
+        document.getElementById(tabId + 'Tab').classList.add('active');
+
+        // Update tab content
+        if (tabId === 'statistics') {
+            this.displayStatistics();
+        } else if (tabId === 'correlations') {
+            this.displayCorrelations();
+        } else if (tabId === 'distributions') {
+            this.displayDistributions();
         }
+    }
 
-        this.validationResults.forEach(result => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td><span class="severity-${result.severity}">${result.severity}</span></td>
-                <td>${result.type.replace('_', ' ')}</td>
-                <td>${result.column}</td>
-                <td>${result.row}</td>
-                <td>${result.value || 'N/A'}</td>
-                <td>${result.message}</td>
+    displayStatistics() {
+        const statsGrid = document.getElementById('statisticsGrid');
+        statsGrid.innerHTML = '';
+
+        if (!this.dataset || this.dataset.length === 0) return;
+
+        const columns = Object.keys(this.dataset[0]);
+
+        columns.forEach(col => {
+            const values = this.dataset.map(row => row[col]).filter(val => val != null);
+            const stats = this.calculateColumnStats(values);
+
+            const statCard = document.createElement('div');
+            statCard.className = 'stat-card';
+            statCard.innerHTML = `
+                <h4>${col}</h4>
+                <div class="stat-item"><span class="stat-label">Count:</span> <span class="stat-value">${stats.count}</span></div>
+                <div class="stat-item"><span class="stat-label">Type:</span> <span class="stat-value">${stats.type}</span></div>
+                ${stats.mean !== null ? `<div class="stat-item"><span class="stat-label">Mean:</span> <span class="stat-value">${stats.mean.toFixed(2)}</span></div>` : ''}
+                ${stats.median !== null ? `<div class="stat-item"><span class="stat-label">Median:</span> <span class="stat-value">${stats.median.toFixed(2)}</span></div>` : ''}
+                ${stats.min !== null ? `<div class="stat-item"><span class="stat-label">Min:</span> <span class="stat-value">${stats.min.toFixed(2)}</span></div>` : ''}
+                ${stats.max !== null ? `<div class="stat-item"><span class="stat-label">Max:</span> <span class="stat-value">${stats.max.toFixed(2)}</span></div>` : ''}
+                <div class="stat-item"><span class="stat-label">Unique:</span> <span class="stat-value">${stats.unique}</span></div>
             `;
-            tbody.appendChild(row);
+
+            statsGrid.appendChild(statCard);
         });
     }
 
-    filterResults() {
-        const severityFilter = document.getElementById('severity-filter').value;
-        const typeFilter = document.getElementById('type-filter').value;
+    calculateColumnStats(values) {
+        const stats = {
+            count: values.length,
+            type: this.inferDataType(values),
+            mean: null,
+            median: null,
+            min: null,
+            max: null,
+            unique: new Set(values).size
+        };
 
-        const rows = document.querySelectorAll('#issues-table tbody tr');
-
-        rows.forEach(row => {
-            if (row.querySelector('.no-data')) return;
-
-            const severity = row.cells[0].textContent.toLowerCase();
-            const type = row.cells[1].textContent.toLowerCase().replace(' ', '_');
-
-            const severityMatch = severityFilter === 'all' || severity === severityFilter;
-            const typeMatch = typeFilter === 'all' || type === typeFilter;
-
-            row.style.display = severityMatch && typeMatch ? '' : 'none';
-        });
-    }
-
-    updateCharts() {
-        if (!this.charts.quality) return;
-
-        // Quality metrics
-        const total = this.currentData ? this.currentData.rowCount : 0;
-        const errors = this.validationResults.filter(r => r.severity === 'error').length;
-        const warnings = this.validationResults.filter(r => r.severity === 'warning').length;
-        const valid = total - errors - warnings;
-
-        this.charts.quality.data.datasets[0].data = [valid, warnings, errors];
-        this.charts.quality.update();
-
-        // Data types
-        if (this.currentData) {
-            const typeCounts = {};
-            this.currentData.rows.forEach(row => {
-                this.currentData.headers.forEach(header => {
-                    const value = row[header];
-                    let type = 'string';
-                    if (!isNaN(value) && !isNaN(parseFloat(value))) type = 'number';
-                    else if (!isNaN(Date.parse(value))) type = 'date';
-
-                    typeCounts[type] = (typeCounts[type] || 0) + 1;
-                });
-            });
-
-            this.charts.dataTypes.data.labels = Object.keys(typeCounts);
-            this.charts.dataTypes.data.datasets[0].data = Object.values(typeCounts);
-            this.charts.dataTypes.update();
+        if (stats.type === 'number') {
+            const nums = values.filter(v => typeof v === 'number');
+            if (nums.length > 0) {
+                stats.mean = nums.reduce((a, b) => a + b, 0) / nums.length;
+                stats.median = this.calculateMedian(nums);
+                stats.min = Math.min(...nums);
+                stats.max = Math.max(...nums);
+            }
         }
+
+        return stats;
     }
 
-    clearResults() {
-        this.validationResults = [];
-        this.displayResults();
-        this.updateCharts();
-        this.showNotification('Results cleared', 'info');
+    calculateMedian(values) {
+        const sorted = values.sort((a, b) => a - b);
+        const mid = Math.floor(sorted.length / 2);
+        return sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
     }
 
-    exportResults() {
-        if (this.validationResults.length === 0) {
-            this.showNotification('No results to export', 'warning');
+    displayCorrelations() {
+        if (!this.charts.correlationChart) return;
+
+        // Simplified correlation matrix for numeric columns
+        const numericColumns = Object.keys(this.dataset[0] || {}).filter(col => {
+            return this.dataset.some(row => typeof row[col] === 'number');
+        });
+
+        if (numericColumns.length < 2) {
+            document.getElementById('correlationChart').parentElement.innerHTML =
+                '<p>Not enough numeric columns for correlation analysis</p>';
             return;
         }
 
-        const csv = Papa.unparse(this.validationResults);
-        this.downloadFile(csv, 'validation_results.csv', 'text/csv');
-        this.showNotification('Results exported successfully!', 'success');
+        // Calculate correlation matrix
+        const correlations = [];
+        numericColumns.forEach((col1, i) => {
+            correlations[i] = [];
+            numericColumns.forEach((col2, j) => {
+                correlations[i][j] = this.calculateCorrelation(col1, col2);
+            });
+        });
+
+        // Create heatmap data
+        const data = {
+            labels: numericColumns,
+            datasets: [{
+                label: 'Correlation',
+                data: correlations.flat(),
+                backgroundColor: correlations.flat().map(val => {
+                    const intensity = Math.abs(val);
+                    const color = val > 0 ? [16, 185, 129] : [239, 68, 68]; // green for positive, red for negative
+                    return `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${intensity})`;
+                }),
+                borderWidth: 1
+            }]
+        };
+
+        this.charts.correlationChart.data = data;
+        this.charts.correlationChart.update();
+    }
+
+    calculateCorrelation(col1, col2) {
+        const values1 = this.dataset.map(row => parseFloat(row[col1])).filter(v => !isNaN(v));
+        const values2 = this.dataset.map(row => parseFloat(row[col2])).filter(v => !isNaN(v));
+
+        const minLength = Math.min(values1.length, values2.length);
+        const x = values1.slice(0, minLength);
+        const y = values2.slice(0, minLength);
+
+        if (x.length < 2) return 0;
+
+        const n = x.length;
+        const sumX = x.reduce((a, b) => a + b, 0);
+        const sumY = y.reduce((a, b) => a + b, 0);
+        const sumXY = x.reduce((sum, xi, i) => sum + xi * y[i], 0);
+        const sumX2 = x.reduce((sum, xi) => sum + xi * xi, 0);
+        const sumY2 = y.reduce((sum, yi) => sum + yi * yi, 0);
+
+        const numerator = n * sumXY - sumX * sumY;
+        const denominator = Math.sqrt((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY));
+
+        return denominator === 0 ? 0 : numerator / denominator;
+    }
+
+    displayDistributions() {
+        if (!this.charts.distributionChart) return;
+
+        const numericColumns = Object.keys(this.dataset[0] || {}).filter(col => {
+            return this.dataset.some(row => typeof row[col] === 'number');
+        });
+
+        if (numericColumns.length === 0) {
+            document.getElementById('distributionChart').parentElement.innerHTML =
+                '<p>No numeric columns found for distribution analysis</p>';
+            return;
+        }
+
+        // Create histogram data for first numeric column
+        const column = numericColumns[0];
+        const values = this.dataset.map(row => parseFloat(row[column])).filter(v => !isNaN(v));
+
+        const histogram = this.createHistogram(values, 10);
+
+        const data = {
+            labels: histogram.labels,
+            datasets: [{
+                label: `Distribution of ${column}`,
+                data: histogram.counts,
+                backgroundColor: 'rgba(37, 99, 235, 0.8)',
+                borderColor: 'rgba(37, 99, 235, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        this.charts.distributionChart.data = data;
+        this.charts.distributionChart.update();
+    }
+
+    createHistogram(values, bins) {
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+        const range = max - min;
+        const binWidth = range / bins;
+
+        const counts = new Array(bins).fill(0);
+        const labels = [];
+
+        for (let i = 0; i < bins; i++) {
+            const binStart = min + i * binWidth;
+            const binEnd = min + (i + 1) * binWidth;
+            labels.push(`${binStart.toFixed(1)}-${binEnd.toFixed(1)}`);
+
+            values.forEach(val => {
+                if (val >= binStart && val < binEnd) {
+                    counts[i]++;
+                }
+            });
+        }
+
+        return { labels, counts };
+    }
+
+    async runCleaning() {
+        if (!this.dataset) return;
+
+        this.showLoading('Cleaning data...');
+
+        try {
+            this.cleanedData = JSON.parse(JSON.stringify(this.dataset));
+            let rowsRemoved = 0;
+            let valuesFilled = 0;
+
+            // Apply selected cleaning operations
+            if (document.getElementById('removeDuplicates').checked) {
+                const result = this.removeDuplicates();
+                rowsRemoved += result.removed;
+                this.cleanedData = result.data;
+            }
+
+            if (document.getElementById('fillMissing').checked) {
+                valuesFilled = this.fillMissingValues();
+            }
+
+            if (document.getElementById('removeOutliers').checked) {
+                const result = this.removeOutliers();
+                rowsRemoved += result.removed;
+                this.cleanedData = result.data;
+            }
+
+            if (document.getElementById('normalizeData').checked) {
+                this.normalizeData();
+            }
+
+            // Calculate quality improvement
+            const oldQuality = this.validationResults ? this.validationResults.qualityScore : 50;
+            const newValidation = this.runValidationOnData(this.cleanedData);
+            const newQuality = newValidation.qualityScore;
+            const improvement = Math.max(0, newQuality - oldQuality);
+
+            this.displayCleaningResults(rowsRemoved, valuesFilled, improvement);
+
+        } catch (error) {
+            this.showError('Cleaning error: ' + error.message);
+        } finally {
+            this.hideLoading();
+        }
+    }
+
+    removeDuplicates() {
+        const seen = new Set();
+        const unique = [];
+        let removed = 0;
+
+        this.cleanedData.forEach(row => {
+            const rowStr = JSON.stringify(row);
+            if (!seen.has(rowStr)) {
+                seen.add(rowStr);
+                unique.push(row);
+            } else {
+                removed++;
+            }
+        });
+
+        return { data: unique, removed };
+    }
+
+    fillMissingValues() {
+        const columns = Object.keys(this.cleanedData[0] || {});
+        let filled = 0;
+
+        columns.forEach(col => {
+            const values = this.cleanedData.map(row => row[col]).filter(val => val != null);
+            if (values.length === 0) return;
+
+            const type = this.inferDataType(values);
+
+            if (type === 'number') {
+                const mean = values.reduce((a, b) => a + b, 0) / values.length;
+                this.cleanedData.forEach(row => {
+                    if (row[col] == null) {
+                        row[col] = mean;
+                        filled++;
+                    }
+                });
+            } else {
+                // For categorical data, use mode
+                const mode = this.calculateMode(values);
+                this.cleanedData.forEach(row => {
+                    if (row[col] == null) {
+                        row[col] = mode;
+                        filled++;
+                    }
+                });
+            }
+        });
+
+        return filled;
+    }
+
+    calculateMode(values) {
+        const counts = {};
+        values.forEach(val => {
+            counts[val] = (counts[val] || 0) + 1;
+        });
+
+        return Object.keys(counts).reduce((a, b) =>
+            counts[a] > counts[b] ? a : b
+        );
+    }
+
+    removeOutliers() {
+        const columns = Object.keys(this.cleanedData[0] || {});
+        const method = document.getElementById('outlierMethod').value;
+        let removed = 0;
+
+        columns.forEach(col => {
+            const values = this.cleanedData.map(row => parseFloat(row[col])).filter(val => !isNaN(val));
+            if (values.length < 10) return;
+
+            let outliers;
+            if (method === 'iqr') {
+                outliers = this.detectOutliersIQR(values);
+            } else {
+                outliers = this.detectOutliersZScore(values);
+            }
+
+            if (outliers.length > 0) {
+                const outlierSet = new Set(outliers);
+                this.cleanedData = this.cleanedData.filter(row => {
+                    const val = parseFloat(row[col]);
+                    if (outlierSet.has(val)) {
+                        removed++;
+                        return false;
+                    }
+                    return true;
+                });
+            }
+        });
+
+        return { data: this.cleanedData, removed };
+    }
+
+    normalizeData() {
+        const columns = Object.keys(this.cleanedData[0] || {});
+
+        columns.forEach(col => {
+            const values = this.cleanedData.map(row => parseFloat(row[col])).filter(val => !isNaN(val));
+            if (values.length === 0) return;
+
+            const min = Math.min(...values);
+            const max = Math.max(...values);
+            const range = max - min;
+
+            if (range > 0) {
+                this.cleanedData.forEach(row => {
+                    const val = parseFloat(row[col]);
+                    if (!isNaN(val)) {
+                        row[col] = (val - min) / range; // Min-max normalization
+                    }
+                });
+            }
+        });
+    }
+
+    runValidationOnData(data) {
+        // Simplified validation for cleaned data
+        const totalCells = data.length * Object.keys(data[0] || {}).length;
+        const missingCells = data.reduce((acc, row) => {
+            return acc + Object.values(row).filter(val => val == null || val === '').length;
+        }, 0);
+
+        const completenessScore = Math.round(((totalCells - missingCells) / totalCells) * 100);
+        const qualityScore = Math.min(100, completenessScore + 20); // Simplified scoring
+
+        return { qualityScore, completenessScore };
+    }
+
+    displayCleaningResults(rowsRemoved, valuesFilled, improvement) {
+        const resultsDiv = document.getElementById('cleaningResults');
+        const rowsRemovedEl = document.getElementById('rowsRemoved');
+        const valuesFilledEl = document.getElementById('valuesFilled');
+        const qualityImprovementEl = document.getElementById('qualityImprovement');
+
+        rowsRemovedEl.textContent = rowsRemoved;
+        valuesFilledEl.textContent = valuesFilled;
+        qualityImprovementEl.textContent = improvement + '%';
+
+        resultsDiv.style.display = 'block';
+    }
+
+    exportCleanData() {
+        if (!this.cleanedData) {
+            this.showError('No cleaned data available. Please run cleaning first.');
+            return;
+        }
+
+        const format = document.getElementById('exportFormat').value;
+        let data;
+        let filename;
+        let mimeType;
+
+        if (format === 'csv') {
+            data = Papa.unparse(this.cleanedData);
+            filename = 'cleaned_dataset.csv';
+            mimeType = 'text/csv';
+        } else if (format === 'json') {
+            data = JSON.stringify(this.cleanedData, null, 2);
+            filename = 'cleaned_dataset.json';
+            mimeType = 'application/json';
+        } else if (format === 'xlsx') {
+            // For XLSX, we'd need a library like xlsx, but for now we'll export as CSV
+            data = Papa.unparse(this.cleanedData);
+            filename = 'cleaned_dataset.csv';
+            mimeType = 'text/csv';
+        }
+
+        this.downloadFile(data, filename, mimeType);
     }
 
     exportReport() {
+        if (!this.validationResults) {
+            this.showError('No validation results available. Please run validation first.');
+            return;
+        }
+
         const report = {
             timestamp: new Date().toISOString(),
-            fileInfo: this.currentData ? {
-                name: this.currentData.fileName,
-                size: this.currentData.fileSize,
-                rows: this.currentData.rowCount,
-                columns: this.currentData.columnCount
-            } : null,
-            summary: {
-                totalIssues: this.validationResults.length,
-                errors: this.validationResults.filter(r => r.severity === 'error').length,
-                warnings: this.validationResults.filter(r => r.severity === 'warning').length,
-                info: this.validationResults.filter(r => r.severity === 'info').length
+            dataset_info: {
+                rows: this.dataset.length,
+                columns: Object.keys(this.dataset[0] || {}).length,
+                file_size: 'N/A'
             },
-            results: this.validationResults
+            validation_results: this.validationResults,
+            cleaning_applied: this.cleanedData ? true : false,
+            recommendations: this.generateRecommendations()
         };
 
-        const json = JSON.stringify(report, null, 2);
-        this.downloadFile(json, 'validation_report.json', 'application/json');
-        this.showNotification('Report exported successfully!', 'success');
+        const data = JSON.stringify(report, null, 2);
+        this.downloadFile(data, 'validation_report.json', 'application/json');
     }
 
-    downloadFile(content, filename, mimeType) {
-        const blob = new Blob([content], { type: mimeType });
+    generateRecommendations() {
+        const recommendations = [];
+
+        if (this.validationResults.missingValues.length > 0) {
+            recommendations.push('Consider filling missing values or removing columns with high missing rates');
+        }
+
+        if (this.validationResults.duplicates.length > 0) {
+            recommendations.push('Remove duplicate records to ensure data integrity');
+        }
+
+        if (this.validationResults.outliers.length > 0) {
+            recommendations.push('Review outlier values - they may indicate data quality issues or valid extreme values');
+        }
+
+        if (this.validationResults.consistencyIssues.length > 0) {
+            recommendations.push('Fix data consistency issues (invalid emails, phones, etc.)');
+        }
+
+        if (recommendations.length === 0) {
+            recommendations.push('Data quality looks good! Consider regular validation checks.');
+        }
+
+        return recommendations;
+    }
+
+    downloadFile(data, filename, mimeType) {
+        const blob = new Blob([data], { type: mimeType });
         const url = URL.createObjectURL(blob);
+
         const a = document.createElement('a');
         a.href = url;
         a.download = filename;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
+
         URL.revokeObjectURL(url);
     }
 
-    loadSettings() {
-        const defaultSettings = {
-            theme: 'light',
-            autoValidate: true,
-            maxFileSize: 10,
-            exportFormat: 'csv',
-            notifications: true
-        };
-
-        const saved = localStorage.getItem('autonomous-dataset-validator-settings');
-        return saved ? { ...defaultSettings, ...JSON.parse(saved) } : defaultSettings;
-    }
-
-    saveSettings() {
-        localStorage.setItem('autonomous-dataset-validator-settings', JSON.stringify(this.settings));
-    }
-
-    updateSetting(name, value) {
-        this.settings[name] = value;
-        this.saveSettings();
-        this.showNotification('Setting updated', 'success');
-    }
-
-    showModal(type, message) {
-        const modal = document.getElementById('modal');
-        const content = modal.querySelector('.modal-content');
-
-        if (type === 'loading') {
-            content.innerHTML = `
-                <div class="loading-spinner"></div>
-                <p>${message}</p>
-            `;
-        }
-
-        modal.classList.add('active');
-    }
-
-    closeModal() {
-        document.getElementById('modal').classList.remove('active');
-    }
-
-    showNotification(message, type = 'info') {
-        if (!this.settings.notifications) return;
-
-        const container = document.getElementById('notification-container');
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-
-        const icons = {
-            success: '✓',
-            error: '✕',
-            warning: '⚠',
-            info: 'ℹ'
-        };
-
-        notification.innerHTML = `
-            <div class="notification-icon">${icons[type]}</div>
-            <div class="notification-content">
-                <div class="notification-title">${type.charAt(0).toUpperCase() + type.slice(1)}</div>
-                <div class="notification-message">${message}</div>
-            </div>
-            <button class="notification-close">×</button>
+    showLoading(message) {
+        // Create loading overlay
+        const overlay = document.createElement('div');
+        overlay.id = 'loadingOverlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         `;
 
-        container.appendChild(notification);
+        overlay.innerHTML = `
+            <div style="background: white; padding: 20px; border-radius: 8px; text-align: center;">
+                <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 10px;"></div>
+                <p>${message}</p>
+            </div>
+            <style>
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            </style>
+        `;
 
-        // Auto remove after 5 seconds
+        document.body.appendChild(overlay);
+    }
+
+    hideLoading() {
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+            overlay.remove();
+        }
+    }
+
+    showError(message) {
+        // Create error notification
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ef4444;
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            max-width: 400px;
+        `;
+
+        notification.innerHTML = `
+            <strong>Error:</strong> ${message}
+            <button onclick="this.parentElement.remove()" style="float: right; background: none; border: none; color: white; cursor: pointer;">×</button>
+        `;
+
+        document.body.appendChild(notification);
+
         setTimeout(() => {
-            if (notification.parentNode) {
+            if (notification.parentElement) {
                 notification.remove();
             }
         }, 5000);
-
-        // Manual close
-        notification.querySelector('.notification-close').addEventListener('click', () => {
-            notification.remove();
-        });
-    }
-
-    updateUI() {
-        // Update metrics
-        this.updateMetrics();
-
-        // Update charts if data exists
-        if (this.currentData) {
-            this.updateCharts();
-        }
-    }
-
-    updateMetrics() {
-        const metrics = {
-            totalRows: this.currentData ? this.currentData.rowCount : 0,
-            totalColumns: this.currentData ? this.currentData.columnCount : 0,
-            totalIssues: this.validationResults.length,
-            errorRate: this.currentData && this.validationResults.length > 0
-                ? ((this.validationResults.length / this.currentData.rowCount) * 100).toFixed(1)
-                : 0
-        };
-
-        document.getElementById('total-rows').textContent = metrics.totalRows.toLocaleString();
-        document.getElementById('total-columns').textContent = metrics.totalColumns;
-        document.getElementById('total-issues').textContent = metrics.totalIssues.toLocaleString();
-        document.getElementById('error-rate').textContent = `${metrics.errorRate}%`;
     }
 }
 
-// Global instance for event handlers
-let validator;
-
+// Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    validator = new AutonomousDatasetValidator();
+    new DatasetValidator();
 });
-
-// Make validator available globally for inline event handlers
-window.validator = validator;
