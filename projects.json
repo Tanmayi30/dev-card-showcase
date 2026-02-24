@@ -12887,6 +12887,34 @@
     "links": {
       "live": "./dynamic-intent-resolution-matrix/dynamic-intent-resolution-matrix.html"
     },
+  },
+  {
+    "title": "Cryptographic Identity Abstraction Gateway",
+    "description": "A comprehensive cryptographic identity management system that provides secure abstraction layers for digital identity operations. Features include identity creation with public/private key pairs, multi-level abstraction (low, medium, high, maximum), verification protocols, attribute updates, and revocation mechanisms with real-time visualization of identity flows and security metrics.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Cryptography",
+      "Identity Management",
+      "Security",
+      "Public Key Infrastructure",
+      "Zero-Knowledge Proofs",
+      "Homomorphic Encryption",
+      "Secure Multi-party Computation",
+      "Digital Certificates",
+      "Blockchain",
+      "Privacy",
+      "Authentication",
+      "Data Visualization",
+      "Canvas API",
+      "Real-time Processing",
+      "JSON",
+      "LocalStorage"
+    ],
+    "links": {
+      "live": "./cryptographic-identity-abstraction-gateway/cryptographic-identity-abstraction-gateway.html"
+    },
     "author": {
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
