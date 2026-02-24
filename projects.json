@@ -12834,8 +12834,8 @@
     }
   },
   {
-    "title": "Intelligent Log Compression Engine #5005",
-    "description": "Advanced log compression system with intelligent algorithms for optimizing log storage and analysis. Features multiple compression algorithms (Intelligent Adaptive, LZ77, Huffman, DEFLATE), real-time compression analytics, pattern analysis, duplicate removal, timestamp preservation, and comprehensive performance tracking. Includes dashboard with metrics, analytics charts, pattern detection, and export capabilities.",
+    "title": "Intelligent Log Compression Engine #5058",
+    "description": "Advanced intelligent log compression system with adaptive algorithms that analyze data characteristics and apply optimal compression strategies. Features multiple algorithms (Intelligent Adaptive, LZ77, Huffman, DEFLATE), automatic data type detection (logs, JSON, structured data), pattern recognition, duplicate removal, timestamp preservation, bidirectional compression/decompression, real-time analytics, and comprehensive performance tracking. Includes dashboard with metrics, analytics charts, pattern analysis, and export capabilities.",
     "tags": [
       "HTML",
       "CSS",
@@ -12847,6 +12847,13 @@
       "DEFLATE",
       "Intelligent Compression",
       "Pattern Analysis",
+      "Data Type Detection",
+      "JSON Compression",
+      "Structured Data Compression",
+      "Bidirectional Compression",
+      "Decompression",
+      "Adaptive Algorithms",
+      "Pattern Recognition",
       "Duplicate Removal",
       "Timestamp Preservation",
       "Performance Analytics",
@@ -12859,7 +12866,7 @@
       "Real-time Processing"
     ],
     "links": {
-      "live": "./intelligent-log-compression-engine.html"
+      "live": "./projects/intelligent-log-compression-engine/intelligent-log-compression-engine.html"
     },
     "author": {
       "name": "Gupta-02",
