@@ -1868,6 +1868,18 @@ const staticProjects = [
             name: "Bavanetha M.R",
             github: "https://github.com/Bavanetha27"
         }
+    },
+    {
+        title: "Autonomous Compliance Verification Kernel 🔍",
+        description: "An intelligent system that autonomously verifies compliance with health, productivity, and development protocols using rule-based and machine learning approaches. Monitors multiple trackers and provides automated feedback.",
+        tags: ["HTML", "CSS", "JavaScript", "Health", "Productivity", "AI", "Compliance"],
+        links: {
+            live: "autonomous-compliance-verification-kernel.html"
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];
