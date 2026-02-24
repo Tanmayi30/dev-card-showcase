@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Model Explainability Panel #5065</title>
+    <link rel="stylesheet" href="interactive-model-explainability-panel.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js@2.27.0/dist/plotly.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.9.1/math.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">Interactive Model Explainability Panel</h1>
+            <div class="nav-controls">
+                <button id="theme-toggle" class="nav-button">🌙</button>
+                <button id="export-btn" class="nav-button">📤</button>
+                <button id="import-btn" class="nav-button">📥</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#overview" class="sidebar-link active">📊 Overview</a></li>
+                <li><a href="#feature-importance" class="sidebar-link">🎯 Feature Importance</a></li>
+                <li><a href="#prediction-explanation" class="sidebar-link">🔍 Prediction Explanation</a></li>
+                <li><a href="#model-comparison" class="sidebar-link">⚖️ Model Comparison</a></li>
+                <li><a href="#partial-dependence" class="sidebar-link">📈 Partial Dependence</a></li>
+                <li><a href="#shap-analysis" class="sidebar-link">🔬 SHAP Analysis</a></li>
+                <li><a href="#lime-analysis" class="sidebar-link">🧪 LIME Analysis</a></li>
+                <li><a href="#data-insights" class="sidebar-link">💡 Data Insights</a></li>
+                <li><a href="#settings" class="sidebar-link">⚙️ Settings</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section id="overview" class="section active">
+                <h2>Model Overview</h2>
+                <div class="overview-grid">
+                    <div class="overview-card">
+                        <h3>Model Performance</h3>
+                        <div class="metrics-grid">
+                            <div class="metric-item">
+                                <span class="metric-label">Accuracy:</span>
+                                <span class="metric-value" id="accuracy">0.00%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Precision:</span>
+                                <span class="metric-value" id="precision">0.00%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Recall:</span>
+                                <span class="metric-value" id="recall">0.00%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">F1-Score:</span>
+                                <span class="metric-value" id="f1-score">0.00%</span>
+                            </div>
+                        </div>
+                        <canvas id="performance-chart"></canvas>
+                    </div>
+                    <div class="overview-card">
+                        <h3>Model Information</h3>
+                        <div class="model-info">
+                            <div class="info-item">
+                                <span class="info-label">Model Type:</span>
+                                <span class="info-value" id="model-type">Random Forest</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Training Samples:</span>
+                                <span class="info-value" id="training-samples">0</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Features:</span>
+                                <span class="info-value" id="feature-count">0</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Last Trained:</span>
+                                <span class="info-value" id="last-trained">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <h3>Dataset Summary</h3>
+                        <div class="dataset-summary">
+                            <div class="summary-item">
+                                <span class="summary-label">Total Samples:</span>
+                                <span class="summary-value" id="total-samples">0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Classes:</span>
+                                <span class="summary-value" id="class-count">0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Missing Values:</span>
+                                <span class="summary-value" id="missing-values">0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Data Balance:</span>
+                                <span class="summary-value" id="data-balance">Balanced</span>
+                            </div>
+                        </div>
+                        <canvas id="class-distribution-chart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="feature-importance" class="section">
+                <h2>Feature Importance Analysis</h2>
+                <div class="feature-controls">
+                    <select id="importance-method">
+                        <option value="gain">Information Gain</option>
+                        <option value="split">Split Importance</option>
+                        <option value="weight">Weight-based</option>
+                        <option value="permutation">Permutation</option>
+                        <option value="shap">SHAP Values</option>
+                    </select>
+                    <button id="calculate-importance" class="primary-btn">Calculate</button>
+                    <button id="export-importance" class="secondary-btn">Export</button>
+                </div>
+                <div class="feature-importance-container">
+                    <div class="importance-chart">
+                        <canvas id="importance-chart"></canvas>
+                    </div>
+                    <div class="feature-details">
+                        <h3>Top Features</h3>
+                        <div id="feature-list" class="feature-list">
+                            <!-- Feature items will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="prediction-explanation" class="section">
+                <h2>Single Prediction Explanation</h2>
+                <div class="prediction-input">
+                    <h3>Input Features</h3>
+                    <div class="feature-inputs" id="feature-inputs">
+                        <!-- Dynamic feature inputs will be generated here -->
+                    </div>
+                    <div class="prediction-controls">
+                        <button id="make-prediction" class="primary-btn">Make Prediction</button>
+                        <button id="explain-prediction" class="secondary-btn">Explain Prediction</button>
+                        <button id="clear-inputs" class="secondary-btn">Clear</button>
+                    </div>
+                </div>
+                <div class="prediction-results">
+                    <div class="prediction-output">
+                        <h3>Prediction Result</h3>
+                        <div class="prediction-display" id="prediction-display">
+                            <div class="prediction-probability">
+                                <span class="prediction-label">Predicted Class:</span>
+                                <span class="prediction-value" id="predicted-class">-</span>
+                            </div>
+                            <div class="prediction-confidence">
+                                <span class="confidence-label">Confidence:</span>
+                                <span class="confidence-value" id="prediction-confidence">0.00%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="explanation-visualization">
+                        <h3>Explanation</h3>
+                        <div id="explanation-chart" class="explanation-chart"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="model-comparison" class="section">
+                <h2>Model Comparison</h2>
+                <div class="comparison-controls">
+                    <div class="model-selection">
+                        <h3>Select Models to Compare</h3>
+                        <div class="model-checkboxes" id="model-checkboxes">
+                            <label><input type="checkbox" value="random-forest" checked> Random Forest</label>
+                            <label><input type="checkbox" value="gradient-boosting"> Gradient Boosting</label>
+                            <label><input type="checkbox" value="svm"> Support Vector Machine</label>
+                            <label><input type="checkbox" value="neural-network"> Neural Network</label>
+                            <label><input type="checkbox" value="logistic-regression"> Logistic Regression</label>
+                        </div>
+                    </div>
+                    <button id="compare-models" class="primary-btn">Compare Models</button>
+                </div>
+                <div class="comparison-results">
+                    <div class="comparison-table">
+                        <table id="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Accuracy</th>
+                                    <th>Precision</th>
+                                    <th>Recall</th>
+                                    <th>F1-Score</th>
+                                    <th>Training Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="comparison-body">
+                                <!-- Comparison results will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="comparison-charts">
+                        <canvas id="comparison-bar-chart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="partial-dependence" class="section">
+                <h2>Partial Dependence Plots</h2>
+                <div class="pdp-controls">
+                    <div class="feature-selection">
+                        <label for="pdp-feature">Select Feature:</label>
+                        <select id="pdp-feature">
+                            <!-- Features will be populated here -->
+                        </select>
+                    </div>
+                    <div class="pdp-options">
+                        <label><input type="checkbox" id="pdp-ice"> Include ICE curves</label>
+                        <label><input type="checkbox" id="pdp-confidence"> Show confidence intervals</label>
+                    </div>
+                    <button id="generate-pdp" class="primary-btn">Generate PDP</button>
+                </div>
+                <div class="pdp-visualization">
+                    <div id="pdp-plot" class="pdp-plot"></div>
+                </div>
+            </section>
+
+            <section id="shap-analysis" class="section">
+                <h2>SHAP Analysis</h2>
+                <div class="shap-controls">
+                    <div class="shap-method">
+                        <label for="shap-method-select">SHAP Method:</label>
+                        <select id="shap-method-select">
+                            <option value="tree">Tree SHAP</option>
+                            <option value="linear">Linear SHAP</option>
+                            <option value="deep">Deep SHAP</option>
+                            <option value="kernel">Kernel SHAP</option>
+                        </select>
+                    </div>
+                    <div class="shap-options">
+                        <label for="shap-samples">Sample Size:</label>
+                        <input type="number" id="shap-samples" min="10" max="1000" value="100">
+                    </div>
+                    <button id="run-shap" class="primary-btn">Run SHAP Analysis</button>
+                </div>
+                <div class="shap-results">
+                    <div class="shap-summary">
+                        <h3>SHAP Summary Plot</h3>
+                        <div id="shap-summary-plot" class="shap-plot"></div>
+                    </div>
+                    <div class="shap-waterfall">
+                        <h3>SHAP Waterfall Plot</h3>
+                        <div id="shap-waterfall-plot" class="shap-plot"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lime-analysis" class="section">
+                <h2>LIME Analysis</h2>
+                <div class="lime-controls">
+                    <div class="lime-input">
+                        <h3>Input Instance</h3>
+                        <div id="lime-feature-inputs">
+                            <!-- Feature inputs for LIME will be generated here -->
+                        </div>
+                    </div>
+                    <div class="lime-options">
+                        <label for="lime-samples">Number of samples:</label>
+                        <input type="number" id="lime-samples" min="100" max="10000" value="1000">
+                        <label for="lime-features">Features to explain:</label>
+                        <input type="number" id="lime-features" min="1" max="20" value="5">
+                    </div>
+                    <button id="run-lime" class="primary-btn">Run LIME Analysis</button>
+                </div>
+                <div class="lime-results">
+                    <div class="lime-explanation">
+                        <h3>LIME Explanation</h3>
+                        <div id="lime-chart" class="lime-chart"></div>
+                    </div>
+                    <div class="lime-details">
+                        <h3>Explanation Details</h3>
+                        <div id="lime-details" class="lime-details">
+                            <!-- LIME explanation details will be shown here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="data-insights" class="section">
+                <h2>Data Insights & Exploration</h2>
+                <div class="data-controls">
+                    <div class="data-filters">
+                        <label for="data-feature-x">X-axis Feature:</label>
+                        <select id="data-feature-x">
+                            <!-- Features will be populated here -->
+                        </select>
+                        <label for="data-feature-y">Y-axis Feature:</label>
+                        <select id="data-feature-y">
+                            <!-- Features will be populated here -->
+                        </select>
+                        <label for="data-color-feature">Color by:</label>
+                        <select id="data-color-feature">
+                            <!-- Features will be populated here -->
+                        </select>
+                    </div>
+                    <div class="plot-options">
+                        <select id="plot-type">
+                            <option value="scatter">Scatter Plot</option>
+                            <option value="histogram">Histogram</option>
+                            <option value="boxplot">Box Plot</option>
+                            <option value="correlation">Correlation Matrix</option>
+                        </select>
+                        <button id="generate-plot" class="primary-btn">Generate Plot</button>
+                    </div>
+                </div>
+                <div class="data-visualization">
+                    <div id="data-plot" class="data-plot"></div>
+                </div>
+                <div class="data-statistics">
+                    <h3>Data Statistics</h3>
+                    <div class="stats-grid" id="data-statistics-grid">
+                        <!-- Statistics will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="settings" class="section">
+                <h2>Settings</h2>
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h3>Visualization Settings</h3>
+                        <div class="setting-group">
+                            <label for="chart-theme">Chart Theme:</label>
+                            <select id="chart-theme">
+                                <option value="light">Light</option>
+                                <option value="dark">Dark</option>
+                                <option value="auto">Auto</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <label for="animation-duration">Animation Duration (ms):</label>
+                            <input type="number" id="animation-duration" min="0" max="5000" value="1000">
+                        </div>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="show-gridlines"> Show gridlines
+                            </label>
+                        </div>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="show-legend"> Show legends
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-card">
+                        <h3>Analysis Settings</h3>
+                        <div class="setting-group">
+                            <label for="default-shap-samples">Default SHAP samples:</label>
+                            <input type="number" id="default-shap-samples" min="10" max="1000" value="100">
+                        </div>
+                        <div class="setting-group">
+                            <label for="default-lime-samples">Default LIME samples:</label>
+                            <input type="number" id="default-lime-samples" min="100" max="10000" value="1000">
+                        </div>
+                        <div class="setting-group">
+                            <label for="confidence-interval">Confidence Interval (%):</label>
+                            <input type="number" id="confidence-interval" min="80" max="99" value="95">
+                        </div>
+                    </div>
+                    <div class="setting-card">
+                        <h3>Data Management</h3>
+                        <button id="load-sample-data" class="secondary-btn">Load Sample Data</button>
+                        <button id="export-settings" class="secondary-btn">Export Settings</button>
+                        <button id="import-settings" class="secondary-btn">Import Settings</button>
+                        <input type="file" id="settings-file" accept=".json" style="display: none;">
+                        <button id="reset-settings" class="danger-btn">Reset Settings</button>
+                        <button id="clear-all-data" class="danger-btn">Clear All Data</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Modal -->
+    <div id="loading-modal" class="modal">
+        <div class="modal-content">
+            <div class="loading-spinner"></div>
+            <p id="loading-text">Processing...</p>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Error</h3>
+                <button id="close-error-modal" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="error-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="interactive-model-explainability-panel.js"></script>
+</body>
+</html>

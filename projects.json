@@ -13069,5 +13069,42 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Interactive Model Explainability Panel #5065",
+    "description": "Comprehensive machine learning model explainability tool featuring SHAP analysis, LIME explanations, feature importance visualization, partial dependence plots, model comparison, and interactive data exploration. Includes real-time prediction explanations, multiple analysis methods, customizable visualizations, and advanced data insights for understanding ML model behavior and decision-making processes.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Machine Learning",
+      "Explainability",
+      "SHAP",
+      "LIME",
+      "Feature Importance",
+      "Partial Dependence Plots",
+      "Model Comparison",
+      "Data Visualization",
+      "Chart.js",
+      "Plotly.js",
+      "D3.js",
+      "Interactive Charts",
+      "Predictive Analytics",
+      "Model Interpretation",
+      "Data Science",
+      "AI Explainability",
+      "Statistical Analysis",
+      "LocalStorage",
+      "Responsive Design",
+      "Real-time Analysis",
+      "Advanced Analytics"
+    ],
+    "links": {
+      "live": "./interactive-model-explainability-panel/interactive-model-explainability-panel.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
