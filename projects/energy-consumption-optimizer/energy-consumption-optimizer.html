@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Consumption Optimizer #5061</title>
+    <link rel="stylesheet" href="energy-consumption-optimizer.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">Energy Consumption Optimizer</h1>
+            <div class="nav-controls">
+                <button id="theme-toggle" class="nav-button">🌙</button>
+                <button id="export-btn" class="nav-button">📤</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#dashboard" class="sidebar-link active">📊 Dashboard</a></li>
+                <li><a href="#devices" class="sidebar-link">🔌 Devices</a></li>
+                <li><a href="#tracking" class="sidebar-link">📈 Tracking</a></li>
+                <li><a href="#optimization" class="sidebar-link">⚡ Optimization</a></li>
+                <li><a href="#analytics" class="sidebar-link">📈 Analytics</a></li>
+                <li><a href="#settings" class="sidebar-link">⚙️ Settings</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section id="dashboard" class="section active">
+                <h2>Energy Dashboard</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>Today's Consumption</h3>
+                        <div class="metric-value" id="today-consumption">0.0 kWh</div>
+                        <div class="metric-change" id="today-change">+0.0%</div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Monthly Cost</h3>
+                        <div class="metric-value" id="monthly-cost">$0.00</div>
+                        <div class="metric-change" id="monthly-change">+0.0%</div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Carbon Footprint</h3>
+                        <div class="metric-value" id="carbon-footprint">0.0 kg CO₂</div>
+                        <div class="metric-change" id="carbon-change">-0.0%</div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Potential Savings</h3>
+                        <div class="metric-value" id="potential-savings">$0.00</div>
+                        <div class="metric-change" id="savings-change">+0.0%</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="consumption-chart"></canvas>
+                </div>
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button id="add-device" class="primary-btn">➕ Add Device</button>
+                        <button id="run-optimization" class="primary-btn">⚡ Run Optimization</button>
+                        <button id="generate-report" class="secondary-btn">📋 Generate Report</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="devices" class="section">
+                <h2>Device Management</h2>
+                <div class="device-controls">
+                    <button id="add-new-device" class="primary-btn">➕ Add New Device</button>
+                    <div class="device-filters">
+                        <select id="device-category-filter">
+                            <option value="all">All Categories</option>
+                            <option value="appliances">Appliances</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="lighting">Lighting</option>
+                            <option value="heating">Heating/Cooling</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <select id="device-status-filter">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="standby">Standby</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="devices-grid" id="devices-grid">
+                    <!-- Devices will be populated here -->
+                </div>
+            </section>
+
+            <section id="tracking" class="section">
+                <h2>Energy Tracking</h2>
+                <div class="tracking-interface">
+                    <div class="tracking-controls">
+                        <h3>Manual Entry</h3>
+                        <div class="entry-form">
+                            <div class="form-group">
+                                <label for="entry-device">Device:</label>
+                                <select id="entry-device">
+                                    <option value="">Select Device</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="entry-consumption">Consumption (kWh):</label>
+                                <input type="number" id="entry-consumption" step="0.01" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="entry-duration">Duration (hours):</label>
+                                <input type="number" id="entry-duration" step="0.1" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="entry-date">Date:</label>
+                                <input type="datetime-local" id="entry-date">
+                            </div>
+                            <button id="add-entry" class="primary-btn">📝 Add Entry</button>
+                        </div>
+                    </div>
+                    <div class="recent-entries">
+                        <h3>Recent Entries</h3>
+                        <div id="entries-list" class="entries-list">
+                            <!-- Recent entries will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="optimization" class="section">
+                <h2>Optimization Suggestions</h2>
+                <div class="optimization-results">
+                    <div class="optimization-summary">
+                        <h3>Optimization Summary</h3>
+                        <div class="summary-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Potential Monthly Savings:</span>
+                                <span class="stat-value" id="monthly-savings">$0.00</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Energy Reduction:</span>
+                                <span class="stat-value" id="energy-reduction">0.0 kWh</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">CO₂ Reduction:</span>
+                                <span class="stat-value" id="co2-reduction">0.0 kg</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="suggestions-list" id="suggestions-list">
+                        <!-- Optimization suggestions will be populated here -->
+                    </div>
+                </div>
+                <div class="optimization-actions">
+                    <button id="apply-all-suggestions" class="primary-btn">✅ Apply All Suggestions</button>
+                    <button id="schedule-optimization" class="secondary-btn">📅 Schedule Optimization</button>
+                </div>
+            </section>
+
+            <section id="analytics" class="section">
+                <h2>Energy Analytics</h2>
+                <div class="analytics-controls">
+                    <div class="time-range-selector">
+                        <button class="time-btn active" data-range="7d">7 Days</button>
+                        <button class="time-btn" data-range="30d">30 Days</button>
+                        <button class="time-btn" data-range="90d">90 Days</button>
+                        <button class="time-btn" data-range="1y">1 Year</button>
+                    </div>
+                    <div class="chart-type-selector">
+                        <button class="chart-btn active" data-type="consumption">Consumption</button>
+                        <button class="chart-btn" data-type="cost">Cost</button>
+                        <button class="chart-btn" data-type="carbon">Carbon</button>
+                    </div>
+                </div>
+                <div class="analytics-charts">
+                    <div class="chart-card">
+                        <h3 id="main-chart-title">Energy Consumption Trend</h3>
+                        <canvas id="main-analytics-chart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Device Breakdown</h3>
+                        <canvas id="device-breakdown-chart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Peak Usage Hours</h3>
+                        <canvas id="peak-usage-chart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Efficiency Score</h3>
+                        <canvas id="efficiency-chart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="settings" class="section">
+                <h2>Settings</h2>
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h3>Electricity Rates</h3>
+                        <div class="setting-group">
+                            <label for="electricity-rate">Rate per kWh ($):</label>
+                            <input type="number" id="electricity-rate" step="0.01" min="0" value="0.12">
+                        </div>
+                        <div class="setting-group">
+                            <label for="peak-rate">Peak Hours Rate ($):</label>
+                            <input type="number" id="peak-rate" step="0.01" min="0" value="0.18">
+                        </div>
+                        <div class="setting-group">
+                            <label for="off-peak-rate">Off-Peak Rate ($):</label>
+                            <input type="number" id="off-peak-rate" step="0.01" min="0" value="0.08">
+                        </div>
+                        <div class="setting-group">
+                            <label for="peak-hours">Peak Hours:</label>
+                            <input type="text" id="peak-hours" placeholder="e.g., 17:00-21:00" value="17:00-21:00">
+                        </div>
+                    </div>
+                    <div class="setting-card">
+                        <h3>Carbon Footprint</h3>
+                        <div class="setting-group">
+                            <label for="carbon-factor">CO₂ per kWh (kg):</label>
+                            <input type="number" id="carbon-factor" step="0.001" min="0" value="0.429">
+                        </div>
+                        <div class="setting-group">
+                            <label for="renewable-percentage">Renewable Energy (%):</label>
+                            <input type="number" id="renewable-percentage" min="0" max="100" value="25">
+                        </div>
+                        <div class="setting-group">
+                            <label for="location">Location:</label>
+                            <select id="location">
+                                <option value="us">United States</option>
+                                <option value="eu">Europe</option>
+                                <option value="asia">Asia</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="setting-card">
+                        <h3>System Settings</h3>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="auto-tracking"> Auto-tracking enabled
+                            </label>
+                        </div>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="notifications"> Optimization notifications
+                            </label>
+                        </div>
+                        <div class="setting-group">
+                            <label for="data-retention">Data Retention (days):</label>
+                            <input type="number" id="data-retention" min="30" max="365" value="90">
+                        </div>
+                        <div class="setting-group">
+                            <label for="currency">Currency:</label>
+                            <select id="currency">
+                                <option value="USD">USD ($)</option>
+                                <option value="EUR">EUR (€)</option>
+                                <option value="GBP">GBP (£)</option>
+                                <option value="JPY">JPY (¥)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="setting-card">
+                        <h3>Data Management</h3>
+                        <button id="export-data" class="secondary-btn">📤 Export Data</button>
+                        <button id="import-data" class="secondary-btn">📥 Import Data</button>
+                        <input type="file" id="import-file" accept=".json" style="display: none;">
+                        <button id="clear-all-data" class="danger-btn">🗑️ Clear All Data</button>
+                        <button id="reset-settings" class="secondary-btn">🔄 Reset Settings</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Device Modal -->
+    <div id="device-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add Device</h3>
+                <button id="close-modal" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="device-form">
+                    <div class="form-group">
+                        <label for="device-name">Device Name:</label>
+                        <input type="text" id="device-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="device-category">Category:</label>
+                        <select id="device-category" required>
+                            <option value="appliances">Appliances</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="lighting">Lighting</option>
+                            <option value="heating">Heating/Cooling</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="device-power">Power Rating (Watts):</label>
+                        <input type="number" id="device-power" min="0" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="device-hours">Daily Usage Hours:</label>
+                        <input type="number" id="device-hours" min="0" max="24" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="device-efficiency">Efficiency Rating (1-10):</label>
+                        <input type="number" id="device-efficiency" min="1" max="10" value="5">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="device-smart"> Smart device (can be controlled remotely)
+                        </label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="cancel-device" class="secondary-btn">Cancel</button>
+                        <button type="submit" class="primary-btn">Save Device</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="energy-consumption-optimizer.js"></script>
+</body>
+</html></content>
+<parameter name="filePath">c:\Users\Gupta\Downloads\dev-card-showcase\projects\energy-consumption-optimizer\energy-consumption-optimizer.html
