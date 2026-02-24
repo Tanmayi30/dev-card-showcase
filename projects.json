@@ -13133,5 +13133,42 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Autonomous Dataset Validator #5067",
+    "description": "Comprehensive autonomous data validation and quality assessment tool for datasets. Features include file upload (CSV, JSON, Excel), real-time validation rules (missing values, duplicates, data types, ranges, outliers, patterns), interactive dashboard with quality metrics, detailed validation results with filtering, advanced analytics with correlation matrices and data type distributions, customizable validation rules with templates, export functionality for results and reports, and responsive design with dark/light theme support.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Data Validation",
+      "Data Quality",
+      "CSV Processing",
+      "JSON Processing",
+      "File Upload",
+      "Data Analytics",
+      "Quality Metrics",
+      "Validation Rules",
+      "Outlier Detection",
+      "Duplicate Detection",
+      "Data Types",
+      "Range Validation",
+      "Pattern Matching",
+      "Chart.js",
+      "PapaParse",
+      "LocalStorage",
+      "Responsive Design",
+      "Dark Theme",
+      "Data Visualization",
+      "Export Functionality",
+      "Real-time Validation"
+    ],
+    "links": {
+      "live": "./autonomous-dataset-validator/autonomous-dataset-validator.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
