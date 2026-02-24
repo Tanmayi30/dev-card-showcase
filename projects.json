@@ -57,6 +57,39 @@
     }
   },
   {
+    "title": "Energy Consumption Optimizer #5061",
+    "description": "Comprehensive energy consumption monitoring and optimization system for residential and commercial use. Track electricity usage across devices, calculate costs and carbon footprint, generate optimization suggestions, and analyze consumption patterns. Features device management, real-time analytics, cost calculation with peak/off-peak rates, carbon emissions tracking, efficiency scoring, and data export capabilities.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Energy Management",
+      "Sustainability",
+      "Cost Optimization",
+      "Carbon Footprint",
+      "Device Monitoring",
+      "Analytics",
+      "Chart.js",
+      "LocalStorage",
+      "Efficiency Analysis",
+      "Peak Hours",
+      "Data Visualization",
+      "Optimization Algorithms",
+      "Environmental Impact",
+      "Smart Home",
+      "Energy Savings",
+      "Consumption Tracking",
+      "Responsive Design"
+    ],
+    "links": {
+      "live": "./projects/energy-consumption-optimizer/energy-consumption-optimizer.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
+  },
+  {
     "title": "Multi-Plane Mobility Tracker",
     "description": "Track and improve your mobility across all three planes of movement: sagittal, frontal, and transverse. Monitor range of motion, identify imbalances, assess pain levels, and track progress over time with comprehensive mobility assessments and data visualization.",
     "tags": [
