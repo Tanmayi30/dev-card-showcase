@@ -41,10 +41,6 @@ class LogCompressionEngine {
             this.compressLogs();
         });
 
-        document.getElementById('decompress-btn').addEventListener('click', () => {
-            this.decompressLogs();
-        });
-
         document.getElementById('file-input').addEventListener('change', (e) => {
             this.loadFile(e.target.files[0]);
         });
@@ -367,38 +363,6 @@ class LogCompressionEngine {
         }
     }
 
-    async decompressLogs() {
-        const input = document.getElementById('compressed-output').value;
-        if (!input.trim()) {
-            alert('Please compress some data first or paste compressed data.');
-            return;
-        }
-
-        this.showLoading();
-
-        const startTime = Date.now();
-
-        try {
-            const decompressed = await this.decompressData(input);
-            const endTime = Date.now();
-            const processingTime = endTime - startTime;
-
-            // Update UI
-            document.getElementById('log-input').value = decompressed;
-            document.getElementById('compressed-size').textContent = `${input.length} bytes`;
-            document.getElementById('original-size').textContent = `${decompressed.length} bytes`;
-            const ratio = input.length > 0 ? ((1 - decompressed.length / input.length) * 100).toFixed(2) : '0.00';
-            document.getElementById('compression-ratio').textContent = `${ratio}%`;
-            document.getElementById('processing-time').textContent = `${processingTime} ms`;
-
-        } catch (error) {
-            console.error('Decompression error:', error);
-            alert('An error occurred during decompression. Please check the compressed data format.');
-        } finally {
-            this.hideLoading();
-        }
-    }
-
     async compressData(data, algorithm, level) {
         switch (algorithm) {
             case 'intelligent':
@@ -414,307 +378,24 @@ class LogCompressionEngine {
         }
     }
 
-    async decompressData(data) {
-        // Check if it's our compressed format
-        if (data.startsWith('COMPRESSED:')) {
-            return this.decompressIntelligent(data);
-        } else if (data.startsWith('LZ77:')) {
-            return this.decompressLZ77(data);
-        } else if (data.startsWith('HUFFMAN:')) {
-            return this.decompressHuffman(data);
-        } else if (data.startsWith('DEFLATE:')) {
-            return this.decompressDeflate(data);
-        } else {
-            // Assume it's base64 encoded compressed data
-            try {
-                return atob(data);
-            } catch (e) {
-                return data; // Return as is if not encoded
-            }
-        }
-    }
-
-    decompressIntelligent(data) {
-        const parts = data.split(':');
-        if (parts.length < 4) return data;
-        
-        const metadata = parts.slice(0, 4).join(':');
-        const compressed = parts.slice(4).join(':');
-        
-        let decompressed = atob(compressed);
-        
-        // Reverse the compressRepeatedPatterns
-        if (decompressed.includes('---PATTERNS---')) {
-            const [patternsStr, dataStr] = decompressed.split('\n---PATTERNS---\n');
-            const patterns = JSON.parse(patternsStr);
-            decompressed = dataStr;
-            Object.entries(patterns).forEach(([id, pattern]) => {
-                decompressed = decompressed.replace(new RegExp(id, 'g'), pattern);
-            });
-        }
-        
-        // Reverse aggressive compression if needed
-        // This is simplified; full reversal would be complex
-        
-        return decompressed;
-    }
-
-    decompressLZ77(data) {
-        const parts = data.split(':');
-        if (parts.length < 3) return data;
-        const compressed = atob(parts.slice(2).join(':'));
-        
-        // Simplified LZ77 decompression
-        let decompressed = '';
-        let i = 0;
-        while (i < compressed.length) {
-            if (compressed[i] === '<') {
-                const end = compressed.indexOf('>', i);
-                if (end !== -1) {
-                    const [distance, length] = compressed.substring(i + 1, end).split(',').map(Number);
-                    const start = decompressed.length - distance;
-                    for (let j = 0; j < length; j++) {
-                        decompressed += decompressed[start + j];
-                    }
-                    i = end + 1;
-                } else {
-                    decompressed += compressed[i];
-                    i++;
-                }
-            } else {
-                decompressed += compressed[i];
-                i++;
-            }
-        }
-        return decompressed;
-    }
-
-    decompressHuffman(data) {
-        // Simplified Huffman decompression
-        const parts = data.split(':');
-        if (parts.length < 4) return data;
-        const codeTableStr = atob(parts[3]);
-        const codes = JSON.parse(codeTableStr);
-        const compressed = atob(parts.slice(4).join(':'));
-        
-        const reverseCodes = {};
-        Object.entries(codes).forEach(([char, code]) => {
-            reverseCodes[code] = char;
-        });
-        
-        let decompressed = '';
-        let currentCode = '';
-        for (let bit of compressed) {
-            currentCode += bit;
-            if (reverseCodes[currentCode]) {
-                decompressed += reverseCodes[currentCode];
-                currentCode = '';
-            }
-        }
-        return decompressed;
-    }
-
-    decompressDeflate(data) {
-        // Simplified deflate decompression
-        const parts = data.split(':');
-        if (parts.length < 3) return data;
-        const compressed = atob(parts.slice(2).join(':'));
-        return compressed.split('').reverse().join('');
-    }
-
     intelligentCompression(data, level) {
         // Intelligent compression that adapts based on data characteristics
         let compressed = data;
 
-        // Analyze data type and characteristics
-        const dataAnalysis = this.analyzeData(data);
-        
-        // Remove common log prefixes if it's log data
-        if (dataAnalysis.isLogData) {
-            compressed = compressed.replace(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}(?:\.\d{3})? \[[^\]]+\] /gm, '');
-        }
+        // Remove common log prefixes
+        compressed = compressed.replace(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}(?:\.\d{3})? \[[^\]]+\] /gm, '');
 
         // Compress repeated patterns
         compressed = this.compressRepeatedPatterns(compressed);
 
-        // Apply intelligent transformations based on data type
-        if (dataAnalysis.isJSON) {
-            compressed = this.compressJSONData(compressed);
-        } else if (dataAnalysis.isStructured) {
-            compressed = this.compressStructuredData(compressed);
-        }
-
         // Apply level-based compression
         if (level > 6) {
             compressed = this.aggressiveCompression(compressed);
-        } else if (level > 3) {
-            compressed = this.moderateCompression(compressed);
         }
 
         // Add compression metadata
-        const metadata = `COMPRESSED:${Date.now()}:${level}:${dataAnalysis.dataType}:`;
+        const metadata = `COMPRESSED:${Date.now()}:${level}:`;
         return metadata + btoa(compressed);
-    }
-
-    analyzeData(data) {
-        const analysis = {
-            isLogData: false,
-            isJSON: false,
-            isStructured: false,
-            dataType: 'text'
-        };
-
-        // Check if it's JSON
-        try {
-            JSON.parse(data);
-            analysis.isJSON = true;
-            analysis.dataType = 'json';
-            return analysis;
-        } catch (e) {
-            // Not JSON
-        }
-
-        // Check if it's log data (contains timestamps and log levels)
-        if (/^\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2}/.test(data) && /\b(DEBUG|INFO|WARN|ERROR|FATAL)\b/i.test(data)) {
-            analysis.isLogData = true;
-            analysis.dataType = 'log';
-        }
-
-        // Check if it's structured (contains delimiters)
-        if (data.includes(',') || data.includes('|') || data.includes('\t')) {
-            analysis.isStructured = true;
-            analysis.dataType = 'structured';
-        }
-
-        return analysis;
-    }
-
-    compressJSONData(data) {
-        try {
-            const json = JSON.parse(data);
-            // Remove redundant keys, compress arrays, etc.
-            const compressed = this.compressJSONObject(json);
-            return JSON.stringify(compressed);
-        } catch (e) {
-            return data;
-        }
-    }
-
-    compressJSONObject(obj) {
-        if (Array.isArray(obj)) {
-            // Compress arrays by finding patterns
-            return this.compressJSONArray(obj);
-        } else if (typeof obj === 'object' && obj !== null) {
-            const compressed = {};
-            for (const [key, value] of Object.entries(obj)) {
-                // Shorten common keys
-                const shortKey = this.shortenKey(key);
-                compressed[shortKey] = this.compressJSONObject(value);
-            }
-            return compressed;
-        }
-        return obj;
-    }
-
-    compressJSONArray(arr) {
-        if (arr.length === 0) return arr;
-        
-        // Find repeated patterns in array
-        const patterns = {};
-        arr.forEach(item => {
-            const pattern = JSON.stringify(item);
-            patterns[pattern] = (patterns[pattern] || 0) + 1;
-        });
-
-        // Replace repeated items with references
-        const compressed = [];
-        const patternMap = {};
-        let patternId = 0;
-
-        arr.forEach(item => {
-            const pattern = JSON.stringify(item);
-            if (patterns[pattern] > 1) {
-                if (!patternMap[pattern]) {
-                    patternMap[pattern] = `PATTERN_${patternId++}`;
-                    compressed.push({ __pattern__: patternMap[pattern], __data__: item });
-                } else {
-                    compressed.push({ __ref__: patternMap[pattern] });
-                }
-            } else {
-                compressed.push(item);
-            }
-        });
-
-        return compressed;
-    }
-
-    shortenKey(key) {
-        const commonKeys = {
-            'timestamp': 'ts',
-            'message': 'msg',
-            'level': 'lvl',
-            'userId': 'uid',
-            'sessionId': 'sid',
-            'requestId': 'rid',
-            'responseTime': 'rt',
-            'statusCode': 'sc',
-            'errorMessage': 'err',
-            'stackTrace': 'stack'
-        };
-        return commonKeys[key] || key;
-    }
-
-    compressStructuredData(data) {
-        // For CSV-like data, compress columns
-        const lines = data.split('\n');
-        if (lines.length < 2) return data;
-
-        // Assume first line is header
-        const header = lines[0];
-        const rows = lines.slice(1);
-
-        // Find repeated values in columns
-        const columns = header.split(/[,|\t]/);
-        const columnData = columns.map(() => []);
-
-        rows.forEach(row => {
-            const values = row.split(/[,|\t]/);
-            values.forEach((val, i) => {
-                if (columnData[i]) columnData[i].push(val);
-            });
-        });
-
-        // Compress each column
-        const compressedColumns = columnData.map(col => this.compressColumn(col));
-        
-        return header + '\n' + compressedColumns.map(col => col.join(',')).join('\n');
-    }
-
-    compressColumn(values) {
-        const uniqueValues = [...new Set(values)];
-        if (uniqueValues.length / values.length < 0.5) {
-            // Many duplicates, use index compression
-            const valueMap = {};
-            uniqueValues.forEach((val, i) => valueMap[val] = i);
-            return values.map(val => valueMap[val]);
-        }
-        return values;
-    }
-
-    moderateCompression(data) {
-        // Moderate compression: remove extra whitespace, compress numbers
-        let compressed = data.replace(/[ \t]+/g, ' ').replace(/\n\s+/g, '\n');
-
-        // Compress numbers larger than 255
-        compressed = compressed.replace(/\b\d+\b/g, (match) => {
-            const num = parseInt(match);
-            if (num < 65536) {
-                return String.fromCharCode(Math.floor(num / 256)) + String.fromCharCode(num % 256);
-            }
-            return match;
-        });
-
-        return compressed;
     }
 
     lz77Compression(data, level) {
