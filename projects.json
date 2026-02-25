@@ -1646,6 +1646,40 @@
       "github": "https://github.com/PriyanshuSingh00-hub"
     }
   },
+    {
+    "title": "WebGL Liquid Masking",
+    "description": "A WebGL-based liquid masking simulation that demonstrates realistic fluid dynamics and masking effects in a 3D environment. Features interactive controls, real-time rendering, and a visually engaging interface built with WebGL and JavaScript.",
+    "tags": ["HTML", "CSS", "JavaScript", "WebGL", "Simulation"],
+    "links": {
+      "live": "./projects/WebGL-liquid-masking/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
+  {
+  "title": "Mind Manipulator – Psychological Strategy Game",
+  "description": "A narrative-driven psychological strategy game built using modular HTML, CSS, and JavaScript architecture. Players influence NPCs through strategic dialogue choices to gain access, extract information, or build trust. Features a chat-style interface, dynamic trust and suspicion meter systems, multiple NPC personalities with distinct behavioral traits, branching dialogue trees, timer-based decision pressure, immersive sound effects, and multiple endings determined by player choices and relationship states.",
+  "tags": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Game Development",
+    "Strategy Game",
+    "Dialogue System",
+    "State Management",
+    "Interactive Fiction",
+    "Narrative Design"
+  ],
+  "links": {
+    "live": "./projects/social-engineering-simulator/index.html"
+  },
+  "author": {
+    "name": "Priyanshu",
+    "github": "https://github.com/PriyanshuSingh00-hub"
+  }
+},
   {
   "title": "Quantum Timeline Hacker",
   "description": "A reality-shifting cyber puzzle game built using modular HTML, CSS, and JavaScript architecture. Players navigate across three alternate timelines (Reality A / B / C) using a real-time timeline switching mechanic (Press T) to manipulate environment states. Objects exist in specific timelines, requiring strategic dimension shifting to solve puzzles, bypass security systems, and access locked areas. Features adaptive AI security drones, interactive terminal hacking nodes, dynamic state-based rendering, and seamless progression without page reload.",
@@ -1674,6 +1708,18 @@
     "tags": ["HTML", "CSS", "JavaScript", "Game", "Incremental"],
     "links": {
       "live": "./projects/3D-Quantum/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
+    {
+    "title": "WebGL-Fluid-Simulation",
+    "description": "A WebGL-based fluid simulation that demonstrates realistic fluid dynamics in a 3D environment. Features interactive controls, real-time rendering, and a visually engaging interface built with WebGL and JavaScript.",
+    "tags": ["HTML", "CSS", "JavaScript", "WebGL", "Simulation"],
+    "links": {
+      "live": "./projects/WebGL-Fluid-Simulation/index.html"
     },
     "author": {
       "name": "Omkar",
@@ -1713,6 +1759,18 @@
       "github": "https://github.com/omkarhole"
     }
   },
+    {
+    "title": "DVD Screensaver Simulator",
+    "description": "A simulation of the classic DVD screensaver with bouncing DVD logo. Features realistic physics, collision detection, and a nostalgic visual style.",
+    "tags": ["HTML", "CSS", "JavaScript", "Utility Tool"],
+    "links": {
+      "live": "./projects/DVD-screensaver-simulator/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
   {
     "title": "Hacker Escape Room #3786",
     "description": "A full-featured cyber escape room engine built with HTML, CSS, and JavaScript featuring a simulated terminal filesystem and command parser system. Players interact using real commands (cd, ls, cat, help, clear, hack) to navigate directories, solve logic riddles, crack passwords through animated brute-force sequences, and progress through multi-level branching challenges under a countdown timer. Includes glitch animations, immersive sound effects, and structured game-state management for a complete hacker-themed experience.",
@@ -1734,12 +1792,24 @@
       "github": "https://github.com/PriyanshuSingh00-hub"
     }
   },
-  {
+    {
     "title": "Code Formattor pro",
     "description": "A utility tool to format and minify HTML code with live preview. Features include beautifying HTML, minifying HTML, copying formatted code, downloading as a file, and a dark mode toggle for comfortable use.",
     "tags": ["HTML", "CSS", "JavaScript", "Utility Tool"],
     "links": {
       "live": "./projects/React-formattor/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
+  {
+    "title": "Mouse Cursor Motion Blur",
+    "description": "A utility tool that adds a motion blur effect to the mouse cursor, creating a visually appealing trail effect as the cursor moves across the screen.",
+    "tags": ["HTML", "CSS", "JavaScript", "Utility Tool"],
+    "links": {
+      "live": "./projects/Mouse-cursor-motion-blur/index.html"
     },
     "author": {
       "name": "Omkar",
@@ -12897,56 +12967,55 @@
     }
   },
   {
-    "title": "Intelligent Log Compression Engine #5005",
-    "description": "Advanced log compression system with intelligent algorithms for optimizing log storage and analysis. Features multiple compression algorithms (Intelligent Adaptive, LZ77, Huffman, DEFLATE), real-time compression analytics, pattern analysis, duplicate removal, timestamp preservation, and comprehensive performance tracking. Includes dashboard with metrics, analytics charts, pattern detection, and export capabilities.",
-    "tags": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Log Compression",
-      "Data Compression",
-      "LZ77",
-      "Huffman Coding",
-      "DEFLATE",
-      "Intelligent Compression",
-      "Pattern Analysis",
-      "Duplicate Removal",
-      "Timestamp Preservation",
-      "Performance Analytics",
-      "Data Visualization",
-      "Chart.js",
-      "LocalStorage",
-      "File Upload",
-      "Export/Import",
-      "Responsive Design",
-      "Real-time Processing"
-    ],
-    "links": {
-      "live": "./intelligent-log-compression-engine.html"
-    },
-    "author": {
-      "name": "Gupta-02",
-      "github": "https://github.com/Gupta-02"
-    }
-  },
-  {
-    "title": "Autonomous Context Partitioning Protocol",
-    "description": "An autonomous protocol for partitioning large texts into manageable contexts for AI processing. This tool helps break down lengthy documents or conversations into smaller, coherent chunks while maintaining context continuity through configurable overlap settings.",
+    "title": "Dynamic Intent Resolution Matrix",
+    "description": "An intelligent system for resolving user intents through dynamic matrix-based decision making. This tool employs various AI techniques including Bayesian inference, fuzzy logic, neural networks, decision trees, and reinforcement learning to accurately identify and classify user intentions from natural language input.",
     "tags": [
       "HTML",
       "CSS",
       "JavaScript",
       "AI",
-      "Text Processing",
-      "Context Management",
-      "Data Partitioning",
-      "NLP",
-      "Chunking",
-      "Text Analysis",
-      "Autonomous Processing"
+      "Natural Language Processing",
+      "Intent Recognition",
+      "Bayesian Inference",
+      "Fuzzy Logic",
+      "Neural Networks",
+      "Decision Trees",
+      "Reinforcement Learning",
+      "Data Visualization",
+      "Canvas API",
+      "Interactive Matrix",
+      "Real-time Processing"
     ],
     "links": {
-      "live": "./autonomous-context-partitioning-protocol/autonomous-context-partitioning-protocol.html"
+      "live": "./dynamic-intent-resolution-matrix/dynamic-intent-resolution-matrix.html"
+    },
+  },
+  {
+    "title": "Cryptographic Identity Abstraction Gateway",
+    "description": "A comprehensive cryptographic identity management system that provides secure abstraction layers for digital identity operations. Features include identity creation with public/private key pairs, multi-level abstraction (low, medium, high, maximum), verification protocols, attribute updates, and revocation mechanisms with real-time visualization of identity flows and security metrics.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Cryptography",
+      "Identity Management",
+      "Security",
+      "Public Key Infrastructure",
+      "Zero-Knowledge Proofs",
+      "Homomorphic Encryption",
+      "Secure Multi-party Computation",
+      "Digital Certificates",
+      "Blockchain",
+      "Privacy",
+      "Authentication",
+      "Data Visualization",
+      "Canvas API",
+      "Real-time Processing",
+      "JSON",
+      "LocalStorage"
+    ],
+    "links": {
+      "live": "./cryptographic-identity-abstraction-gateway/cryptographic-identity-abstraction-gateway.html"
     },
     "author": {
       "name": "Gupta-02",
