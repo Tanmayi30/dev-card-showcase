@@ -3096,6 +3096,18 @@
     }
   },
   {
+  "title": "URL Encoder/Decoder",
+  "description": "A futuristic dark + blue themed URL Encoder/Decoder with real-time encoding/decoding, character counter, and copy-to-clipboard functionality. Features modern glassmorphic UI panels, smooth hover animations, responsive design, and error handling for invalid input. Built entirely with HTML, CSS, and JavaScript for an interactive and portfolio-worthy experience.",
+  "tags": ["HTML", "CSS", "JavaScript"],
+  "links": {
+    "live": "./projects/url-encoder-decoder/"
+  },
+  "author": {
+    "name": "Anvesha",
+    "github": "https://github.com/your-github-username"
+  }
+},
+  {
     "title": "Catch the Dot",
     "description": "A fast-paced interactive game where users tap a moving dot before time runs out. Features a playful, neon-inspired UI, real-time score tracking, and a fully responsive layout designed for both desktop and mobile interaction.",
     "tags": ["HTML", "CSS", "JavaScript", "Game", "UI/UX"],
