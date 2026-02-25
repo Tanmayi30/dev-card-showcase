@@ -170,6 +170,18 @@
     }
   },
   {
+  "title": "Pomodoro Analytics Dashboard",
+  "description": "A modern productivity dashboard based on the Pomodoro Technique featuring real-time session tracking, interactive analytics, and persistent progress storage using localStorage. The application includes dynamic timer modes (Focus & Break), live statistics updates, and a responsive data visualization chart to analyze completed sessions and total focus time. Designed with a premium dashboard-style UI for enhanced user engagement.",
+  "tags": ["HTML", "CSS", "JavaScript", "Chart.js"],
+  "links": {
+    "live": "./projects/pomodoro-analytics/"
+  },
+  "author": {
+    "name": "Anvesha",
+    "github": "https://github.com/your-github-username"
+  }
+},
+  {
     "title": "Heavy Metal Exposure Monitoring Log",
     "description": "Track and monitor potential exposure to toxic heavy metals like lead, mercury, arsenic, and cadmium. Log exposure incidents, symptoms, risk levels, and mitigation strategies. Includes educational information about heavy metals and prevention tips for maintaining optimal health.",
     "tags": [
