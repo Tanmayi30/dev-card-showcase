@@ -13132,7 +13132,7 @@
     ],
     "links": {
       "live": "./dynamic-intent-resolution-matrix/dynamic-intent-resolution-matrix.html"
-    },
+    }
   },
   {
     "title": "Cryptographic Identity Abstraction Gateway",
