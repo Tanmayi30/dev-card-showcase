@@ -31,6 +31,18 @@
     }
   },
   {
+  "title": "Priority Matrix (Eisenhower Matrix)",
+  "description": "An interactive drag-and-drop task management web application based on the Eisenhower Productivity Principle. Users can organize tasks into four priority quadrants (Urgent & Important, Not Urgent & Important, Urgent & Not Important, Not Urgent & Not Important). Features include real-time task updates, LocalStorage persistence, responsive design, and a modern glassmorphism UI for an engaging productivity experience.",
+  "tags": ["HTML", "CSS", "JavaScript"],
+  "links": {
+    "live": "./projects/priority-matrix/"
+  },
+  "author": {
+    "name": "Anvesha",
+    "github": "https://github.com/your-github-username"
+  }
+},
+  {
     "title": "Proactive Infrastructure Resilience Hub #5219",
     "description": "Monitor, analyze, and enhance infrastructure resilience with proactive insights and automated recommendations. Features real-time component monitoring, resilience scoring, failure simulation, automated alerting, and comprehensive reporting for maintaining robust infrastructure health.",
     "tags": [
