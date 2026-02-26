@@ -1,157 +1,34 @@
-const STORAGE_KEY = "skill_gap_radar_state_v1";
-const FORM_KEY = "skill_gap_radar_form_v1";
+const STORAGE_KEY = "burnout_dashboard_state_v1";
 
-const roleSkillMap = {
-  "Frontend Developer": [
-    { skill: "HTML", importance: "high" },
-    { skill: "CSS", importance: "high" },
-    { skill: "JavaScript", importance: "high" },
-    { skill: "TypeScript", importance: "medium" },
-    { skill: "React", importance: "high" },
-    { skill: "Accessibility", importance: "medium" },
-    { skill: "Testing", importance: "medium" },
-    { skill: "Git", importance: "high" },
-    { skill: "REST APIs", importance: "medium" },
-    { skill: "Communication", importance: "high" }
-  ],
-  "Backend Developer": [
-    { skill: "JavaScript", importance: "medium" },
-    { skill: "Node.js", importance: "high" },
-    { skill: "Python", importance: "high" },
-    { skill: "SQL", importance: "high" },
-    { skill: "REST APIs", importance: "high" },
-    { skill: "Authentication", importance: "medium" },
-    { skill: "Caching", importance: "medium" },
-    { skill: "Docker", importance: "medium" },
-    { skill: "Git", importance: "high" },
-    { skill: "System Design", importance: "medium" }
-  ],
-  "Full Stack Developer": [
-    { skill: "HTML", importance: "high" },
-    { skill: "CSS", importance: "high" },
-    { skill: "JavaScript", importance: "high" },
-    { skill: "React", importance: "high" },
-    { skill: "Node.js", importance: "high" },
-    { skill: "SQL", importance: "high" },
-    { skill: "REST APIs", importance: "high" },
-    { skill: "Testing", importance: "medium" },
-    { skill: "Git", importance: "high" },
-    { skill: "Deployment", importance: "medium" }
-  ],
-  "Data Analyst": [
-    { skill: "SQL", importance: "high" },
-    { skill: "Excel", importance: "high" },
-    { skill: "Python", importance: "high" },
-    { skill: "Statistics", importance: "high" },
-    { skill: "Data Visualization", importance: "high" },
-    { skill: "Power BI", importance: "medium" },
-    { skill: "Tableau", importance: "medium" },
-    { skill: "Communication", importance: "high" },
-    { skill: "Business Insight", importance: "medium" },
-    { skill: "A/B Testing", importance: "medium" }
-  ],
-  "Product Manager": [
-    { skill: "Product Strategy", importance: "high" },
-    { skill: "User Research", importance: "high" },
-    { skill: "Roadmapping", importance: "high" },
-    { skill: "Analytics", importance: "high" },
-    { skill: "Communication", importance: "high" },
-    { skill: "Prioritization", importance: "high" },
-    { skill: "Stakeholder Management", importance: "medium" },
-    { skill: "Wireframing", importance: "medium" },
-    { skill: "A/B Testing", importance: "medium" },
-    { skill: "Documentation", importance: "medium" }
-  ],
-  "UI/UX Designer": [
-    { skill: "Design Systems", importance: "high" },
-    { skill: "Figma", importance: "high" },
-    { skill: "User Research", importance: "high" },
-    { skill: "Interaction Design", importance: "high" },
-    { skill: "Information Architecture", importance: "medium" },
-    { skill: "Prototyping", importance: "high" },
-    { skill: "Accessibility", importance: "medium" },
-    { skill: "Communication", importance: "high" },
-    { skill: "Usability Testing", importance: "medium" },
-    { skill: "Design Handoff", importance: "medium" }
-  ],
-  "DevOps Engineer": [
-    { skill: "Linux", importance: "high" },
-    { skill: "Docker", importance: "high" },
-    { skill: "Kubernetes", importance: "high" },
-    { skill: "CI/CD", importance: "high" },
-    { skill: "Cloud (AWS/Azure/GCP)", importance: "high" },
-    { skill: "Monitoring", importance: "medium" },
-    { skill: "Scripting", importance: "high" },
-    { skill: "Networking", importance: "medium" },
-    { skill: "Git", importance: "high" },
-    { skill: "Security Basics", importance: "medium" }
-  ]
+const state = {
+  entries: []
 };
 
-const projectBank = {
-  "Frontend Developer": [
-    { title: "Responsive Dashboard", goal: "Build role-based dashboard with API data.", skills: ["React", "TypeScript", "REST APIs"] },
-    { title: "Accessibility Audit Tool", goal: "Create mini tool to scan color contrast and aria labels.", skills: ["Accessibility", "JavaScript", "CSS"] },
-    { title: "Testing-first Todo App", goal: "Ship feature-complete app with unit and integration tests.", skills: ["Testing", "React", "Git"] }
-  ],
-  "Backend Developer": [
-    { title: "Auth API Boilerplate", goal: "Develop production-ready auth and session system.", skills: ["Node.js", "Authentication", "REST APIs"] },
-    { title: "Analytics Event Ingestion", goal: "Build ingestion service with queue and SQL storage.", skills: ["SQL", "Caching", "System Design"] },
-    { title: "Dockerized Microservice", goal: "Containerize and deploy resilient backend service.", skills: ["Docker", "Git", "Python"] }
-  ],
-  "Full Stack Developer": [
-    { title: "Job Tracker SaaS", goal: "Create app for tracking applications and interviews.", skills: ["React", "Node.js", "SQL"] },
-    { title: "Realtime Collaboration Board", goal: "Build board with comments, auth and deployment.", skills: ["REST APIs", "Deployment", "Testing"] },
-    { title: "Portfolio CMS", goal: "Build headless CMS-backed personal portfolio.", skills: ["JavaScript", "Git", "HTML"] }
-  ],
-  "Data Analyst": [
-    { title: "Sales Performance Analyzer", goal: "Build report dashboard with cohort and trend analysis.", skills: ["SQL", "Data Visualization", "Statistics"] },
-    { title: "Marketing A/B Analysis", goal: "Analyze experiments and present confidence insights.", skills: ["A/B Testing", "Python", "Business Insight"] },
-    { title: "Operational KPI Tracker", goal: "Create weekly automated KPI snapshots.", skills: ["Excel", "Power BI", "Communication"] }
-  ],
-  "Product Manager": [
-    { title: "Feature Prioritization Framework", goal: "Design weighted scoring model and implementation plan.", skills: ["Prioritization", "Product Strategy", "Roadmapping"] },
-    { title: "Onboarding Funnel Audit", goal: "Diagnose drop-offs and propose experiments.", skills: ["Analytics", "User Research", "A/B Testing"] },
-    { title: "Product Requirement Library", goal: "Write reusable PRD templates with clear acceptance criteria.", skills: ["Documentation", "Communication", "Stakeholder Management"] }
-  ],
-  "UI/UX Designer": [
-    { title: "Design System Starter", goal: "Create scalable design tokens and components.", skills: ["Design Systems", "Figma", "Design Handoff"] },
-    { title: "Usability Test Sprint", goal: "Run 5 usability sessions and iterate flow.", skills: ["Usability Testing", "User Research", "Interaction Design"] },
-    { title: "Mobile-first Prototype", goal: "Build full mobile prototype with IA clarity.", skills: ["Prototyping", "Information Architecture", "Accessibility"] }
-  ],
-  "DevOps Engineer": [
-    { title: "CI/CD Pipeline Lab", goal: "Set up build-test-deploy pipeline with quality gates.", skills: ["CI/CD", "Git", "Scripting"] },
-    { title: "Cloud Monitoring Stack", goal: "Deploy logs, metrics, and alerting setup.", skills: ["Monitoring", "Cloud (AWS/Azure/GCP)", "Linux"] },
-    { title: "Kubernetes Rollout Demo", goal: "Deploy service with rolling updates and rollback.", skills: ["Kubernetes", "Docker", "Networking"] }
-  ]
-};
-
-const appState = {
-  activeTab: "summary",
-  report: null,
-  progressMap: {}
-};
-
-const ids = [
-  "candidateName",
-  "experienceLevel",
-  "targetRole",
-  "weeklyHours",
-  "jobLinks",
-  "jobDescription",
-  "resumeText",
-  "learningMode",
-  "goalTimeline"
-];
-
-const tabs = Array.from(document.querySelectorAll(".tab"));
-const tabContent = document.getElementById("tabContent");
-
-const scoreNodes = {
-  match: document.getElementById("matchScore"),
-  gap: document.getElementById("gapScore"),
-  roadmap: document.getElementById("roadmapScore"),
-  readiness: document.getElementById("readinessScore")
+const nodes = {
+  form: document.getElementById("checkinForm"),
+  checkinDate: document.getElementById("checkinDate"),
+  workload: document.getElementById("workload"),
+  sleep: document.getElementById("sleep"),
+  mood: document.getElementById("mood"),
+  focus: document.getElementById("focus"),
+  stress: document.getElementById("stress"),
+  notes: document.getElementById("notes"),
+  workloadOut: document.getElementById("workloadOut"),
+  sleepOut: document.getElementById("sleepOut"),
+  moodOut: document.getElementById("moodOut"),
+  focusOut: document.getElementById("focusOut"),
+  stressOut: document.getElementById("stressOut"),
+  formHint: document.getElementById("formHint"),
+  riskScore: document.getElementById("riskScore"),
+  riskLevel: document.getElementById("riskLevel"),
+  avgSleep: document.getElementById("avgSleep"),
+  avgWorkload: document.getElementById("avgWorkload"),
+  warningText: document.getElementById("warningText"),
+  recoveryPlan: document.getElementById("recoveryPlan"),
+  historyRows: document.getElementById("historyRows"),
+  trendChart: document.getElementById("trendChart"),
+  loadDemoBtn: document.getElementById("loadDemoBtn"),
+  clearBtn: document.getElementById("clearBtn")
 };
 
 init();
@@ -159,568 +36,376 @@ init();
 function init() {
   hydrate();
   bindEvents();
-  if (appState.report) {
-    paintScores(appState.report.scores);
-    renderActiveTab();
-  } else {
-    tabContent.innerHTML = `<p class="muted">Fill inputs and run analysis to generate report.</p>`;
-  }
+  setDefaultDate();
+  syncRangeOutputs();
+  render();
 }
 
 function bindEvents() {
-  document.getElementById("analyzeBtn").addEventListener("click", analyze);
-  document.getElementById("loadDemoBtn").addEventListener("click", loadDemo);
-  document.getElementById("resetBtn").addEventListener("click", onReset);
-  document.getElementById("copyReportBtn").addEventListener("click", copyReport);
-  document.getElementById("downloadReportBtn").addEventListener("click", downloadReport);
+  nodes.form.addEventListener("submit", onSubmit);
+  nodes.loadDemoBtn.addEventListener("click", loadDemo);
+  nodes.clearBtn.addEventListener("click", clearAll);
 
-  tabs.forEach((tab) => tab.addEventListener("click", () => {
-    appState.activeTab = tab.dataset.tab;
-    persist();
-    renderActiveTab();
-  }));
-
-  ids.forEach((id) => {
-    const node = document.getElementById(id);
-    node.addEventListener("change", persistForm);
-    node.addEventListener("input", persistForm);
+  [nodes.workload, nodes.sleep, nodes.mood, nodes.focus, nodes.stress].forEach((input) => {
+    input.addEventListener("input", syncRangeOutputs);
   });
 }
 
-function analyze() {
-  const input = collectInput();
-  if (!input) return;
+function setDefaultDate() {
+  if (!nodes.checkinDate.value) {
+    nodes.checkinDate.value = new Date().toISOString().slice(0, 10);
+  }
+}
 
-  const parsedResumeSkills = extractSkills(input.resumeText, input.targetRole);
-  const parsedJdSkills = extractSkills(input.jobDescription, input.targetRole, true);
-  const roleSkills = roleSkillMap[input.targetRole] || [];
+function syncRangeOutputs() {
+  nodes.workloadOut.textContent = nodes.workload.value;
+  nodes.sleepOut.textContent = nodes.sleep.value;
+  nodes.moodOut.textContent = nodes.mood.value;
+  nodes.focusOut.textContent = nodes.focus.value;
+  nodes.stressOut.textContent = nodes.stress.value;
+}
 
-  const mergedRoleSkills = mergeRoleWithJd(roleSkills, parsedJdSkills);
-  const matrix = buildSkillMatrix(mergedRoleSkills, parsedResumeSkills);
-  const scores = scoreMatrix(matrix, input.weeklyHours, input.goalTimeline);
-  const roadmap = buildRoadmap(matrix, input);
-  const projects = buildProjects(input.targetRole, matrix);
-  const nextSteps = buildNextSteps(matrix, input);
-  const monetization = [
-    "Free: 1 active target role and basic roadmap",
-    "Pro Monthly: unlimited role tracking + AI feedback loops",
-    "Mentor Add-on: expert-reviewed 30-day plan and mock interview advice",
-    "Institution Pack: dashboard for bootcamps and colleges"
-  ];
+function onSubmit(event) {
+  event.preventDefault();
 
-  const report = {
-    generatedAt: new Date().toISOString(),
-    input,
-    parsedResumeSkills,
-    parsedJdSkills,
-    matrix,
-    scores,
-    roadmap,
-    projects,
-    nextSteps,
-    monetization
+  const entry = {
+    date: nodes.checkinDate.value,
+    workload: Number(nodes.workload.value),
+    sleep: Number(nodes.sleep.value),
+    mood: Number(nodes.mood.value),
+    focus: Number(nodes.focus.value),
+    stress: Number(nodes.stress.value),
+    notes: nodes.notes.value.trim().slice(0, 240)
   };
 
-  appState.report = report;
-  paintScores(scores);
-  setHint("Skill report generated. Review tabs and track daily progress.", false);
-  persist();
-  renderActiveTab();
-}
-
-function collectInput() {
-  const input = {
-    candidateName: getVal("candidateName").trim(),
-    experienceLevel: getVal("experienceLevel"),
-    targetRole: getVal("targetRole"),
-    weeklyHours: Number(getVal("weeklyHours")) || 10,
-    jobLinks: getVal("jobLinks").trim(),
-    jobDescription: getVal("jobDescription").trim(),
-    resumeText: getVal("resumeText").trim(),
-    learningMode: getVal("learningMode"),
-    goalTimeline: getVal("goalTimeline")
-  };
-
-  if (!input.candidateName || !input.targetRole || !input.jobDescription || !input.resumeText) {
-    setHint("Please fill name, target role, JD text, and resume text.", true);
-    return null;
-  }
-  return input;
-}
-
-function extractSkills(rawText, role, includeRoleDefaults = false) {
-  const text = rawText.toLowerCase();
-  const allRoleSkills = Object.values(roleSkillMap).flat().map((s) => s.skill);
-  const baseSet = new Set(includeRoleDefaults ? (roleSkillMap[role] || []).map((s) => s.skill) : []);
-  allRoleSkills.forEach((skill) => {
-    const pattern = new RegExp(`\\b${escapeRegex(skill.toLowerCase())}\\b`, "i");
-    if (pattern.test(text)) baseSet.add(skill);
-  });
-  return Array.from(baseSet);
-}
-
-function mergeRoleWithJd(roleSkills, jdSkills) {
-  const map = new Map();
-  roleSkills.forEach((item) => map.set(item.skill, { ...item }));
-  jdSkills.forEach((skill) => {
-    if (!map.has(skill)) map.set(skill, { skill, importance: "medium" });
-  });
-  return Array.from(map.values());
-}
-
-function buildSkillMatrix(requiredSkills, resumeSkills) {
-  const resumeSet = new Set(resumeSkills.map((s) => s.toLowerCase()));
-  return requiredSkills.map((item) => {
-    const hasSkill = resumeSet.has(item.skill.toLowerCase());
-    const action = hasSkill
-      ? "Keep practicing with role-specific projects."
-      : item.importance === "high"
-        ? "Prioritize immediately in week 1-2."
-        : "Add in week 3-4 with practical exercises.";
-    return {
-      skill: item.skill,
-      importance: item.importance,
-      status: hasSkill ? "present" : "missing",
-      action
-    };
-  });
-}
-
-function scoreMatrix(matrix, weeklyHours, goalTimeline) {
-  const total = matrix.length;
-  const present = matrix.filter((m) => m.status === "present").length;
-  const missingHigh = matrix.filter((m) => m.status === "missing" && m.importance === "high").length;
-  const missingMedium = matrix.filter((m) => m.status === "missing" && m.importance === "medium").length;
-
-  let match = Math.round((present / total) * 100);
-  let gap = 100 - match;
-  let roadmap = 55 + Math.min(25, weeklyHours);
-  let readiness = 48 + Math.round(present * 2.6) - (missingHigh * 4);
-
-  if (goalTimeline === "60 days") {
-    roadmap += 6;
-    readiness += 4;
-  }
-  if (goalTimeline === "90 days") {
-    roadmap += 10;
-    readiness += 8;
-  }
-
-  gap += missingHigh * 3 + missingMedium;
-  roadmap -= missingHigh * 2;
-
-  return {
-    match: clamp(match),
-    gap: clamp(gap),
-    roadmap: clamp(roadmap),
-    readiness: clamp(readiness)
-  };
-}
-
-function buildRoadmap(matrix, input) {
-  const missing = matrix.filter((m) => m.status === "missing");
-  const highMissing = missing.filter((m) => m.importance === "high").map((m) => m.skill);
-  const medMissing = missing.filter((m) => m.importance === "medium").map((m) => m.skill);
-
-  const week1 = highMissing.slice(0, 3);
-  const week2 = highMissing.slice(3, 6).concat(medMissing.slice(0, 1));
-  const week3 = medMissing.slice(1, 4);
-  const week4 = medMissing.slice(4, 7);
-
-  return [
-    {
-      week: "Week 1",
-      title: "Core Foundation Sprint",
-      tasks: week1.length ? week1 : ["Strengthen one core role skill", "Revise fundamentals", "Take quick assessment"],
-      output: "Daily notes + 1 mini implementation"
-    },
-    {
-      week: "Week 2",
-      title: "Applied Learning Sprint",
-      tasks: week2.length ? week2 : ["Build hands-on mini feature", "Practice interview questions", "Refactor solutions"],
-      output: "1 role-focused mini project"
-    },
-    {
-      week: "Week 3",
-      title: "Portfolio Depth Sprint",
-      tasks: week3.length ? week3 : ["Add measurable results to projects", "Polish documentation", "Revise weak concepts"],
-      output: "Updated portfolio + README improvements"
-    },
-    {
-      week: "Week 4",
-      title: "Interview Readiness Sprint",
-      tasks: week4.length ? week4 : ["Mock interviews", "Resume updates", "Role-based problem solving"],
-      output: "Interview kit + polished resume"
-    }
-  ].map((weekPlan) => ({
-    ...weekPlan,
-    hours: recommendHours(input.weeklyHours, weekPlan.week)
-  }));
-}
-
-function buildProjects(role, matrix) {
-  const base = projectBank[role] || [];
-  const missing = matrix.filter((m) => m.status === "missing").map((m) => m.skill.toLowerCase());
-
-  return base.map((project) => {
-    const alignment = project.skills.reduce((score, skill) => (
-      score + (missing.includes(skill.toLowerCase()) ? 1 : 0)
-    ), 0);
-    const priority = alignment >= 2 ? "high" : alignment === 1 ? "medium" : "low";
-    return { ...project, priority };
-  }).sort((a, b) => priorityOrder(b.priority) - priorityOrder(a.priority));
-}
-
-function buildNextSteps(matrix, input) {
-  const missingHigh = matrix.filter((m) => m.status === "missing" && m.importance === "high").map((m) => m.skill);
-  const missingMedium = matrix.filter((m) => m.status === "missing" && m.importance === "medium").map((m) => m.skill);
-  const present = matrix.filter((m) => m.status === "present").map((m) => m.skill);
-
-  return [
-    `In next 7 days, close 1-2 high-priority skills: ${missingHigh.slice(0, 2).join(", ") || "none pending"}.`,
-    `Build one focused project proving ${input.targetRole} readiness.`,
-    `Schedule 2 mock interviews and practice role-specific questions.`,
-    `Update resume bullets with outcomes and measurable results.`,
-    `Use existing strengths (${present.slice(0, 3).join(", ") || "core fundamentals"}) as your interview pitch.`,
-    `Medium-priority backlog: ${missingMedium.slice(0, 4).join(", ") || "maintain depth in current stack"}.`
-  ];
-}
-
-function renderActiveTab() {
-  if (!appState.report) {
-    tabContent.innerHTML = `<p class="muted">Fill inputs and run analysis to generate report.</p>`;
+  if (!entry.date) {
+    setHint("Please choose a valid date.", true);
     return;
   }
-  markActiveTab();
-  const report = appState.report;
-  if (appState.activeTab === "summary") return renderSummary(report);
-  if (appState.activeTab === "skills") return renderSkills(report);
-  if (appState.activeTab === "roadmap") return renderRoadmap(report);
-  if (appState.activeTab === "projects") return renderProjects(report);
-  if (appState.activeTab === "progress") return renderProgress(report);
-  if (appState.activeTab === "next") return renderNext(report);
+
+  const existingIndex = state.entries.findIndex((item) => item.date === entry.date);
+  if (existingIndex >= 0) {
+    state.entries[existingIndex] = entry;
+    setHint("Updated existing check-in for this date.", false);
+  } else {
+    state.entries.push(entry);
+    setHint("Check-in saved.", false);
+  }
+
+  state.entries.sort((a, b) => a.date.localeCompare(b.date));
+  persist();
+  render();
 }
 
-function renderSummary(report) {
-  const node = template("summaryTemplate");
-  node.querySelector("#candidateSummaryText").textContent =
-    `${report.input.candidateName} targeting ${report.input.targetRole} (${report.input.experienceLevel}). Resume matched ${report.matrix.filter((m) => m.status === "present").length}/${report.matrix.length} role-relevant skills.`;
-
-  const strengths = report.matrix.filter((m) => m.status === "present").slice(0, 6).map((m) => m.skill);
-  const gaps = report.matrix.filter((m) => m.status === "missing").slice(0, 6).map((m) => `${m.skill} (${m.importance})`);
-  strengths.forEach((s) => node.querySelector("#strengthList").appendChild(li(s)));
-  gaps.forEach((g) => node.querySelector("#priorityGapList").appendChild(li(g)));
-
-  node.querySelector("#scoreInsightText").textContent =
-    `Current match ${report.scores.match}/100. Focus on high-importance missing skills first to raise interview readiness beyond ${Math.min(95, report.scores.readiness + 12)}/100 in 30 days.`;
-  swap(node);
+function render() {
+  const recent = state.entries.slice(-14);
+  paintScoreCards(recent);
+  paintWarning(recent);
+  paintRecoveryPlan(recent);
+  paintHistory();
+  paintChart(recent);
 }
 
-function renderSkills(report) {
-  const node = template("skillsTemplate");
-  node.querySelector("#roleSkillHead").textContent =
-    `Extracted ${report.parsedJdSkills.length} role signals from JD data and mapped against your resume profile.`;
-  const body = node.querySelector("#skillRows");
-  report.matrix.forEach((item) => {
+function paintScoreCards(entries) {
+  if (!entries.length) {
+    nodes.riskScore.textContent = "--";
+    nodes.riskLevel.textContent = "--";
+    nodes.avgSleep.textContent = "--";
+    nodes.avgWorkload.textContent = "--";
+    nodes.riskScore.style.color = "";
+    nodes.riskLevel.style.color = "";
+    return;
+  }
+
+  const risk = computeRisk(entries);
+  const avgSleep = average(entries.map((e) => e.sleep));
+  const avgWorkload = average(entries.map((e) => e.workload));
+  const level = riskLevel(risk);
+
+  nodes.riskScore.textContent = `${risk}/100`;
+  nodes.riskLevel.textContent = level;
+  nodes.avgSleep.textContent = `${avgSleep.toFixed(1)} hrs`;
+  nodes.avgWorkload.textContent = `${avgWorkload.toFixed(1)}/10`;
+
+  nodes.riskScore.style.color = risk >= 70 ? "var(--danger)" : risk >= 45 ? "var(--warn)" : "var(--ok)";
+  nodes.riskLevel.style.color = nodes.riskScore.style.color;
+}
+
+function paintWarning(entries) {
+  if (entries.length < 4) {
+    nodes.warningText.textContent = "Need at least 4 days of data to detect early warning patterns.";
+    return;
+  }
+
+  const last3 = entries.slice(-3);
+  const prev3 = entries.slice(-6, -3);
+
+  const workloadJump = average(last3.map((e) => e.workload)) - average(prev3.map((e) => e.workload));
+  const sleepDrop = average(prev3.map((e) => e.sleep)) - average(last3.map((e) => e.sleep));
+  const moodDrop = average(prev3.map((e) => e.mood)) - average(last3.map((e) => e.mood));
+
+  const warnings = [];
+  if (workloadJump >= 1) warnings.push("workload has increased in the last 3 days");
+  if (sleepDrop >= 0.8) warnings.push("sleep trend is declining");
+  if (moodDrop >= 0.8) warnings.push("mood trend is declining");
+
+  if (!warnings.length) {
+    nodes.warningText.textContent = "No acute warning trend right now. Maintain routines and monitor stress spikes.";
+    return;
+  }
+
+  nodes.warningText.textContent = `Early warning: ${warnings.join("; ")}. Consider lighter task planning for the next 48 hours.`;
+}
+
+function paintRecoveryPlan(entries) {
+  nodes.recoveryPlan.innerHTML = "";
+
+  if (!entries.length) {
+    appendPlan(["Add your first check-in to generate a personalized recovery plan."]);
+    return;
+  }
+
+  const slice = entries.slice(-7);
+  const avgSleep = average(slice.map((e) => e.sleep));
+  const avgMood = average(slice.map((e) => e.mood));
+  const avgFocus = average(slice.map((e) => e.focus));
+  const avgWorkload = average(slice.map((e) => e.workload));
+  const avgStress = average(slice.map((e) => e.stress));
+
+  const plan = [];
+
+  if (avgSleep < 6.8) plan.push("Sleep reset: fixed wind-down alarm, no screens 45 mins before bed, target +45 mins/night.");
+  if (avgWorkload > 7) plan.push("Workload cap: reduce non-critical tasks by 20% and block one no-meeting focus window daily.");
+  if (avgStress > 6.5) plan.push("Stress decompression: 2 short breathing breaks and one 20-minute walk after peak workload.");
+  if (avgFocus < 5.5) plan.push("Focus repair: work in 45/10 deep-work cycles and mute non-urgent notifications.");
+  if (avgMood < 5.5) plan.push("Mood protection: schedule one recovery activity daily (social, exercise, or hobby).\n");
+
+  plan.push("Friday review: check score trend and adjust next week before overload compounds.");
+
+  appendPlan(plan.slice(0, 5));
+}
+
+function appendPlan(items) {
+  items.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    nodes.recoveryPlan.appendChild(li);
+  });
+}
+
+function paintHistory() {
+  nodes.historyRows.innerHTML = "";
+
+  if (!state.entries.length) {
+    const row = document.createElement("tr");
+    row.innerHTML = '<td colspan="7" class="muted">No check-ins yet.</td>';
+    nodes.historyRows.appendChild(row);
+    return;
+  }
+
+  state.entries.slice().reverse().forEach((entry) => {
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${escapeHtml(item.skill)}</td>
-      <td>${statusPill(item.status)}</td>
-      <td>${importancePill(item.importance)}</td>
-      <td>${escapeHtml(item.action)}</td>
+      <td>${escapeHtml(entry.date)}</td>
+      <td>${entry.workload}</td>
+      <td>${entry.sleep}</td>
+      <td>${entry.mood}</td>
+      <td>${entry.focus}</td>
+      <td>${entry.stress}</td>
+      <td>${escapeHtml(entry.notes || "-")}</td>
     `;
-    body.appendChild(row);
-  });
-  swap(node);
-}
-
-function renderRoadmap(report) {
-  const node = template("roadmapTemplate");
-  node.querySelector("#roadmapIntro").textContent =
-    `${report.input.weeklyHours} hours/week planned with ${report.input.learningMode.toLowerCase()} mode.`;
-  const grid = node.querySelector("#roadmapGrid");
-  report.roadmap.forEach((week) => {
-    const card = document.createElement("article");
-    card.className = "roadmap-card";
-    card.innerHTML = `
-      <h4>${escapeHtml(week.week)} - ${escapeHtml(week.title)}</h4>
-      <p><strong>Time:</strong> ${escapeHtml(week.hours)}</p>
-      <p><strong>Output:</strong> ${escapeHtml(week.output)}</p>
-      <ul>${week.tasks.map((task) => `<li>${escapeHtml(task)}</li>`).join("")}</ul>
-    `;
-    grid.appendChild(card);
-  });
-  swap(node);
-}
-
-function renderProjects(report) {
-  const node = template("projectsTemplate");
-  node.querySelector("#projectIntro").textContent =
-    `Projects are prioritized by alignment with your missing skills for ${report.input.targetRole}.`;
-  const grid = node.querySelector("#projectGrid");
-  report.projects.forEach((project) => {
-    const card = document.createElement("article");
-    card.className = "project-card";
-    card.innerHTML = `
-      <h4>${escapeHtml(project.title)} ${priorityBadge(project.priority)}</h4>
-      <p>${escapeHtml(project.goal)}</p>
-      <ul class="stack-mini">${project.skills.map((skill) => `<li>${escapeHtml(skill)}</li>`).join("")}</ul>
-    `;
-    grid.appendChild(card);
-  });
-  swap(node);
-}
-
-function renderProgress(report) {
-  const node = template("progressTemplate");
-  const tasks = report.roadmap.flatMap((w) => w.tasks).slice(0, 12);
-  const container = node.querySelector("#progressChecklist");
-  let done = 0;
-
-  tasks.forEach((task, idx) => {
-    const id = `task_${idx}_${slug(task)}`;
-    const checked = Boolean(appState.progressMap[id]);
-    if (checked) done += 1;
-    const row = document.createElement("div");
-    row.className = "check-row";
-    row.innerHTML = `
-      <label>
-        <input type="checkbox" data-task-id="${id}" ${checked ? "checked" : ""}>
-        <span>${escapeHtml(task)}</span>
-      </label>
-      <span class="check-tag">Day ${idx + 1}</span>
-    `;
-    container.appendChild(row);
-  });
-
-  const pct = tasks.length ? Math.round((done / tasks.length) * 100) : 0;
-  node.querySelector("#progressText").textContent = `${done}/${tasks.length} tasks complete (${pct}%)`;
-  node.querySelector("#progressFill").style.width = `${pct}%`;
-  swap(node);
-
-  container.querySelectorAll('input[type="checkbox"]').forEach((cb) => {
-    cb.addEventListener("change", (e) => {
-      const taskId = e.target.getAttribute("data-task-id");
-      appState.progressMap[taskId] = e.target.checked;
-      persist();
-      renderProgress(report);
-    });
+    nodes.historyRows.appendChild(row);
   });
 }
 
-function renderNext(report) {
-  const node = template("nextTemplate");
-  report.nextSteps.forEach((step) => node.querySelector("#nextStepsList").appendChild(li(step)));
-  report.monetization.forEach((line) => node.querySelector("#monetizationList").appendChild(li(line)));
-  swap(node);
-}
+function paintChart(entries) {
+  const canvas = nodes.trendChart;
+  const ctx = canvas.getContext("2d");
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  const width = Math.max(620, Math.floor(rect.width));
+  const height = 320;
 
-function copyReport() {
-  if (!appState.report) {
-    setHint("Analyze first, then copy report.", true);
+  canvas.width = Math.floor(width * dpr);
+  canvas.height = Math.floor(height * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  ctx.clearRect(0, 0, width, height);
+  ctx.fillStyle = "#fafdff";
+  ctx.fillRect(0, 0, width, height);
+
+  if (!entries.length) {
+    ctx.fillStyle = "#5c7088";
+    ctx.font = '500 14px "Sora", sans-serif';
+    ctx.fillText("No trend data yet.", 20, 30);
     return;
   }
-  const r = appState.report;
-  const text = [
-    `Candidate: ${r.input.candidateName}`,
-    `Target Role: ${r.input.targetRole}`,
-    `Current Match: ${r.scores.match}/100`,
-    `Gap Severity: ${r.scores.gap}/100`,
-    `Interview Readiness: ${r.scores.readiness}/100`,
-    "",
-    "Top Missing Skills:",
-    ...r.matrix.filter((m) => m.status === "missing").slice(0, 6).map((m) => `- ${m.skill} (${m.importance})`),
-    "",
-    "Next Steps:",
-    ...r.nextSteps.map((s) => `- ${s}`)
-  ].join("\n");
 
-  navigator.clipboard.writeText(text)
-    .then(() => setHint("Report copied to clipboard.", false))
-    .catch(() => setHint("Clipboard unavailable in this context.", true));
+  const margin = { top: 20, right: 20, bottom: 30, left: 36 };
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+
+  drawGrid(ctx, margin, innerW, innerH);
+
+  const metrics = [
+    { key: "workload", color: "#e0701e", max: 10 },
+    { key: "focus", color: "#1f80e0", max: 10 },
+    { key: "mood", color: "#0ea26a", max: 10 },
+    { key: "sleep", color: "#7b68d9", max: 12 }
+  ];
+
+  metrics.forEach((metric) => drawLine(ctx, entries, metric, margin, innerW, innerH));
+  drawLegend(ctx, metrics, width);
 }
 
-function downloadReport() {
-  if (!appState.report) {
-    setHint("Analyze first, then download report.", true);
-    return;
+function drawGrid(ctx, margin, innerW, innerH) {
+  ctx.strokeStyle = "#e4edf6";
+  ctx.lineWidth = 1;
+
+  for (let i = 0; i <= 4; i += 1) {
+    const y = margin.top + (innerH / 4) * i;
+    ctx.beginPath();
+    ctx.moveTo(margin.left, y);
+    ctx.lineTo(margin.left + innerW, y);
+    ctx.stroke();
   }
-  const blob = new Blob([JSON.stringify(appState.report, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `${slug(appState.report.input.candidateName)}-skill-gap-report.json`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
+}
+
+function drawLine(ctx, entries, metric, margin, innerW, innerH) {
+  const total = entries.length;
+  ctx.strokeStyle = metric.color;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+
+  entries.forEach((entry, index) => {
+    const x = margin.left + (total === 1 ? innerW / 2 : (innerW * index) / (total - 1));
+    const scaled = Number(entry[metric.key]) / metric.max;
+    const y = margin.top + innerH - scaled * innerH;
+    if (index === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+
+  ctx.stroke();
+}
+
+function drawLegend(ctx, metrics, width) {
+  let x = 14;
+  const y = 14;
+
+  ctx.font = '500 11px "JetBrains Mono", monospace';
+  metrics.forEach((metric) => {
+    ctx.fillStyle = metric.color;
+    ctx.fillRect(x, y - 8, 10, 10);
+    ctx.fillStyle = "#31455b";
+    ctx.fillText(metric.key, x + 14, y);
+    x += ctx.measureText(metric.key).width + 42;
+    if (x > width - 120) x = 14;
+  });
+}
+
+function computeRisk(entries) {
+  const recent = entries.slice(-14);
+  const workloadRisk = normalize(average(recent.map((e) => e.workload)), 1, 10);
+  const stressRisk = normalize(average(recent.map((e) => e.stress)), 1, 10);
+  const sleepRisk = 1 - normalize(average(recent.map((e) => e.sleep)), 4, 9);
+  const moodRisk = 1 - normalize(average(recent.map((e) => e.mood)), 1, 10);
+  const focusRisk = 1 - normalize(average(recent.map((e) => e.focus)), 1, 10);
+
+  let trendPenalty = 0;
+  if (recent.length >= 8) {
+    const older = recent.slice(0, Math.floor(recent.length / 2));
+    const newer = recent.slice(Math.floor(recent.length / 2));
+    const olderRisk = average(older.map((e) => e.workload + e.stress - e.mood));
+    const newerRisk = average(newer.map((e) => e.workload + e.stress - e.mood));
+    trendPenalty = clamp((newerRisk - olderRisk) * 5, 0, 15);
+  }
+
+  const weighted =
+    workloadRisk * 24 +
+    stressRisk * 24 +
+    sleepRisk * 20 +
+    moodRisk * 16 +
+    focusRisk * 16;
+
+  return clamp(Math.round(weighted + trendPenalty), 0, 100);
+}
+
+function riskLevel(score) {
+  if (score >= 70) return "High";
+  if (score >= 45) return "Moderate";
+  return "Low";
 }
 
 function loadDemo() {
-  const demo = {
-    candidateName: "Ayaan Shaikh",
-    experienceLevel: "Fresher",
-    targetRole: "Frontend Developer",
-    weeklyHours: "12",
-    jobLinks: "https://company.com/careers/frontend-developer\nhttps://startup.io/jobs/react-intern",
-    jobDescription: "We are hiring a Frontend Developer with strong React, JavaScript, CSS, testing, accessibility, communication and Git workflow skills. Experience with TypeScript and REST APIs preferred.",
-    resumeText: "Built responsive portfolio using HTML CSS JavaScript. Created mini apps with React and integrated REST APIs. Collaborated in team projects using Git. Familiar with accessibility basics.",
-    learningMode: "Project-first",
-    goalTimeline: "30 days"
-  };
-  Object.keys(demo).forEach((key) => {
-    const node = document.getElementById(key);
-    if (node) node.value = demo[key];
-  });
-  persistForm();
-  setHint("Demo loaded. Click Analyze Skill Gaps.", false);
+  const today = new Date();
+  const demo = [
+    { d: 6, workload: 6, sleep: 7.4, mood: 7, focus: 7, stress: 4, notes: "Normal day" },
+    { d: 5, workload: 7, sleep: 7.0, mood: 6, focus: 6, stress: 5, notes: "Two meetings" },
+    { d: 4, workload: 8, sleep: 6.4, mood: 6, focus: 6, stress: 6, notes: "Deadline pressure" },
+    { d: 3, workload: 9, sleep: 5.9, mood: 5, focus: 5, stress: 7, notes: "Late work" },
+    { d: 2, workload: 8, sleep: 5.8, mood: 5, focus: 4, stress: 8, notes: "Context switching" },
+    { d: 1, workload: 8, sleep: 6.1, mood: 5, focus: 5, stress: 7, notes: "Fatigue signs" },
+    { d: 0, workload: 7, sleep: 6.3, mood: 6, focus: 5, stress: 6, notes: "Recovery started" }
+  ];
+
+  state.entries = demo.map((item) => {
+    const dt = new Date(today);
+    dt.setDate(today.getDate() - item.d);
+    return {
+      date: dt.toISOString().slice(0, 10),
+      workload: item.workload,
+      sleep: item.sleep,
+      mood: item.mood,
+      focus: item.focus,
+      stress: item.stress,
+      notes: item.notes
+    };
+  }).sort((a, b) => a.date.localeCompare(b.date));
+
+  persist();
+  render();
+  setHint("Demo week loaded.", false);
 }
 
-function onReset() {
-  setTimeout(() => {
-    appState.report = null;
-    appState.progressMap = {};
-    clearScores();
-    tabContent.innerHTML = `<p class="muted">Fill inputs and run analysis to generate report.</p>`;
-    localStorage.removeItem(STORAGE_KEY);
-    localStorage.removeItem(FORM_KEY);
-  }, 0);
-}
-
-function paintScores(scores) {
-  setScore(scoreNodes.match, scores.match, false);
-  setScore(scoreNodes.gap, scores.gap, true);
-  setScore(scoreNodes.roadmap, scores.roadmap, false);
-  setScore(scoreNodes.readiness, scores.readiness, false);
-}
-
-function setScore(node, value, reverse = false) {
-  node.textContent = `${value}/100`;
-  if (reverse) {
-    node.style.color = value <= 40 ? "var(--ok)" : value <= 65 ? "var(--warn)" : "var(--danger)";
-    return;
-  }
-  node.style.color = value >= 75 ? "var(--ok)" : value >= 55 ? "var(--warn)" : "var(--danger)";
-}
-
-function clearScores() {
-  Object.values(scoreNodes).forEach((n) => {
-    n.textContent = "--";
-    n.style.color = "";
-  });
+function clearAll() {
+  state.entries = [];
+  persist();
+  render();
+  setHint("All dashboard data cleared.", false);
 }
 
 function persist() {
-  persistForm();
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
-    activeTab: appState.activeTab,
-    report: appState.report,
-    progressMap: appState.progressMap
-  }));
-}
-
-function persistForm() {
-  const data = {};
-  ids.forEach((id) => data[id] = getVal(id));
-  localStorage.setItem(FORM_KEY, JSON.stringify(data));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
 function hydrate() {
   try {
-    const rawForm = localStorage.getItem(FORM_KEY);
-    if (rawForm) {
-      const data = JSON.parse(rawForm);
-      ids.forEach((id) => {
-        if (typeof data[id] === "string") {
-          document.getElementById(id).value = data[id];
-        }
-      });
-    }
-    const rawState = localStorage.getItem(STORAGE_KEY);
-    if (!rawState) return;
-    const parsed = JSON.parse(rawState);
-    if (parsed.activeTab) appState.activeTab = parsed.activeTab;
-    if (parsed.report) appState.report = parsed.report;
-    if (parsed.progressMap) appState.progressMap = parsed.progressMap;
-  } catch (err) {
-    console.error("hydrate failed", err);
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed.entries)) state.entries = parsed.entries;
+  } catch (error) {
+    console.error("hydrate failed", error);
   }
 }
 
-function markActiveTab() {
-  tabs.forEach((tab) => {
-    tab.classList.toggle("is-active", tab.dataset.tab === appState.activeTab);
-  });
-}
-
 function setHint(message, isError) {
-  const hint = document.getElementById("formHint");
-  hint.textContent = message;
-  hint.style.color = isError ? "var(--danger)" : "var(--muted)";
+  nodes.formHint.textContent = message;
+  nodes.formHint.style.color = isError ? "var(--danger)" : "var(--muted)";
 }
 
-function template(id) {
-  return document.getElementById(id).content.firstElementChild.cloneNode(true);
+function average(values) {
+  if (!values.length) return 0;
+  return values.reduce((sum, val) => sum + Number(val), 0) / values.length;
 }
 
-function swap(node) {
-  tabContent.innerHTML = "";
-  tabContent.appendChild(node);
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
 }
 
-function li(text) {
-  const node = document.createElement("li");
-  node.textContent = text;
-  return node;
-}
-
-function getVal(id) {
-  return document.getElementById(id).value;
-}
-
-function clamp(value) {
-  return Math.max(0, Math.min(100, Math.round(value)));
-}
-
-function recommendHours(weeklyHours, weekLabel) {
-  const base = Math.max(4, weeklyHours);
-  if (weekLabel === "Week 4") return `${Math.max(4, base - 2)} hrs`;
-  if (weekLabel === "Week 2") return `${base + 1} hrs`;
-  return `${base} hrs`;
-}
-
-function priorityOrder(priority) {
-  if (priority === "high") return 3;
-  if (priority === "medium") return 2;
-  return 1;
-}
-
-function slug(value) {
-  return String(value)
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 60) || "candidate";
-}
-
-function statusPill(status) {
-  if (status === "present") return `<span class="pill pill-low">Present</span>`;
-  return `<span class="pill pill-high">Missing</span>`;
-}
-
-function importancePill(importance) {
-  if (importance === "high") return `<span class="pill pill-high">High</span>`;
-  return `<span class="pill pill-medium">Medium</span>`;
-}
-
-function priorityBadge(priority) {
-  if (priority === "high") return `<span class="pill pill-high">High Priority</span>`;
-  if (priority === "medium") return `<span class="pill pill-medium">Medium Priority</span>`;
-  return `<span class="pill pill-low">Low Priority</span>`;
-}
-
-function escapeRegex(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function normalize(value, min, max) {
+  if (max <= min) return 0;
+  return clamp((value - min) / (max - min), 0, 1);
 }
 
 function escapeHtml(input) {
@@ -728,6 +413,6 @@ function escapeHtml(input) {
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
+    .replace(/\"/g, "&quot;")
     .replace(/'/g, "&#39;");
 }

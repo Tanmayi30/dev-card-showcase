@@ -3,252 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Skill Gap Radar - upload resume, parse job requirements, and build a focused 30-day learning roadmap.">
-  <title>Skill Gap Radar</title>
+  <meta name="description" content="Burnout Early-Warning Dashboard that tracks workload, sleep, mood, and focus to detect burnout risk and suggest recovery plans.">
+  <title>Burnout Early-Warning Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="noise-overlay" aria-hidden="true"></div>
-  <main class="page-shell">
-    <header class="hero-card reveal">
-      <p class="eyebrow">Career Intelligence</p>
-      <h1>Skill Gap Radar</h1>
-      <p class="hero-copy">
-        Upload your resume and target role details to map missing skills, compute a gap score,
-        and generate a practical 30-day roadmap with project recommendations.
-      </p>
+  <main class="shell">
+    <section class="hero reveal">
+      <p class="eyebrow">Wellness + Productivity</p>
+      <h1>Burnout Early-Warning Dashboard</h1>
+      <p class="lead">Track daily signals, detect burnout risk before it spikes, and auto-generate a practical weekly recovery plan.</p>
       <div class="hero-actions">
-        <button id="loadDemoBtn" class="btn btn-secondary" type="button">Load Demo Data</button>
-        <button id="analyzeBtn" class="btn btn-primary" type="button">Analyze Skill Gaps</button>
+        <button id="loadDemoBtn" class="btn btn-soft" type="button">Load Demo Week</button>
+        <button id="clearBtn" class="btn btn-ghost" type="button">Clear Data</button>
       </div>
-      <div class="meta-row">
-        <span class="meta-chip">Resume parser</span>
-        <span class="meta-chip">JD skill extractor</span>
-        <span class="meta-chip">Progress tracker</span>
+      <div class="chips">
+        <span class="chip">Daily check-ins</span>
+        <span class="chip">Trend chart</span>
+        <span class="chip">Risk score</span>
+        <span class="chip">Recovery planner</span>
       </div>
-    </header>
+    </section>
 
-    <section class="workspace-grid">
-      <article class="panel form-panel reveal">
+    <section class="layout">
+      <article class="panel reveal">
         <div class="panel-head">
-          <h2>Candidate Inputs</h2>
-          <p>Add resume text and target role details.</p>
+          <h2>Daily Check-In</h2>
+          <p>Submit one check-in per day. Higher workload/stress increase risk.</p>
         </div>
 
-        <form id="skillForm" autocomplete="off">
-          <div class="field-grid">
-            <label class="field">
-              <span>Full Name</span>
-              <input id="candidateName" type="text" maxlength="80" placeholder="Ayaan Shaikh" required>
-            </label>
-            <label class="field">
-              <span>Experience Level</span>
-              <select id="experienceLevel">
-                <option value="Student">Student</option>
-                <option value="Fresher">Fresher</option>
-                <option value="Junior (1-2 yrs)">Junior (1-2 yrs)</option>
-                <option value="Mid (3-5 yrs)">Mid (3-5 yrs)</option>
-              </select>
-            </label>
-          </div>
+        <form id="checkinForm">
+          <label class="field">
+            <span>Date</span>
+            <input id="checkinDate" type="date" required>
+          </label>
 
-          <div class="field-grid">
+          <div class="range-grid">
             <label class="field">
-              <span>Target Role</span>
-              <select id="targetRole" required>
-                <option value="">Select role</option>
-                <option value="Frontend Developer">Frontend Developer</option>
-                <option value="Backend Developer">Backend Developer</option>
-                <option value="Full Stack Developer">Full Stack Developer</option>
-                <option value="Data Analyst">Data Analyst</option>
-                <option value="Product Manager">Product Manager</option>
-                <option value="UI/UX Designer">UI/UX Designer</option>
-                <option value="DevOps Engineer">DevOps Engineer</option>
-              </select>
+              <span>Workload (1-10)</span>
+              <input id="workload" type="range" min="1" max="10" value="6">
+              <strong id="workloadOut">6</strong>
             </label>
             <label class="field">
-              <span>Weekly Study Hours</span>
-              <input id="weeklyHours" type="number" min="2" max="40" step="1" placeholder="10" value="10">
+              <span>Sleep Hours (0-12)</span>
+              <input id="sleep" type="range" min="0" max="12" value="7">
+              <strong id="sleepOut">7</strong>
+            </label>
+            <label class="field">
+              <span>Mood (1-10)</span>
+              <input id="mood" type="range" min="1" max="10" value="6">
+              <strong id="moodOut">6</strong>
+            </label>
+            <label class="field">
+              <span>Focus (1-10)</span>
+              <input id="focus" type="range" min="1" max="10" value="6">
+              <strong id="focusOut">6</strong>
+            </label>
+            <label class="field">
+              <span>Stress (1-10)</span>
+              <input id="stress" type="range" min="1" max="10" value="5">
+              <strong id="stressOut">5</strong>
             </label>
           </div>
 
           <label class="field">
-            <span>Job Description Links (one per line)</span>
-            <textarea id="jobLinks" rows="3" maxlength="500" placeholder="https://company.com/jobs/frontend-intern"></textarea>
+            <span>Notes (optional)</span>
+            <textarea id="notes" rows="3" maxlength="240" placeholder="What drained or helped you today?"></textarea>
           </label>
 
-          <label class="field">
-            <span>Target Job Description Text</span>
-            <textarea id="jobDescription" rows="5" maxlength="2000" placeholder="Paste JD content: React, TypeScript, REST APIs, testing, communication..." required></textarea>
-          </label>
-
-          <label class="field">
-            <span>Resume Text</span>
-            <textarea id="resumeText" rows="7" maxlength="3500" placeholder="Paste your resume text here including projects, skills, tools, certifications..." required></textarea>
-          </label>
-
-          <div class="field-grid">
-            <label class="field">
-              <span>Preferred Learning Mode</span>
-              <select id="learningMode">
-                <option value="Mixed">Mixed (videos + docs + projects)</option>
-                <option value="Project-first">Project-first</option>
-                <option value="Documentation-first">Documentation-first</option>
-                <option value="Video-first">Video-first</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Goal Timeline</span>
-              <select id="goalTimeline">
-                <option value="30 days">30 days</option>
-                <option value="60 days">60 days</option>
-                <option value="90 days">90 days</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="form-footer">
-            <p id="formHint" class="form-hint">Tip: add detailed JD text for better skill extraction.</p>
-            <button id="resetBtn" class="btn btn-ghost" type="reset">Reset</button>
+          <div class="form-actions">
+            <p id="formHint" class="hint">Tip: consistency over perfection. 60 seconds daily is enough.</p>
+            <button class="btn btn-primary" type="submit">Save Check-In</button>
           </div>
         </form>
       </article>
 
-      <article class="panel result-panel reveal">
+      <article class="panel reveal">
         <div class="panel-head">
-          <h2>Skill Intelligence Report</h2>
-          <p>Gap scoring, roadmap, and recommendations.</p>
+          <h2>Risk Overview</h2>
+          <p>Rolling score based on your latest 14 check-ins.</p>
         </div>
 
-        <div class="score-grid" id="scoreGrid">
+        <div class="score-grid">
           <div class="score-card">
-            <p class="score-label">Current Match</p>
-            <p class="score-value" id="matchScore">--</p>
+            <p class="label">Burnout Risk</p>
+            <p id="riskScore" class="value">--</p>
           </div>
           <div class="score-card">
-            <p class="score-label">Gap Severity</p>
-            <p class="score-value" id="gapScore">--</p>
+            <p class="label">Risk Level</p>
+            <p id="riskLevel" class="value">--</p>
           </div>
           <div class="score-card">
-            <p class="score-label">Roadmap Fit</p>
-            <p class="score-value" id="roadmapScore">--</p>
+            <p class="label">Avg Sleep</p>
+            <p id="avgSleep" class="value">--</p>
           </div>
           <div class="score-card">
-            <p class="score-label">Interview Readiness</p>
-            <p class="score-value" id="readinessScore">--</p>
+            <p class="label">Avg Workload</p>
+            <p id="avgWorkload" class="value">--</p>
           </div>
         </div>
 
-        <div class="tabs" role="tablist" aria-label="Skill report sections">
-          <button class="tab is-active" data-tab="summary" type="button">Summary</button>
-          <button class="tab" data-tab="skills" type="button">Skill Gap</button>
-          <button class="tab" data-tab="roadmap" type="button">30-Day Plan</button>
-          <button class="tab" data-tab="projects" type="button">Projects</button>
-          <button class="tab" data-tab="progress" type="button">Progress Tracker</button>
-          <button class="tab" data-tab="next" type="button">Next Steps</button>
+        <div class="chart-wrap">
+          <canvas id="trendChart" width="900" height="320" aria-label="Trend chart for workload, focus, sleep and mood" role="img"></canvas>
         </div>
 
-        <div id="tabContent" class="tab-content"></div>
-
-        <div class="result-actions">
-          <button id="copyReportBtn" class="btn btn-secondary" type="button">Copy Report</button>
-          <button id="downloadReportBtn" class="btn btn-primary" type="button">Download JSON</button>
+        <div class="insight-grid">
+          <section class="insight-card">
+            <h3>Early Warning</h3>
+            <p id="warningText" class="muted">Add a few check-ins to unlock trend warnings.</p>
+          </section>
+          <section class="insight-card">
+            <h3>Weekly Recovery Plan</h3>
+            <ul id="recoveryPlan"></ul>
+          </section>
         </div>
       </article>
     </section>
-  </main>
 
-  <template id="summaryTemplate">
-    <section class="stack">
-      <div class="insight-card">
-        <h3>Candidate Summary</h3>
-        <p id="candidateSummaryText"></p>
-      </div>
-      <div class="insight-card">
-        <h3>Strong Areas</h3>
-        <ul id="strengthList"></ul>
-      </div>
-      <div class="insight-card">
-        <h3>Priority Gaps</h3>
-        <ul id="priorityGapList"></ul>
-      </div>
-      <div class="insight-card">
-        <h3>Score Insight</h3>
-        <p id="scoreInsightText"></p>
-      </div>
-    </section>
-  </template>
-
-  <template id="skillsTemplate">
-    <section class="stack">
-      <div class="insight-card">
-        <h3>Role Skill Matrix</h3>
-        <p id="roleSkillHead"></p>
+    <section class="panel reveal">
+      <div class="panel-head">
+        <h2>Recent Check-Ins</h2>
+        <p>Latest entries, most recent first.</p>
       </div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Skill</th>
-              <th>Status</th>
-              <th>Importance</th>
-              <th>Action</th>
+              <th>Date</th>
+              <th>Workload</th>
+              <th>Sleep</th>
+              <th>Mood</th>
+              <th>Focus</th>
+              <th>Stress</th>
+              <th>Notes</th>
             </tr>
           </thead>
-          <tbody id="skillRows"></tbody>
+          <tbody id="historyRows"></tbody>
         </table>
       </div>
     </section>
-  </template>
-
-  <template id="roadmapTemplate">
-    <section class="stack">
-      <div class="insight-card">
-        <h3>Personalized 30-Day Plan</h3>
-        <p id="roadmapIntro"></p>
-      </div>
-      <div class="roadmap-grid" id="roadmapGrid"></div>
-    </section>
-  </template>
-
-  <template id="projectsTemplate">
-    <section class="stack">
-      <div class="insight-card">
-        <h3>Project Recommendations</h3>
-        <p id="projectIntro"></p>
-      </div>
-      <div class="project-grid" id="projectGrid"></div>
-    </section>
-  </template>
-
-  <template id="progressTemplate">
-    <section class="stack">
-      <div class="insight-card">
-        <h3>Daily Progress Tracker</h3>
-        <p id="progressText"></p>
-        <div class="meter">
-          <div id="progressFill" class="meter-fill"></div>
-        </div>
-      </div>
-      <div id="progressChecklist" class="checklist"></div>
-    </section>
-  </template>
-
-  <template id="nextTemplate">
-    <section class="stack">
-      <div class="insight-card">
-        <h3>Interview Prep Action Plan</h3>
-        <ul id="nextStepsList"></ul>
-      </div>
-      <div class="insight-card">
-        <h3>Suggested Monetization for This Tool</h3>
-        <ul id="monetizationList"></ul>
-      </div>
-    </section>
-  </template>
+  </main>
 
   <script src="app.js"></script>
 </body>
