@@ -3,15 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fragmented Collaboration Hub</title>
+  <meta name="description" content="Community Problem Map for reporting local civic issues with geo tags, upvotes, prioritization, and heatmap insights.">
+  <title>Community Problem Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Fragmented Collaboration Hub</h1>
-    <p>Unify tasks, chats, docs, and files for small teams.</p>
-    <div id="app"></div>
-  </div>
+  <main class="shell">
+    <section class="hero reveal">
+      <p class="eyebrow">Civic Tech</p>
+      <h1>Community Problem Map</h1>
+      <p class="lead">Citizens report local issues, communities upvote urgency, and civic teams get structured, actionable insights.</p>
+      <div class="hero-actions">
+        <button id="loadDemoBtn" class="btn btn-soft" type="button">Load Demo Data</button>
+        <button id="clearBtn" class="btn btn-ghost" type="button">Clear All</button>
+      </div>
+      <div class="chips">
+        <span class="chip">Geo-tagged reports</span>
+        <span class="chip">Category tagging</span>
+        <span class="chip">Upvote priority</span>
+        <span class="chip">Heatmap + trends</span>
+      </div>
+    </section>
+
+    <section class="layout">
+      <article class="panel reveal">
+        <div class="panel-head">
+          <h2>Report Issue</h2>
+          <p>Log local problems in a structured format that municipalities can act on.</p>
+        </div>
+        <form id="issueForm" autocomplete="off">
+          <div class="field-grid">
+            <label class="field">
+              <span>Title</span>
+              <input id="title" type="text" maxlength="80" placeholder="Pothole near school gate" required>
+            </label>
+            <label class="field">
+              <span>Category</span>
+              <select id="category" required>
+                <option value="">Select category</option>
+                <option value="Roads">Roads</option>
+                <option value="Waste">Waste</option>
+                <option value="Safety">Safety</option>
+                <option value="Water">Water</option>
+                <option value="Traffic">Traffic</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Description</span>
+            <textarea id="description" rows="3" maxlength="240" placeholder="What is happening and why urgent?"></textarea>
+          </label>
+
+          <div class="field-grid three">
+            <label class="field">
+              <span>Latitude</span>
+              <input id="lat" type="number" step="0.000001" min="-90" max="90" placeholder="19.0760" required>
+            </label>
+            <label class="field">
+              <span>Longitude</span>
+              <input id="lng" type="number" step="0.000001" min="-180" max="180" placeholder="72.8777" required>
+            </label>
+            <label class="field">
+              <span>Reporter Name</span>
+              <input id="reporter" type="text" maxlength="40" placeholder="Resident / NGO">
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button id="geoBtn" class="btn btn-soft" type="button">Use My Location</button>
+            <button class="btn btn-primary" type="submit">Post Issue</button>
+          </div>
+          <p id="formHint" class="hint">Tip: precise coordinates improve clustering and routing.</p>
+        </form>
+      </article>
+
+      <article class="panel reveal">
+        <div class="panel-head">
+          <h2>City Insight Board</h2>
+          <p>Live prioritization by upvotes, clustering hotspots, and status progress.</p>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><p>Total Issues</p><strong id="totalIssues">0</strong></div>
+          <div class="metric"><p>Open</p><strong id="openIssues">0</strong></div>
+          <div class="metric"><p>In Progress</p><strong id="progressIssues">0</strong></div>
+          <div class="metric"><p>Resolved</p><strong id="resolvedIssues">0</strong></div>
+        </div>
+
+        <div class="map-wrap">
+          <canvas id="heatmap" width="900" height="360" role="img" aria-label="Issue density heatmap"></canvas>
+        </div>
+
+        <div class="trend-grid">
+          <section class="insight-card">
+            <h3>Priority Queue</h3>
+            <ul id="priorityList"></ul>
+          </section>
+          <section class="insight-card">
+            <h3>Category Trend</h3>
+            <div id="trendBars"></div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel reveal">
+      <div class="panel-head">
+        <h2>Issue Feed</h2>
+        <p>Upvote urgent items and update status to keep public accountability visible.</p>
+      </div>
+      <div id="issueFeed" class="issue-feed"></div>
+    </section>
+  </main>
+
   <script src="app.js"></script>
 </body>
 </html>
