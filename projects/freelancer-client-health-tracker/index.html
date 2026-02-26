@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Freelancer Client Health Tracker for communication, payments, scope changes, and risk signals.">
+  <title>Freelancer Client Health Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero reveal">
+      <p class="eyebrow">Freelance Ops</p>
+      <h1>Freelancer Client Health Tracker</h1>
+      <p class="lead">Track client communication, payment reliability, scope drift, and project risk to prioritize smarter follow-ups and avoid unpaid work.</p>
+      <div class="hero-actions">
+        <button id="demoBtn" class="btn btn-soft" type="button">Load Demo Clients</button>
+        <button id="clearBtn" class="btn btn-ghost" type="button">Clear Data</button>
+      </div>
+    </section>
+
+    <section class="layout">
+      <article class="panel reveal">
+        <div class="panel-head">
+          <h2>Add Client Project</h2>
+          <p>Capture signals that impact delivery and payment confidence.</p>
+        </div>
+
+        <form id="clientForm" autocomplete="off">
+          <div class="field-grid">
+            <label class="field">
+              <span>Client Name</span>
+              <input id="clientName" type="text" maxlength="70" placeholder="Nova Labs" required>
+            </label>
+            <label class="field">
+              <span>Project Name</span>
+              <input id="projectName" type="text" maxlength="90" placeholder="Landing Page Redesign" required>
+            </label>
+          </div>
+
+          <div class="field-grid three">
+            <label class="field">
+              <span>Last Reply Date</span>
+              <input id="lastReply" type="date" required>
+            </label>
+            <label class="field">
+              <span>Days Invoice Overdue</span>
+              <input id="overdueDays" type="number" min="0" max="180" value="0">
+            </label>
+            <label class="field">
+              <span>Scope Changes (count)</span>
+              <input id="scopeChanges" type="number" min="0" max="50" value="0">
+            </label>
+          </div>
+
+          <div class="field-grid three">
+            <label class="field">
+              <span>Communication Quality</span>
+              <select id="commQuality">
+                <option value="good">Good</option>
+                <option value="average">Average</option>
+                <option value="poor">Poor</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Payment Reliability</span>
+              <select id="paymentReliability">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Project Value (USD)</span>
+              <input id="projectValue" type="number" min="0" step="100" value="1000">
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Notes</span>
+            <textarea id="notes" rows="3" maxlength="220" placeholder="Any red flags, blockers, or agreements"></textarea>
+          </label>
+
+          <div class="form-actions">
+            <p id="hint" class="hint">Tip: update after each call or invoice cycle.</p>
+            <button class="btn btn-primary" type="submit">Save Client</button>
+          </div>
+        </form>
+      </article>
+
+      <article class="panel reveal">
+        <div class="panel-head">
+          <h2>Health Overview</h2>
+          <p>Portfolio-level risk and follow-up priorities.</p>
+        </div>
+
+        <div class="score-grid">
+          <div class="score-card"><p class="label">Active Clients</p><p id="clientCount" class="value">0</p></div>
+          <div class="score-card"><p class="label">High Risk</p><p id="highRiskCount" class="value">0</p></div>
+          <div class="score-card"><p class="label">Overdue Invoices</p><p id="overdueCount" class="value">0</p></div>
+          <div class="score-card"><p class="label">Portfolio Risk</p><p id="portfolioRisk" class="value">0/100</p></div>
+        </div>
+
+        <section class="insight-card">
+          <h3>Follow-Up Priority Queue</h3>
+          <ul id="priorityList"></ul>
+        </section>
+
+        <section class="insight-card">
+          <h3>Risk Drivers</h3>
+          <div id="riskBars" class="bars"></div>
+        </section>
+      </article>
+    </section>
+
+    <section class="panel reveal">
+      <div class="panel-head">
+        <h2>Client Relationship Ledger</h2>
+        <p>Update status as communication and payments evolve.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Project</th>
+              <th>Comm</th>
+              <th>Payment</th>
+              <th>Overdue</th>
+              <th>Scope</th>
+              <th>Risk</th>
+              <th>Next Action</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="ledgerRows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
