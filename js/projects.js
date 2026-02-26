@@ -2069,6 +2069,19 @@ const staticProjects = [
             name: "Gupta-02",
             github: "https://github.com/Gupta-02"
         }
+    },
+    {
+        title: "Predictive Conversation Termination Advisor",
+        description:
+            "An intelligent system that analyzes conversational signals and determines optimal conversation closure points to improve efficiency. Features real-time monitoring, automated termination detection, signal analysis, and contextually appropriate wrap-up responses for chatbots and automated customer service systems.",
+        tags: ["HTML", "CSS", "JavaScript", "AI", "NLP", "Conversation Analysis", "Automation", "Customer Service"],
+        links: {
+            live: "./projects/predictive-conversation-termination-advisor/index.html",
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];
