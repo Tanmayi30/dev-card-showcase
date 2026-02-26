@@ -5509,6 +5509,18 @@
     }
   },
   {
+  "title": "Live CSS Editor",
+  "description": "A modern and interactive Live CSS Editor that allows users to write CSS and see real-time changes instantly. Features device preview simulation (desktop, tablet, mobile), auto-save with localStorage, theme toggle, CSS error detection, and CSS download option. Designed with a unique neon sidebar UI and responsive layout.",
+  "tags": ["HTML", "CSS", "JavaScript"],
+  "links": {
+    "live": "./projects/live-css-editor/"
+  },
+  "author": {
+    "name": "Anvesha",
+    "github": "https://github.com/your-github-username"
+  }
+},
+  {
     "title": "Lunar Lander — Luxury Edition",
     "description": "A premium physics-based Lunar Lander game featuring realistic gravity and thrust mechanics, smooth animations, particle effects, and a rich, glassmorphism-inspired user interface built with pure web technologies.",
     "tags": ["HTML", "CSS", "JavaScript"],
