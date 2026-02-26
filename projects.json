@@ -162,6 +162,18 @@
     }
   },
   {
+  "title": "Live HTML Editor",
+  "description": "A modern Live HTML Editor that renders HTML in real-time with an interactive device preview frame. Features desktop, tablet, and mobile simulation, fullscreen preview mode, auto-save using localStorage, download functionality, reset option, and a sleek glassmorphism UI with neon accents.",
+  "tags": ["HTML", "CSS", "JavaScript"],
+  "links": {
+    "live": "./projects/live-html-editor/"
+  },
+  "author": {
+    "name": "Anvesha",
+    "github": "https://github.com/your-github-username"
+  }
+},
+  {
     "title": "Multi-Plane Mobility Tracker",
     "description": "Track and improve your mobility across all three planes of movement: sagittal, frontal, and transverse. Monitor range of motion, identify imbalances, assess pain levels, and track progress over time with comprehensive mobility assessments and data visualization.",
     "tags": [
