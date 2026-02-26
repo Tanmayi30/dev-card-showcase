@@ -1785,6 +1785,18 @@
       "github": "https://github.com/your-github-username"
     }
   },
+  {
+  "title": "ASCII Art Generator",
+  "description": "A cyberpunk-themed ASCII Art Generator that converts uploaded images into detailed ASCII text visuals. Features adjustable density levels, neon terminal UI, scanline overlay effect, and downloadable .txt output. Built using HTML Canvas and JavaScript with a hacker-style aesthetic and responsive design.",
+  "tags": ["HTML", "CSS", "JavaScript", "Canvas API"],
+  "links": {
+    "live": "./projects/ascii-art/"
+  },
+  "author": {
+    "name": "Anvesha",
+    "github": "https://github.com/your-github-username"
+  }
+},
       {
     "title": "CSS3 Loading animations",
     "description": "A collection of visually appealing loading animations created entirely with CSS3 and JavaScript. Features smooth transitions, customizable styles, and responsive design for seamless integration into any web project.",
