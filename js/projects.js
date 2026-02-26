@@ -1991,6 +1991,19 @@ const staticProjects = [
             name: "Gupta-02",
             github: "https://github.com/Gupta-02"
         }
+    },
+    {
+        title: "Intelligent Cache Eviction Controller",
+        description:
+            "An advanced cache management system that uses intelligent algorithms to analyze access patterns, data relevance, and usage frequency to make optimal eviction decisions. Supports multiple strategies including LRU, LFU, FIFO, and adaptive intelligent eviction for high-performance distributed systems.",
+        tags: ["HTML", "CSS", "JavaScript", "Caching", "Algorithms", "Performance", "Distributed Systems"],
+        links: {
+            live: "./projects/intelligent-cache-eviction-controller/index.html",
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];
