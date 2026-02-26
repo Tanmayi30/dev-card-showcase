@@ -13343,5 +13343,30 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Multilingual Context Calibration Engine #5329",
+    "description": "Frontend implementation of the Multilingual Context Calibration Engine. This project provides an interface to manage, calibrate, and visualize contextual language models across multiple languages for enhanced communication and processing accuracy. Features include a dashboard displaying language-specific context metrics and calibration status, interactive controls for adjusting calibration parameters, real-time updates on context alignment and accuracy scores, and dynamic visualization of multilingual data flows and corrections.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Multilingual",
+      "Context Calibration",
+      "Dashboard",
+      "Real-time Updates",
+      "Data Visualization",
+      "Language Processing",
+      "Interactive Controls",
+      "Canvas API",
+      "Responsive Design"
+    ],
+    "links": {
+      "live": "./projects/multilingual-context-calibration-engine/index.html"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
