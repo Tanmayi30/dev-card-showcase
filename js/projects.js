@@ -1978,6 +1978,19 @@ const staticProjects = [
             name: "Gupta-02",
             github: "https://github.com/Gupta-02"
         }
+    },
+    {
+        title: "Context-Aware Resource Scaling Engine",
+        description:
+            "A dynamic resource scaling system that analyzes real-time workload patterns and allocates computing resources proactively using predictive modeling. Demonstrates reactive, predictive, and context-aware scaling strategies to optimize performance while reducing operational costs.",
+        tags: ["HTML", "CSS", "JavaScript", "Data Visualization", "Algorithms", "Cloud Computing", "Resource Management"],
+        links: {
+            live: "./projects/context-aware-resource-scaling-engine/index.html",
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];
