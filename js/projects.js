@@ -1980,12 +1980,12 @@ const staticProjects = [
         }
     },
     {
-        title: "Context-Aware Resource Scaling Engine",
+        title: "Intelligent Data Anomaly Detector",
         description:
-            "A dynamic resource scaling system that analyzes real-time workload patterns and allocates computing resources proactively using predictive modeling. Demonstrates reactive, predictive, and context-aware scaling strategies to optimize performance while reducing operational costs.",
-        tags: ["HTML", "CSS", "JavaScript", "Data Visualization", "Algorithms", "Cloud Computing", "Resource Management"],
+            "Real-time anomaly detection system using statistical analysis and machine learning techniques. Detects unusual patterns across multiple data streams with configurable algorithms, sensitivity controls, and real-time alerting for high-volume transactional systems.",
+        tags: ["HTML", "CSS", "JavaScript", "Machine Learning", "Data Analysis", "Real-time", "Statistics"],
         links: {
-            live: "./projects/context-aware-resource-scaling-engine/index.html",
+            live: "./projects/intelligent-data-anomaly-detector/index.html",
         },
         author: {
             name: "Gupta-02",
