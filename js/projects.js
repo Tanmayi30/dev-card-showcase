@@ -2043,6 +2043,19 @@ const staticProjects = [
             name: "Gupta-02",
             github: "https://github.com/Gupta-02"
         }
+    },
+    {
+        title: "Load Balancing Advisor",
+        description:
+            "An intelligent load balancing system that optimizes traffic distribution across services and nodes in real time. Features multiple routing strategies, performance monitoring, auto-scaling recommendations, and adaptive traffic management for enhanced resilience and reduced latency.",
+        tags: ["HTML", "CSS", "JavaScript", "Load Balancing", "DevOps", "Performance", "Auto-scaling"],
+        links: {
+            live: "./projects/load-balancing-advisor/index.html",
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];
