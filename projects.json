@@ -31,6 +31,18 @@
     }
   },
   {
+  "title": "Data Sorter – Futuristic Multi-Type Sorter",
+  "description": "A futuristic Data Sorter that supports both numbers and alphabets. Features include multiple sort algorithms, ascending/descending order, animated visualizations (bars for numbers, colored cards for strings), random data generation, copy/export JSON functionality, and a dark/light mode toggle. Built with HTML, CSS, and JavaScript for an interactive and visually engaging experience.",
+  "tags": ["HTML", "CSS", "JavaScript"],
+  "links": {
+    "live": "./projects/data-sorter/"
+  },
+  "author": {
+    "name": "Anvesha",
+    "github": "https://github.com/your-github-username"
+  }
+},
+  {
   "title": "Word Chain Arena",
   "description": "A modern, turn-based Word Chain Game with Player vs Player and Player vs CPU modes. Features include a colorful dashboard UI, word history tracking, turn-based scoreboard, last-letter validation, difficulty levels for AI, and responsive design. Built with HTML, CSS, and JavaScript for a fun and engaging experience.",
   "tags": ["HTML", "CSS", "JavaScript"],
