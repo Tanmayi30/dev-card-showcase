@@ -9874,6 +9874,18 @@
     }
   },
   {
+  "title": "Trivia Check",
+  "description": "A modern, interactive Trivia Quiz Game with a unique UI featuring circular option buttons, animated flips on answer selection, progress bar tracking, and live score updates. Includes multiple categories and questions for an engaging quiz experience. Built with HTML, CSS, and JavaScript for a responsive and fun user interface.",
+  "tags": ["HTML", "CSS", "JavaScript"],
+  "links": {
+    "live": "./projects/trivia-check/"
+  },
+  "author": {
+    "name": "Anvesha",
+    "github": "https://github.com/your-github-username"
+  }
+},
+  {
     "title": "microfps",
     "description": "A micro FPS game with basic shooting mechanics, enemy AI, and scoring.",
     "tags": ["HTML", "CSS", "JavaScript", "Game"],
