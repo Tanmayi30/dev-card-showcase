@@ -1940,6 +1940,31 @@ const staticProjects = [
             name: "Gupta-02",
             github: "https://github.com/Gupta-02"
         }
+    },
+    {
+        title: "Predictive Conversation Termination Advisor 💬",
+        description: "Analyzes conversational signals and suggests optimal closure points to improve efficiency and prevent prolonged or redundant conversations.",
+        tags: ["HTML", "CSS", "JavaScript", "AI/ML", "Conversational AI", "Productivity"],
+        links: {
+            live: "./projects/predictive-conversation-termination-advisor/index.html"
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
+    },
+    {
+        title: "Distributed Log Integrity Validator",
+        description:
+            "A comprehensive tool for validating log integrity across distributed systems using cryptographic hashing and cross-node consistency checks. Demonstrates distributed security concepts with real-time tampering simulation and integrity scoring.",
+        tags: ["HTML", "CSS", "JavaScript", "Cryptography", "Distributed Systems", "Security"],
+        links: {
+            live: "./projects/distributed-log-integrity-validator/index.html",
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];

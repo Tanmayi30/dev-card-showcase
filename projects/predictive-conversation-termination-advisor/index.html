@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Conversation Termination Advisor #5748</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-comments"></i> Predictive Conversation Termination Advisor</h1>
+            <p>Analyzes conversational signals and suggests optimal closure points for improved efficiency</p>
+        </header>
+
+        <div class="main-content">
+            <div class="conversation-section">
+                <h2>Conversation Simulator</h2>
+
+                <div class="conversation-controls">
+                    <select id="conversationType">
+                        <option value="customer-support">Customer Support</option>
+                        <option value="sales">Sales Inquiry</option>
+                        <option value="technical">Technical Discussion</option>
+                        <option value="general">General Chat</option>
+                    </select>
+
+                    <button id="startConversation" class="btn-primary">
+                        <i class="fas fa-play"></i> Start New Conversation
+                    </button>
+
+                    <button id="addMessage" class="btn-secondary">
+                        <i class="fas fa-plus"></i> Add Message
+                    </button>
+                </div>
+
+                <div class="conversation-container" id="conversationContainer">
+                    <div class="welcome-message">
+                        <p>Select a conversation type and click "Start New Conversation" to begin.</p>
+                    </div>
+                </div>
+
+                <div class="message-input">
+                    <input type="text" id="messageInput" placeholder="Type a message..." disabled>
+                    <button id="sendMessage" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="advisor-section">
+                <h2>Termination Advisor</h2>
+
+                <div class="advisor-panel" id="advisorPanel">
+                    <div class="advisor-status">
+                        <div class="status-indicator" id="statusIndicator">
+                            <i class="fas fa-circle"></i>
+                            <span>Monitoring conversation...</span>
+                        </div>
+                    </div>
+
+                    <div class="termination-metrics">
+                        <div class="metric">
+                            <label>Completion Score</label>
+                            <div class="metric-bar">
+                                <div class="metric-fill" id="completionBar" style="width: 0%"></div>
+                            </div>
+                            <span class="metric-value" id="completionValue">0%</span>
+                        </div>
+
+                        <div class="metric">
+                            <label>Efficiency Rating</label>
+                            <div class="metric-bar">
+                                <div class="metric-fill" id="efficiencyBar" style="width: 0%"></div>
+                            </div>
+                            <span class="metric-value" id="efficiencyValue">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="termination-suggestions" id="terminationSuggestions" style="display: none;">
+                        <h3><i class="fas fa-lightbulb"></i> Suggested Termination</h3>
+                        <div class="suggestion-content" id="suggestionContent"></div>
+
+                        <div class="termination-actions">
+                            <button id="acceptTermination" class="btn-success">
+                                <i class="fas fa-check"></i> Accept Suggestion
+                            </button>
+                            <button id="continueConversation" class="btn-warning">
+                                <i class="fas fa-arrow-right"></i> Continue
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="conversation-insights" id="conversationInsights">
+                        <h3><i class="fas fa-chart-line"></i> Conversation Insights</h3>
+                        <div class="insights-content" id="insightsContent">
+                            <p>No conversation data available yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>How It Works</h2>
+            <div class="explanation">
+                <p>This system analyzes conversational patterns to identify optimal termination points:</p>
+                <ul>
+                    <li><strong>Signal Detection:</strong> Monitors for completion indicators like resolved queries, satisfied responses, or repetitive patterns</li>
+                    <li><strong>Efficiency Analysis:</strong> Evaluates conversation flow and resource utilization</li>
+                    <li><strong>Smart Suggestions:</strong> Provides contextually appropriate closure responses</li>
+                    <li><strong>Real-time Feedback:</strong> Updates recommendations as conversation progresses</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
