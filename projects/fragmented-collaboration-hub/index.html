@@ -3,15 +3,291 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fragmented Collaboration Hub</title>
+  <meta name="description" content="Micro-SaaS Idea Validator - analyze startup ideas for niche clarity, competition, ICP, pricing, and launch readiness.">
+  <title>Micro-SaaS Idea Validator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Fragmented Collaboration Hub</h1>
-    <p>Unify tasks, chats, docs, and files for small teams.</p>
-    <div id="app"></div>
-  </div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <main class="page-shell">
+    <header class="hero-card reveal">
+      <p class="eyebrow">Founder Toolkit</p>
+      <h1>Micro-SaaS Idea Validator</h1>
+      <p class="hero-copy">
+        Convert rough startup ideas into structured validation reports:
+        niche score, competitor map, ideal customer profile, pricing angle,
+        and launch copy draft.
+      </p>
+      <div class="hero-actions">
+        <button id="loadDemoBtn" class="btn btn-secondary" type="button">Load Example</button>
+        <button id="analyzeBtn" class="btn btn-primary" type="button">Generate Validation Report</button>
+      </div>
+      <div class="meta-row">
+        <span class="meta-chip">Client-side only</span>
+        <span class="meta-chip">No login required</span>
+        <span class="meta-chip">Fast offline heuristics</span>
+      </div>
+    </header>
+
+    <section class="workspace-grid">
+      <article class="panel form-panel reveal">
+        <div class="panel-head">
+          <h2>Idea Input</h2>
+          <p>Fill key details to run analysis.</p>
+        </div>
+        <form id="ideaForm" autocomplete="off">
+          <div class="field-grid">
+            <label class="field">
+              <span>Product Name</span>
+              <input id="ideaName" name="ideaName" type="text" maxlength="80" placeholder="e.g., Skill Gap Radar" required>
+            </label>
+            <label class="field">
+              <span>Category</span>
+              <select id="ideaCategory" name="ideaCategory" required>
+                <option value="">Select category</option>
+                <option value="Productivity">Productivity</option>
+                <option value="EdTech">EdTech</option>
+                <option value="HRTech">HRTech</option>
+                <option value="HealthTech">HealthTech</option>
+                <option value="FinTech">FinTech</option>
+                <option value="DevTools">DevTools</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Community">Community</option>
+                <option value="CivicTech">CivicTech</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>One-Line Idea</span>
+            <textarea id="ideaSummary" name="ideaSummary" rows="3" maxlength="300" placeholder="A platform where founders submit a startup idea and get instant validation insights." required></textarea>
+          </label>
+
+          <label class="field">
+            <span>Problem Statement</span>
+            <textarea id="problemStatement" name="problemStatement" rows="4" maxlength="450" placeholder="Builders spend months on ideas without structured market validation." required></textarea>
+          </label>
+
+          <label class="field">
+            <span>Target Users</span>
+            <input id="targetUsers" name="targetUsers" type="text" maxlength="180" placeholder="Indie hackers, students, first-time founders, hackathon teams" required>
+          </label>
+
+          <div class="field-grid">
+            <label class="field">
+              <span>Geography</span>
+              <select id="geoFocus" name="geoFocus">
+                <option value="Global">Global</option>
+                <option value="North America">North America</option>
+                <option value="Europe">Europe</option>
+                <option value="India">India</option>
+                <option value="Southeast Asia">Southeast Asia</option>
+                <option value="Africa">Africa</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Business Model</span>
+              <select id="businessModel" name="businessModel">
+                <option value="Subscription">Subscription</option>
+                <option value="Freemium">Freemium</option>
+                <option value="Pay-per-report">Pay-per-report</option>
+                <option value="Marketplace Fee">Marketplace Fee</option>
+                <option value="B2B Annual Contract">B2B Annual Contract</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="field-grid">
+            <label class="field">
+              <span>Price Range (USD/month)</span>
+              <input id="priceRange" name="priceRange" type="text" maxlength="40" placeholder="9-29">
+            </label>
+            <label class="field">
+              <span>Build Timeline</span>
+              <select id="timeline" name="timeline">
+                <option value="2-4 weeks">2-4 weeks</option>
+                <option value="1-2 months">1-2 months</option>
+                <option value="3+ months">3+ months</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Differentiation Angle</span>
+            <textarea id="differentiator" name="differentiator" rows="3" maxlength="280" placeholder="Example: combines competitor scan + ICP + launch copy in a single flow."></textarea>
+          </label>
+
+          <label class="field">
+            <span>Core Features (comma separated)</span>
+            <textarea id="coreFeatures" name="coreFeatures" rows="2" maxlength="280" placeholder="idea input form, competitor summary, ICP generator, checklist, landing-page copy"></textarea>
+          </label>
+
+          <div class="form-footer">
+            <p id="formHint" class="form-hint">Tip: include a clear audience and outcome for stronger scoring.</p>
+            <button id="resetBtn" class="btn btn-ghost" type="reset">Reset</button>
+          </div>
+        </form>
+      </article>
+
+      <article class="panel result-panel reveal">
+        <div class="panel-head">
+          <h2>Validation Report</h2>
+          <p>Generated insights from your inputs.</p>
+        </div>
+
+        <div class="score-grid" id="scoreGrid">
+          <div class="score-card">
+            <p class="score-label">Niche Clarity</p>
+            <p class="score-value" id="nicheScore">--</p>
+          </div>
+          <div class="score-card">
+            <p class="score-label">Market Signal</p>
+            <p class="score-value" id="marketScore">--</p>
+          </div>
+          <div class="score-card">
+            <p class="score-label">Monetization Fit</p>
+            <p class="score-value" id="monetizationScore">--</p>
+          </div>
+          <div class="score-card">
+            <p class="score-label">Launch Readiness</p>
+            <p class="score-value" id="launchScore">--</p>
+          </div>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Validation report sections">
+          <button class="tab is-active" data-tab="summary" type="button">Summary</button>
+          <button class="tab" data-tab="competitors" type="button">Competitors</button>
+          <button class="tab" data-tab="icp" type="button">ICP</button>
+          <button class="tab" data-tab="pricing" type="button">Pricing + GTM</button>
+          <button class="tab" data-tab="checklist" type="button">Checklist</button>
+          <button class="tab" data-tab="copy" type="button">Landing Copy</button>
+        </div>
+
+        <div id="tabContent" class="tab-content"></div>
+
+        <div class="result-actions">
+          <button id="copyReportBtn" class="btn btn-secondary" type="button">Copy Summary</button>
+          <button id="downloadReportBtn" class="btn btn-primary" type="button">Download JSON</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <template id="summaryTemplate">
+    <section class="stack">
+      <div class="insight-card">
+        <h3>Verdict</h3>
+        <p id="verdictText"></p>
+      </div>
+      <div class="insight-card">
+        <h3>What Looks Strong</h3>
+        <ul id="strengthList"></ul>
+      </div>
+      <div class="insight-card">
+        <h3>What Needs Validation First</h3>
+        <ul id="riskList"></ul>
+      </div>
+      <div class="insight-card">
+        <h3>Suggested Next Experiment</h3>
+        <p id="experimentText"></p>
+      </div>
+    </section>
+  </template>
+
+  <template id="competitorTemplate">
+    <section class="stack">
+      <div class="insight-card">
+        <h3>Competitor Landscape</h3>
+        <p id="competitionHeadline"></p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Segment</th>
+              <th>Pricing</th>
+              <th>Threat Level</th>
+            </tr>
+          </thead>
+          <tbody id="competitorRows"></tbody>
+        </table>
+      </div>
+    </section>
+  </template>
+
+  <template id="icpTemplate">
+    <section class="stack">
+      <div class="insight-card">
+        <h3>Ideal Customer Profile</h3>
+        <p id="icpPersona"></p>
+      </div>
+      <div class="insight-card">
+        <h3>Pain Points</h3>
+        <ul id="icpPainPoints"></ul>
+      </div>
+      <div class="insight-card">
+        <h3>Buying Triggers</h3>
+        <ul id="icpTriggers"></ul>
+      </div>
+      <div class="insight-card">
+        <h3>Channels to Reach Them</h3>
+        <ul id="icpChannels"></ul>
+      </div>
+    </section>
+  </template>
+
+  <template id="pricingTemplate">
+    <section class="stack">
+      <div class="insight-card">
+        <h3>Pricing Angle</h3>
+        <p id="pricingAngle"></p>
+      </div>
+      <div class="insight-card">
+        <h3>Go-To-Market Suggestions</h3>
+        <ul id="gtmList"></ul>
+      </div>
+      <div class="insight-card">
+        <h3>Revenue Projection (First 90 Days)</h3>
+        <p id="projectionText"></p>
+      </div>
+    </section>
+  </template>
+
+  <template id="checklistTemplate">
+    <section class="stack">
+      <div class="insight-card">
+        <h3>Validation Checklist</h3>
+        <p id="checklistProgress"></p>
+      </div>
+      <div id="checklistItems" class="checklist"></div>
+    </section>
+  </template>
+
+  <template id="copyTemplate">
+    <section class="stack">
+      <div class="insight-card">
+        <h3>Landing Page Headline</h3>
+        <p id="copyHeadline"></p>
+      </div>
+      <div class="insight-card">
+        <h3>Subheadline</h3>
+        <p id="copySubheadline"></p>
+      </div>
+      <div class="insight-card">
+        <h3>Feature Bullets</h3>
+        <ul id="copyFeatures"></ul>
+      </div>
+      <div class="insight-card">
+        <h3>Call To Action</h3>
+        <p id="copyCta"></p>
+      </div>
+    </section>
+  </template>
+
   <script src="app.js"></script>
 </body>
 </html>
