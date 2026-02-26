@@ -1892,6 +1892,18 @@ const staticProjects = [
             name: "Gupta-02",
             github: "https://github.com/Gupta-02"
         }
+    },
+    {
+        title: "Distributed Event Recovery Coordinator 🛰️",
+        description: "Designs replay plans for missed asynchronous events with durable logs, ordering safeguards, and deterministic recovery guidance.",
+        tags: ["HTML", "CSS", "JavaScript", "Resilience", "Observability", "Eventing"],
+        links: {
+            live: "./projects/distributed-event-recovery-coordinator/index.html"
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];
