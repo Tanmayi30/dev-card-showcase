@@ -1812,6 +1812,18 @@
       "github": "https://github.com/your-github-username"
     }
   },
+        {
+    "title": "oklch Planet Lab",
+    "description": "An interactive 3D solar system animation that visualizes the orbits and movements of planets. Features realistic planetary sizes, orbital speeds, and a responsive design that works across all devices.",
+    "tags": ["HTML", "CSS", "JavaScript", "Animation", "3D"],
+    "links": {
+      "live": "./projects/oklch-Planet-Lab/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
   {
     "title": "ULTRA-INTELLIGENCE v9.4",
     "description": "An AI that answers your questions differently.",
