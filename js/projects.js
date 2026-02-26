@@ -1952,6 +1952,19 @@ const staticProjects = [
             name: "Gupta-02",
             github: "https://github.com/Gupta-02"
         }
+    },
+    {
+        title: "Distributed Log Integrity Validator",
+        description:
+            "A comprehensive tool for validating log integrity across distributed systems using cryptographic hashing and cross-node consistency checks. Demonstrates distributed security concepts with real-time tampering simulation and integrity scoring.",
+        tags: ["HTML", "CSS", "JavaScript", "Cryptography", "Distributed Systems", "Security"],
+        links: {
+            live: "./projects/distributed-log-integrity-validator/index.html",
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];
