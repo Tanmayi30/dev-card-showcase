@@ -2069,6 +2069,19 @@ const staticProjects = [
             name: "Gupta-02",
             github: "https://github.com/Gupta-02"
         }
+    },
+    {
+        title: "Knowledge Prioritization Engine",
+        description:
+            "An intelligent knowledge management system that dynamically ranks stored knowledge based on contextual relevance, recency, usage patterns, and importance. Features real-time scoring algorithms, contextual analysis, interactive prioritization controls, and comprehensive analytics for optimal knowledge organization and retrieval.",
+        tags: ["HTML", "CSS", "JavaScript", "AI", "Knowledge Management", "Prioritization", "Analytics", "Real-time"],
+        links: {
+            live: "./projects/knowledge-prioritization-engine/index.html",
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];
