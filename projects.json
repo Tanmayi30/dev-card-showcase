@@ -4048,6 +4048,18 @@
     }
   },
   {
+  "title": "Skill Tree Visualizer – Interactive Hierarchical Skill Mapper",
+  "description": "An interactive Skill Tree Visualizer where users can dynamically enter skills, set progress percentages, and define parent-child relationships. Features include true hierarchical tree generation, top-down layout, hover tooltips with progress bars, dynamically drawn connectors, and multiple root skill support. Built with HTML, CSS, and JavaScript for a visually engaging and interactive skill mapping experience.",
+  "tags": ["HTML", "CSS", "JavaScript", "Interactive UI"],
+  "links": {
+    "live": "./projects/skill-tree/"
+  },
+  "author": {
+    "name": "Anvesha",
+    "github": "https://github.com/your-github-username"
+  }
+},
+  {
     "title": "Stacking Cards Game",
     "description": "A simple and addictive stacking cards game where players must stack moving cards as high as possible without letting them fall. Features smooth animations, score tracking, and increasing difficulty levels.",
     "tags": ["HTML", "CSS", "JavaScript", "Utility Tool"],
