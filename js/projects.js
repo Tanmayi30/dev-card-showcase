@@ -1978,6 +1978,19 @@ const staticProjects = [
             name: "Gupta-02",
             github: "https://github.com/Gupta-02"
         }
+    },
+    {
+        title: "Intelligent Data Anomaly Detector",
+        description:
+            "Real-time anomaly detection system using statistical analysis and machine learning techniques. Detects unusual patterns across multiple data streams with configurable algorithms, sensitivity controls, and real-time alerting for high-volume transactional systems.",
+        tags: ["HTML", "CSS", "JavaScript", "Machine Learning", "Data Analysis", "Real-time", "Statistics"],
+        links: {
+            live: "./projects/intelligent-data-anomaly-detector/index.html",
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];
