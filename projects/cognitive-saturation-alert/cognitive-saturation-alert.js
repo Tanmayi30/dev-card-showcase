@@ -1,9 +1,12 @@
-// Cognitive Saturation Alert JavaScript with Multi-Profile Support and Enhanced Visualizations
+// Cognitive Saturation Alert JavaScript with Multi-Profile Support, Enhanced Visualizations, and Storage Quota Handling
 
 class CognitiveSaturationTracker {
     constructor() {
         this.profiles = JSON.parse(localStorage.getItem('cognitiveProfiles')) || [];
         this.currentProfileId = localStorage.getItem('currentProfileId');
+        this.storageWarningShown = false;
+        this.storageQuotaLimit = 5 * 1024 * 1024; 
+        this.storageCriticalLimit = 8 * 1024 * 1024; 
         
         if (this.profiles.length === 0) {
             const defaultProfile = {
@@ -41,17 +44,242 @@ class CognitiveSaturationTracker {
         this.pieChart = null;
         this.heatMapChart = null;
         this.currentChartType = 'line';
+        this.checkStorageQuota();
+        window.addEventListener('storage', this.handleStorageEvent.bind(this));
 
         this.init();
+    }
+
+    handleStorageEvent(e) {
+        if (e.storageArea === localStorage && e.key && e.key.includes('cognitive')) {
+            if (e.newValue === null) {
+                this.showNotification('Storage quota warning: Some data may have been cleared', 'error');
+                this.cleanupOldData();
+            }
+        }
+    }
+
+    checkStorageQuota() {
+        try {
+            let totalSize = 0;
+            for (let key in localStorage) {
+                if (localStorage.hasOwnProperty(key)) {
+                    totalSize += (localStorage[key].length * 2); 
+                }
+            }
+            
+            const sizeInMB = totalSize / (1024 * 1024);
+            
+            this.updateStorageIndicator(sizeInMB);
+            
+            if (totalSize > this.storageCriticalLimit) {
+                this.showNotification('⚠️ Storage critically full! Automatically cleaning up old data...', 'error');
+                this.cleanupOldData(true); // Force cleanup
+                this.storageWarningShown = true;
+            } else if (totalSize > this.storageQuotaLimit && !this.storageWarningShown) {
+                this.showNotification('Storage is getting full. Keeping last 30 days of data.', 'warning');
+                this.cleanupOldData();
+                this.storageWarningShown = true;
+            }
+        } catch (e) {
+            if (e.name === 'QuotaExceededError' || e.code === 22) {
+                this.showNotification('Storage quota exceeded! Cleaning up old data...', 'error');
+                this.cleanupOldData(true);
+            }
+        }
+    }
+
+    updateStorageIndicator(sizeInMB) {
+        const existingIndicator = document.getElementById('storageIndicator');
+        if (existingIndicator) {
+            existingIndicator.remove();
+        }
+
+        const container = document.querySelector('.saturation-container');
+        if (!container) return;
+
+        let statusClass = 'storage-ok';
+        let statusText = 'Storage: OK';
+        
+        if (sizeInMB > 8) {
+            statusClass = 'storage-critical';
+            statusText = '⚠️ Storage Critical';
+        } else if (sizeInMB > 5) {
+            statusClass = 'storage-warning';
+            statusText = '⚠️ Storage Warning';
+        }
+
+        const indicatorHTML = `
+            <div id="storageIndicator" style="
+                background: white;
+                border-radius: 8px;
+                padding: 10px 15px;
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-left: 4px solid ${sizeInMB > 8 ? '#F44336' : (sizeInMB > 5 ? '#FF9800' : '#4CAF50')};
+                box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+                font-size: 0.9em;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-database" style="color: ${sizeInMB > 8 ? '#F44336' : (sizeInMB > 5 ? '#FF9800' : '#4CAF50')};"></i>
+                    <span>Storage: <strong>${sizeInMB.toFixed(2)} MB</strong> used</span>
+                    <span style="color: ${sizeInMB > 8 ? '#F44336' : (sizeInMB > 5 ? '#FF9800' : '#7f8c8d')};">${statusText}</span>
+                </div>
+                <button onclick="window.tracker.cleanupOldData(true)" style="
+                    background: ${sizeInMB > 5 ? '#f8f9fa' : 'transparent'};
+                    border: 1px solid ${sizeInMB > 5 ? '#667eea' : 'transparent'};
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    color: ${sizeInMB > 5 ? '#667eea' : '#7f8c8d'};
+                    cursor: pointer;
+                    font-size: 0.85em;
+                    transition: all 0.2s ease;
+                ">
+                    <i class="fas fa-trash-alt"></i> Clean Old Data
+                </button>
+            </div>
+        `;
+
+        container.insertAdjacentHTML('afterbegin', indicatorHTML);
+    }
+
+    cleanupOldData(forceCleanup = false) {
+        try {
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            
+            let cleanupCount = 0;
+            
+            const originalActivityCount = this.activities.length;
+            this.activities = this.activities.filter(activity => {
+                const activityDate = new Date(activity.timestamp);
+                if (activityDate < thirtyDaysAgo) {
+                    cleanupCount++;
+                    return false;
+                }
+                return true;
+            });
+            
+            const originalAlertsCount = this.alerts.length;
+            this.alerts = this.alerts.filter(alert => {
+                const alertDate = new Date(alert.timestamp);
+                if (alertDate < thirtyDaysAgo) {
+                    cleanupCount++;
+                    return false;
+                }
+                return true;
+            });
+            
+            const originalBreaksCount = this.breaks.length;
+            this.breaks = this.breaks.filter(breakItem => {
+                const breakDate = new Date(breakItem.timestamp);
+                if (breakDate < thirtyDaysAgo) {
+                    cleanupCount++;
+                    return false;
+                }
+                return true;
+            });
+            
+            this.saveData();
+            
+            if (cleanupCount > 0) {
+                const message = `Cleaned up ${cleanupCount} old items (older than 30 days)`;
+                this.showNotification(message, 'success');
+                this.updateStats();
+                this.renderAllCharts();
+                this.renderHistory();
+                this.checkStorageQuota(); 
+            } else if (forceCleanup) {
+                this.showNotification('No old data to clean up', 'info');
+            }
+        } catch (e) {
+            console.error('Cleanup failed:', e);
+            this.showNotification('Failed to clean up old data', 'error');
+        }
+    }
+
+    saveDataWithQuotaHandling(key, data) {
+        try {
+            localStorage.setItem(key, JSON.stringify(data));
+        } catch (e) {
+            if (e.name === 'QuotaExceededError' || e.code === 22) {
+                this.showNotification('Storage full! Attempting to clean up old data...', 'warning');
+                this.cleanupOldData(true);
+                
+                try {
+                    localStorage.setItem(key, JSON.stringify(data));
+                } catch (retryError) {
+                    this.showNotification('Unable to save data even after cleanup. Please export and clear some data.', 'error');
+                    this.promptDataExport();
+                }
+            } else {
+                console.error('Error saving data:', e);
+                this.showNotification('Error saving data', 'error');
+            }
+        }
+    }
+
+    promptDataExport() {
+        const modal = document.createElement('div');
+        modal.className = 'duration-warning-modal';
+        modal.innerHTML = `
+            <div class="warning-content">
+                <h3>⚠️ Storage Full</h3>
+                <p>Your browser storage is full. To continue using the app, you need to free up space.</p>
+                <p class="recommendation">💡 <strong>Recommendations:</strong></p>
+                <ul>
+                    <li>Export your data for backup</li>
+                    <li>Clear old data manually</li>
+                    <li>Use browser settings to clear site data</li>
+                </ul>
+                <div class="warning-actions">
+                    <button class="cancel-btn" onclick="this.closest('.duration-warning-modal').remove()">Cancel</button>
+                    <button class="confirm-btn" onclick="window.tracker.exportData(); this.closest('.duration-warning-modal').remove()">
+                        <i class="fas fa-download"></i> Export Data
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    exportData() {
+        const data = {
+            profiles: this.profiles,
+            activities: this.activities,
+            breaks: this.breaks,
+            alerts: this.alerts,
+            exportDate: new Date().toISOString()
+        };
+
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `cognitive-saturation-backup-${new Date().toISOString().split('T')[0]}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        
+        this.showNotification('Data exported successfully!', 'success');
     }
 
     loadProfileData() {
         const currentProfile = this.getCurrentProfile();
         if (!currentProfile) return;
 
-        this.activities = JSON.parse(localStorage.getItem(`cognitiveActivities_${this.currentProfileId}`)) || [];
-        this.breaks = JSON.parse(localStorage.getItem(`cognitiveBreaks_${this.currentProfileId}`)) || [];
-        this.alerts = JSON.parse(localStorage.getItem(`cognitiveAlerts_${this.currentProfileId}`)) || [];
+        try {
+            this.activities = JSON.parse(localStorage.getItem(`cognitiveActivities_${this.currentProfileId}`)) || [];
+            this.breaks = JSON.parse(localStorage.getItem(`cognitiveBreaks_${this.currentProfileId}`)) || [];
+            this.alerts = JSON.parse(localStorage.getItem(`cognitiveAlerts_${this.currentProfileId}`)) || [];
+        } catch (e) {
+            console.error('Error loading data:', e);
+            this.activities = [];
+            this.breaks = [];
+            this.alerts = [];
+            this.showNotification('Error loading saved data', 'error');
+        }
         
         currentProfile.lastActive = new Date().toISOString();
         localStorage.setItem('cognitiveProfiles', JSON.stringify(this.profiles));
@@ -70,6 +298,7 @@ class CognitiveSaturationTracker {
         this.renderHistory();
         this.checkAlerts();
         this.initSoundSettings();
+        this.checkStorageQuota(); // Check quota on init
     }
 
     createChartControls() {
@@ -777,6 +1006,7 @@ class CognitiveSaturationTracker {
         this.renderAllCharts();
         this.renderHistory();
         this.checkAlerts();
+        this.checkStorageQuota(); 
 
         this.showNotification(`Switched to profile: ${profile.name}`, 'success');
     }
@@ -1335,9 +1565,11 @@ class CognitiveSaturationTracker {
     saveData() {
         if (!this.currentProfileId) return;
         
-        localStorage.setItem(`cognitiveActivities_${this.currentProfileId}`, JSON.stringify(this.activities));
-        localStorage.setItem(`cognitiveBreaks_${this.currentProfileId}`, JSON.stringify(this.breaks));
-        localStorage.setItem(`cognitiveAlerts_${this.currentProfileId}`, JSON.stringify(this.alerts));
+        this.saveDataWithQuotaHandling(`cognitiveActivities_${this.currentProfileId}`, this.activities);
+        this.saveDataWithQuotaHandling(`cognitiveBreaks_${this.currentProfileId}`, this.breaks);
+        this.saveDataWithQuotaHandling(`cognitiveAlerts_${this.currentProfileId}`, this.alerts);
+        
+        this.checkStorageQuota();
     }
 
     showNotification(message, type = 'success') {
