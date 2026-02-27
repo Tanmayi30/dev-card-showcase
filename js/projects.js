@@ -2071,12 +2071,12 @@ const staticProjects = [
         }
     },
     {
-        title: "Predictive Data Integrity Sentinel",
+        title: "Distributed Model Performance Tracker",
         description:
-            "Proactively detects potential data corruption before it impacts system reliability through real-time monitoring, predictive modeling, and anomaly detection. Features data trend analysis, automated alerting, integrity scoring, and comprehensive analytics for mission-critical databases and data pipelines.",
-        tags: ["HTML", "CSS", "JavaScript", "Data Integrity", "AI", "Monitoring", "Anomaly Detection", "Predictive Analytics"],
+            "A comprehensive monitoring system for tracking machine learning model performance across distributed deployments. Features real-time metrics collection, drift detection algorithms, automated alerting, and interactive analytics dashboards for AI observability at scale.",
+        tags: ["HTML", "CSS", "JavaScript", "AI", "Machine Learning", "Monitoring", "Analytics", "Distributed Systems"],
         links: {
-            live: "./projects/predictive-data-integrity-sentinel/index.html",
+            live: "./projects/distributed-model-performance-tracker/index.html",
         },
         author: {
             name: "Gupta-02",
