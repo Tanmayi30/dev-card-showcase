@@ -2094,6 +2094,18 @@ const staticProjects = [
             name: "Gupta-02",
             github: "https://github.com/Gupta-02"
         }
+    },
+    {
+        title: "ECHOVERSE · Immersive Resonance Chamber #5971",
+        description: "An interactive digital environment where users can explore layered ambient sound compositions that dynamically evolve based on movement, cursor interaction, or touch gestures. Features Web Audio API integration, spatial audio positioning, and real-time sound modulation.",
+        tags: ["HTML", "CSS", "JavaScript", "Web Audio API", "Interactive Audio", "Spatial Audio", "Sound Design"],
+        links: {
+            live: "./projects/echoverse-immersive-resonance-chamber/index.html"
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];
