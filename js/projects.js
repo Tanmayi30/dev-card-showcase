@@ -2082,6 +2082,18 @@ const staticProjects = [
             name: "Gupta-02",
             github: "https://github.com/Gupta-02"
         }
+    },
+    {
+        title: "Response Orchestrator #5956",
+        description: "An automated incident coordination system that connects detection signals to structured remediation workflows across infrastructure layers. Features alert pipelines, predefined response playbooks, and automated containment actions including access revocation, traffic isolation, and credential rotation.",
+        tags: ["HTML", "CSS", "JavaScript", "Security", "Automation", "Incident Response"],
+        links: {
+            live: "./projects/response-orchestrator/index.html"
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];
