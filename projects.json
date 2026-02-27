@@ -2112,6 +2112,18 @@
       "github": "https://github.com/omkarhole"
     }
   },
+     {
+    "title": "Oklch Color Generator ",
+    "description": "An interactive tool that explores the visual impact of different oklch color values on a racing car design. Features real-time color adjustments, smooth transitions, and a visually engaging interface built with HTML, CSS, and JavaScript.",
+    "tags": ["HTML", "CSS", "JavaScript", "Color Theory", "Interactive Design"],
+    "links": {
+      "live": "./projects/oklch-Color-Platte-Generator/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
       {
     "title": "Case Master – Interactive Case Study Simulator",
     "description": "An interactive case study simulator that allows users to explore complex scenarios in a structured, engaging format. Features branching narratives, decision-based progression, and immersive storytelling elements built with HTML, CSS, and JavaScript.",
@@ -2146,6 +2158,18 @@
     "github": "https://github.com/PriyanshuSingh00-hub"
   }
 },
+        {
+    "title": " Images with Wind  Effect",
+    "description": "A collection of visually appealing loading animations created entirely with CSS3 and JavaScript. Features smooth transitions, customizable styles, and responsive design for seamless integration into any web project.",
+    "tags": ["HTML", "CSS", "JavaScript", "Animations", "UI/UX"],
+    "links": {
+      "live": "./projects/Images-with-Wind/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
   {
     "title": "3D Quantum Neural Network",
     "description": "A 3D visualization of a quantum neural network, showcasing the interactions and computations within a quantum system. Features interactive controls, real-time updates, and a visually engaging interface built with WebGL and JavaScript.",
@@ -2170,7 +2194,18 @@
       "github": "https://github.com/omkarhole"
     }
   },
-
+  {
+    "title": "Liquid Mix Color",
+    "description": "A 3D visualization of a quantum neural network, showcasing the interactions and computations within a quantum system. Features interactive controls, real-time updates, and a visually engaging interface built with WebGL and JavaScript.",
+    "tags": ["HTML", "CSS", "JavaScript", "Game", "Incremental"],
+    "links": {
+      "live": "./projects/Liquid-Mix-Color/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
     {
     "title": "WebGL-Fluid-Simulation",
     "description": "A WebGL-based fluid simulation that demonstrates realistic fluid dynamics in a 3D environment. Features interactive controls, real-time rendering, and a visually engaging interface built with WebGL and JavaScript.",
@@ -2202,6 +2237,18 @@
     "author": {
       "name": "Priyanshu",
       "github": "https://github.com/PriyanshuSingh00-hub"
+    }
+  },
+        {
+    "title": "UI Action Menu Dropdown design",
+    "description": "A visually captivating UI action menu dropdown component built with HTML, CSS, and JavaScript. Features smooth animations, keyboard navigation support, and a clean, modern design that enhances user experience in web applications.",
+    "tags": ["HTML", "CSS", "JavaScript", "UI Component", "Dropdown"],
+    "links": {
+      "live": "./projects/UI-Action-Menu-Dropdown/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
     }
   },
    {
@@ -13782,7 +13829,7 @@
     ],
     "links": {
       "live": "./federated-insight-aggregation-network/index.html"
-    },
+    }
   },
   {
     "title": "Intelligent Query Acceleration Framework #5332",
@@ -13932,6 +13979,17 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  }, 
+  {
+    "title": "Advanced Simon Says Game",
+    "description": "A browser-based memory game where players repeat increasingly complex color sequences. Features 3 difficulty modes, streak system, combo notifications, keyboard controls and Web Audio API sound engine.",
+    "tags": ["HTML", "CSS", "JavaScript", "Web Audio API"],
+    "links": {
+      "live": "./projects/advanced-simon-says/index.html"
+    },
+    "author": {
+      "name": "Nur Hasin Ahammad",
+      "github": "https://github.com/nur-hasin"
   },
   {
     "title": "AURALTIDE · Fluid Acoustic Canvas #5972",
@@ -13996,3 +14054,4 @@
     }
   }
 ]
+   
