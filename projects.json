@@ -13884,5 +13884,37 @@
       "name": "Gupta-02",
       "github": "https://github.com/Gupta-02"
     }
+  },
+  {
+    "title": "Autonomous Configuration Drift Resolver #5912",
+    "description": "Detects and resolves configuration inconsistencies automatically across environments by comparing active configurations against stored baselines and applying corrective updates autonomously. Features include real-time environment scanning, configuration comparison algorithms, drift detection with severity levels (critical/warning/info), automated resolution strategies, compliance monitoring with visual gauges, drift history tracking with trend analysis, baseline management (Golden Standard, Last Known Good, Custom), activity feed, and comprehensive reporting with export functionality.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Configuration Management",
+      "Drift Detection",
+      "Automated Resolution",
+      "Environment Monitoring",
+      "Compliance Tracking",
+      "Baseline Management",
+      "Real-time Analytics",
+      "Chart.js",
+      "LocalStorage",
+      "Data Visualization",
+      "Enterprise Automation",
+      "DevOps Tools",
+      "Configuration as Code",
+      "Infrastructure Monitoring",
+      "Change Management",
+      "Quality Assurance"
+    ],
+    "links": {
+      "live": "./projects/autonomous-configuration-drift-resolver/"
+    },
+    "author": {
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
+    }
   }
 ]
