@@ -1980,12 +1980,12 @@ const staticProjects = [
         }
     },
     {
-        title: "Distributed Event Orchestration Hub",
+        title: "Predictive Maintenance Scheduler",
         description:
-            "A comprehensive event orchestration system that coordinates asynchronous events across microservices with deterministic ordering and dependency resolution. Demonstrates event-driven architecture with real-time monitoring, multiple orchestration modes, and workflow management.",
-        tags: ["HTML", "CSS", "JavaScript", "Event-Driven Architecture", "Microservices", "Distributed Systems", "Real-Time", "Data Visualization"],
+            "An intelligent maintenance scheduling system that forecasts equipment failures using historical data and sensor readings. Features multiple prediction models (statistical, ML-based, hybrid), cost-benefit analysis, and optimized maintenance planning to prevent unexpected downtime.",
+        tags: ["HTML", "CSS", "JavaScript", "Data Visualization", "Machine Learning", "IoT", "Predictive Analytics", "Industrial IoT"],
         links: {
-            live: "./projects/distributed-event-orchestration-hub/index.html",
+            live: "./projects/predictive-maintenance-scheduler/index.html",
         },
         author: {
             name: "Gupta-02",
@@ -1993,12 +1993,12 @@ const staticProjects = [
         }
     },
     {
-        title: "Autonomous Feature Flag Manager",
+        title: "Threat Response Orchestrator",
         description:
-            "An intelligent feature flag management system that automates rollout strategies, monitors system health, and makes autonomous decisions based on safety thresholds and risk assessment. Features gradual rollout, canary deployments, user segmentation, and emergency rollback capabilities.",
-        tags: ["HTML", "CSS", "JavaScript", "DevOps", "Feature Flags", "Automation"],
+            "An automated threat mitigation and incident response orchestration system that coordinates security responses across multiple systems. Features real-time threat detection, automated playbook execution, incident management, security metrics tracking, and manual override capabilities for comprehensive cybersecurity operations.",
+        tags: ["HTML", "CSS", "JavaScript", "Security", "Automation", "Incident Response", "Threat Intelligence", "Cybersecurity"],
         links: {
-            live: "./projects/autonomous-feature-flag-manager/index.html",
+            live: "./projects/threat-response-orchestrator/index.html",
         },
         author: {
             name: "Gupta-02",
@@ -2006,12 +2006,12 @@ const staticProjects = [
         }
     },
     {
-        title: "Real-Time Interaction Quality Evaluator",
+        title: "Knowledge Prioritization Engine",
         description:
-            "A comprehensive system for measuring and analyzing user-system interaction quality in real-time. Features multi-dimensional scoring (relevance, timing, satisfaction, clarity), automated quality assessment algorithms, interactive feedback collection, and performance analytics with trend visualization.",
-        tags: ["HTML", "CSS", "JavaScript", "Real-time Analytics", "Quality Assessment", "User Experience", "Machine Learning"],
+            "An intelligent knowledge management system that dynamically ranks stored knowledge based on contextual relevance, recency, usage patterns, and importance. Features real-time scoring algorithms, contextual analysis, interactive prioritization controls, and comprehensive analytics for optimal knowledge organization and retrieval.",
+        tags: ["HTML", "CSS", "JavaScript", "AI", "Knowledge Management", "Prioritization", "Analytics", "Real-time"],
         links: {
-            live: "./projects/real-time-interaction-quality-evaluator/index.html",
+            live: "./projects/knowledge-prioritization-engine/index.html",
         },
         author: {
             name: "Gupta-02",
@@ -2019,12 +2019,12 @@ const staticProjects = [
         }
     },
     {
-        title: "Adaptive Security Policy Engine",
+        title: "Real-Time Dependency Impact Analyzer",
         description:
-            "An intelligent security system that dynamically adjusts security policies based on real-time threat intelligence, risk scoring, and behavior analysis. Features automated threat response, policy optimization, and comprehensive security monitoring.",
-        tags: ["HTML", "CSS", "JavaScript", "Security", "AI", "Automation", "Threat Intelligence"],
+            "An advanced system for analyzing service dependencies and their cascading failure impacts in real-time. Features interactive dependency graph visualization, impact simulation controls, service health monitoring, automated mitigation strategy generation, and comprehensive system resilience assessment.",
+        tags: ["HTML", "CSS", "JavaScript", "System Architecture", "Dependency Analysis", "Real-time Monitoring", "Impact Simulation", "Resilience Engineering"],
         links: {
-            live: "./projects/adaptive-security-policy-engine/index.html",
+            live: "./projects/real-time-dependency-impact-analyzer/index.html",
         },
         author: {
             name: "Gupta-02",
@@ -2032,12 +2032,12 @@ const staticProjects = [
         }
     },
     {
-        title: "Intelligent Cache Eviction Controller",
+        title: "Adaptive Session Persistence Layer",
         description:
-            "An advanced cache management system that uses intelligent algorithms to analyze access patterns, data relevance, and usage frequency to make optimal eviction decisions. Supports multiple strategies including LRU, LFU, FIFO, and adaptive intelligent eviction for high-performance distributed systems.",
-        tags: ["HTML", "CSS", "JavaScript", "Caching", "Algorithms", "Performance", "Distributed Systems"],
+            "An intelligent session data management system that dynamically determines which session data to persist based on usage patterns, relevance, recency, and importance. Features real-time scoring algorithms, adaptive persistence controls, storage optimization, and comprehensive analytics for efficient session state management.",
+        tags: ["HTML", "CSS", "JavaScript", "AI", "Session Management", "Persistence", "Storage Optimization", "Real-time Analytics"],
         links: {
-            live: "./projects/intelligent-cache-eviction-controller/index.html",
+            live: "./projects/adaptive-session-persistence-layer/index.html",
         },
         author: {
             name: "Gupta-02",
@@ -2045,12 +2045,12 @@ const staticProjects = [
         }
     },
     {
-        title: "Load Balancing Advisor",
+        title: "Resource Contention Resolver",
         description:
-            "An intelligent load balancing system that optimizes traffic distribution across services and nodes in real time. Features multiple routing strategies, performance monitoring, auto-scaling recommendations, and adaptive traffic management for enhanced resilience and reduced latency.",
-        tags: ["HTML", "CSS", "JavaScript", "Load Balancing", "DevOps", "Performance", "Auto-scaling"],
+            "An intelligent resource management system that identifies and mitigates resource contention across competing workloads through automated redistribution and throttling policies. Features real-time monitoring, automated resolution strategies, workload prioritization, and comprehensive analytics for high-density computing environments.",
+        tags: ["HTML", "CSS", "JavaScript", "Resource Management", "AI", "Automation", "Performance", "Monitoring"],
         links: {
-            live: "./projects/load-balancing-advisor/index.html",
+            live: "./projects/resource-contention-resolver/index.html",
         },
         author: {
             name: "Gupta-02",
@@ -2058,12 +2058,12 @@ const staticProjects = [
         }
     },
     {
-        title: "Cross-Domain Semantic Integrator",
+        title: "Predictive Conversation Termination Advisor",
         description:
-            "An intelligent system that unifies data and insights across multiple domains into coherent semantic frameworks. Features entity mapping, relationship discovery, knowledge graph generation, and cross-domain correlation analysis for enterprise analytics and AI training.",
-        tags: ["HTML", "CSS", "JavaScript", "AI", "Data Integration", "Knowledge Graph", "Semantic Web", "Analytics"],
+            "An intelligent system that analyzes conversational signals and determines optimal conversation closure points to improve efficiency. Features real-time monitoring, automated termination detection, signal analysis, and contextually appropriate wrap-up responses for chatbots and automated customer service systems.",
+        tags: ["HTML", "CSS", "JavaScript", "AI", "NLP", "Conversation Analysis", "Automation", "Customer Service"],
         links: {
-            live: "./projects/cross-domain-semantic-integrator/index.html",
+            live: "./projects/predictive-conversation-termination-advisor/index.html",
         },
         author: {
             name: "Gupta-02",

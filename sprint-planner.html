@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Learning Sprint Planner</title>
+    <link rel="stylesheet" href="sprint-planner.css">
+</head>
+<body>
+    <div id="planner-app">
+        <header>
+            <h1>Personal Learning Sprint Planner</h1>
+            <nav>
+                <ul>
+                    <li><a href="#goal">Set Goal</a></li>
+                    <li><a href="#milestones">Milestones</a></li>
+                    <li><a href="#sessions">Daily Sessions</a></li>
+                    <li><a href="#streaks">Streaks</a></li>
+                    <li><a href="#analytics">Analytics</a></li>
+                    <li><a href="#catchup">Catch-Up</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="goal">
+                <h2>Set Your Learning Goal</h2>
+                <form id="goal-form">
+                    <label for="goal-title">Goal Title:</label>
+                    <input type="text" id="goal-title" required>
+                    <label for="goal-duration">Duration (weeks):</label>
+                    <select id="goal-duration">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <button type="submit">Set Goal</button>
+                </form>
+                <div id="goal-summary"></div>
+            </section>
+            <section id="milestones">
+                <h2>Weekly Milestones</h2>
+                <div id="milestone-list"></div>
+            </section>
+            <section id="sessions">
+                <h2>Daily Sessions</h2>
+                <div id="session-list"></div>
+            </section>
+            <section id="streaks">
+                <h2>Streaks</h2>
+                <div id="streak-view"></div>
+            </section>
+            <section id="analytics">
+                <h2>Progress Analytics</h2>
+                <div id="analytics-view"></div>
+            </section>
+            <section id="catchup">
+                <h2>Catch-Up Scheduling</h2>
+                <div id="catchup-view"></div>
+            </section>
+        </main>
+    </div>
+    <script src="sprint-planner.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Communication Timeline Hub</title>
+    <link rel="stylesheet" href="timeline-hub.css">
+</head>
+<body>
+    <div id="dashboard">
+        <header>
+            <h1>Client Communication Timeline Hub</h1>
+            <nav>
+                <ul>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#alerts">Alerts</a></li>
+                    <li><a href="#summaries">Weekly Summaries</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="clients">
+                <h2>Clients</h2>
+                <div id="client-list"></div>
+            </section>
+            <section id="timeline">
+                <h2>Timeline</h2>
+                <div id="timeline-view"></div>
+            </section>
+            <section id="alerts">
+                <h2>Last Contact Alerts</h2>
+                <div id="alerts-view"></div>
+            </section>
+            <section id="summaries">
+                <h2>Weekly Status Summaries</h2>
+                <div id="summaries-view"></div>
+            </section>
+        </main>
+    </div>
+    <script src="timeline-hub.js"></script>
+</body>
+</html>

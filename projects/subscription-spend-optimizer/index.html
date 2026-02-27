@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Subscription Spend Optimizer for tracking recurring costs and cutting low-usage subscriptions.">
+  <title>Subscription Spend Optimizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero reveal">
+      <p class="eyebrow">Personal Finance</p>
+      <h1>Subscription Spend Optimizer</h1>
+      <p class="lead">Track recurring subscriptions, flag low-usage services, monitor renewals, and hit a monthly savings target with smarter cancellation decisions.</p>
+      <div class="hero-actions">
+        <button id="demoBtn" class="btn btn-soft" type="button">Load Demo Subscriptions</button>
+        <button id="clearBtn" class="btn btn-ghost" type="button">Clear All</button>
+      </div>
+    </section>
+
+    <section class="layout">
+      <article class="panel reveal">
+        <div class="panel-head">
+          <h2>Add Subscription</h2>
+          <p>Capture cost, usage, renewal date, and cancellation link.</p>
+        </div>
+
+        <form id="subscriptionForm" autocomplete="off">
+          <div class="field-grid">
+            <label class="field">
+              <span>Service Name</span>
+              <input id="serviceName" type="text" maxlength="80" placeholder="Netflix" required>
+            </label>
+            <label class="field">
+              <span>Category</span>
+              <select id="category">
+                <option>Entertainment</option>
+                <option>Productivity</option>
+                <option>Fitness</option>
+                <option>Education</option>
+                <option>Utilities</option>
+                <option>Other</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="field-grid three">
+            <label class="field">
+              <span>Billing Cycle</span>
+              <select id="billingCycle">
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Cost (USD)</span>
+              <input id="cost" type="number" min="0" step="0.01" value="10">
+            </label>
+            <label class="field">
+              <span>Usage (times/month)</span>
+              <input id="usage" type="number" min="0" max="200" value="4">
+            </label>
+          </div>
+
+          <div class="field-grid">
+            <label class="field">
+              <span>Next Renewal Date</span>
+              <input id="renewalDate" type="date" required>
+            </label>
+            <label class="field">
+              <span>Cancellation Link (optional)</span>
+              <input id="cancelLink" type="url" maxlength="280" placeholder="https://service.com/cancel">
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <p id="hint" class="hint">Tip: low usage + high cost are strong cut candidates.</p>
+            <button class="btn btn-primary" type="submit">Save Subscription</button>
+          </div>
+        </form>
+      </article>
+
+      <article class="panel reveal">
+        <div class="panel-head">
+          <h2>Spend Insights</h2>
+          <p>See where your money leaks and what to cancel first.</p>
+        </div>
+
+        <div class="score-grid">
+          <div class="score-card"><p class="label">Monthly Spend</p><p id="monthlySpend" class="value">$0</p></div>
+          <div class="score-card"><p class="label">Yearly Spend</p><p id="yearlySpend" class="value">$0</p></div>
+          <div class="score-card"><p class="label">Low-Usage Flags</p><p id="lowUsageCount" class="value">0</p></div>
+          <div class="score-card"><p class="label">Renewals in 7 Days</p><p id="renewalsSoon" class="value">0</p></div>
+        </div>
+
+        <section class="insight-card">
+          <h3>Save This Month Goal</h3>
+          <div class="field-grid">
+            <label class="field">
+              <span>Goal Amount (USD)</span>
+              <input id="savingsGoal" type="number" min="0" step="1" value="50">
+            </label>
+            <button id="updateGoalBtn" class="btn btn-soft" type="button">Update Goal</button>
+          </div>
+          <p id="goalProgress" class="hint">Set a goal and cancel low-value subscriptions to track progress.</p>
+        </section>
+
+        <section class="insight-card">
+          <h3>Cancellation Priority</h3>
+          <ul id="priorityList"></ul>
+        </section>
+      </article>
+    </section>
+
+    <section class="panel reveal">
+      <div class="panel-head">
+        <h2>Subscription Ledger</h2>
+        <p>Track status, renewal reminders, and cancellation workflow links.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Cycle</th>
+              <th>Cost</th>
+              <th>Usage</th>
+              <th>Renewal</th>
+              <th>Flag</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="subscriptionRows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

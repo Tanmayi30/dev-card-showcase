@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shared Decision Simulator for Teams to compare strategic scenarios with clear tradeoffs.">
+  <title>Shared Decision Simulator for Teams</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero reveal">
+      <p class="eyebrow">Strategy Workspace</p>
+      <h1>Shared Decision Simulator for Teams</h1>
+      <p class="lead">Model major decisions with assumptions and outcomes, compare scenarios side by side, and pick options with clearer tradeoff visibility.</p>
+      <div class="hero-actions">
+        <button id="demoBtn" class="btn btn-soft" type="button">Load Demo Scenarios</button>
+        <button id="clearBtn" class="btn btn-ghost" type="button">Clear Workspace</button>
+      </div>
+    </section>
+
+    <section class="layout">
+      <article class="panel reveal">
+        <div class="panel-head">
+          <h2>Create Scenario</h2>
+          <p>Capture decision type, assumptions, and estimated outcomes.</p>
+        </div>
+
+        <form id="scenarioForm" autocomplete="off">
+          <div class="field-grid">
+            <label class="field">
+              <span>Decision Theme</span>
+              <select id="decisionType">
+                <option value="Pricing Change">Pricing Change</option>
+                <option value="Roadmap Shift">Roadmap Shift</option>
+                <option value="Hiring Plan">Hiring Plan</option>
+                <option value="Go-to-Market">Go-to-Market</option>
+                <option value="Operational Process">Operational Process</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Scenario Name</span>
+              <input id="scenarioName" type="text" maxlength="90" placeholder="Raise Pro Plan by 15%" required>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Core Assumptions (comma separated)</span>
+            <input id="assumptions" type="text" maxlength="280" placeholder="Churn stable, demand inelastic, support load unchanged" required>
+          </label>
+
+          <div class="field-grid three">
+            <label class="field">
+              <span>Revenue Impact (-100 to 100)</span>
+              <input id="revenueImpact" type="number" min="-100" max="100" value="20">
+            </label>
+            <label class="field">
+              <span>Customer Impact (-100 to 100)</span>
+              <input id="customerImpact" type="number" min="-100" max="100" value="10">
+            </label>
+            <label class="field">
+              <span>Execution Complexity (1-10)</span>
+              <input id="complexity" type="number" min="1" max="10" value="5">
+            </label>
+          </div>
+
+          <div class="field-grid three">
+            <label class="field">
+              <span>Risk Probability (0-100)</span>
+              <input id="riskProbability" type="number" min="0" max="100" value="35">
+            </label>
+            <label class="field">
+              <span>Time to Value (weeks)</span>
+              <input id="timeToValue" type="number" min="1" max="52" value="8">
+            </label>
+            <label class="field">
+              <span>Confidence (0-100)</span>
+              <input id="confidence" type="number" min="0" max="100" value="70">
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Potential Outcome Notes</span>
+            <textarea id="outcomeNotes" rows="3" maxlength="320" placeholder="Best case, worst case, and mitigation path"></textarea>
+          </label>
+
+          <div class="form-actions">
+            <p id="hint" class="hint">Tip: honest confidence and risk estimates improve decisions.</p>
+            <button class="btn btn-primary" type="submit">Add Scenario</button>
+          </div>
+        </form>
+      </article>
+
+      <article class="panel reveal">
+        <div class="panel-head">
+          <h2>Decision Intelligence</h2>
+          <p>Auto-ranked recommendations from impact, risk, and feasibility.</p>
+        </div>
+
+        <div class="score-grid">
+          <div class="score-card"><p class="label">Scenarios</p><p id="scenarioCount" class="value">0</p></div>
+          <div class="score-card"><p class="label">Best Score</p><p id="bestScore" class="value">0</p></div>
+          <div class="score-card"><p class="label">Avg Risk</p><p id="avgRisk" class="value">0%</p></div>
+          <div class="score-card"><p class="label">Avg Confidence</p><p id="avgConfidence" class="value">0%</p></div>
+        </div>
+
+        <section class="insight-card">
+          <h3>Top Recommendation</h3>
+          <p id="topRecommendation" class="hint">Add scenarios to see recommended option.</p>
+        </section>
+
+        <section class="insight-card">
+          <h3>Tradeoff Drivers</h3>
+          <div id="tradeoffBars" class="bars"></div>
+        </section>
+      </article>
+    </section>
+
+    <section class="panel reveal">
+      <div class="panel-head">
+        <h2>Scenario Comparison Board</h2>
+        <p>Compare options side by side and decide with explicit tradeoffs.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Theme</th>
+              <th>Assumptions</th>
+              <th>Revenue</th>
+              <th>Customer</th>
+              <th>Complexity</th>
+              <th>Risk</th>
+              <th>Confidence</th>
+              <th>Decision Score</th>
+            </tr>
+          </thead>
+          <tbody id="scenarioRows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

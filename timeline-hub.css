@@ -1,0 +1,146 @@
+/* timeline-hub.css */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+#dashboard {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 32px;
+}
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+}
+header h1 {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+}
+nav ul {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+nav a {
+    text-decoration: none;
+    color: #2d3a4a;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+nav a:hover {
+    color: #0078d7;
+}
+section {
+    margin-bottom: 40px;
+}
+#client-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.client-card {
+    background: #e9eef3;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 18px 24px;
+    min-width: 220px;
+    max-width: 320px;
+    flex: 1 1 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.client-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+}
+.client-card .last-contact {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 6px;
+}
+.client-card .status {
+    font-size: 0.98rem;
+    color: #0078d7;
+    font-weight: 600;
+}
+#timeline-view {
+    border-left: 3px solid #0078d7;
+    padding-left: 32px;
+    position: relative;
+}
+.timeline-event {
+    position: relative;
+    margin-bottom: 32px;
+    padding-left: 24px;
+}
+.timeline-event:before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    background: #0078d7;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,120,215,0.15);
+}
+.timeline-event h4 {
+    margin: 0 0 6px 0;
+    font-size: 1.1rem;
+}
+.timeline-event .event-type {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 4px;
+}
+.timeline-event .event-date {
+    font-size: 0.92rem;
+    color: #888;
+}
+#alerts-view {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.alert {
+    background: #fffbe6;
+    border-left: 4px solid #ffb300;
+    padding: 14px 22px;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #7a5c00;
+    box-shadow: 0 2px 8px rgba(255,179,0,0.08);
+}
+#summaries-view {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.summary {
+    background: #e3f7e6;
+    border-left: 4px solid #34a853;
+    padding: 16px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #226c3a;
+    box-shadow: 0 2px 8px rgba(52,168,83,0.08);
+}
+@media (max-width: 900px) {
+    #dashboard {
+        padding: 12px;
+    }
+    #client-list {
+        flex-direction: column;
+    }
+}

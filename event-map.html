@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighborhood Event Discovery Map</title>
+    <link rel="stylesheet" href="event-map.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <div id="event-map-app">
+        <header>
+            <h1>Neighborhood Event Discovery Map</h1>
+            <nav>
+                <ul>
+                    <li><a href="#map">Map</a></li>
+                    <li><a href="#filters">Filters</a></li>
+                    <li><a href="#calendar">My Calendar</a></li>
+                    <li><a href="#reminders">Reminders</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="filters">
+                <h2>Filter Events</h2>
+                <form id="filter-form">
+                    <label for="category">Category:</label>
+                    <select id="category">
+                        <option value="all">All</option>
+                        <option value="workshops">Workshops</option>
+                        <option value="meetups">Meetups</option>
+                        <option value="volunteering">Volunteering</option>
+                        <option value="sports">Sports</option>
+                    </select>
+                    <label for="date">Date:</label>
+                    <input type="date" id="date">
+                    <label for="distance">Distance (km):</label>
+                    <input type="number" id="distance" min="1" max="50" value="10">
+                    <button type="submit">Apply Filters</button>
+                </form>
+            </section>
+            <section id="map">
+                <h2>Event Map</h2>
+                <div id="map-view" style="height: 400px;"></div>
+            </section>
+            <section id="calendar">
+                <h2>My Calendar</h2>
+                <div id="calendar-view"></div>
+            </section>
+            <section id="reminders">
+                <h2>Reminders</h2>
+                <div id="reminders-view"></div>
+            </section>
+        </main>
+    </div>
+    <script src="event-map.js"></script>
+</body>
+</html>
