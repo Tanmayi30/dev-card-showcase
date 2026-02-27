@@ -9,7 +9,11 @@ class CognitiveSaturationTracker {
         this.breakTimer = null;
         this.breakDuration = 0;
         this.breakStartTime = null;
-        this.pendingActivity = null; 
+        this.pendingActivity = null;
+        this.soundEnabled = true;
+        this.lastSoundTime = 0;
+        this.soundCooldown = 5 * 60 * 1000; 
+        this.audioContext = null;
 
         this.init();
     }
@@ -20,6 +24,151 @@ class CognitiveSaturationTracker {
         this.renderChart();
         this.renderHistory();
         this.checkAlerts();
+        this.initSoundSettings();
+    }
+
+    initSoundSettings() {
+        const savedSoundSetting = localStorage.getItem('soundNotificationsEnabled');
+        if (savedSoundSetting !== null) {
+            this.soundEnabled = savedSoundSetting === 'true';
+        }
+        
+        const soundToggle = document.getElementById('soundNotifications');
+        if (soundToggle) {
+            soundToggle.checked = this.soundEnabled;
+            soundToggle.addEventListener('change', (e) => {
+                this.soundEnabled = e.target.checked;
+                localStorage.setItem('soundNotificationsEnabled', this.soundEnabled);
+
+                if (this.soundEnabled) {
+                    this.playNotificationSound('notification', true);
+                }
+            });
+        }
+        
+        const soundType = document.getElementById('soundType');
+        if (soundType) {
+            const savedSoundType = localStorage.getItem('notificationSoundType') || 'notification';
+            soundType.value = savedSoundType;
+            soundType.addEventListener('change', (e) => {
+                localStorage.setItem('notificationSoundType', e.target.value);
+                this.playNotificationSound(e.target.value, true);
+            });
+        }
+    }
+
+    playNotificationSound(type = 'notification', isPreview = false) {
+        if (!this.soundEnabled && !isPreview) return;
+        
+        if (!isPreview) {
+            const now = Date.now();
+            if (now - this.lastSoundTime < this.soundCooldown) {
+                console.log('Sound on cooldown');
+                return;
+            }
+            this.lastSoundTime = now;
+        }
+
+        try {
+            if (!this.audioContext) {
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (this.audioContext.state === 'suspended') {
+                this.audioContext.resume();
+            }
+
+            const soundType = document.getElementById('soundType')?.value || type;
+            
+            switch(soundType) {
+                case 'alert':
+                    this.playAlertSound();
+                    break;
+                case 'beep':
+                    this.playBeepSound();
+                    break;
+                default:
+                    this.playNotificationSoundEffect();
+            }
+        } catch (error) {
+            console.log('Audio playback failed:', error);
+            this.fallbackBeep();
+        }
+    }
+
+    playNotificationSoundEffect() {
+        const oscillator = this.audioContext.createOscillator();
+        const gainNode = this.audioContext.createGain();
+        
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(880, this.audioContext.currentTime); 
+        oscillator.frequency.setValueAtTime(440, this.audioContext.currentTime + 0.2); 
+        
+        gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.5);
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
+        
+        oscillator.start();
+        oscillator.stop(this.audioContext.currentTime + 0.5);
+    }
+
+    playAlertSound() {
+        const oscillator = this.audioContext.createOscillator();
+        const gainNode = this.audioContext.createGain();
+        
+        oscillator.type = 'triangle';
+        
+        for (let i = 0; i < 3; i++) {
+            oscillator.frequency.setValueAtTime(660, this.audioContext.currentTime + i * 0.2);
+            oscillator.frequency.setValueAtTime(440, this.audioContext.currentTime + i * 0.2 + 0.1);
+        }
+        
+        gainNode.gain.setValueAtTime(0.4, this.audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 1);
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
+        
+        oscillator.start();
+        oscillator.stop(this.audioContext.currentTime + 1);
+    }
+
+    playBeepSound() {
+        const oscillator = this.audioContext.createOscillator();
+        const gainNode = this.audioContext.createGain();
+        
+        oscillator.type = 'square';
+        oscillator.frequency.setValueAtTime(800, this.audioContext.currentTime);
+        
+        gainNode.gain.setValueAtTime(0.2, this.audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.3);
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
+        
+        oscillator.start();
+        oscillator.stop(this.audioContext.currentTime + 0.3);
+    }
+
+    fallbackBeep() {
+        try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            oscillator.frequency.value = 440;
+            gainNode.gain.value = 0.1;
+            
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.3);
+        } catch (e) {
+            console.log('Fallback audio also failed:', e);
+        }
     }
 
     logCognitiveActivity() {
@@ -425,9 +574,10 @@ class CognitiveSaturationTracker {
 
     checkAlerts() {
         if (this.currentSaturation >= 75 && !this.recentAlert()) {
+            const alertLevel = this.currentSaturation >= 90 ? 'critical' : 'high';
             const alert = {
                 id: Date.now(),
-                level: this.currentSaturation >= 90 ? 'critical' : 'high',
+                level: alertLevel,
                 message: this.currentSaturation >= 90 ?
                     'Critical cognitive saturation! Take an immediate break.' :
                     'High cognitive saturation detected. Consider taking a break.',
@@ -437,6 +587,7 @@ class CognitiveSaturationTracker {
             this.alerts.push(alert);
             this.saveData();
             this.showNotification(alert.message, 'error');
+            this.playNotificationSound(alertLevel === 'critical' ? 'alert' : 'notification');
             this.updateStats();
         }
     }

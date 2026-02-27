@@ -35,6 +35,22 @@
                     </div>
                 </div>
                 <div class="saturation-status" id="saturationStatus">Monitoring...</div>
+                
+                <!-- Sound Notification Toggle -->
+                <div class="sound-toggle-container">
+                    <label class="sound-toggle">
+                        <input type="checkbox" id="soundNotifications" checked>
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-label">
+                            <i class="fas fa-volume-up"></i> Sound Alerts
+                        </span>
+                    </label>
+                    <select id="soundType" class="sound-select">
+                        <option value="notification">🔔 Notification</option>
+                        <option value="alert">⚠️ Alert</option>
+                        <option value="beep">📢 Beep</option>
+                    </select>
+                </div>
             </div>
         </div>
 
