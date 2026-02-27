@@ -1,0 +1,83 @@
+/* study-accountability-hub.css */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+#study-accountability-app {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 32px;
+}
+header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+section {
+    margin-bottom: 32px;
+}
+form input[type="text"] {
+    width: 70%;
+    border-radius: 6px;
+    border: 1px solid #cfd8dc;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+form button {
+    background: #0078d7;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-left: 8px;
+}
+form button:hover {
+    background: #005fa3;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+ul li {
+    margin-bottom: 8px;
+}
+#streak-output {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+#mark-complete {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+#mark-complete:hover {
+    background: #218838;
+}
+#summary-output {
+    background: #e9eef3;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 18px 24px;
+    font-size: 1rem;
+}
+@media (max-width: 700px) {
+    #study-accountability-app {
+        padding: 12px;
+    }
+}

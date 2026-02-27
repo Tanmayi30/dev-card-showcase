@@ -1,0 +1,67 @@
+/* event-matchmaker.css */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+#event-matchmaker-app {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 32px;
+}
+header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+section {
+    margin-bottom: 32px;
+}
+form label {
+    font-weight: 500;
+}
+input[type="text"], input[type="number"] {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #cfd8dc;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+button[type="submit"] {
+    background: #0078d7;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 8px;
+}
+button[type="submit"]:hover {
+    background: #005fa3;
+}
+#events-output {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.event-card {
+    background: #e9eef3;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 18px 24px;
+    font-size: 1rem;
+}
+@media (max-width: 700px) {
+    #event-matchmaker-app {
+        padding: 12px;
+    }
+}

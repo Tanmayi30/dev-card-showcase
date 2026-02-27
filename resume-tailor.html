@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Tailor</title>
+    <link rel="stylesheet" href="resume-tailor.css">
+</head>
+<body>
+    <div id="resume-tailor-app">
+        <header>
+            <h1>AI Resume Tailor</h1>
+            <nav>
+                <ul>
+                    <li><a href="#upload">Upload Resume</a></li>
+                    <li><a href="#job">Job Description</a></li>
+                    <li><a href="#tailored">Tailored Resume</a></li>
+                    <li><a href="#skills">Missing Skills</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="upload">
+                <h2>Upload Your Resume</h2>
+                <textarea id="resume-input" rows="12" placeholder="Paste your resume here..."></textarea>
+            </section>
+            <section id="job">
+                <h2>Paste Job Description</h2>
+                <textarea id="job-input" rows="8" placeholder="Paste the job description here..."></textarea>
+                <button id="tailor-btn">Tailor Resume</button>
+            </section>
+            <section id="tailored">
+                <h2>Tailored Resume</h2>
+                <div id="tailored-output"></div>
+            </section>
+            <section id="skills">
+                <h2>Missing Skills</h2>
+                <div id="skills-output"></div>
+            </section>
+        </main>
+    </div>
+    <script src="resume-tailor.js"></script>
+</body>
+</html>

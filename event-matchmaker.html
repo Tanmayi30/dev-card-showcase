@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Event Matchmaker</title>
+    <link rel="stylesheet" href="event-matchmaker.css">
+</head>
+<body>
+    <div id="event-matchmaker-app">
+        <header>
+            <h1>Local Event Matchmaker</h1>
+            <p>Find nearby events based on your interests, budget, and free time!</p>
+        </header>
+        <main>
+            <section id="preferences">
+                <h2>Your Preferences</h2>
+                <form id="preferences-form">
+                    <label>Interests:<br>
+                        <input type="text" id="interests" placeholder="e.g. music, tech, sports">
+                    </label><br><br>
+                    <label>Budget ($):<br>
+                        <input type="number" id="budget" min="0" placeholder="Enter your budget">
+                    </label><br><br>
+                    <label>Free Time Slots:<br>
+                        <input type="text" id="free-time" placeholder="e.g. Sat 6-9pm, Sun 2-5pm">
+                    </label><br><br>
+                    <button type="submit">Find Events</button>
+                </form>
+            </section>
+            <section id="recommendations">
+                <h2>Recommended Events</h2>
+                <div id="events-output"></div>
+            </section>
+        </main>
+    </div>
+    <script src="event-matchmaker.js"></script>
+</body>
+</html>

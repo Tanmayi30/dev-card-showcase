@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Accountability Hub</title>
+    <link rel="stylesheet" href="study-accountability-hub.css">
+</head>
+<body>
+    <div id="study-accountability-app">
+        <header>
+            <h1>Study Accountability Hub</h1>
+            <p>Set goals, join focus groups, track streaks, and get weekly progress summaries!</p>
+        </header>
+        <main>
+            <section id="goal-section">
+                <h2>Your Study Goals</h2>
+                <form id="goal-form">
+                    <input type="text" id="goal-input" placeholder="Enter your study goal">
+                    <button type="submit">Add Goal</button>
+                </form>
+                <ul id="goal-list"></ul>
+            </section>
+            <section id="group-section">
+                <h2>Focus Groups</h2>
+                <form id="group-form">
+                    <input type="text" id="group-input" placeholder="Join or create a group">
+                    <button type="submit">Join Group</button>
+                </form>
+                <ul id="group-list"></ul>
+            </section>
+            <section id="streak-section">
+                <h2>Your Streak</h2>
+                <div id="streak-output">0 days</div>
+                <button id="mark-complete">Mark Today Complete</button>
+            </section>
+            <section id="summary-section">
+                <h2>Weekly Progress Summary</h2>
+                <div id="summary-output"></div>
+            </section>
+        </main>
+    </div>
+    <script src="study-accountability-hub.js"></script>
+</body>
+</html>
