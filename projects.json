@@ -1905,6 +1905,18 @@
       "github": "https://github.com/your-github-username"
     }
   },
+       {
+    "title": "OKLCH Color Label Generator",
+    "description": "An interactive tool for generating and previewing OKLCH color labels with real-time adjustments to hue, chroma, and lightness values.",
+    "tags": ["HTML", "CSS", "JavaScript", "Color Theory", "Design"],
+    "links": {
+      "live": "./projects/OKLCH-Color-Architecture/index.html"
+    },
+    "author": {
+      "name": "Omkar",
+      "github": "https://github.com/omkarhole"
+    }
+  },
   {
     "title": "Inventory Tetris Game",
     "description": "An interactive grid-based puzzle game inspired by inventory management systems. Players drag, rotate, and place differently shaped blocks onto a dark-themed grid, clear lines for points, and manage space strategically. Features a polished cyber-style interface, smooth drag-and-drop mechanics, rotation controls, and real-time scoring.",
