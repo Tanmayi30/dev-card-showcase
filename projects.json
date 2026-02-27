@@ -13998,16 +13998,26 @@
     }
   },
   {
-    "title": "Advanced Pomodoro Timer",
-    "description": "A productivity timer with task management, session tracking, dashboard analytics and customizable work/break intervals to keep you focused and in flow.",
-    "tags": ["HTML", "CSS", "JavaScript", "LocalStorage"],
+    "title": "Autonomous Rover Pathfinding & Sensor Sim",
+    "description": "A 2D web-based simulation of a robot autonomously navigating a generated maze using virtual ultrasonic sensors. Built from scratch using the HTML5 Canvas API, it features mathematical raycasting for obstacle detection and a custom steering algorithm to dynamically adjust velocity and rotation.",
+    "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "HTML5 Canvas",
+        "Simulation",
+        "Robotics",
+        "Autonomous Navigation",
+        "Raycasting",
+        "Physics Engine"
+    ],
     "links": {
-      "live": "./projects/advanced-pomodoro-timer/index.html"
+        "live": "./projects/rover-pathfinder/index.html"
     },
     "author": {
-      "name": "Nur Hasin Ahammad",
-      "github": "https://github.com/nur-hasin"
+        "name": "Tanmayi",
+        "github": "https://github.com/Tanmayi30"
     }
   }
 ]
-
+   
