@@ -2069,6 +2069,19 @@ const staticProjects = [
             name: "Gupta-02",
             github: "https://github.com/Gupta-02"
         }
+    },
+    {
+        title: "Predictive Data Integrity Sentinel",
+        description:
+            "Proactively detects potential data corruption before it impacts system reliability through real-time monitoring, predictive modeling, and anomaly detection. Features data trend analysis, automated alerting, integrity scoring, and comprehensive analytics for mission-critical databases and data pipelines.",
+        tags: ["HTML", "CSS", "JavaScript", "Data Integrity", "AI", "Monitoring", "Anomaly Detection", "Predictive Analytics"],
+        links: {
+            live: "./projects/predictive-data-integrity-sentinel/index.html",
+        },
+        author: {
+            name: "Gupta-02",
+            github: "https://github.com/Gupta-02"
+        }
     }
 
 ];
