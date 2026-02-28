@@ -14023,47 +14023,34 @@
     }
   },
   {
-    "title": "Digital Logic Gate & Circuit Simulator",
-    "description": "A drag-and-drop sandbox for building digital circuits. Features an event-driven engine that propagates boolean logic through AND, OR, and NOT gates. Connect inputs to outputs using dynamic SVG bezier curves to visualize true/false states in real-time.",
+    "title": "HARMONIC ORB · tactile tone sculpture #5974",
+    "description": "An immersive 3D tactile tone sculpture that transforms user interactions into evolving soundscapes. Features a manipulable WebGL orb that morphs shape and sound based on drag interactions, real-time audio synthesis with oscillators and analysers, tactile feedback mapping, performance monitoring with FPS/latency tracking, and advanced audio-visual synchronization. Built with Three.js for 3D rendering and Web Audio API for sophisticated sound generation.",
     "tags": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Simulation",
-        "Computer Architecture",
-        "Logic Gates",
-        "SVG",
-        "State Machine",
-        "DOM Events"
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Three.js",
+      "WebGL",
+      "Web Audio API",
+      "3D Graphics",
+      "Audio Synthesis",
+      "Interactive Art",
+      "Real-time Audio",
+      "Tactile Interface",
+      "Performance Monitoring",
+      "Audio-Visual Sync",
+      "Oscillators",
+      "Frequency Analysis",
+      "Geometry Morphing",
+      "Drag Interactions",
+      "Immersive Experience"
     ],
     "links": {
-        "live": "./projects/logic-simulator/index.html"
+      "live": "./projects/harmonic-orb-tactile-tone-sculpture/index.html"
     },
     "author": {
-        "name": "Tanmayi",
-        "github": "https://github.com/Tanmayi30"
-    }
-  },
-  {
-    "title": "Autonomous Rover Pathfinding & Sensor Sim",
-    "description": "A 2D web-based simulation of a robot autonomously navigating a generated maze using virtual ultrasonic sensors. Built from scratch using the HTML5 Canvas API, it features mathematical raycasting for obstacle detection and a custom steering algorithm to dynamically adjust velocity and rotation.",
-    "tags": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "HTML5 Canvas",
-        "Simulation",
-        "Robotics",
-        "Autonomous Navigation",
-        "Raycasting",
-        "Physics Engine"
-    ],
-    "links": {
-        "live": "./projects/rover-pathfinder/index.html"
-    },
-    "author": {
-        "name": "Tanmayi",
-        "github": "https://github.com/Tanmayi30"
+      "name": "Gupta-02",
+      "github": "https://github.com/Gupta-02"
     }
   }
 ]
