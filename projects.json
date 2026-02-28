@@ -14065,6 +14065,28 @@
         "name": "Tanmayi",
         "github": "https://github.com/Tanmayi30"
     }
+  },
+  {
+    "title": "AlgoBlocks: Interactive Data Structure Sandbox",
+    "description": "A dark-mode web application for visually simulating core data structures like Linked Lists (Singly, Doubly, Circular), Queues (FIFO), and Stacks (LIFO). Built completely with vanilla web technologies, it features real-time CSS animations, a dynamic search engine, and an integrated action log terminal to help correlate UI interactions with underlying algorithmic state changes.",
+    "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Data Structures",
+        "Algorithms",
+        "DOM Manipulation",
+        "State Management",
+        "Interactive Simulation"
+    ],
+    "links": {
+        "live": "./projects/algoblocks/index.html"
+    },
+    "author": {
+        "name": "Tanmayi",
+        "github": "https://github.com/Tanmayi30"
+    }
   }
 ]
+
    
